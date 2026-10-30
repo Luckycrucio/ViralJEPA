@@ -1,0 +1,23 @@
+{
+  "corpus_dir": "/save/corpus_v3",
+  "data_path": "/data",
+  "save_dir": "/save/runs/exp02",
+  "steps": 60000,
+  "batch_size": 512,
+  "lr": 0.0005,
+  "min_lr": 1e-06,
+  "warmup_steps": 3000,
+  "weight_decay": 0.05,
+  "clip": 1.0,
+  "ema_start": 0.996,
+  "ema_end": 1.0,
+  "jepa_weight": 1.0,
+  "mlm_weight": 0.1,
+  "var_weight": 25.0,
+  "cov_weight": 0.5,
+  "log_every": 200,
+  "eval_every": 5000,
+  "probe_train_size": 50000,
+  "max_windows": 0,
+  "seed": 0
+}
