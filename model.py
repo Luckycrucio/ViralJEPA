@@ -1,5 +1,6 @@
-"""Shared model and data code for exp02: the exp01 CNN-Transformer encoder, the JEPA-DNA style
-predictor, and a GPU batch pipeline over 2-bit base codes (A=0, C=1, G=2, T=3, N=4)."""
+"""Shared model and data code for exp03: the exp01 CNN-Transformer encoder (LayerNorm stem, token
+masking after the stem), the JEPA-DNA style predictor, and a GPU batch pipeline over 2-bit base
+codes (A=0, C=1, G=2, T=3, N=4)."""
 
 import csv
 import math
@@ -82,19 +83,23 @@ class MultiKernelCNNStem(nn.Module):
         self.convs = nn.ModuleList(
             [nn.Conv1d(in_channels, filters_per_kernel, k, stride=stride, padding=k // 2) for k in kernels]
         )
-        self.norm = nn.BatchNorm1d(filters_per_kernel * len(kernels))
+        # LayerNorm, not BatchNorm: no running statistics to drift between masked context batches
+        # and the clean EMA target encoder.
+        self.norm = nn.LayerNorm(filters_per_kernel * len(kernels))
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):
         x = x.permute(0, 2, 1)
         features = [F.gelu(conv(x)) for conv in self.convs]
         min_length = min(feature.shape[-1] for feature in features)
-        x = torch.cat([feature[..., :min_length] for feature in features], dim=1)
-        return self.dropout(self.norm(x)).transpose(1, 2)
+        x = torch.cat([feature[..., :min_length] for feature in features], dim=1).transpose(1, 2)
+        return self.dropout(self.norm(x))
 
 
 class ViralJEPAEncoder(nn.Module):
-    """exp01 CNN-Transformer encoder (unchanged), returning token-level representations."""
+    """exp01 CNN-Transformer encoder, returning token-level representations. Tokens in `token_mask`
+    are replaced by a learnable mask token after the stem. The caller must also set their bases to
+    N before the stem, or the overlapping kernels of neighbouring tokens still see them."""
 
     def __init__(self, cnn_dropout=0.25, transformer_dropout=0.1, transformer_dim=288, filters_per_kernel=72,
                  kernels=(5, 7, 11, 15), cnn_stride=2, num_layers=6, nhead=8, max_len=WINDOW):
@@ -105,18 +110,21 @@ class ViralJEPAEncoder(nn.Module):
         self.projection = nn.Identity() if stem_dim == transformer_dim else nn.Linear(stem_dim, transformer_dim)
         self.token_count = min(((max_len + 2 * (k // 2) - k) // cnn_stride) + 1 for k in kernels)
         self.pos_enc = nn.Parameter(torch.randn(1, self.token_count, transformer_dim) * 0.02)
+        self.mask_token = nn.Parameter(torch.randn(1, 1, transformer_dim) * 0.02)
         layer = nn.TransformerEncoderLayer(transformer_dim, nhead, transformer_dim * 4, transformer_dropout,
                                            activation="gelu", batch_first=True, norm_first=True)
-        self.transformer = nn.TransformerEncoder(layer, num_layers=num_layers)
+        self.transformer = nn.TransformerEncoder(layer, num_layers=num_layers, enable_nested_tensor=False)
         self.norm = nn.LayerNorm(transformer_dim)
 
-    def forward_tokens(self, x):
+    def forward_tokens(self, x, token_mask=None):
         x = self.projection(self.stem(x))
+        if token_mask is not None:
+            x = torch.where(token_mask[..., None], self.mask_token.to(x.dtype), x)
         x = self.transformer(x + self.pos_enc[:, : x.shape[1]])
         return self.norm(x)
 
-    def forward(self, x):
-        return self.forward_tokens(x)
+    def forward(self, x, token_mask=None):
+        return self.forward_tokens(x, token_mask)
 
 
 def sinusoidal(count, dim):
@@ -141,7 +149,7 @@ class JEPAPredictor(nn.Module):
         self.register_buffer("pos", sinusoidal(token_count, width), persistent=False)
         layer = nn.TransformerEncoderLayer(width, heads, width * 4, dropout, activation="gelu",
                                            batch_first=True, norm_first=True)
-        self.transformer = nn.TransformerEncoder(layer, num_layers=layers)
+        self.transformer = nn.TransformerEncoder(layer, num_layers=layers, enable_nested_tensor=False)
         self.norm = nn.LayerNorm(width)
         self.out = nn.Linear(width, dim)
         for module in self.modules():
@@ -170,6 +178,7 @@ class ViralJEPAClassifier(nn.Module):
             nn.TransformerEncoderLayer(transformer_dim, 8, transformer_dim * 4, 0.1, activation="gelu",
                                        batch_first=True, norm_first=True),
             num_layers=1,
+            enable_nested_tensor=False,
         )
         self.norm = nn.LayerNorm(transformer_dim)
         self.fc = nn.Sequential(

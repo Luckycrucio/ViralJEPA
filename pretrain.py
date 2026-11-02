@@ -1,6 +1,21 @@
-"""exp02 JEPA pretraining of the exp01 CNN-Transformer on corpus_v3, following JEPA-DNA
+"""exp03 JEPA pretraining of the exp01 CNN-Transformer on corpus_v3, following JEPA-DNA
 (arXiv 2602.17162): sequence-level JEPA (cosine) + token-level MLM + VICReg variance/covariance,
-scheduled span masking, EMA target encoder. A frozen linear probe on ViraMiner tracks progress."""
+scheduled span masking, EMA target encoder. A frozen linear probe on ViraMiner tracks progress.
+
+Changes from exp02, whose encoder collapsed (probe AUROC 0.80 -> 0.56):
+  - the VICReg branch now matches the JEPA-DNA code: variance hinge on both the encoder's clean
+    pooled output and the predictor's output on it, covariance on the encoder's output divided by
+    d(d-1). exp02 regularised the predictor output only, where the predictor's LayerNorm could
+    satisfy it however collapsed the encoder was, and divided the covariance by d;
+  - the target tokens get a LayerNorm without affine parameters before pooling (JEPA-DNA);
+  - MLM weight 1.0 (JEPA-DNA adds the MLM loss unweighted; exp02 used 0.1);
+  - masked bases are set to N before the CNN stem, as before, and the masked tokens are also
+    replaced by a learnable mask token after it;
+  - MLM is scored on scattered single tokens with visible neighbours, not inside the long JEPA
+    spans, where it never beat base frequencies (loss ~1.38);
+  - JEPA spans no longer overlap and cover 10-20% -> 20-30% (exp02: nominal 20% -> 40%, actual
+    19% -> 36% because of overlaps); with the MLM tokens the total is ~28% -> 36%;
+  - the stem uses LayerNorm instead of BatchNorm."""
 
 import argparse
 import json
@@ -27,26 +42,40 @@ from model import (JEPAPredictor, ViralJEPAEncoder, augment, autocast, load_corp
 
 
 def span_mask(batch_size, token_count, progress, device):
-    """JEPA-DNA schedule: 1-2 spans covering 10-30% of tokens at the start, rising linearly to
-    1-4 spans covering 30-50% at the end. Spans may overlap."""
-    low, high = 0.10 + 0.20 * progress, 0.30 + 0.20 * progress
+    """JEPA spans: 1-2 spans covering 10-20% of tokens at the start, rising linearly to 1-4 spans
+    covering 20-30% at the end. Spans never overlap, so the coverage is exact."""
+    low, high = 0.10 + 0.10 * progress, 0.20 + 0.10 * progress
     spans = torch.randint(1, 3 + round(2 * progress), (batch_size, 1), device=device)
-    ratio = low + (high - low) * torch.rand(batch_size, 1, device=device)
-    length = (ratio * token_count / spans).round().clamp(min=1)
-    starts = (torch.rand(batch_size, 4, device=device) * (token_count - length + 1)).floor()
+    masked = ((low + (high - low) * torch.rand(batch_size, 1, device=device)) * token_count).round().long()
+    slot = torch.arange(4, device=device)
+    active = slot < spans
+    length = torch.where(active, masked // spans + (slot < masked % spans).long(), 0)
+    # Spread the unmasked tokens over the gaps before each span: sorted cut points in [0, unmasked].
+    unmasked = token_count - masked
+    cuts = torch.where(active, (torch.rand(batch_size, 4, device=device) * (unmasked + 1)).floor().long(), unmasked)
+    starts = cuts.sort(1).values + length.cumsum(1) - length
     position = torch.arange(token_count, device=device)
-    inside = (position >= starts[..., None]) & (position < (starts + length)[..., None])
-    active = torch.arange(4, device=device) < spans
-    return (inside & active[..., None]).any(1)
+    return ((position >= starts[..., None]) & (position < (starts + length)[..., None])).any(1)
 
 
-def vicreg(z, gamma=1.0):
-    z = z.float()
-    std = torch.sqrt(z.var(0) + 1e-4)
-    centered = z - z.mean(0)
-    cov = centered.T @ centered / (len(z) - 1)
-    off_diagonal = cov - torch.diag(torch.diag(cov))
-    return F.relu(gamma - std).mean(), off_diagonal.pow(2).sum() / z.shape[1]
+def scattered_mask(span, rate):
+    """MLM tokens: single tokens outside the JEPA spans, each with probability `rate`. Their
+    neighbours stay visible, so the masked bases are predictable from local context."""
+    return (torch.rand(span.shape, device=span.device) < rate) & ~span
+
+
+def variance_hinge(z, gamma=1.0):
+    """VICReg variance: mean over dimensions of max(0, gamma - std across the batch)."""
+    return F.relu(gamma - torch.sqrt(z.float().var(0) + 1e-4)).mean()
+
+
+def covariance_penalty(z):
+    """VICReg covariance as in JEPA-DNA: squared off-diagonal covariances averaged over the
+    d(d-1) off-diagonal entries (exp02 divided by d only, which made it 287x stronger)."""
+    z = z.float() - z.float().mean(0)
+    cov = z.T @ z / (len(z) - 1)
+    dim = z.shape[1]
+    return (cov.pow(2).sum() - cov.diagonal().pow(2).sum()) / (dim * (dim - 1))
 
 
 @torch.no_grad()
@@ -54,8 +83,6 @@ def update_ema(online, target, momentum):
     online_params, target_params = list(online.parameters()), list(target.parameters())
     torch._foreach_mul_(target_params, momentum)
     torch._foreach_add_(target_params, online_params, alpha=1 - momentum)
-    for online_buffer, target_buffer in zip(online.buffers(), target.buffers()):
-        target_buffer.copy_(online_buffer)
 
 
 def lr_at(step, args):
@@ -103,7 +130,7 @@ def save_plots(out_dir):
     history = pd.read_csv(out_dir / "history.csv")
     probes = pd.read_csv(out_dir / "probe_history.csv")
     fig, axes = plt.subplots(1, 4, figsize=(20, 4.5))
-    for column in ("jepa", "mlm", "variance", "covariance"):
+    for column in ("jepa", "mlm", "variance", "predictor_variance", "covariance"):
         axes[0].plot(history["step"], history[column], label=column)
     axes[0].set(title="Loss terms (unweighted)", xlabel="step", yscale="log")
     axes[0].legend()
@@ -172,8 +199,9 @@ def main():
         target_encoder.load_state_dict(state["target"])
         optimizer.load_state_dict(state["optimizer"])
         step = state["step"]
-        history = pd.read_csv(out_dir / "history.csv").to_dict("records")
-        probes = pd.read_csv(out_dir / "probe_history.csv").to_dict("records")
+        # The CSVs are written more often than the checkpoint: drop rows logged after it.
+        history = [row for row in pd.read_csv(out_dir / "history.csv").to_dict("records") if row["step"] <= step]
+        probes = [row for row in pd.read_csv(out_dir / "probe_history.csv").to_dict("records") if row["step"] <= step]
         print(f"Resumed at step {step}")
     else:
         probes.append({"step": 0, **linear_probe(target_encoder, probe_train, probe_val, device)})
@@ -195,25 +223,36 @@ def main():
             group["lr"] = lr_at(step, args)
         momentum = args.ema_start + (args.ema_end - args.ema_start) * progress
 
-        token_mask = span_mask(len(codes), token_count, progress, device)
-        base_mask = token_mask.repeat_interleave(2, dim=1)
+        span = span_mask(len(codes), token_count, progress, device)
+        mlm_tokens = scattered_mask(span, args.mlm_rate)
+        token_mask = span | mlm_tokens
+        # Hidden bases become N before the stem (no visible token's convolution sees them) and hidden
+        # tokens become the mask token after it.
         with autocast(device):
-            context = encoder(one_hot(codes.masked_fill(base_mask, 4)))
+            context = encoder(one_hot(codes.masked_fill(token_mask.repeat_interleave(2, dim=1), 4)), token_mask)
             predicted = predictor(context, token_mask)
             with torch.no_grad():
-                target = target_encoder(one_hot(codes)).mean(1)
-            jepa = 1 - F.cosine_similarity(predicted.float(), target.float(), dim=-1).mean()
+                # Per-token LayerNorm without affine parameters before pooling (JEPA-DNA, as in I-JEPA).
+                target = target_encoder(one_hot(codes)).float()
+                target = F.layer_norm(target, target.shape[-1:]).mean(1)
+            jepa = 1 - F.cosine_similarity(predicted.float(), target, dim=-1).mean()
 
             logits = mlm_head(context).float().view(len(codes), -1, 4)
-            bases = codes.long().masked_fill(~base_mask | (codes == 4), -100)
+            bases = codes.long().masked_fill(~mlm_tokens.repeat_interleave(2, dim=1) | (codes == 4), -100)
             mlm = F.cross_entropy(logits.reshape(-1, 4), bases.reshape(-1), ignore_index=-100)
 
-            # Variance/covariance on the clean, unmasked sequence representation (eval mode).
-            encoder.eval(), predictor.eval()
-            clean = predictor(encoder(one_hot(codes)))
-            encoder.train(), predictor.train()
-            variance, covariance = vicreg(clean)
-            loss = args.mlm_weight * mlm + args.jepa_weight * jepa + args.var_weight * variance + args.cov_weight * covariance
+            # JEPA-DNA's VICReg branch: a clean pass with dropout off. The variance hinge acts on both
+            # the encoder's pooled output (the features that are probed and fine-tuned) and the
+            # predictor's output on it; the covariance penalty on the encoder's output only.
+            encoder.eval()
+            clean_tokens = encoder(one_hot(codes))
+            encoder.train()
+            clean = clean_tokens.mean(1)
+            variance = variance_hinge(clean)
+            predictor_variance = variance_hinge(predictor(clean_tokens))
+            covariance = covariance_penalty(clean)
+            loss = (args.jepa_weight * jepa + args.mlm_weight * mlm
+                    + args.var_weight * (variance + predictor_variance) + args.cov_weight * covariance)
 
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
@@ -225,8 +264,8 @@ def main():
         with torch.no_grad():
             accuracy = (logits.argmax(-1) == bases)[bases >= 0].float().mean()
         running.append(torch.stack([loss.detach(), jepa.detach(), mlm.detach(), accuracy, variance.detach(),
-                                    covariance.detach(), clean.float().std(0).mean().detach(),
-                                    token_mask.float().mean()]))
+                                    predictor_variance.detach(), covariance.detach(),
+                                    clean.float().std(0).mean().detach(), token_mask.float().mean()]))
 
         if step % args.log_every == 0 or step == args.steps:
             values = torch.stack(running).mean(0).tolist()
@@ -234,7 +273,8 @@ def main():
             history.append({
                 "step": step, "epoch": step * args.batch_size / len(corpus), "lr": optimizer.param_groups[0]["lr"],
                 "ema_momentum": momentum, **dict(zip(("loss", "jepa", "mlm", "mlm_accuracy", "variance",
-                                                      "covariance", "representation_std", "mask_ratio"), values)),
+                                                      "predictor_variance", "covariance", "representation_std",
+                                                      "mask_ratio"), values)),
                 "sequences_per_second": len(running) * args.batch_size / elapsed,
                 "hours": (history[-1]["hours"] if history else 0.0) + elapsed / 3600,
             })
@@ -242,7 +282,8 @@ def main():
             pd.DataFrame(history).to_csv(out_dir / "history.csv", index=False)
             row = history[-1]
             print(f"step {step:6d} | loss {row['loss']:.4f} jepa {row['jepa']:.4f} mlm {row['mlm']:.3f} "
-                  f"acc {row['mlm_accuracy']:.3f} var {row['variance']:.3f} cov {row['covariance']:.4f} "
+                  f"acc {row['mlm_accuracy']:.3f} var {row['variance']:.3f} pvar {row['predictor_variance']:.3f} "
+                  f"cov {row['covariance']:.5f} std {row['representation_std']:.3f} "
                   f"mask {row['mask_ratio']:.2f} | {row['sequences_per_second']:.0f} seq/s", flush=True)
 
         if step % args.eval_every == 0 or step == args.steps:
@@ -270,7 +311,7 @@ def main():
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="exp02 JEPA-DNA style pretraining on corpus_v3")
+    parser = argparse.ArgumentParser(description="exp03 JEPA-DNA style pretraining on corpus_v3")
     parser.add_argument("--corpus-dir", required=True, help="folder with pretrain_corpus_*.csv")
     parser.add_argument("--data-path", required=True, help="ViraMiner dataset folder (probe only)")
     parser.add_argument("--save-dir", required=True)
@@ -284,7 +325,8 @@ def parse_args():
     parser.add_argument("--ema-start", type=float, default=0.996)
     parser.add_argument("--ema-end", type=float, default=1.0)
     parser.add_argument("--jepa-weight", type=float, default=1.0)
-    parser.add_argument("--mlm-weight", type=float, default=0.1)
+    parser.add_argument("--mlm-weight", type=float, default=1.0)
+    parser.add_argument("--mlm-rate", type=float, default=0.15, help="MLM masking rate of tokens outside the JEPA spans")
     parser.add_argument("--var-weight", type=float, default=25.0)
     parser.add_argument("--cov-weight", type=float, default=0.5)
     parser.add_argument("--log-every", type=int, default=200)

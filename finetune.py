@@ -1,4 +1,4 @@
-"""exp02 supervised fine-tuning with the exp01 recipe (CLS head, focal loss, AdamW, 120 epochs,
+"""exp03 supervised fine-tuning with the exp01 recipe (CLS head, focal loss, AdamW, 120 epochs,
 patience 15). Two tasks:
   fullset  train fullset_train, select on fullset_validation, test fullset_test
   anell    train training_data_anell (exact test duplicates removed, 10% stratified validation),
@@ -121,8 +121,10 @@ def main():
         encoder.load_state_dict(torch.load(args.encoder, map_location="cpu")["target_encoder"])
     model = ViralJEPAClassifier(encoder).to(device)
 
-    transformer = [p for n, p in model.named_parameters() if n.startswith(("encoder.transformer.", "cls_attention."))]
-    other = [p for n, p in model.named_parameters() if not n.startswith(("encoder.transformer.", "cls_attention."))]
+    # The encoder's Transformer gets the lower rate; the stem and the freshly initialised head
+    # (CLS attention + MLP) get the higher one.
+    transformer = [p for n, p in model.named_parameters() if n.startswith("encoder.transformer.")]
+    other = [p for n, p in model.named_parameters() if not n.startswith("encoder.transformer.")]
     optimizer = torch.optim.AdamW(
         [{"params": other, "lr": args.lr}, {"params": transformer, "lr": args.transformer_lr}],
         weight_decay=args.weight_decay,
@@ -185,7 +187,7 @@ def main():
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="exp02 fine-tuning on ViraMiner")
+    parser = argparse.ArgumentParser(description="exp03 fine-tuning on ViraMiner")
     parser.add_argument("--task", choices=["fullset", "anell"], required=True)
     parser.add_argument("--init", choices=["jepa", "random"], required=True)
     parser.add_argument("--encoder", help="pretrain/encoder.pt (for --init jepa)")
