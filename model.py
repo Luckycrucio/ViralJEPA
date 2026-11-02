@@ -138,8 +138,8 @@ def sinusoidal(count, dim):
 
 class JEPAPredictor(nn.Module):
     """JEPA-DNA predictor: 4 pre-norm layers at half the encoder width, 3 heads, frozen sinusoidal
-    positions. Masked token outputs are replaced by a learnable mask token; the mean-pooled output
-    is projected back to the encoder width as the predicted sequence representation."""
+    positions. Masked token inputs are replaced by a learnable mask token; the mean-pooled output
+    is projected back to the encoder width as the predicted representation."""
 
     def __init__(self, dim=288, token_count=150, layers=4, heads=3, dropout=0.0):
         super().__init__()
@@ -158,12 +158,19 @@ class JEPAPredictor(nn.Module):
                 nn.init.zeros_(module.bias)
         nn.init.trunc_normal_(self.mask_token, std=0.02)
 
-    def forward(self, tokens, token_mask=None):
+    def forward(self, tokens, token_mask=None, pool_mask=None):
+        """Predicted sequence representation: the mean over the `pool_mask` tokens, or over all."""
         x = self.embed(tokens)
         if token_mask is not None:
             x = torch.where(token_mask[..., None], self.mask_token.to(x.dtype), x)
         x = self.norm(self.transformer(x + self.pos))
-        return self.out(x.mean(1))
+        return self.out(x.mean(1) if pool_mask is None else masked_mean(x, pool_mask))
+
+
+def masked_mean(x, mask):
+    """Mean over the tokens in `mask`; every row needs at least one."""
+    mask = mask[..., None].to(x.dtype)
+    return (x * mask).sum(1) / mask.sum(1)
 
 
 class ViralJEPAClassifier(nn.Module):

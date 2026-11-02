@@ -32,10 +32,12 @@ def main():
         lines += [
             "## Pretraining",
             "",
-            f"{gate['steps']:,} steps, {gate['pretrain_hours']:.1f} h, last window: jepa {history['jepa']:.4f}, "
+            f"{gate['steps']:,} steps, {gate['pretrain_hours']:.1f} h, last window: jepa {history['jepa']:.4f} "
+            f"(batch-mean baseline {history['jepa_constant']:.4f}), "
             f"mlm {history['mlm']:.3f} (acc {history['mlm_accuracy']:.3f}), var {history['variance']:.3f}, "
-            f"predictor var {history['predictor_variance']:.3f}, cov {history['covariance']:.5f}, "
-            f"std {history['representation_std']:.3f}, mask {history['mask_ratio']:.2f}.",
+            f"predictor var {history['predictor_variance']:.3f}, cov {history['covariance']:.4f}, "
+            f"std {history['representation_std']:.3f}, token similarity {history['token_similarity']:.3f}, "
+            f"mask {history['mask_ratio']:.2f}.",
             "",
             "Frozen linear probe (train fullset_train, score fullset_test, RC-averaged features):",
             "",
