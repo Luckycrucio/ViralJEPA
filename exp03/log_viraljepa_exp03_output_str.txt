@@ -1,0 +1,1986 @@
+Corpus: 4,000,000 windows loaded in 1 s
+Encoder 6,050,304 | predictor 1,086,624 parameters
+Random init probe: {'step': 0, 'probe_auroc': 0.8049121418759192, 'probe_ap': 0.10479972716981018, 'rankme': 48.448490142822266, 'feature_std': 0.13283605873584747}
+step    200 | loss 24.8120 jepa 0.8328 (const 0.0501) mlm 1.389 acc 0.285 var 0.098 pvar 0.749 cov 2.8449 std 0.409 tsim 0.756 mask 0.28 | 2208 seq/s
+step    400 | loss 5.3382 jepa 0.4204 (const 0.1405) mlm 1.365 acc 0.307 var 0.008 pvar 0.079 cov 2.7539 std 0.502 tsim 0.799 mask 0.28 | 3003 seq/s
+step    600 | loss 1.8698 jepa 0.1879 (const 0.1835) mlm 1.360 acc 0.316 var 0.001 pvar 0.001 cov 0.5255 std 0.531 tsim 0.782 mask 0.28 | 3001 seq/s
+step    800 | loss 1.7541 jepa 0.2288 (const 0.2274) mlm 1.359 acc 0.318 var 0.000 pvar 0.003 cov 0.1698 std 0.544 tsim 0.760 mask 0.28 | 2998 seq/s
+step   1000 | loss 1.8227 jepa 0.3044 (const 0.3035) mlm 1.357 acc 0.320 var 0.000 pvar 0.004 cov 0.1309 std 0.549 tsim 0.746 mask 0.28 | 2997 seq/s
+step   1200 | loss 1.8703 jepa 0.3484 (const 0.3468) mlm 1.356 acc 0.321 var 0.000 pvar 0.004 cov 0.1164 std 0.553 tsim 0.745 mask 0.28 | 3000 seq/s
+step   1400 | loss 1.8245 jepa 0.3706 (const 0.3724) mlm 1.355 acc 0.322 var 0.000 pvar 0.002 cov 0.1051 std 0.556 tsim 0.737 mask 0.28 | 2998 seq/s
+step   1600 | loss 1.9719 jepa 0.4034 (const 0.4037) mlm 1.355 acc 0.322 var 0.000 pvar 0.006 cov 0.0970 std 0.560 tsim 0.728 mask 0.28 | 3001 seq/s
+step   1800 | loss 1.8708 jepa 0.4296 (const 0.4318) mlm 1.355 acc 0.323 var 0.000 pvar 0.002 cov 0.0911 std 0.565 tsim 0.711 mask 0.28 | 2996 seq/s
+step   2000 | loss 2.0260 jepa 0.4559 (const 0.4665) mlm 1.355 acc 0.322 var 0.000 pvar 0.007 cov 0.0858 std 0.568 tsim 0.699 mask 0.28 | 2998 seq/s
+step   2200 | loss 1.8747 jepa 0.4616 (const 0.5031) mlm 1.354 acc 0.323 var 0.000 pvar 0.001 cov 0.0806 std 0.570 tsim 0.681 mask 0.28 | 2997 seq/s
+step   2400 | loss 1.8677 jepa 0.4721 (const 0.5491) mlm 1.354 acc 0.323 var 0.000 pvar 0.000 cov 0.0783 std 0.574 tsim 0.664 mask 0.28 | 3001 seq/s
+step   2600 | loss 2.0093 jepa 0.4887 (const 0.5942) mlm 1.354 acc 0.323 var 0.000 pvar 0.005 cov 0.0752 std 0.573 tsim 0.666 mask 0.28 | 2998 seq/s
+step   2800 | loss 1.8909 jepa 0.4965 (const 0.6266) mlm 1.354 acc 0.323 var 0.000 pvar 0.000 cov 0.0753 std 0.577 tsim 0.667 mask 0.28 | 3002 seq/s
+step   3000 | loss 1.8894 jepa 0.4952 (const 0.6389) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0753 std 0.579 tsim 0.679 mask 0.28 | 3000 seq/s
+step   3200 | loss 1.9015 jepa 0.5074 (const 0.6679) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0749 std 0.579 tsim 0.675 mask 0.28 | 2999 seq/s
+step   3400 | loss 1.9086 jepa 0.5150 (const 0.6883) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0740 std 0.578 tsim 0.683 mask 0.28 | 2998 seq/s
+step   3600 | loss 2.0237 jepa 0.5278 (const 0.7117) mlm 1.354 acc 0.324 var 0.000 pvar 0.004 cov 0.0755 std 0.578 tsim 0.681 mask 0.28 | 2996 seq/s
+step   3800 | loss 1.9375 jepa 0.5440 (const 0.7487) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0736 std 0.579 tsim 0.671 mask 0.28 | 2998 seq/s
+step   4000 | loss 1.9511 jepa 0.5581 (const 0.7777) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0728 std 0.577 tsim 0.681 mask 0.28 | 2998 seq/s
+step   4200 | loss 2.1124 jepa 0.5653 (const 0.7903) mlm 1.353 acc 0.325 var 0.000 pvar 0.006 cov 0.0727 std 0.575 tsim 0.685 mask 0.28 | 2998 seq/s
+step   4400 | loss 2.0103 jepa 0.5728 (const 0.8081) mlm 1.354 acc 0.324 var 0.000 pvar 0.002 cov 0.0724 std 0.576 tsim 0.687 mask 0.28 | 3000 seq/s
+step   4600 | loss 2.0012 jepa 0.5760 (const 0.8107) mlm 1.353 acc 0.324 var 0.000 pvar 0.001 cov 0.0718 std 0.574 tsim 0.693 mask 0.28 | 2995 seq/s
+step   4800 | loss 1.9768 jepa 0.5854 (const 0.8316) mlm 1.353 acc 0.324 var 0.000 pvar 0.000 cov 0.0708 std 0.574 tsim 0.699 mask 0.28 | 2997 seq/s
+step   5000 | loss 1.9738 jepa 0.5821 (const 0.8200) mlm 1.354 acc 0.325 var 0.000 pvar 0.000 cov 0.0713 std 0.575 tsim 0.712 mask 0.28 | 2998 seq/s
+Probe: {'step': 5000, 'probe_auroc': 0.6730323397982818, 'probe_ap': 0.03863385557428334, 'rankme': 283.51593017578125, 'feature_std': 0.4101334512233734}
+step   5200 | loss 2.0236 jepa 0.5906 (const 0.8329) mlm 1.354 acc 0.324 var 0.000 pvar 0.002 cov 0.0711 std 0.573 tsim 0.717 mask 0.28 | 2517 seq/s
+step   5400 | loss 1.9788 jepa 0.5877 (const 0.8198) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0701 std 0.573 tsim 0.723 mask 0.29 | 2998 seq/s
+step   5600 | loss 1.9827 jepa 0.5920 (const 0.8201) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0693 std 0.571 tsim 0.733 mask 0.29 | 2997 seq/s
+step   5800 | loss 1.9784 jepa 0.5879 (const 0.7997) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0688 std 0.570 tsim 0.750 mask 0.29 | 2999 seq/s
+step   6000 | loss 1.9748 jepa 0.5849 (const 0.7789) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0682 std 0.569 tsim 0.758 mask 0.29 | 2999 seq/s
+step   6200 | loss 1.9766 jepa 0.5873 (const 0.7696) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0668 std 0.566 tsim 0.765 mask 0.29 | 2999 seq/s
+step   6400 | loss 1.9727 jepa 0.5842 (const 0.7554) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0657 std 0.565 tsim 0.772 mask 0.29 | 2997 seq/s
+step   6600 | loss 1.9771 jepa 0.5891 (const 0.7542) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0652 std 0.564 tsim 0.782 mask 0.29 | 3000 seq/s
+step   6800 | loss 1.9763 jepa 0.5885 (const 0.7462) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0645 std 0.563 tsim 0.795 mask 0.29 | 2998 seq/s
+step   7000 | loss 1.9748 jepa 0.5872 (const 0.7362) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0639 std 0.562 tsim 0.805 mask 0.29 | 3000 seq/s
+step   7200 | loss 1.9723 jepa 0.5851 (const 0.7311) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0634 std 0.561 tsim 0.818 mask 0.29 | 2998 seq/s
+step   7400 | loss 1.9760 jepa 0.5885 (const 0.7317) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0633 std 0.560 tsim 0.825 mask 0.29 | 2997 seq/s
+step   7600 | loss 1.9835 jepa 0.5972 (const 0.7438) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0621 std 0.558 tsim 0.830 mask 0.29 | 3000 seq/s
+step   7800 | loss 2.0024 jepa 0.6096 (const 0.7625) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0621 std 0.557 tsim 0.836 mask 0.29 | 2998 seq/s
+step   8000 | loss 2.0071 jepa 0.6205 (const 0.7852) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0617 std 0.558 tsim 0.846 mask 0.29 | 2997 seq/s
+step   8200 | loss 2.0164 jepa 0.6302 (const 0.8065) mlm 1.354 acc 0.325 var 0.000 pvar 0.000 cov 0.0610 std 0.555 tsim 0.851 mask 0.29 | 3001 seq/s
+step   8400 | loss 2.0259 jepa 0.6373 (const 0.8245) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0611 std 0.555 tsim 0.863 mask 0.29 | 2997 seq/s
+step   8600 | loss 2.0205 jepa 0.6347 (const 0.8302) mlm 1.353 acc 0.324 var 0.000 pvar 0.000 cov 0.0611 std 0.556 tsim 0.877 mask 0.29 | 3002 seq/s
+step   8800 | loss 2.0247 jepa 0.6393 (const 0.8456) mlm 1.353 acc 0.324 var 0.000 pvar 0.000 cov 0.0601 std 0.554 tsim 0.885 mask 0.29 | 3000 seq/s
+step   9000 | loss 2.0322 jepa 0.6461 (const 0.8612) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0606 std 0.554 tsim 0.897 mask 0.29 | 2996 seq/s
+step   9200 | loss 2.0369 jepa 0.6511 (const 0.8779) mlm 1.353 acc 0.324 var 0.000 pvar 0.000 cov 0.0603 std 0.553 tsim 0.904 mask 0.29 | 3000 seq/s
+step   9400 | loss 2.0393 jepa 0.6540 (const 0.8920) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0599 std 0.552 tsim 0.913 mask 0.29 | 3000 seq/s
+step   9600 | loss 2.0444 jepa 0.6548 (const 0.8976) mlm 1.353 acc 0.324 var 0.000 pvar 0.000 cov 0.0600 std 0.551 tsim 0.919 mask 0.29 | 2996 seq/s
+step   9800 | loss 2.0400 jepa 0.6542 (const 0.9052) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0601 std 0.552 tsim 0.927 mask 0.29 | 2997 seq/s
+step  10000 | loss 2.0419 jepa 0.6561 (const 0.9121) mlm 1.353 acc 0.324 var 0.000 pvar 0.000 cov 0.0595 std 0.551 tsim 0.933 mask 0.29 | 2998 seq/s
+Probe: {'step': 10000, 'probe_auroc': 0.6310867937825196, 'probe_ap': 0.03540148542741683, 'rankme': 284.56939697265625, 'feature_std': 0.39583513140678406}
+step  10200 | loss 2.0425 jepa 0.6567 (const 0.9155) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0596 std 0.551 tsim 0.938 mask 0.29 | 2515 seq/s
+step  10400 | loss 2.0425 jepa 0.6565 (const 0.9173) mlm 1.353 acc 0.324 var 0.000 pvar 0.000 cov 0.0595 std 0.550 tsim 0.943 mask 0.29 | 2999 seq/s
+step  10600 | loss 2.0425 jepa 0.6567 (const 0.9170) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0590 std 0.549 tsim 0.946 mask 0.29 | 3001 seq/s
+step  10800 | loss 2.0413 jepa 0.6553 (const 0.9172) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0591 std 0.549 tsim 0.949 mask 0.29 | 2996 seq/s
+step  11000 | loss 2.0459 jepa 0.6537 (const 0.9179) mlm 1.354 acc 0.324 var 0.000 pvar 0.000 cov 0.0595 std 0.549 tsim 0.951 mask 0.29 | 3000 seq/s
+step  11200 | loss 2.0373 jepa 0.6514 (const 0.9165) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0589 std 0.549 tsim 0.954 mask 0.29 | 3000 seq/s
+step  11400 | loss 2.0363 jepa 0.6503 (const 0.9174) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0589 std 0.548 tsim 0.956 mask 0.29 | 2999 seq/s
+step  11600 | loss 2.0357 jepa 0.6500 (const 0.9174) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0588 std 0.548 tsim 0.957 mask 0.29 | 2997 seq/s
+step  11800 | loss 2.0342 jepa 0.6488 (const 0.9163) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0585 std 0.548 tsim 0.958 mask 0.29 | 3001 seq/s
+step  12000 | loss 2.1605 jepa 0.6501 (const 0.9142) mlm 1.353 acc 0.325 var 0.000 pvar 0.005 cov 0.0604 std 0.547 tsim 0.960 mask 0.29 | 3000 seq/s
+step  12200 | loss 2.0322 jepa 0.6465 (const 0.9132) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0588 std 0.548 tsim 0.960 mask 0.29 | 2997 seq/s
+step  12400 | loss 2.0323 jepa 0.6468 (const 0.9131) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0584 std 0.548 tsim 0.961 mask 0.29 | 3001 seq/s
+step  12600 | loss 2.0332 jepa 0.6474 (const 0.9128) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0588 std 0.548 tsim 0.963 mask 0.30 | 2999 seq/s
+step  12800 | loss 2.0320 jepa 0.6464 (const 0.9127) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0586 std 0.548 tsim 0.964 mask 0.30 | 2997 seq/s
+step  13000 | loss 2.0335 jepa 0.6479 (const 0.9128) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0585 std 0.548 tsim 0.964 mask 0.30 | 2999 seq/s
+step  13200 | loss 2.0308 jepa 0.6457 (const 0.9118) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0583 std 0.547 tsim 0.965 mask 0.30 | 3000 seq/s
+step  13400 | loss 2.0383 jepa 0.6449 (const 0.9108) mlm 1.353 acc 0.324 var 0.000 pvar 0.000 cov 0.0597 std 0.547 tsim 0.966 mask 0.30 | 2993 seq/s
+step  13600 | loss 2.0261 jepa 0.6405 (const 0.9093) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0583 std 0.547 tsim 0.966 mask 0.30 | 3000 seq/s
+step  13800 | loss 2.0274 jepa 0.6421 (const 0.9099) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0583 std 0.547 tsim 0.967 mask 0.30 | 3001 seq/s
+step  14000 | loss 2.0288 jepa 0.6435 (const 0.9106) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0580 std 0.547 tsim 0.967 mask 0.30 | 3000 seq/s
+step  14200 | loss 2.0291 jepa 0.6436 (const 0.9092) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0582 std 0.547 tsim 0.968 mask 0.30 | 2999 seq/s
+step  14400 | loss 2.0291 jepa 0.6436 (const 0.9076) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0580 std 0.547 tsim 0.968 mask 0.30 | 2997 seq/s
+step  14600 | loss 2.0290 jepa 0.6435 (const 0.9070) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0579 std 0.547 tsim 0.968 mask 0.30 | 3001 seq/s
+step  14800 | loss 2.0337 jepa 0.6438 (const 0.9069) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0581 std 0.547 tsim 0.968 mask 0.30 | 2999 seq/s
+step  15000 | loss 2.0290 jepa 0.6437 (const 0.9066) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0579 std 0.547 tsim 0.968 mask 0.30 | 3001 seq/s
+Probe: {'step': 15000, 'probe_auroc': 0.6129386264926949, 'probe_ap': 0.03267824021275205, 'rankme': 284.3347473144531, 'feature_std': 0.3908863067626953}
+step  15200 | loss 2.0316 jepa 0.6465 (const 0.9069) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0579 std 0.547 tsim 0.969 mask 0.30 | 2522 seq/s
+step  15400 | loss 2.0310 jepa 0.6458 (const 0.9058) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0579 std 0.547 tsim 0.969 mask 0.30 | 3001 seq/s
+step  15600 | loss 2.0314 jepa 0.6462 (const 0.9063) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0581 std 0.547 tsim 0.969 mask 0.30 | 3001 seq/s
+step  15800 | loss 2.0300 jepa 0.6453 (const 0.9062) mlm 1.353 acc 0.326 var 0.000 pvar 0.000 cov 0.0579 std 0.547 tsim 0.970 mask 0.30 | 3000 seq/s
+step  16000 | loss 2.0375 jepa 0.6446 (const 0.9059) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0580 std 0.547 tsim 0.970 mask 0.30 | 3001 seq/s
+step  16200 | loss 2.0292 jepa 0.6442 (const 0.9045) mlm 1.353 acc 0.326 var 0.000 pvar 0.000 cov 0.0578 std 0.547 tsim 0.971 mask 0.30 | 3000 seq/s
+step  16400 | loss 2.0307 jepa 0.6455 (const 0.9048) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0577 std 0.547 tsim 0.970 mask 0.30 | 3001 seq/s
+step  16600 | loss 2.0309 jepa 0.6447 (const 0.9041) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0577 std 0.546 tsim 0.970 mask 0.30 | 3002 seq/s
+step  16800 | loss 2.0290 jepa 0.6442 (const 0.9043) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0577 std 0.547 tsim 0.970 mask 0.30 | 3001 seq/s
+step  17000 | loss 2.0303 jepa 0.6450 (const 0.9042) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0574 std 0.546 tsim 0.970 mask 0.30 | 3002 seq/s
+step  17200 | loss 2.0305 jepa 0.6454 (const 0.9042) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0574 std 0.546 tsim 0.970 mask 0.30 | 3003 seq/s
+step  17400 | loss 2.0327 jepa 0.6456 (const 0.9026) mlm 1.353 acc 0.326 var 0.000 pvar 0.000 cov 0.0574 std 0.546 tsim 0.970 mask 0.30 | 3000 seq/s
+step  17600 | loss 2.0306 jepa 0.6458 (const 0.9023) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0569 std 0.546 tsim 0.970 mask 0.30 | 3000 seq/s
+step  17800 | loss 2.0323 jepa 0.6470 (const 0.9023) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0572 std 0.546 tsim 0.970 mask 0.30 | 3002 seq/s
+step  18000 | loss 2.0327 jepa 0.6479 (const 0.9021) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0571 std 0.546 tsim 0.971 mask 0.30 | 3002 seq/s
+step  18200 | loss 2.0316 jepa 0.6466 (const 0.9003) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0575 std 0.546 tsim 0.971 mask 0.30 | 2999 seq/s
+step  18400 | loss 2.0335 jepa 0.6486 (const 0.9014) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0573 std 0.546 tsim 0.971 mask 0.30 | 3002 seq/s
+step  18600 | loss 2.0338 jepa 0.6480 (const 0.9012) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0572 std 0.546 tsim 0.971 mask 0.30 | 3003 seq/s
+step  18800 | loss 2.0331 jepa 0.6487 (const 0.9012) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0569 std 0.546 tsim 0.971 mask 0.30 | 3002 seq/s
+step  19000 | loss 2.0328 jepa 0.6478 (const 0.9004) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0569 std 0.545 tsim 0.970 mask 0.30 | 3001 seq/s
+step  19200 | loss 2.0314 jepa 0.6468 (const 0.9002) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0568 std 0.546 tsim 0.970 mask 0.30 | 2997 seq/s
+step  19400 | loss 2.0316 jepa 0.6472 (const 0.9012) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0567 std 0.546 tsim 0.971 mask 0.31 | 3002 seq/s
+step  19600 | loss 2.0328 jepa 0.6476 (const 0.9003) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0569 std 0.545 tsim 0.971 mask 0.31 | 3003 seq/s
+step  19800 | loss 2.0332 jepa 0.6490 (const 0.9006) mlm 1.353 acc 0.326 var 0.000 pvar 0.000 cov 0.0567 std 0.546 tsim 0.971 mask 0.31 | 3001 seq/s
+step  20000 | loss 2.0343 jepa 0.6499 (const 0.8999) mlm 1.352 acc 0.326 var 0.000 pvar 0.000 cov 0.0568 std 0.545 tsim 0.970 mask 0.31 | 3003 seq/s
+Probe: {'step': 20000, 'probe_auroc': 0.6176761190678557, 'probe_ap': 0.029842561917967646, 'rankme': 284.42913818359375, 'feature_std': 0.38942232728004456}
+step  20200 | loss 2.0339 jepa 0.6495 (const 0.9000) mlm 1.353 acc 0.325 var 0.000 pvar 0.000 cov 0.0570 std 0.546 tsim 0.971 mask 0.31 | 2523 seq/s
+step  20400 | loss 2.0330 jepa 0.6493 (const 0.8994) mlm 1.352 acc 0.326 var 0.000 pvar 0.000 cov 0.0568 std 0.546 tsim 0.970 mask 0.31 | 3001 seq/s
+step  20600 | loss 2.0336 jepa 0.6497 (const 0.8982) mlm 1.352 acc 0.326 var 0.000 pvar 0.000 cov 0.0568 std 0.546 tsim 0.971 mask 0.31 | 2996 seq/s
+step  20800 | loss 2.0354 jepa 0.6503 (const 0.8981) mlm 1.352 acc 0.326 var 0.000 pvar 0.000 cov 0.0571 std 0.546 tsim 0.971 mask 0.31 | 3000 seq/s
+step  21000 | loss 2.0340 jepa 0.6504 (const 0.8986) mlm 1.352 acc 0.326 var 0.000 pvar 0.000 cov 0.0566 std 0.545 tsim 0.971 mask 0.31 | 3003 seq/s
+step  21200 | loss 2.0335 jepa 0.6501 (const 0.8981) mlm 1.352 acc 0.326 var 0.000 pvar 0.000 cov 0.0561 std 0.544 tsim 0.970 mask 0.31 | 3001 seq/s
+step  21400 | loss 2.0353 jepa 0.6505 (const 0.8972) mlm 1.352 acc 0.327 var 0.000 pvar 0.000 cov 0.0563 std 0.544 tsim 0.967 mask 0.31 | 2998 seq/s
+step  21600 | loss 2.0352 jepa 0.6517 (const 0.8981) mlm 1.352 acc 0.326 var 0.000 pvar 0.000 cov 0.0563 std 0.545 tsim 0.969 mask 0.31 | 2996 seq/s
+step  21800 | loss 2.0342 jepa 0.6510 (const 0.8982) mlm 1.352 acc 0.327 var 0.000 pvar 0.000 cov 0.0566 std 0.545 tsim 0.970 mask 0.31 | 3001 seq/s
+step  22000 | loss 2.0336 jepa 0.6504 (const 0.8979) mlm 1.352 acc 0.327 var 0.000 pvar 0.000 cov 0.0563 std 0.545 tsim 0.970 mask 0.31 | 2998 seq/s
+step  22200 | loss 2.0350 jepa 0.6514 (const 0.8977) mlm 1.352 acc 0.327 var 0.000 pvar 0.000 cov 0.0563 std 0.544 tsim 0.969 mask 0.31 | 3001 seq/s
+step  22400 | loss 2.0355 jepa 0.6520 (const 0.8984) mlm 1.352 acc 0.327 var 0.000 pvar 0.000 cov 0.0561 std 0.544 tsim 0.969 mask 0.31 | 3003 seq/s
+step  22600 | loss 2.0353 jepa 0.6523 (const 0.8989) mlm 1.352 acc 0.327 var 0.000 pvar 0.000 cov 0.0562 std 0.545 tsim 0.969 mask 0.31 | 3001 seq/s
+step  22800 | loss 2.0349 jepa 0.6523 (const 0.8982) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0560 std 0.545 tsim 0.970 mask 0.31 | 2997 seq/s
+step  23000 | loss 2.0365 jepa 0.6529 (const 0.8979) mlm 1.351 acc 0.327 var 0.000 pvar 0.000 cov 0.0560 std 0.544 tsim 0.969 mask 0.31 | 2997 seq/s
+step  23200 | loss 2.0352 jepa 0.6528 (const 0.8976) mlm 1.351 acc 0.327 var 0.000 pvar 0.000 cov 0.0558 std 0.544 tsim 0.969 mask 0.31 | 3003 seq/s
+step  23400 | loss 2.0363 jepa 0.6534 (const 0.8986) mlm 1.352 acc 0.327 var 0.000 pvar 0.000 cov 0.0560 std 0.544 tsim 0.970 mask 0.31 | 2996 seq/s
+step  23600 | loss 2.0369 jepa 0.6537 (const 0.8981) mlm 1.352 acc 0.326 var 0.000 pvar 0.000 cov 0.0557 std 0.544 tsim 0.969 mask 0.31 | 2999 seq/s
+step  23800 | loss 2.0403 jepa 0.6538 (const 0.8984) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0559 std 0.544 tsim 0.969 mask 0.31 | 3002 seq/s
+step  24000 | loss 2.0374 jepa 0.6549 (const 0.8981) mlm 1.351 acc 0.327 var 0.000 pvar 0.000 cov 0.0557 std 0.544 tsim 0.970 mask 0.31 | 3003 seq/s
+step  24200 | loss 2.0373 jepa 0.6550 (const 0.8976) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0555 std 0.544 tsim 0.969 mask 0.31 | 3000 seq/s
+step  24400 | loss 2.0383 jepa 0.6559 (const 0.8978) mlm 1.351 acc 0.327 var 0.000 pvar 0.000 cov 0.0555 std 0.544 tsim 0.970 mask 0.31 | 3000 seq/s
+step  24600 | loss 2.0374 jepa 0.6553 (const 0.8975) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0555 std 0.544 tsim 0.969 mask 0.31 | 2998 seq/s
+step  24800 | loss 2.0385 jepa 0.6563 (const 0.8985) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0553 std 0.543 tsim 0.969 mask 0.31 | 2999 seq/s
+step  25000 | loss 2.0380 jepa 0.6562 (const 0.8980) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0557 std 0.544 tsim 0.968 mask 0.31 | 2997 seq/s
+Probe: {'step': 25000, 'probe_auroc': 0.5961717000670426, 'probe_ap': 0.030250123434817935, 'rankme': 284.5289611816406, 'feature_std': 0.3879682719707489}
+step  25200 | loss 2.0379 jepa 0.6563 (const 0.8974) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0557 std 0.544 tsim 0.969 mask 0.31 | 2520 seq/s
+step  25400 | loss 2.0378 jepa 0.6556 (const 0.8972) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0555 std 0.544 tsim 0.969 mask 0.31 | 3003 seq/s
+step  25600 | loss 2.0379 jepa 0.6557 (const 0.8972) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0554 std 0.544 tsim 0.969 mask 0.31 | 3001 seq/s
+step  25800 | loss 2.0388 jepa 0.6569 (const 0.8979) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0553 std 0.544 tsim 0.970 mask 0.31 | 2998 seq/s
+step  26000 | loss 2.0425 jepa 0.6570 (const 0.8971) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0553 std 0.543 tsim 0.970 mask 0.31 | 2997 seq/s
+step  26200 | loss 2.0404 jepa 0.6585 (const 0.8972) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0556 std 0.544 tsim 0.971 mask 0.31 | 2999 seq/s
+step  26400 | loss 2.0415 jepa 0.6602 (const 0.8973) mlm 1.351 acc 0.328 var 0.000 pvar 0.000 cov 0.0553 std 0.543 tsim 0.971 mask 0.31 | 3001 seq/s
+step  26600 | loss 2.0423 jepa 0.6610 (const 0.8970) mlm 1.350 acc 0.328 var 0.000 pvar 0.000 cov 0.0554 std 0.544 tsim 0.972 mask 0.32 | 2999 seq/s
+step  26800 | loss 2.0429 jepa 0.6618 (const 0.8963) mlm 1.350 acc 0.329 var 0.000 pvar 0.000 cov 0.0552 std 0.543 tsim 0.971 mask 0.32 | 3000 seq/s
+step  27000 | loss 2.0435 jepa 0.6621 (const 0.8962) mlm 1.350 acc 0.329 var 0.000 pvar 0.000 cov 0.0551 std 0.543 tsim 0.970 mask 0.32 | 3002 seq/s
+step  27200 | loss 2.0411 jepa 0.6604 (const 0.8968) mlm 1.350 acc 0.329 var 0.000 pvar 0.000 cov 0.0548 std 0.543 tsim 0.970 mask 0.32 | 3002 seq/s
+step  27400 | loss 2.0405 jepa 0.6600 (const 0.8977) mlm 1.350 acc 0.329 var 0.000 pvar 0.000 cov 0.0547 std 0.543 tsim 0.970 mask 0.32 | 3001 seq/s
+step  27600 | loss 2.0419 jepa 0.6613 (const 0.8974) mlm 1.350 acc 0.329 var 0.000 pvar 0.000 cov 0.0547 std 0.542 tsim 0.969 mask 0.32 | 3000 seq/s
+step  27800 | loss 2.0436 jepa 0.6630 (const 0.8969) mlm 1.350 acc 0.330 var 0.000 pvar 0.000 cov 0.0546 std 0.542 tsim 0.967 mask 0.32 | 2999 seq/s
+step  28000 | loss 2.0460 jepa 0.6655 (const 0.8972) mlm 1.350 acc 0.329 var 0.000 pvar 0.000 cov 0.0548 std 0.543 tsim 0.968 mask 0.32 | 3000 seq/s
+step  28200 | loss 2.0467 jepa 0.6654 (const 0.8973) mlm 1.350 acc 0.329 var 0.000 pvar 0.000 cov 0.0552 std 0.543 tsim 0.970 mask 0.32 | 3000 seq/s
+step  28400 | loss 2.0465 jepa 0.6660 (const 0.8966) mlm 1.350 acc 0.330 var 0.000 pvar 0.000 cov 0.0547 std 0.542 tsim 0.968 mask 0.32 | 2999 seq/s
+step  28600 | loss 2.0449 jepa 0.6651 (const 0.8970) mlm 1.350 acc 0.330 var 0.000 pvar 0.000 cov 0.0547 std 0.543 tsim 0.969 mask 0.32 | 3002 seq/s
+step  28800 | loss 2.0463 jepa 0.6654 (const 0.8971) mlm 1.349 acc 0.330 var 0.000 pvar 0.000 cov 0.0551 std 0.543 tsim 0.970 mask 0.32 | 3000 seq/s
+step  29000 | loss 2.0436 jepa 0.6644 (const 0.8969) mlm 1.349 acc 0.330 var 0.000 pvar 0.000 cov 0.0548 std 0.543 tsim 0.970 mask 0.32 | 3001 seq/s
+step  29200 | loss 2.0429 jepa 0.6636 (const 0.8960) mlm 1.349 acc 0.331 var 0.000 pvar 0.000 cov 0.0543 std 0.542 tsim 0.969 mask 0.32 | 3002 seq/s
+step  29400 | loss 2.0433 jepa 0.6636 (const 0.8961) mlm 1.349 acc 0.330 var 0.000 pvar 0.000 cov 0.0545 std 0.542 tsim 0.969 mask 0.32 | 2999 seq/s
+step  29600 | loss 2.0437 jepa 0.6645 (const 0.8963) mlm 1.349 acc 0.330 var 0.000 pvar 0.000 cov 0.0546 std 0.543 tsim 0.971 mask 0.32 | 3002 seq/s
+step  29800 | loss 2.0463 jepa 0.6651 (const 0.8965) mlm 1.348 acc 0.331 var 0.000 pvar 0.000 cov 0.0546 std 0.542 tsim 0.970 mask 0.32 | 2998 seq/s
+step  30000 | loss 2.0415 jepa 0.6634 (const 0.8956) mlm 1.348 acc 0.332 var 0.000 pvar 0.000 cov 0.0541 std 0.542 tsim 0.969 mask 0.32 | 2995 seq/s
+Probe: {'step': 30000, 'probe_auroc': 0.5921021715781716, 'probe_ap': 0.02704905207665275, 'rankme': 284.63873291015625, 'feature_std': 0.38659754395484924}
+step  30200 | loss 2.0408 jepa 0.6635 (const 0.8957) mlm 1.347 acc 0.332 var 0.000 pvar 0.000 cov 0.0542 std 0.542 tsim 0.969 mask 0.32 | 2519 seq/s
+step  30400 | loss 2.0404 jepa 0.6648 (const 0.8966) mlm 1.346 acc 0.334 var 0.000 pvar 0.000 cov 0.0545 std 0.543 tsim 0.971 mask 0.32 | 3001 seq/s
+step  30600 | loss 2.0408 jepa 0.6660 (const 0.8959) mlm 1.343 acc 0.338 var 0.000 pvar 0.000 cov 0.0543 std 0.542 tsim 0.970 mask 0.32 | 3000 seq/s
+step  30800 | loss 2.0361 jepa 0.6659 (const 0.8955) mlm 1.340 acc 0.340 var 0.000 pvar 0.000 cov 0.0543 std 0.542 tsim 0.970 mask 0.32 | 3001 seq/s
+step  31000 | loss 2.0334 jepa 0.6651 (const 0.8957) mlm 1.338 acc 0.342 var 0.000 pvar 0.000 cov 0.0540 std 0.542 tsim 0.970 mask 0.32 | 3001 seq/s
+step  31200 | loss 2.0336 jepa 0.6663 (const 0.8953) mlm 1.337 acc 0.343 var 0.000 pvar 0.000 cov 0.0539 std 0.542 tsim 0.971 mask 0.32 | 2999 seq/s
+step  31400 | loss 2.0345 jepa 0.6675 (const 0.8950) mlm 1.337 acc 0.343 var 0.000 pvar 0.000 cov 0.0540 std 0.542 tsim 0.971 mask 0.32 | 3002 seq/s
+step  31600 | loss 2.0416 jepa 0.6682 (const 0.8950) mlm 1.336 acc 0.344 var 0.000 pvar 0.000 cov 0.0540 std 0.542 tsim 0.971 mask 0.32 | 2998 seq/s
+step  31800 | loss 2.0342 jepa 0.6687 (const 0.8949) mlm 1.335 acc 0.344 var 0.000 pvar 0.000 cov 0.0539 std 0.542 tsim 0.971 mask 0.32 | 2999 seq/s
+step  32000 | loss 2.0327 jepa 0.6683 (const 0.8945) mlm 1.334 acc 0.346 var 0.000 pvar 0.000 cov 0.0539 std 0.542 tsim 0.971 mask 0.32 | 2999 seq/s
+step  32200 | loss 2.0332 jepa 0.6689 (const 0.8948) mlm 1.334 acc 0.346 var 0.000 pvar 0.000 cov 0.0536 std 0.541 tsim 0.970 mask 0.32 | 3000 seq/s
+step  32400 | loss 2.0309 jepa 0.6674 (const 0.8947) mlm 1.333 acc 0.347 var 0.000 pvar 0.000 cov 0.0540 std 0.541 tsim 0.970 mask 0.32 | 3002 seq/s
+step  32600 | loss 2.0291 jepa 0.6667 (const 0.8941) mlm 1.332 acc 0.347 var 0.000 pvar 0.000 cov 0.0538 std 0.542 tsim 0.970 mask 0.32 | 2995 seq/s
+step  32800 | loss 2.0293 jepa 0.6672 (const 0.8935) mlm 1.332 acc 0.348 var 0.000 pvar 0.000 cov 0.0537 std 0.541 tsim 0.971 mask 0.32 | 2999 seq/s
+step  33000 | loss 2.0280 jepa 0.6666 (const 0.8934) mlm 1.331 acc 0.348 var 0.000 pvar 0.000 cov 0.0535 std 0.541 tsim 0.970 mask 0.32 | 3000 seq/s
+step  33200 | loss 2.0270 jepa 0.6663 (const 0.8935) mlm 1.331 acc 0.349 var 0.000 pvar 0.000 cov 0.0536 std 0.541 tsim 0.970 mask 0.32 | 3002 seq/s
+step  33400 | loss 2.0267 jepa 0.6672 (const 0.8933) mlm 1.330 acc 0.350 var 0.000 pvar 0.000 cov 0.0535 std 0.541 tsim 0.971 mask 0.32 | 3002 seq/s
+step  33600 | loss 2.0258 jepa 0.6664 (const 0.8929) mlm 1.329 acc 0.350 var 0.000 pvar 0.000 cov 0.0537 std 0.541 tsim 0.971 mask 0.33 | 3002 seq/s
+step  33800 | loss 2.0259 jepa 0.6678 (const 0.8934) mlm 1.328 acc 0.351 var 0.000 pvar 0.000 cov 0.0533 std 0.541 tsim 0.970 mask 0.33 | 3002 seq/s
+step  34000 | loss 2.0250 jepa 0.6677 (const 0.8929) mlm 1.328 acc 0.352 var 0.000 pvar 0.000 cov 0.0532 std 0.541 tsim 0.970 mask 0.33 | 3003 seq/s
+step  34200 | loss 2.0246 jepa 0.6679 (const 0.8930) mlm 1.327 acc 0.353 var 0.000 pvar 0.000 cov 0.0534 std 0.541 tsim 0.971 mask 0.33 | 3000 seq/s
+step  34400 | loss 2.0243 jepa 0.6685 (const 0.8929) mlm 1.326 acc 0.353 var 0.000 pvar 0.000 cov 0.0534 std 0.541 tsim 0.971 mask 0.33 | 3001 seq/s
+step  34600 | loss 2.0234 jepa 0.6680 (const 0.8928) mlm 1.325 acc 0.354 var 0.000 pvar 0.000 cov 0.0532 std 0.541 tsim 0.970 mask 0.33 | 2999 seq/s
+step  34800 | loss 2.0222 jepa 0.6680 (const 0.8931) mlm 1.325 acc 0.354 var 0.000 pvar 0.000 cov 0.0531 std 0.540 tsim 0.970 mask 0.33 | 3002 seq/s
+step  35000 | loss 2.0222 jepa 0.6684 (const 0.8928) mlm 1.324 acc 0.355 var 0.000 pvar 0.000 cov 0.0531 std 0.541 tsim 0.970 mask 0.33 | 3002 seq/s
+Probe: {'step': 35000, 'probe_auroc': 0.5746263838286098, 'probe_ap': 0.027000385169069763, 'rankme': 284.69073486328125, 'feature_std': 0.38496625423431396}
+step  35200 | loss 2.0219 jepa 0.6685 (const 0.8930) mlm 1.323 acc 0.356 var 0.000 pvar 0.000 cov 0.0532 std 0.541 tsim 0.970 mask 0.33 | 2516 seq/s
+step  35400 | loss 2.0209 jepa 0.6685 (const 0.8929) mlm 1.323 acc 0.356 var 0.000 pvar 0.000 cov 0.0531 std 0.540 tsim 0.970 mask 0.33 | 3003 seq/s
+step  35600 | loss 2.0213 jepa 0.6691 (const 0.8931) mlm 1.323 acc 0.356 var 0.000 pvar 0.000 cov 0.0530 std 0.540 tsim 0.969 mask 0.33 | 3000 seq/s
+step  35800 | loss 2.0195 jepa 0.6684 (const 0.8924) mlm 1.322 acc 0.357 var 0.000 pvar 0.000 cov 0.0530 std 0.541 tsim 0.970 mask 0.33 | 2999 seq/s
+step  36000 | loss 2.0205 jepa 0.6693 (const 0.8917) mlm 1.322 acc 0.356 var 0.000 pvar 0.000 cov 0.0527 std 0.540 tsim 0.969 mask 0.33 | 3003 seq/s
+step  36200 | loss 2.0202 jepa 0.6694 (const 0.8916) mlm 1.321 acc 0.357 var 0.000 pvar 0.000 cov 0.0528 std 0.540 tsim 0.970 mask 0.33 | 3003 seq/s
+step  36400 | loss 2.0203 jepa 0.6700 (const 0.8910) mlm 1.321 acc 0.358 var 0.000 pvar 0.000 cov 0.0527 std 0.540 tsim 0.970 mask 0.33 | 3001 seq/s
+step  36600 | loss 2.0200 jepa 0.6706 (const 0.8913) mlm 1.320 acc 0.358 var 0.000 pvar 0.000 cov 0.0524 std 0.540 tsim 0.969 mask 0.33 | 3003 seq/s
+step  36800 | loss 2.0210 jepa 0.6717 (const 0.8918) mlm 1.320 acc 0.358 var 0.000 pvar 0.000 cov 0.0525 std 0.540 tsim 0.969 mask 0.33 | 3003 seq/s
+step  37000 | loss 2.0201 jepa 0.6714 (const 0.8906) mlm 1.319 acc 0.359 var 0.000 pvar 0.000 cov 0.0524 std 0.539 tsim 0.968 mask 0.33 | 2998 seq/s
+step  37200 | loss 2.0208 jepa 0.6715 (const 0.8905) mlm 1.319 acc 0.359 var 0.000 pvar 0.000 cov 0.0524 std 0.540 tsim 0.969 mask 0.33 | 3000 seq/s
+step  37400 | loss 2.0201 jepa 0.6719 (const 0.8911) mlm 1.319 acc 0.359 var 0.000 pvar 0.000 cov 0.0524 std 0.540 tsim 0.969 mask 0.33 | 3003 seq/s
+step  37600 | loss 2.0214 jepa 0.6735 (const 0.8915) mlm 1.319 acc 0.359 var 0.000 pvar 0.000 cov 0.0523 std 0.540 tsim 0.969 mask 0.33 | 3003 seq/s
+step  37800 | loss 2.0211 jepa 0.6736 (const 0.8919) mlm 1.318 acc 0.360 var 0.000 pvar 0.000 cov 0.0523 std 0.540 tsim 0.969 mask 0.33 | 2997 seq/s
+step  38000 | loss 2.0208 jepa 0.6736 (const 0.8910) mlm 1.318 acc 0.360 var 0.000 pvar 0.000 cov 0.0521 std 0.539 tsim 0.968 mask 0.33 | 2997 seq/s
+step  38200 | loss 2.0208 jepa 0.6737 (const 0.8911) mlm 1.318 acc 0.360 var 0.000 pvar 0.000 cov 0.0523 std 0.540 tsim 0.969 mask 0.33 | 3002 seq/s
+step  38400 | loss 2.0208 jepa 0.6738 (const 0.8902) mlm 1.318 acc 0.360 var 0.000 pvar 0.000 cov 0.0522 std 0.539 tsim 0.970 mask 0.33 | 2999 seq/s
+step  38600 | loss 2.0201 jepa 0.6731 (const 0.8903) mlm 1.318 acc 0.360 var 0.000 pvar 0.000 cov 0.0521 std 0.539 tsim 0.970 mask 0.33 | 3001 seq/s
+step  38800 | loss 2.0203 jepa 0.6740 (const 0.8910) mlm 1.317 acc 0.361 var 0.000 pvar 0.000 cov 0.0521 std 0.539 tsim 0.969 mask 0.33 | 3003 seq/s
+step  39000 | loss 2.0209 jepa 0.6746 (const 0.8913) mlm 1.317 acc 0.361 var 0.000 pvar 0.000 cov 0.0522 std 0.539 tsim 0.970 mask 0.33 | 3001 seq/s
+step  39200 | loss 2.0209 jepa 0.6746 (const 0.8915) mlm 1.317 acc 0.361 var 0.000 pvar 0.000 cov 0.0519 std 0.539 tsim 0.969 mask 0.33 | 3000 seq/s
+step  39400 | loss 2.0202 jepa 0.6741 (const 0.8909) mlm 1.317 acc 0.361 var 0.000 pvar 0.000 cov 0.0518 std 0.539 tsim 0.969 mask 0.33 | 3003 seq/s
+step  39600 | loss 2.0215 jepa 0.6761 (const 0.8917) mlm 1.316 acc 0.361 var 0.000 pvar 0.000 cov 0.0518 std 0.539 tsim 0.969 mask 0.33 | 3001 seq/s
+step  39800 | loss 2.0226 jepa 0.6768 (const 0.8917) mlm 1.317 acc 0.361 var 0.000 pvar 0.000 cov 0.0519 std 0.539 tsim 0.969 mask 0.33 | 2998 seq/s
+step  40000 | loss 2.0226 jepa 0.6776 (const 0.8910) mlm 1.316 acc 0.361 var 0.000 pvar 0.000 cov 0.0518 std 0.539 tsim 0.969 mask 0.33 | 3001 seq/s
+Probe: {'step': 40000, 'probe_auroc': 0.5851612950859473, 'probe_ap': 0.026768205289195008, 'rankme': 284.9023132324219, 'feature_std': 0.38343265652656555}
+step  40200 | loss 2.0223 jepa 0.6773 (const 0.8919) mlm 1.316 acc 0.362 var 0.000 pvar 0.000 cov 0.0517 std 0.539 tsim 0.970 mask 0.33 | 2517 seq/s
+step  40400 | loss 2.0227 jepa 0.6781 (const 0.8918) mlm 1.316 acc 0.361 var 0.000 pvar 0.000 cov 0.0515 std 0.539 tsim 0.970 mask 0.33 | 3000 seq/s
+step  40600 | loss 2.0235 jepa 0.6785 (const 0.8919) mlm 1.316 acc 0.361 var 0.000 pvar 0.000 cov 0.0514 std 0.538 tsim 0.970 mask 0.33 | 2996 seq/s
+step  40800 | loss 2.0230 jepa 0.6790 (const 0.8917) mlm 1.315 acc 0.362 var 0.000 pvar 0.000 cov 0.0513 std 0.538 tsim 0.970 mask 0.34 | 2999 seq/s
+step  41000 | loss 2.0252 jepa 0.6804 (const 0.8914) mlm 1.316 acc 0.362 var 0.000 pvar 0.000 cov 0.0514 std 0.538 tsim 0.970 mask 0.34 | 2998 seq/s
+step  41200 | loss 2.0243 jepa 0.6799 (const 0.8918) mlm 1.316 acc 0.362 var 0.000 pvar 0.000 cov 0.0515 std 0.538 tsim 0.970 mask 0.34 | 3002 seq/s
+step  41400 | loss 2.0238 jepa 0.6793 (const 0.8916) mlm 1.315 acc 0.362 var 0.000 pvar 0.000 cov 0.0514 std 0.538 tsim 0.970 mask 0.34 | 3000 seq/s
+step  41600 | loss 2.0227 jepa 0.6790 (const 0.8912) mlm 1.315 acc 0.362 var 0.000 pvar 0.000 cov 0.0514 std 0.538 tsim 0.971 mask 0.34 | 2997 seq/s
+step  41800 | loss 2.0233 jepa 0.6796 (const 0.8907) mlm 1.315 acc 0.362 var 0.000 pvar 0.000 cov 0.0513 std 0.538 tsim 0.971 mask 0.34 | 3002 seq/s
+step  42000 | loss 2.0232 jepa 0.6799 (const 0.8913) mlm 1.315 acc 0.363 var 0.000 pvar 0.000 cov 0.0513 std 0.538 tsim 0.970 mask 0.34 | 3001 seq/s
+step  42200 | loss 2.0230 jepa 0.6800 (const 0.8912) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0513 std 0.538 tsim 0.971 mask 0.34 | 3002 seq/s
+step  42400 | loss 2.0239 jepa 0.6807 (const 0.8910) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0512 std 0.538 tsim 0.971 mask 0.34 | 3003 seq/s
+step  42600 | loss 2.0225 jepa 0.6796 (const 0.8908) mlm 1.315 acc 0.363 var 0.000 pvar 0.000 cov 0.0511 std 0.538 tsim 0.971 mask 0.34 | 3000 seq/s
+step  42800 | loss 2.0234 jepa 0.6805 (const 0.8905) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0509 std 0.538 tsim 0.971 mask 0.34 | 3002 seq/s
+step  43000 | loss 2.0232 jepa 0.6804 (const 0.8909) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0508 std 0.538 tsim 0.971 mask 0.34 | 3001 seq/s
+step  43200 | loss 2.0234 jepa 0.6802 (const 0.8909) mlm 1.315 acc 0.362 var 0.000 pvar 0.000 cov 0.0508 std 0.538 tsim 0.971 mask 0.34 | 3002 seq/s
+step  43400 | loss 2.0234 jepa 0.6807 (const 0.8912) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0506 std 0.537 tsim 0.971 mask 0.34 | 2997 seq/s
+step  43600 | loss 2.0234 jepa 0.6807 (const 0.8906) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0508 std 0.537 tsim 0.971 mask 0.34 | 3003 seq/s
+step  43800 | loss 2.0232 jepa 0.6806 (const 0.8910) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0507 std 0.537 tsim 0.971 mask 0.34 | 3001 seq/s
+step  44000 | loss 2.0233 jepa 0.6810 (const 0.8904) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0505 std 0.537 tsim 0.971 mask 0.34 | 3002 seq/s
+step  44200 | loss 2.0231 jepa 0.6809 (const 0.8904) mlm 1.314 acc 0.363 var 0.000 pvar 0.000 cov 0.0505 std 0.537 tsim 0.971 mask 0.34 | 2996 seq/s
+step  44400 | loss 2.0232 jepa 0.6813 (const 0.8906) mlm 1.314 acc 0.364 var 0.000 pvar 0.000 cov 0.0503 std 0.537 tsim 0.971 mask 0.34 | 3002 seq/s
+step  44600 | loss 2.0237 jepa 0.6818 (const 0.8909) mlm 1.314 acc 0.364 var 0.000 pvar 0.000 cov 0.0504 std 0.537 tsim 0.971 mask 0.34 | 3001 seq/s
+step  44800 | loss 2.0247 jepa 0.6823 (const 0.8910) mlm 1.314 acc 0.364 var 0.000 pvar 0.000 cov 0.0502 std 0.537 tsim 0.971 mask 0.34 | 3003 seq/s
+step  45000 | loss 2.0237 jepa 0.6822 (const 0.8913) mlm 1.313 acc 0.363 var 0.000 pvar 0.000 cov 0.0502 std 0.537 tsim 0.971 mask 0.34 | 3002 seq/s
+Probe: {'step': 45000, 'probe_auroc': 0.5904049362169578, 'probe_ap': 0.02978418476318378, 'rankme': 285.01470947265625, 'feature_std': 0.381771981716156}
+step  45200 | loss 2.0263 jepa 0.6846 (const 0.8911) mlm 1.313 acc 0.363 var 0.000 pvar 0.000 cov 0.0504 std 0.537 tsim 0.972 mask 0.34 | 2514 seq/s
+step  45400 | loss 2.0270 jepa 0.6852 (const 0.8913) mlm 1.314 acc 0.364 var 0.000 pvar 0.000 cov 0.0503 std 0.537 tsim 0.972 mask 0.34 | 3002 seq/s
+step  45600 | loss 2.0264 jepa 0.6848 (const 0.8914) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0502 std 0.537 tsim 0.971 mask 0.34 | 2999 seq/s
+step  45800 | loss 2.0263 jepa 0.6845 (const 0.8911) mlm 1.314 acc 0.364 var 0.000 pvar 0.000 cov 0.0502 std 0.536 tsim 0.971 mask 0.34 | 3003 seq/s
+step  46000 | loss 2.0262 jepa 0.6848 (const 0.8912) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0501 std 0.536 tsim 0.971 mask 0.34 | 3000 seq/s
+step  46200 | loss 2.0258 jepa 0.6846 (const 0.8908) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0500 std 0.536 tsim 0.971 mask 0.34 | 3000 seq/s
+step  46400 | loss 2.0256 jepa 0.6847 (const 0.8906) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0499 std 0.536 tsim 0.971 mask 0.34 | 3001 seq/s
+step  46600 | loss 2.0266 jepa 0.6857 (const 0.8911) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0497 std 0.536 tsim 0.971 mask 0.34 | 2994 seq/s
+step  46800 | loss 2.0271 jepa 0.6860 (const 0.8904) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0497 std 0.536 tsim 0.971 mask 0.34 | 2997 seq/s
+step  47000 | loss 2.0280 jepa 0.6869 (const 0.8912) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0498 std 0.536 tsim 0.972 mask 0.34 | 2999 seq/s
+step  47200 | loss 2.0281 jepa 0.6873 (const 0.8908) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0497 std 0.536 tsim 0.971 mask 0.34 | 3001 seq/s
+step  47400 | loss 2.0287 jepa 0.6880 (const 0.8909) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0497 std 0.536 tsim 0.972 mask 0.34 | 3001 seq/s
+step  47600 | loss 2.0291 jepa 0.6880 (const 0.8911) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0496 std 0.536 tsim 0.972 mask 0.34 | 2994 seq/s
+step  47800 | loss 2.0289 jepa 0.6879 (const 0.8907) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0495 std 0.536 tsim 0.972 mask 0.34 | 3000 seq/s
+step  48000 | loss 2.0293 jepa 0.6889 (const 0.8910) mlm 1.312 acc 0.364 var 0.000 pvar 0.000 cov 0.0496 std 0.536 tsim 0.972 mask 0.35 | 2998 seq/s
+step  48200 | loss 2.0293 jepa 0.6888 (const 0.8906) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0494 std 0.536 tsim 0.972 mask 0.35 | 3002 seq/s
+step  48400 | loss 2.0300 jepa 0.6896 (const 0.8902) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0494 std 0.536 tsim 0.972 mask 0.35 | 2999 seq/s
+step  48600 | loss 2.0308 jepa 0.6903 (const 0.8903) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0494 std 0.536 tsim 0.972 mask 0.35 | 3003 seq/s
+step  48800 | loss 2.0308 jepa 0.6906 (const 0.8905) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0493 std 0.535 tsim 0.973 mask 0.35 | 2999 seq/s
+step  49000 | loss 2.0313 jepa 0.6907 (const 0.8905) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0493 std 0.535 tsim 0.972 mask 0.35 | 3000 seq/s
+step  49200 | loss 2.0318 jepa 0.6911 (const 0.8900) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0492 std 0.535 tsim 0.973 mask 0.35 | 2997 seq/s
+step  49400 | loss 2.0315 jepa 0.6913 (const 0.8902) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0492 std 0.535 tsim 0.972 mask 0.35 | 3000 seq/s
+step  49600 | loss 2.0316 jepa 0.6914 (const 0.8903) mlm 1.312 acc 0.364 var 0.000 pvar 0.000 cov 0.0491 std 0.535 tsim 0.972 mask 0.35 | 3001 seq/s
+step  49800 | loss 2.0321 jepa 0.6924 (const 0.8905) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0490 std 0.535 tsim 0.972 mask 0.35 | 3002 seq/s
+step  50000 | loss 2.0324 jepa 0.6926 (const 0.8905) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0490 std 0.535 tsim 0.972 mask 0.35 | 3001 seq/s
+Probe: {'step': 50000, 'probe_auroc': 0.5822535014911929, 'probe_ap': 0.028367032393102967, 'rankme': 285.1321105957031, 'feature_std': 0.3802597224712372}
+step  50200 | loss 2.0320 jepa 0.6922 (const 0.8912) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0490 std 0.535 tsim 0.972 mask 0.35 | 2508 seq/s
+step  50400 | loss 2.0321 jepa 0.6919 (const 0.8908) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0490 std 0.535 tsim 0.972 mask 0.35 | 3001 seq/s
+step  50600 | loss 2.0321 jepa 0.6919 (const 0.8904) mlm 1.313 acc 0.364 var 0.000 pvar 0.000 cov 0.0490 std 0.535 tsim 0.972 mask 0.35 | 3003 seq/s
+step  50800 | loss 2.0313 jepa 0.6918 (const 0.8907) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0490 std 0.535 tsim 0.972 mask 0.35 | 3003 seq/s
+step  51000 | loss 2.0315 jepa 0.6917 (const 0.8903) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0489 std 0.534 tsim 0.972 mask 0.35 | 3003 seq/s
+step  51200 | loss 2.0310 jepa 0.6914 (const 0.8904) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0487 std 0.534 tsim 0.972 mask 0.35 | 2999 seq/s
+step  51400 | loss 2.0315 jepa 0.6919 (const 0.8903) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0487 std 0.534 tsim 0.972 mask 0.35 | 3002 seq/s
+step  51600 | loss 2.0318 jepa 0.6925 (const 0.8904) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0486 std 0.534 tsim 0.972 mask 0.35 | 3003 seq/s
+step  51800 | loss 2.0326 jepa 0.6929 (const 0.8905) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0487 std 0.534 tsim 0.972 mask 0.35 | 2996 seq/s
+step  52000 | loss 2.0324 jepa 0.6927 (const 0.8903) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0486 std 0.534 tsim 0.972 mask 0.35 | 3003 seq/s
+step  52200 | loss 2.0329 jepa 0.6930 (const 0.8896) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0486 std 0.534 tsim 0.972 mask 0.35 | 3003 seq/s
+step  52400 | loss 2.0324 jepa 0.6934 (const 0.8899) mlm 1.311 acc 0.365 var 0.000 pvar 0.000 cov 0.0485 std 0.534 tsim 0.972 mask 0.35 | 2993 seq/s
+step  52600 | loss 2.0331 jepa 0.6932 (const 0.8896) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0485 std 0.534 tsim 0.972 mask 0.35 | 3003 seq/s
+step  52800 | loss 2.0328 jepa 0.6931 (const 0.8894) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0486 std 0.534 tsim 0.972 mask 0.35 | 3003 seq/s
+step  53000 | loss 2.0337 jepa 0.6937 (const 0.8895) mlm 1.312 acc 0.364 var 0.000 pvar 0.000 cov 0.0485 std 0.534 tsim 0.973 mask 0.35 | 3003 seq/s
+step  53200 | loss 2.0327 jepa 0.6933 (const 0.8894) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0484 std 0.534 tsim 0.972 mask 0.35 | 3003 seq/s
+step  53400 | loss 2.0339 jepa 0.6943 (const 0.8890) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0484 std 0.534 tsim 0.973 mask 0.35 | 3003 seq/s
+step  53600 | loss 2.0344 jepa 0.6948 (const 0.8895) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0484 std 0.534 tsim 0.973 mask 0.35 | 3003 seq/s
+step  53800 | loss 2.0344 jepa 0.6954 (const 0.8898) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0484 std 0.534 tsim 0.973 mask 0.35 | 3003 seq/s
+step  54000 | loss 2.0349 jepa 0.6953 (const 0.8894) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0484 std 0.534 tsim 0.973 mask 0.35 | 3003 seq/s
+step  54200 | loss 2.0354 jepa 0.6956 (const 0.8903) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0483 std 0.534 tsim 0.973 mask 0.35 | 3003 seq/s
+step  54400 | loss 2.0353 jepa 0.6957 (const 0.8903) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0482 std 0.533 tsim 0.972 mask 0.35 | 3003 seq/s
+step  54600 | loss 2.0359 jepa 0.6961 (const 0.8904) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0482 std 0.533 tsim 0.972 mask 0.35 | 3003 seq/s
+step  54800 | loss 2.0361 jepa 0.6967 (const 0.8902) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0482 std 0.533 tsim 0.973 mask 0.35 | 3003 seq/s
+step  55000 | loss 2.0360 jepa 0.6961 (const 0.8902) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0481 std 0.533 tsim 0.973 mask 0.36 | 3003 seq/s
+Probe: {'step': 55000, 'probe_auroc': 0.5857613987115851, 'probe_ap': 0.02797591602485145, 'rankme': 285.158935546875, 'feature_std': 0.37901565432548523}
+step  55200 | loss 2.0367 jepa 0.6971 (const 0.8901) mlm 1.312 acc 0.364 var 0.000 pvar 0.000 cov 0.0481 std 0.533 tsim 0.973 mask 0.36 | 2517 seq/s
+step  55400 | loss 2.0366 jepa 0.6972 (const 0.8900) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0481 std 0.533 tsim 0.973 mask 0.36 | 3003 seq/s
+step  55600 | loss 2.0366 jepa 0.6978 (const 0.8897) mlm 1.311 acc 0.365 var 0.000 pvar 0.000 cov 0.0481 std 0.533 tsim 0.973 mask 0.36 | 3002 seq/s
+step  55800 | loss 2.0378 jepa 0.6983 (const 0.8900) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0481 std 0.533 tsim 0.973 mask 0.36 | 3003 seq/s
+step  56000 | loss 2.0372 jepa 0.6984 (const 0.8902) mlm 1.311 acc 0.366 var 0.000 pvar 0.000 cov 0.0481 std 0.533 tsim 0.973 mask 0.36 | 3003 seq/s
+step  56200 | loss 2.0369 jepa 0.6977 (const 0.8898) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0481 std 0.533 tsim 0.973 mask 0.36 | 3003 seq/s
+step  56400 | loss 2.0376 jepa 0.6982 (const 0.8899) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0481 std 0.533 tsim 0.973 mask 0.36 | 3003 seq/s
+step  56600 | loss 2.0367 jepa 0.6978 (const 0.8900) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 3003 seq/s
+step  56800 | loss 2.0376 jepa 0.6983 (const 0.8900) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 3003 seq/s
+step  57000 | loss 2.0386 jepa 0.6993 (const 0.8904) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2997 seq/s
+step  57200 | loss 2.0388 jepa 0.6990 (const 0.8900) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 3001 seq/s
+step  57400 | loss 2.0386 jepa 0.6996 (const 0.8899) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2997 seq/s
+step  57600 | loss 2.0377 jepa 0.6985 (const 0.8901) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2998 seq/s
+step  57800 | loss 2.0387 jepa 0.6997 (const 0.8904) mlm 1.311 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2999 seq/s
+step  58000 | loss 2.0391 jepa 0.7001 (const 0.8905) mlm 1.311 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2999 seq/s
+step  58200 | loss 2.0388 jepa 0.6998 (const 0.8901) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2999 seq/s
+step  58400 | loss 2.0408 jepa 0.7011 (const 0.8900) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2999 seq/s
+step  58600 | loss 2.0394 jepa 0.7004 (const 0.8905) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0479 std 0.533 tsim 0.973 mask 0.36 | 3000 seq/s
+step  58800 | loss 2.0410 jepa 0.7016 (const 0.8906) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0479 std 0.533 tsim 0.973 mask 0.36 | 2999 seq/s
+step  59000 | loss 2.0396 jepa 0.7007 (const 0.8900) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0479 std 0.533 tsim 0.973 mask 0.36 | 3000 seq/s
+step  59200 | loss 2.0396 jepa 0.7008 (const 0.8901) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 3000 seq/s
+step  59400 | loss 2.0400 jepa 0.7011 (const 0.8904) mlm 1.311 acc 0.366 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2997 seq/s
+step  59600 | loss 2.0401 jepa 0.7012 (const 0.8901) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2998 seq/s
+step  59800 | loss 2.0402 jepa 0.7011 (const 0.8900) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 2999 seq/s
+step  60000 | loss 2.0404 jepa 0.7014 (const 0.8899) mlm 1.312 acc 0.365 var 0.000 pvar 0.000 cov 0.0480 std 0.533 tsim 0.973 mask 0.36 | 3000 seq/s
+Probe: {'step': 60000, 'probe_auroc': 0.5824266813867768, 'probe_ap': 0.028242205103309284, 'rankme': 285.1838073730469, 'feature_std': 0.37860313057899475}
+Test probe: {'random_init': {'probe_auroc': 0.8391265092252642, 'probe_ap': 0.12972542991710773, 'rankme': 48.65654754638672, 'feature_std': 0.13167926669120789}, 'jepa_target_encoder': {'probe_auroc': 0.6235803816404752, 'probe_ap': 0.035089135159850356, 'rankme': 285.1958923339844, 'feature_std': 0.3785737156867981}, 'steps': 60000, 'pretrain_hours': 2.8678183495998395}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0260 | val AUROC 0.7032 AP 0.0487 (RC-TTA) | best AP 0.0487 @ 1
+epoch   2 | loss 0.0242 | val AUROC 0.7614 AP 0.0757 (RC-TTA) | best AP 0.0757 @ 2
+epoch   3 | loss 0.0230 | val AUROC 0.7922 AP 0.0963 (RC-TTA) | best AP 0.0963 @ 3
+epoch   4 | loss 0.0219 | val AUROC 0.8382 AP 0.1580 (RC-TTA) | best AP 0.1580 @ 4
+epoch   5 | loss 0.0208 | val AUROC 0.8552 AP 0.2147 (RC-TTA) | best AP 0.2147 @ 5
+epoch   6 | loss 0.0199 | val AUROC 0.8734 AP 0.2686 (RC-TTA) | best AP 0.2686 @ 6
+epoch   7 | loss 0.0189 | val AUROC 0.8862 AP 0.3482 (RC-TTA) | best AP 0.3482 @ 7
+epoch   8 | loss 0.0181 | val AUROC 0.8902 AP 0.3714 (RC-TTA) | best AP 0.3714 @ 8
+epoch   9 | loss 0.0173 | val AUROC 0.8980 AP 0.4009 (RC-TTA) | best AP 0.4009 @ 9
+epoch  10 | loss 0.0169 | val AUROC 0.9039 AP 0.4060 (RC-TTA) | best AP 0.4060 @ 10
+epoch  11 | loss 0.0164 | val AUROC 0.9052 AP 0.4140 (RC-TTA) | best AP 0.4140 @ 11
+epoch  12 | loss 0.0159 | val AUROC 0.8972 AP 0.4282 (RC-TTA) | best AP 0.4282 @ 12
+epoch  13 | loss 0.0155 | val AUROC 0.9149 AP 0.4731 (RC-TTA) | best AP 0.4731 @ 13
+epoch  14 | loss 0.0153 | val AUROC 0.9178 AP 0.4932 (RC-TTA) | best AP 0.4932 @ 14
+epoch  15 | loss 0.0148 | val AUROC 0.9080 AP 0.4723 (RC-TTA) | best AP 0.4932 @ 14
+epoch  16 | loss 0.0145 | val AUROC 0.9164 AP 0.4964 (RC-TTA) | best AP 0.4964 @ 16
+epoch  17 | loss 0.0141 | val AUROC 0.9206 AP 0.5146 (RC-TTA) | best AP 0.5146 @ 17
+epoch  18 | loss 0.0139 | val AUROC 0.9133 AP 0.4852 (RC-TTA) | best AP 0.5146 @ 17
+epoch  19 | loss 0.0136 | val AUROC 0.9197 AP 0.5248 (RC-TTA) | best AP 0.5248 @ 19
+epoch  20 | loss 0.0136 | val AUROC 0.9201 AP 0.5067 (RC-TTA) | best AP 0.5248 @ 19
+epoch  21 | loss 0.0131 | val AUROC 0.9238 AP 0.5247 (RC-TTA) | best AP 0.5248 @ 19
+epoch  22 | loss 0.0129 | val AUROC 0.9221 AP 0.5238 (RC-TTA) | best AP 0.5248 @ 19
+epoch  23 | loss 0.0127 | val AUROC 0.9272 AP 0.5411 (RC-TTA) | best AP 0.5411 @ 23
+epoch  24 | loss 0.0124 | val AUROC 0.9232 AP 0.5217 (RC-TTA) | best AP 0.5411 @ 23
+epoch  25 | loss 0.0122 | val AUROC 0.9265 AP 0.5321 (RC-TTA) | best AP 0.5411 @ 23
+epoch  26 | loss 0.0119 | val AUROC 0.9249 AP 0.5270 (RC-TTA) | best AP 0.5411 @ 23
+epoch  27 | loss 0.0118 | val AUROC 0.9238 AP 0.5444 (RC-TTA) | best AP 0.5444 @ 27
+epoch  28 | loss 0.0116 | val AUROC 0.9307 AP 0.5496 (RC-TTA) | best AP 0.5496 @ 28
+epoch  29 | loss 0.0111 | val AUROC 0.9284 AP 0.5548 (RC-TTA) | best AP 0.5548 @ 29
+epoch  30 | loss 0.0110 | val AUROC 0.9225 AP 0.5363 (RC-TTA) | best AP 0.5548 @ 29
+epoch  31 | loss 0.0108 | val AUROC 0.9250 AP 0.5547 (RC-TTA) | best AP 0.5548 @ 29
+epoch  32 | loss 0.0104 | val AUROC 0.9226 AP 0.5666 (RC-TTA) | best AP 0.5666 @ 32
+epoch  33 | loss 0.0105 | val AUROC 0.9231 AP 0.5524 (RC-TTA) | best AP 0.5666 @ 32
+epoch  34 | loss 0.0101 | val AUROC 0.9239 AP 0.5402 (RC-TTA) | best AP 0.5666 @ 32
+epoch  35 | loss 0.0101 | val AUROC 0.9270 AP 0.5640 (RC-TTA) | best AP 0.5666 @ 32
+epoch  36 | loss 0.0097 | val AUROC 0.9252 AP 0.5620 (RC-TTA) | best AP 0.5666 @ 32
+epoch  37 | loss 0.0096 | val AUROC 0.9248 AP 0.5494 (RC-TTA) | best AP 0.5666 @ 32
+epoch  38 | loss 0.0091 | val AUROC 0.9229 AP 0.5516 (RC-TTA) | best AP 0.5666 @ 32
+epoch  39 | loss 0.0090 | val AUROC 0.9205 AP 0.5539 (RC-TTA) | best AP 0.5666 @ 32
+epoch  40 | loss 0.0090 | val AUROC 0.9218 AP 0.5617 (RC-TTA) | best AP 0.5666 @ 32
+epoch  41 | loss 0.0087 | val AUROC 0.9212 AP 0.5486 (RC-TTA) | best AP 0.5666 @ 32
+epoch  42 | loss 0.0084 | val AUROC 0.9187 AP 0.5421 (RC-TTA) | best AP 0.5666 @ 32
+epoch  43 | loss 0.0081 | val AUROC 0.9194 AP 0.5508 (RC-TTA) | best AP 0.5666 @ 32
+epoch  44 | loss 0.0081 | val AUROC 0.9236 AP 0.5556 (RC-TTA) | best AP 0.5666 @ 32
+epoch  45 | loss 0.0079 | val AUROC 0.9224 AP 0.5617 (RC-TTA) | best AP 0.5666 @ 32
+epoch  46 | loss 0.0076 | val AUROC 0.9154 AP 0.5526 (RC-TTA) | best AP 0.5666 @ 32
+epoch  47 | loss 0.0075 | val AUROC 0.9259 AP 0.5709 (RC-TTA) | best AP 0.5709 @ 47
+epoch  48 | loss 0.0072 | val AUROC 0.9198 AP 0.5656 (RC-TTA) | best AP 0.5709 @ 47
+epoch  49 | loss 0.0072 | val AUROC 0.9157 AP 0.5528 (RC-TTA) | best AP 0.5709 @ 47
+epoch  50 | loss 0.0068 | val AUROC 0.9220 AP 0.5771 (RC-TTA) | best AP 0.5771 @ 50
+epoch  51 | loss 0.0067 | val AUROC 0.9188 AP 0.5558 (RC-TTA) | best AP 0.5771 @ 50
+epoch  52 | loss 0.0065 | val AUROC 0.9175 AP 0.5499 (RC-TTA) | best AP 0.5771 @ 50
+epoch  53 | loss 0.0063 | val AUROC 0.9210 AP 0.5525 (RC-TTA) | best AP 0.5771 @ 50
+epoch  54 | loss 0.0062 | val AUROC 0.9206 AP 0.5693 (RC-TTA) | best AP 0.5771 @ 50
+epoch  55 | loss 0.0061 | val AUROC 0.9095 AP 0.5453 (RC-TTA) | best AP 0.5771 @ 50
+epoch  56 | loss 0.0060 | val AUROC 0.9191 AP 0.5757 (RC-TTA) | best AP 0.5771 @ 50
+epoch  57 | loss 0.0058 | val AUROC 0.9138 AP 0.5508 (RC-TTA) | best AP 0.5771 @ 50
+epoch  58 | loss 0.0055 | val AUROC 0.9107 AP 0.5592 (RC-TTA) | best AP 0.5771 @ 50
+epoch  59 | loss 0.0055 | val AUROC 0.9140 AP 0.5586 (RC-TTA) | best AP 0.5771 @ 50
+epoch  60 | loss 0.0054 | val AUROC 0.9114 AP 0.5536 (RC-TTA) | best AP 0.5771 @ 50
+epoch  61 | loss 0.0053 | val AUROC 0.9142 AP 0.5566 (RC-TTA) | best AP 0.5771 @ 50
+epoch  62 | loss 0.0051 | val AUROC 0.9135 AP 0.5501 (RC-TTA) | best AP 0.5771 @ 50
+epoch  63 | loss 0.0051 | val AUROC 0.9184 AP 0.5547 (RC-TTA) | best AP 0.5771 @ 50
+epoch  64 | loss 0.0048 | val AUROC 0.9095 AP 0.5444 (RC-TTA) | best AP 0.5771 @ 50
+epoch  65 | loss 0.0047 | val AUROC 0.9150 AP 0.5508 (RC-TTA) | best AP 0.5771 @ 50
+{
+  "task": "fullset",
+  "init": "jepa",
+  "seed": 0,
+  "encoder": "/save/runs/exp03/pretrain/encoder.pt",
+  "parameters": 7265313,
+  "best_epoch": 50,
+  "epochs_run": 65,
+  "minutes": 30.755694091320038,
+  "validation_ap_rc": 0.5770770426737593,
+  "test": {
+    "auroc": 0.919361858443694,
+    "ap": 0.5255104235699342,
+    "threshold": 0.5270731449127197,
+    "precision": 0.6809116809116809,
+    "recall": 0.4337568058076225,
+    "f1": 0.5299334811529933,
+    "specificity": 0.9956679817436374,
+    "tp": 239,
+    "fp": 112,
+    "fn": 312,
+    "tn": 25742,
+    "auroc_ci95": [
+      0.9069409069077601,
+      0.9299395094680089
+    ],
+    "ap_ci95": [
+      0.4847448460830192,
+      0.5646836635077448
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.9384208925816434,
+    "ap": 0.5986539976903233,
+    "threshold": 0.4376896023750305,
+    "precision": 0.7683284457478006,
+    "recall": 0.47549909255898365,
+    "f1": 0.5874439461883408,
+    "specificity": 0.996944379979887,
+    "tp": 262,
+    "fp": 79,
+    "fn": 289,
+    "tn": 25775,
+    "auroc_ci95": [
+      0.9287938594839062,
+      0.9472385975928695
+    ],
+    "ap_ci95": [
+      0.5597464953597591,
+      0.6372858814220401
+    ]
+  }
+}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0258 | val AUROC 0.6962 AP 0.0443 (RC-TTA) | best AP 0.0443 @ 1
+epoch   2 | loss 0.0243 | val AUROC 0.7510 AP 0.0767 (RC-TTA) | best AP 0.0767 @ 2
+epoch   3 | loss 0.0234 | val AUROC 0.7953 AP 0.1036 (RC-TTA) | best AP 0.1036 @ 3
+epoch   4 | loss 0.0220 | val AUROC 0.8344 AP 0.1798 (RC-TTA) | best AP 0.1798 @ 4
+epoch   5 | loss 0.0208 | val AUROC 0.8576 AP 0.2330 (RC-TTA) | best AP 0.2330 @ 5
+epoch   6 | loss 0.0199 | val AUROC 0.8740 AP 0.2714 (RC-TTA) | best AP 0.2714 @ 6
+epoch   7 | loss 0.0189 | val AUROC 0.8847 AP 0.3340 (RC-TTA) | best AP 0.3340 @ 7
+epoch   8 | loss 0.0182 | val AUROC 0.8889 AP 0.3474 (RC-TTA) | best AP 0.3474 @ 8
+epoch   9 | loss 0.0176 | val AUROC 0.8933 AP 0.3983 (RC-TTA) | best AP 0.3983 @ 9
+epoch  10 | loss 0.0170 | val AUROC 0.8935 AP 0.4089 (RC-TTA) | best AP 0.4089 @ 10
+epoch  11 | loss 0.0163 | val AUROC 0.9005 AP 0.4283 (RC-TTA) | best AP 0.4283 @ 11
+epoch  12 | loss 0.0162 | val AUROC 0.9037 AP 0.4420 (RC-TTA) | best AP 0.4420 @ 12
+epoch  13 | loss 0.0156 | val AUROC 0.9004 AP 0.4474 (RC-TTA) | best AP 0.4474 @ 13
+epoch  14 | loss 0.0151 | val AUROC 0.9140 AP 0.4807 (RC-TTA) | best AP 0.4807 @ 14
+epoch  15 | loss 0.0149 | val AUROC 0.9114 AP 0.4774 (RC-TTA) | best AP 0.4807 @ 14
+epoch  16 | loss 0.0146 | val AUROC 0.9124 AP 0.4740 (RC-TTA) | best AP 0.4807 @ 14
+epoch  17 | loss 0.0143 | val AUROC 0.9156 AP 0.4928 (RC-TTA) | best AP 0.4928 @ 17
+epoch  18 | loss 0.0141 | val AUROC 0.9127 AP 0.4633 (RC-TTA) | best AP 0.4928 @ 17
+epoch  19 | loss 0.0139 | val AUROC 0.9182 AP 0.5100 (RC-TTA) | best AP 0.5100 @ 19
+epoch  20 | loss 0.0134 | val AUROC 0.9100 AP 0.4923 (RC-TTA) | best AP 0.5100 @ 19
+epoch  21 | loss 0.0133 | val AUROC 0.9162 AP 0.5244 (RC-TTA) | best AP 0.5244 @ 21
+epoch  22 | loss 0.0130 | val AUROC 0.9211 AP 0.5354 (RC-TTA) | best AP 0.5354 @ 22
+epoch  23 | loss 0.0127 | val AUROC 0.9193 AP 0.5273 (RC-TTA) | best AP 0.5354 @ 22
+epoch  24 | loss 0.0125 | val AUROC 0.9236 AP 0.5427 (RC-TTA) | best AP 0.5427 @ 24
+epoch  25 | loss 0.0123 | val AUROC 0.9213 AP 0.5252 (RC-TTA) | best AP 0.5427 @ 24
+epoch  26 | loss 0.0120 | val AUROC 0.9203 AP 0.5240 (RC-TTA) | best AP 0.5427 @ 24
+epoch  27 | loss 0.0117 | val AUROC 0.9234 AP 0.5204 (RC-TTA) | best AP 0.5427 @ 24
+epoch  28 | loss 0.0115 | val AUROC 0.9265 AP 0.5412 (RC-TTA) | best AP 0.5427 @ 24
+epoch  29 | loss 0.0114 | val AUROC 0.9223 AP 0.5323 (RC-TTA) | best AP 0.5427 @ 24
+epoch  30 | loss 0.0111 | val AUROC 0.9213 AP 0.5368 (RC-TTA) | best AP 0.5427 @ 24
+epoch  31 | loss 0.0109 | val AUROC 0.9167 AP 0.5244 (RC-TTA) | best AP 0.5427 @ 24
+epoch  32 | loss 0.0106 | val AUROC 0.9250 AP 0.5538 (RC-TTA) | best AP 0.5538 @ 32
+epoch  33 | loss 0.0105 | val AUROC 0.9228 AP 0.5385 (RC-TTA) | best AP 0.5538 @ 32
+epoch  34 | loss 0.0101 | val AUROC 0.9242 AP 0.5420 (RC-TTA) | best AP 0.5538 @ 32
+epoch  35 | loss 0.0100 | val AUROC 0.9248 AP 0.5384 (RC-TTA) | best AP 0.5538 @ 32
+epoch  36 | loss 0.0098 | val AUROC 0.9201 AP 0.5469 (RC-TTA) | best AP 0.5538 @ 32
+epoch  37 | loss 0.0095 | val AUROC 0.9247 AP 0.5356 (RC-TTA) | best AP 0.5538 @ 32
+epoch  38 | loss 0.0093 | val AUROC 0.9169 AP 0.5302 (RC-TTA) | best AP 0.5538 @ 32
+epoch  39 | loss 0.0091 | val AUROC 0.9256 AP 0.5457 (RC-TTA) | best AP 0.5538 @ 32
+epoch  40 | loss 0.0089 | val AUROC 0.9251 AP 0.5475 (RC-TTA) | best AP 0.5538 @ 32
+epoch  41 | loss 0.0087 | val AUROC 0.9189 AP 0.5341 (RC-TTA) | best AP 0.5538 @ 32
+epoch  42 | loss 0.0085 | val AUROC 0.9185 AP 0.5405 (RC-TTA) | best AP 0.5538 @ 32
+epoch  43 | loss 0.0084 | val AUROC 0.9199 AP 0.5483 (RC-TTA) | best AP 0.5538 @ 32
+epoch  44 | loss 0.0080 | val AUROC 0.9186 AP 0.5463 (RC-TTA) | best AP 0.5538 @ 32
+epoch  45 | loss 0.0080 | val AUROC 0.9164 AP 0.5466 (RC-TTA) | best AP 0.5538 @ 32
+epoch  46 | loss 0.0078 | val AUROC 0.9209 AP 0.5534 (RC-TTA) | best AP 0.5538 @ 32
+epoch  47 | loss 0.0075 | val AUROC 0.9169 AP 0.5386 (RC-TTA) | best AP 0.5538 @ 32
+{
+  "task": "fullset",
+  "init": "jepa",
+  "seed": 1,
+  "encoder": "/save/runs/exp03/pretrain/encoder.pt",
+  "parameters": 7265313,
+  "best_epoch": 32,
+  "epochs_run": 47,
+  "minutes": 22.107112761338552,
+  "validation_ap_rc": 0.5537696501595706,
+  "test": {
+    "auroc": 0.9205425075079565,
+    "ap": 0.505946879205821,
+    "threshold": 0.564578652381897,
+    "precision": 0.6453488372093024,
+    "recall": 0.4029038112522686,
+    "f1": 0.4960893854748603,
+    "specificity": 0.9952811943993193,
+    "tp": 222,
+    "fp": 122,
+    "fn": 329,
+    "tn": 25732,
+    "auroc_ci95": [
+      0.9089005234964023,
+      0.9319859783687914
+    ],
+    "ap_ci95": [
+      0.46327120933143223,
+      0.54690354116125
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.941352579197692,
+    "ap": 0.5824416635573573,
+    "threshold": 0.44979602098464966,
+    "precision": 0.6235827664399093,
+    "recall": 0.49909255898366606,
+    "f1": 0.5544354838709677,
+    "specificity": 0.9935793300843196,
+    "tp": 275,
+    "fp": 166,
+    "fn": 276,
+    "tn": 25688,
+    "auroc_ci95": [
+      0.9317873201384527,
+      0.9505893110439051
+    ],
+    "ap_ci95": [
+      0.5416204487696306,
+      0.6217673875141981
+    ]
+  }
+}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0258 | val AUROC 0.7108 AP 0.0526 (RC-TTA) | best AP 0.0526 @ 1
+epoch   2 | loss 0.0241 | val AUROC 0.7607 AP 0.0864 (RC-TTA) | best AP 0.0864 @ 2
+epoch   3 | loss 0.0232 | val AUROC 0.7939 AP 0.1005 (RC-TTA) | best AP 0.1005 @ 3
+epoch   4 | loss 0.0218 | val AUROC 0.8356 AP 0.1577 (RC-TTA) | best AP 0.1577 @ 4
+epoch   5 | loss 0.0208 | val AUROC 0.8413 AP 0.1624 (RC-TTA) | best AP 0.1624 @ 5
+epoch   6 | loss 0.0198 | val AUROC 0.8646 AP 0.2582 (RC-TTA) | best AP 0.2582 @ 6
+epoch   7 | loss 0.0191 | val AUROC 0.8827 AP 0.3288 (RC-TTA) | best AP 0.3288 @ 7
+epoch   8 | loss 0.0185 | val AUROC 0.8870 AP 0.3622 (RC-TTA) | best AP 0.3622 @ 8
+epoch   9 | loss 0.0177 | val AUROC 0.8959 AP 0.3877 (RC-TTA) | best AP 0.3877 @ 9
+epoch  10 | loss 0.0171 | val AUROC 0.8964 AP 0.3842 (RC-TTA) | best AP 0.3877 @ 9
+epoch  11 | loss 0.0164 | val AUROC 0.9052 AP 0.4469 (RC-TTA) | best AP 0.4469 @ 11
+epoch  12 | loss 0.0161 | val AUROC 0.9119 AP 0.4568 (RC-TTA) | best AP 0.4568 @ 12
+epoch  13 | loss 0.0156 | val AUROC 0.9114 AP 0.4603 (RC-TTA) | best AP 0.4603 @ 13
+epoch  14 | loss 0.0153 | val AUROC 0.9047 AP 0.4297 (RC-TTA) | best AP 0.4603 @ 13
+epoch  15 | loss 0.0148 | val AUROC 0.9097 AP 0.4613 (RC-TTA) | best AP 0.4613 @ 15
+epoch  16 | loss 0.0145 | val AUROC 0.9172 AP 0.4930 (RC-TTA) | best AP 0.4930 @ 16
+epoch  17 | loss 0.0142 | val AUROC 0.9179 AP 0.4883 (RC-TTA) | best AP 0.4930 @ 16
+epoch  18 | loss 0.0139 | val AUROC 0.9075 AP 0.4569 (RC-TTA) | best AP 0.4930 @ 16
+epoch  19 | loss 0.0137 | val AUROC 0.9108 AP 0.4790 (RC-TTA) | best AP 0.4930 @ 16
+epoch  20 | loss 0.0133 | val AUROC 0.9196 AP 0.5063 (RC-TTA) | best AP 0.5063 @ 20
+epoch  21 | loss 0.0131 | val AUROC 0.9163 AP 0.4875 (RC-TTA) | best AP 0.5063 @ 20
+epoch  22 | loss 0.0128 | val AUROC 0.9223 AP 0.5158 (RC-TTA) | best AP 0.5158 @ 22
+epoch  23 | loss 0.0126 | val AUROC 0.9197 AP 0.5182 (RC-TTA) | best AP 0.5182 @ 23
+epoch  24 | loss 0.0124 | val AUROC 0.9244 AP 0.5269 (RC-TTA) | best AP 0.5269 @ 24
+epoch  25 | loss 0.0121 | val AUROC 0.9207 AP 0.5317 (RC-TTA) | best AP 0.5317 @ 25
+epoch  26 | loss 0.0118 | val AUROC 0.9207 AP 0.5306 (RC-TTA) | best AP 0.5317 @ 25
+epoch  27 | loss 0.0116 | val AUROC 0.9215 AP 0.5330 (RC-TTA) | best AP 0.5330 @ 27
+epoch  28 | loss 0.0115 | val AUROC 0.9199 AP 0.5358 (RC-TTA) | best AP 0.5358 @ 28
+epoch  29 | loss 0.0111 | val AUROC 0.9190 AP 0.5444 (RC-TTA) | best AP 0.5444 @ 29
+epoch  30 | loss 0.0110 | val AUROC 0.9197 AP 0.5261 (RC-TTA) | best AP 0.5444 @ 29
+epoch  31 | loss 0.0105 | val AUROC 0.9221 AP 0.5440 (RC-TTA) | best AP 0.5444 @ 29
+epoch  32 | loss 0.0104 | val AUROC 0.9215 AP 0.5452 (RC-TTA) | best AP 0.5452 @ 32
+epoch  33 | loss 0.0101 | val AUROC 0.9221 AP 0.5398 (RC-TTA) | best AP 0.5452 @ 32
+epoch  34 | loss 0.0099 | val AUROC 0.9188 AP 0.5427 (RC-TTA) | best AP 0.5452 @ 32
+epoch  35 | loss 0.0095 | val AUROC 0.9134 AP 0.5355 (RC-TTA) | best AP 0.5452 @ 32
+epoch  36 | loss 0.0093 | val AUROC 0.9223 AP 0.5529 (RC-TTA) | best AP 0.5529 @ 36
+epoch  37 | loss 0.0094 | val AUROC 0.9219 AP 0.5563 (RC-TTA) | best AP 0.5563 @ 37
+epoch  38 | loss 0.0091 | val AUROC 0.9190 AP 0.5484 (RC-TTA) | best AP 0.5563 @ 37
+epoch  39 | loss 0.0088 | val AUROC 0.9185 AP 0.5540 (RC-TTA) | best AP 0.5563 @ 37
+epoch  40 | loss 0.0086 | val AUROC 0.9162 AP 0.5520 (RC-TTA) | best AP 0.5563 @ 37
+epoch  41 | loss 0.0085 | val AUROC 0.9144 AP 0.5421 (RC-TTA) | best AP 0.5563 @ 37
+epoch  42 | loss 0.0081 | val AUROC 0.9196 AP 0.5556 (RC-TTA) | best AP 0.5563 @ 37
+epoch  43 | loss 0.0081 | val AUROC 0.9184 AP 0.5540 (RC-TTA) | best AP 0.5563 @ 37
+epoch  44 | loss 0.0078 | val AUROC 0.9252 AP 0.5682 (RC-TTA) | best AP 0.5682 @ 44
+epoch  45 | loss 0.0076 | val AUROC 0.9183 AP 0.5561 (RC-TTA) | best AP 0.5682 @ 44
+epoch  46 | loss 0.0074 | val AUROC 0.9161 AP 0.5569 (RC-TTA) | best AP 0.5682 @ 44
+epoch  47 | loss 0.0072 | val AUROC 0.9135 AP 0.5525 (RC-TTA) | best AP 0.5682 @ 44
+epoch  48 | loss 0.0070 | val AUROC 0.9126 AP 0.5401 (RC-TTA) | best AP 0.5682 @ 44
+epoch  49 | loss 0.0068 | val AUROC 0.9111 AP 0.5375 (RC-TTA) | best AP 0.5682 @ 44
+epoch  50 | loss 0.0068 | val AUROC 0.9144 AP 0.5517 (RC-TTA) | best AP 0.5682 @ 44
+epoch  51 | loss 0.0065 | val AUROC 0.9097 AP 0.5348 (RC-TTA) | best AP 0.5682 @ 44
+epoch  52 | loss 0.0064 | val AUROC 0.9097 AP 0.5522 (RC-TTA) | best AP 0.5682 @ 44
+epoch  53 | loss 0.0063 | val AUROC 0.9041 AP 0.5486 (RC-TTA) | best AP 0.5682 @ 44
+epoch  54 | loss 0.0060 | val AUROC 0.9083 AP 0.5363 (RC-TTA) | best AP 0.5682 @ 44
+epoch  55 | loss 0.0059 | val AUROC 0.9075 AP 0.5349 (RC-TTA) | best AP 0.5682 @ 44
+epoch  56 | loss 0.0058 | val AUROC 0.9169 AP 0.5543 (RC-TTA) | best AP 0.5682 @ 44
+epoch  57 | loss 0.0055 | val AUROC 0.9075 AP 0.5408 (RC-TTA) | best AP 0.5682 @ 44
+epoch  58 | loss 0.0054 | val AUROC 0.8894 AP 0.5347 (RC-TTA) | best AP 0.5682 @ 44
+epoch  59 | loss 0.0053 | val AUROC 0.8969 AP 0.5317 (RC-TTA) | best AP 0.5682 @ 44
+{
+  "task": "fullset",
+  "init": "jepa",
+  "seed": 2,
+  "encoder": "/save/runs/exp03/pretrain/encoder.pt",
+  "parameters": 7265313,
+  "best_epoch": 44,
+  "epochs_run": 59,
+  "minutes": 27.65895419518153,
+  "validation_ap_rc": 0.568158907827253,
+  "test": {
+    "auroc": 0.9185665225796061,
+    "ap": 0.5308184468032444,
+    "threshold": 0.5191556811332703,
+    "precision": 0.670299727520436,
+    "recall": 0.44646098003629764,
+    "f1": 0.5359477124183006,
+    "specificity": 0.995319873133751,
+    "tp": 246,
+    "fp": 121,
+    "fn": 305,
+    "tn": 25733,
+    "auroc_ci95": [
+      0.9068518026436136,
+      0.929142497397114
+    ],
+    "ap_ci95": [
+      0.48911412578775926,
+      0.570849727739822
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.9371347018164404,
+    "ap": 0.5961208110647411,
+    "threshold": 0.49428585171699524,
+    "precision": 0.814935064935065,
+    "recall": 0.455535390199637,
+    "f1": 0.5844004656577415,
+    "specificity": 0.9977953121373868,
+    "tp": 251,
+    "fp": 57,
+    "fn": 300,
+    "tn": 25797,
+    "auroc_ci95": [
+      0.9272630936882319,
+      0.9473712676891612
+    ],
+    "ap_ci95": [
+      0.5554315618213309,
+      0.6328533669224933
+    ]
+  }
+}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0262 | val AUROC 0.6697 AP 0.0302 (RC-TTA) | best AP 0.0302 @ 1
+epoch   2 | loss 0.0245 | val AUROC 0.8047 AP 0.0749 (RC-TTA) | best AP 0.0749 @ 2
+epoch   3 | loss 0.0218 | val AUROC 0.8287 AP 0.1075 (RC-TTA) | best AP 0.1075 @ 3
+epoch   4 | loss 0.0213 | val AUROC 0.8367 AP 0.1499 (RC-TTA) | best AP 0.1499 @ 4
+epoch   5 | loss 0.0207 | val AUROC 0.8561 AP 0.1957 (RC-TTA) | best AP 0.1957 @ 5
+epoch   6 | loss 0.0200 | val AUROC 0.8648 AP 0.2666 (RC-TTA) | best AP 0.2666 @ 6
+epoch   7 | loss 0.0196 | val AUROC 0.8715 AP 0.2867 (RC-TTA) | best AP 0.2867 @ 7
+epoch   8 | loss 0.0189 | val AUROC 0.8539 AP 0.2542 (RC-TTA) | best AP 0.2867 @ 7
+epoch   9 | loss 0.0185 | val AUROC 0.8763 AP 0.3261 (RC-TTA) | best AP 0.3261 @ 9
+epoch  10 | loss 0.0182 | val AUROC 0.8824 AP 0.3363 (RC-TTA) | best AP 0.3363 @ 10
+epoch  11 | loss 0.0179 | val AUROC 0.8892 AP 0.3780 (RC-TTA) | best AP 0.3780 @ 11
+epoch  12 | loss 0.0176 | val AUROC 0.8856 AP 0.3779 (RC-TTA) | best AP 0.3780 @ 11
+epoch  13 | loss 0.0174 | val AUROC 0.8914 AP 0.3994 (RC-TTA) | best AP 0.3994 @ 13
+epoch  14 | loss 0.0172 | val AUROC 0.8908 AP 0.3742 (RC-TTA) | best AP 0.3994 @ 13
+epoch  15 | loss 0.0168 | val AUROC 0.8998 AP 0.4229 (RC-TTA) | best AP 0.4229 @ 15
+epoch  16 | loss 0.0167 | val AUROC 0.8969 AP 0.4202 (RC-TTA) | best AP 0.4229 @ 15
+epoch  17 | loss 0.0163 | val AUROC 0.8955 AP 0.4152 (RC-TTA) | best AP 0.4229 @ 15
+epoch  18 | loss 0.0163 | val AUROC 0.9038 AP 0.4383 (RC-TTA) | best AP 0.4383 @ 18
+epoch  19 | loss 0.0160 | val AUROC 0.9009 AP 0.4379 (RC-TTA) | best AP 0.4383 @ 18
+epoch  20 | loss 0.0159 | val AUROC 0.9014 AP 0.4378 (RC-TTA) | best AP 0.4383 @ 18
+epoch  21 | loss 0.0156 | val AUROC 0.9067 AP 0.4593 (RC-TTA) | best AP 0.4593 @ 21
+epoch  22 | loss 0.0155 | val AUROC 0.9066 AP 0.4693 (RC-TTA) | best AP 0.4693 @ 22
+epoch  23 | loss 0.0153 | val AUROC 0.9119 AP 0.4857 (RC-TTA) | best AP 0.4857 @ 23
+epoch  24 | loss 0.0152 | val AUROC 0.9134 AP 0.4901 (RC-TTA) | best AP 0.4901 @ 24
+epoch  25 | loss 0.0150 | val AUROC 0.9111 AP 0.4829 (RC-TTA) | best AP 0.4901 @ 24
+epoch  26 | loss 0.0148 | val AUROC 0.9121 AP 0.4839 (RC-TTA) | best AP 0.4901 @ 24
+epoch  27 | loss 0.0147 | val AUROC 0.9052 AP 0.4894 (RC-TTA) | best AP 0.4901 @ 24
+epoch  28 | loss 0.0145 | val AUROC 0.9105 AP 0.4919 (RC-TTA) | best AP 0.4919 @ 28
+epoch  29 | loss 0.0145 | val AUROC 0.9157 AP 0.5058 (RC-TTA) | best AP 0.5058 @ 29
+epoch  30 | loss 0.0143 | val AUROC 0.9172 AP 0.5126 (RC-TTA) | best AP 0.5126 @ 30
+epoch  31 | loss 0.0140 | val AUROC 0.9065 AP 0.4787 (RC-TTA) | best AP 0.5126 @ 30
+epoch  32 | loss 0.0139 | val AUROC 0.9204 AP 0.5182 (RC-TTA) | best AP 0.5182 @ 32
+epoch  33 | loss 0.0139 | val AUROC 0.9176 AP 0.5127 (RC-TTA) | best AP 0.5182 @ 32
+epoch  34 | loss 0.0137 | val AUROC 0.9179 AP 0.5038 (RC-TTA) | best AP 0.5182 @ 32
+epoch  35 | loss 0.0137 | val AUROC 0.9175 AP 0.5302 (RC-TTA) | best AP 0.5302 @ 35
+epoch  36 | loss 0.0133 | val AUROC 0.9192 AP 0.5286 (RC-TTA) | best AP 0.5302 @ 35
+epoch  37 | loss 0.0134 | val AUROC 0.9223 AP 0.5299 (RC-TTA) | best AP 0.5302 @ 35
+epoch  38 | loss 0.0132 | val AUROC 0.9210 AP 0.5370 (RC-TTA) | best AP 0.5370 @ 38
+epoch  39 | loss 0.0131 | val AUROC 0.9238 AP 0.5373 (RC-TTA) | best AP 0.5373 @ 39
+epoch  40 | loss 0.0128 | val AUROC 0.9196 AP 0.5204 (RC-TTA) | best AP 0.5373 @ 39
+epoch  41 | loss 0.0128 | val AUROC 0.9235 AP 0.5455 (RC-TTA) | best AP 0.5455 @ 41
+epoch  42 | loss 0.0127 | val AUROC 0.9237 AP 0.5506 (RC-TTA) | best AP 0.5506 @ 42
+epoch  43 | loss 0.0126 | val AUROC 0.9210 AP 0.5398 (RC-TTA) | best AP 0.5506 @ 42
+epoch  44 | loss 0.0125 | val AUROC 0.9234 AP 0.5586 (RC-TTA) | best AP 0.5586 @ 44
+epoch  45 | loss 0.0123 | val AUROC 0.9253 AP 0.5495 (RC-TTA) | best AP 0.5586 @ 44
+epoch  46 | loss 0.0122 | val AUROC 0.9264 AP 0.5530 (RC-TTA) | best AP 0.5586 @ 44
+epoch  47 | loss 0.0121 | val AUROC 0.9267 AP 0.5537 (RC-TTA) | best AP 0.5586 @ 44
+epoch  48 | loss 0.0119 | val AUROC 0.9232 AP 0.5385 (RC-TTA) | best AP 0.5586 @ 44
+epoch  49 | loss 0.0117 | val AUROC 0.9230 AP 0.5520 (RC-TTA) | best AP 0.5586 @ 44
+epoch  50 | loss 0.0118 | val AUROC 0.9246 AP 0.5584 (RC-TTA) | best AP 0.5586 @ 44
+epoch  51 | loss 0.0117 | val AUROC 0.9273 AP 0.5611 (RC-TTA) | best AP 0.5611 @ 51
+epoch  52 | loss 0.0116 | val AUROC 0.9262 AP 0.5612 (RC-TTA) | best AP 0.5612 @ 52
+epoch  53 | loss 0.0113 | val AUROC 0.9218 AP 0.5575 (RC-TTA) | best AP 0.5612 @ 52
+epoch  54 | loss 0.0112 | val AUROC 0.9267 AP 0.5624 (RC-TTA) | best AP 0.5624 @ 54
+epoch  55 | loss 0.0110 | val AUROC 0.9281 AP 0.5670 (RC-TTA) | best AP 0.5670 @ 55
+epoch  56 | loss 0.0112 | val AUROC 0.9284 AP 0.5731 (RC-TTA) | best AP 0.5731 @ 56
+epoch  57 | loss 0.0109 | val AUROC 0.9277 AP 0.5672 (RC-TTA) | best AP 0.5731 @ 56
+epoch  58 | loss 0.0108 | val AUROC 0.9227 AP 0.5676 (RC-TTA) | best AP 0.5731 @ 56
+epoch  59 | loss 0.0107 | val AUROC 0.9210 AP 0.5656 (RC-TTA) | best AP 0.5731 @ 56
+epoch  60 | loss 0.0106 | val AUROC 0.9223 AP 0.5715 (RC-TTA) | best AP 0.5731 @ 56
+epoch  61 | loss 0.0105 | val AUROC 0.9252 AP 0.5705 (RC-TTA) | best AP 0.5731 @ 56
+epoch  62 | loss 0.0105 | val AUROC 0.9273 AP 0.5818 (RC-TTA) | best AP 0.5818 @ 62
+epoch  63 | loss 0.0103 | val AUROC 0.9262 AP 0.5684 (RC-TTA) | best AP 0.5818 @ 62
+epoch  64 | loss 0.0102 | val AUROC 0.9279 AP 0.5793 (RC-TTA) | best AP 0.5818 @ 62
+epoch  65 | loss 0.0101 | val AUROC 0.9280 AP 0.5682 (RC-TTA) | best AP 0.5818 @ 62
+epoch  66 | loss 0.0101 | val AUROC 0.9284 AP 0.5764 (RC-TTA) | best AP 0.5818 @ 62
+epoch  67 | loss 0.0098 | val AUROC 0.9299 AP 0.5867 (RC-TTA) | best AP 0.5867 @ 67
+epoch  68 | loss 0.0098 | val AUROC 0.9269 AP 0.5725 (RC-TTA) | best AP 0.5867 @ 67
+epoch  69 | loss 0.0098 | val AUROC 0.9277 AP 0.5765 (RC-TTA) | best AP 0.5867 @ 67
+epoch  70 | loss 0.0096 | val AUROC 0.9267 AP 0.5783 (RC-TTA) | best AP 0.5867 @ 67
+epoch  71 | loss 0.0095 | val AUROC 0.9322 AP 0.5871 (RC-TTA) | best AP 0.5871 @ 71
+epoch  72 | loss 0.0094 | val AUROC 0.9305 AP 0.5882 (RC-TTA) | best AP 0.5882 @ 72
+epoch  73 | loss 0.0094 | val AUROC 0.9244 AP 0.5721 (RC-TTA) | best AP 0.5882 @ 72
+epoch  74 | loss 0.0091 | val AUROC 0.9298 AP 0.5899 (RC-TTA) | best AP 0.5899 @ 74
+epoch  75 | loss 0.0091 | val AUROC 0.9283 AP 0.5887 (RC-TTA) | best AP 0.5899 @ 74
+epoch  76 | loss 0.0089 | val AUROC 0.9300 AP 0.5850 (RC-TTA) | best AP 0.5899 @ 74
+epoch  77 | loss 0.0089 | val AUROC 0.9308 AP 0.5917 (RC-TTA) | best AP 0.5917 @ 77
+epoch  78 | loss 0.0088 | val AUROC 0.9278 AP 0.5784 (RC-TTA) | best AP 0.5917 @ 77
+epoch  79 | loss 0.0087 | val AUROC 0.9255 AP 0.5851 (RC-TTA) | best AP 0.5917 @ 77
+epoch  80 | loss 0.0086 | val AUROC 0.9279 AP 0.5847 (RC-TTA) | best AP 0.5917 @ 77
+epoch  81 | loss 0.0087 | val AUROC 0.9294 AP 0.5908 (RC-TTA) | best AP 0.5917 @ 77
+epoch  82 | loss 0.0086 | val AUROC 0.9291 AP 0.5854 (RC-TTA) | best AP 0.5917 @ 77
+epoch  83 | loss 0.0085 | val AUROC 0.9263 AP 0.5893 (RC-TTA) | best AP 0.5917 @ 77
+epoch  84 | loss 0.0083 | val AUROC 0.9268 AP 0.5901 (RC-TTA) | best AP 0.5917 @ 77
+epoch  85 | loss 0.0083 | val AUROC 0.9293 AP 0.5867 (RC-TTA) | best AP 0.5917 @ 77
+epoch  86 | loss 0.0082 | val AUROC 0.9250 AP 0.5815 (RC-TTA) | best AP 0.5917 @ 77
+epoch  87 | loss 0.0081 | val AUROC 0.9266 AP 0.5831 (RC-TTA) | best AP 0.5917 @ 77
+epoch  88 | loss 0.0081 | val AUROC 0.9275 AP 0.5821 (RC-TTA) | best AP 0.5917 @ 77
+epoch  89 | loss 0.0081 | val AUROC 0.9275 AP 0.5902 (RC-TTA) | best AP 0.5917 @ 77
+epoch  90 | loss 0.0081 | val AUROC 0.9298 AP 0.5929 (RC-TTA) | best AP 0.5929 @ 90
+epoch  91 | loss 0.0079 | val AUROC 0.9306 AP 0.5945 (RC-TTA) | best AP 0.5945 @ 91
+epoch  92 | loss 0.0079 | val AUROC 0.9265 AP 0.5885 (RC-TTA) | best AP 0.5945 @ 91
+epoch  93 | loss 0.0078 | val AUROC 0.9273 AP 0.5935 (RC-TTA) | best AP 0.5945 @ 91
+epoch  94 | loss 0.0077 | val AUROC 0.9254 AP 0.5925 (RC-TTA) | best AP 0.5945 @ 91
+epoch  95 | loss 0.0078 | val AUROC 0.9235 AP 0.5868 (RC-TTA) | best AP 0.5945 @ 91
+epoch  96 | loss 0.0078 | val AUROC 0.9254 AP 0.5923 (RC-TTA) | best AP 0.5945 @ 91
+epoch  97 | loss 0.0076 | val AUROC 0.9293 AP 0.5972 (RC-TTA) | best AP 0.5972 @ 97
+epoch  98 | loss 0.0075 | val AUROC 0.9258 AP 0.5924 (RC-TTA) | best AP 0.5972 @ 97
+epoch  99 | loss 0.0075 | val AUROC 0.9239 AP 0.5892 (RC-TTA) | best AP 0.5972 @ 97
+epoch 100 | loss 0.0073 | val AUROC 0.9218 AP 0.5892 (RC-TTA) | best AP 0.5972 @ 97
+epoch 101 | loss 0.0075 | val AUROC 0.9255 AP 0.5900 (RC-TTA) | best AP 0.5972 @ 97
+epoch 102 | loss 0.0074 | val AUROC 0.9261 AP 0.5905 (RC-TTA) | best AP 0.5972 @ 97
+epoch 103 | loss 0.0075 | val AUROC 0.9283 AP 0.5968 (RC-TTA) | best AP 0.5972 @ 97
+epoch 104 | loss 0.0074 | val AUROC 0.9250 AP 0.5912 (RC-TTA) | best AP 0.5972 @ 97
+epoch 105 | loss 0.0073 | val AUROC 0.9275 AP 0.5938 (RC-TTA) | best AP 0.5972 @ 97
+epoch 106 | loss 0.0073 | val AUROC 0.9247 AP 0.5937 (RC-TTA) | best AP 0.5972 @ 97
+epoch 107 | loss 0.0074 | val AUROC 0.9260 AP 0.5923 (RC-TTA) | best AP 0.5972 @ 97
+epoch 108 | loss 0.0072 | val AUROC 0.9265 AP 0.5950 (RC-TTA) | best AP 0.5972 @ 97
+epoch 109 | loss 0.0072 | val AUROC 0.9241 AP 0.5906 (RC-TTA) | best AP 0.5972 @ 97
+epoch 110 | loss 0.0072 | val AUROC 0.9256 AP 0.5923 (RC-TTA) | best AP 0.5972 @ 97
+epoch 111 | loss 0.0071 | val AUROC 0.9249 AP 0.5909 (RC-TTA) | best AP 0.5972 @ 97
+epoch 112 | loss 0.0072 | val AUROC 0.9253 AP 0.5916 (RC-TTA) | best AP 0.5972 @ 97
+{
+  "task": "fullset",
+  "init": "random",
+  "seed": 0,
+  "encoder": null,
+  "parameters": 7265313,
+  "best_epoch": 97,
+  "epochs_run": 112,
+  "minutes": 52.38562842607498,
+  "validation_ap_rc": 0.5972463313597383,
+  "test": {
+    "auroc": 0.9168938603581159,
+    "ap": 0.5533300153585993,
+    "threshold": 0.6433292627334595,
+    "precision": 0.7090395480225988,
+    "recall": 0.455535390199637,
+    "f1": 0.554696132596685,
+    "specificity": 0.9960160903535237,
+    "tp": 251,
+    "fp": 103,
+    "fn": 300,
+    "tn": 25751,
+    "auroc_ci95": [
+      0.9037620821034854,
+      0.9287803788564555
+    ],
+    "ap_ci95": [
+      0.5114284666464786,
+      0.5921172469669699
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.9302531512638962,
+    "ap": 0.6082150400008716,
+    "threshold": 0.5270686149597168,
+    "precision": 0.7454068241469817,
+    "recall": 0.515426497277677,
+    "f1": 0.6094420600858369,
+    "specificity": 0.9962481627601145,
+    "tp": 284,
+    "fp": 97,
+    "fn": 267,
+    "tn": 25757,
+    "auroc_ci95": [
+      0.918786171588426,
+      0.9409432801023021
+    ],
+    "ap_ci95": [
+      0.5684655315595036,
+      0.6441043098257019
+    ]
+  }
+}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0261 | val AUROC 0.6785 AP 0.0325 (RC-TTA) | best AP 0.0325 @ 1
+epoch   2 | loss 0.0246 | val AUROC 0.8157 AP 0.0830 (RC-TTA) | best AP 0.0830 @ 2
+epoch   3 | loss 0.0220 | val AUROC 0.8324 AP 0.1165 (RC-TTA) | best AP 0.1165 @ 3
+epoch   4 | loss 0.0214 | val AUROC 0.8422 AP 0.1400 (RC-TTA) | best AP 0.1400 @ 4
+epoch   5 | loss 0.0209 | val AUROC 0.8535 AP 0.1724 (RC-TTA) | best AP 0.1724 @ 5
+epoch   6 | loss 0.0203 | val AUROC 0.8620 AP 0.2186 (RC-TTA) | best AP 0.2186 @ 6
+epoch   7 | loss 0.0197 | val AUROC 0.8699 AP 0.2675 (RC-TTA) | best AP 0.2675 @ 7
+epoch   8 | loss 0.0192 | val AUROC 0.8692 AP 0.2953 (RC-TTA) | best AP 0.2953 @ 8
+epoch   9 | loss 0.0188 | val AUROC 0.8753 AP 0.3069 (RC-TTA) | best AP 0.3069 @ 9
+epoch  10 | loss 0.0185 | val AUROC 0.8791 AP 0.3417 (RC-TTA) | best AP 0.3417 @ 10
+epoch  11 | loss 0.0181 | val AUROC 0.8815 AP 0.3459 (RC-TTA) | best AP 0.3459 @ 11
+epoch  12 | loss 0.0178 | val AUROC 0.8893 AP 0.3733 (RC-TTA) | best AP 0.3733 @ 12
+epoch  13 | loss 0.0175 | val AUROC 0.8765 AP 0.3084 (RC-TTA) | best AP 0.3733 @ 12
+epoch  14 | loss 0.0172 | val AUROC 0.8889 AP 0.3873 (RC-TTA) | best AP 0.3873 @ 14
+epoch  15 | loss 0.0170 | val AUROC 0.8952 AP 0.3941 (RC-TTA) | best AP 0.3941 @ 15
+epoch  16 | loss 0.0168 | val AUROC 0.8929 AP 0.4022 (RC-TTA) | best AP 0.4022 @ 16
+epoch  17 | loss 0.0165 | val AUROC 0.8894 AP 0.3935 (RC-TTA) | best AP 0.4022 @ 16
+epoch  18 | loss 0.0162 | val AUROC 0.8964 AP 0.4177 (RC-TTA) | best AP 0.4177 @ 18
+epoch  19 | loss 0.0160 | val AUROC 0.9020 AP 0.4442 (RC-TTA) | best AP 0.4442 @ 19
+epoch  20 | loss 0.0158 | val AUROC 0.8913 AP 0.4273 (RC-TTA) | best AP 0.4442 @ 19
+epoch  21 | loss 0.0157 | val AUROC 0.9047 AP 0.4570 (RC-TTA) | best AP 0.4570 @ 21
+epoch  22 | loss 0.0156 | val AUROC 0.9078 AP 0.4795 (RC-TTA) | best AP 0.4795 @ 22
+epoch  23 | loss 0.0152 | val AUROC 0.9054 AP 0.4586 (RC-TTA) | best AP 0.4795 @ 22
+epoch  24 | loss 0.0151 | val AUROC 0.9096 AP 0.4763 (RC-TTA) | best AP 0.4795 @ 22
+epoch  25 | loss 0.0150 | val AUROC 0.9105 AP 0.4956 (RC-TTA) | best AP 0.4956 @ 25
+epoch  26 | loss 0.0148 | val AUROC 0.9086 AP 0.4902 (RC-TTA) | best AP 0.4956 @ 25
+epoch  27 | loss 0.0147 | val AUROC 0.9104 AP 0.4912 (RC-TTA) | best AP 0.4956 @ 25
+epoch  28 | loss 0.0144 | val AUROC 0.9066 AP 0.4962 (RC-TTA) | best AP 0.4962 @ 28
+epoch  29 | loss 0.0143 | val AUROC 0.9139 AP 0.5033 (RC-TTA) | best AP 0.5033 @ 29
+epoch  30 | loss 0.0142 | val AUROC 0.9111 AP 0.4866 (RC-TTA) | best AP 0.5033 @ 29
+epoch  31 | loss 0.0141 | val AUROC 0.9115 AP 0.4986 (RC-TTA) | best AP 0.5033 @ 29
+epoch  32 | loss 0.0139 | val AUROC 0.9122 AP 0.5116 (RC-TTA) | best AP 0.5116 @ 32
+epoch  33 | loss 0.0138 | val AUROC 0.9106 AP 0.4922 (RC-TTA) | best AP 0.5116 @ 32
+epoch  34 | loss 0.0136 | val AUROC 0.9059 AP 0.4960 (RC-TTA) | best AP 0.5116 @ 32
+epoch  35 | loss 0.0134 | val AUROC 0.9207 AP 0.5393 (RC-TTA) | best AP 0.5393 @ 35
+epoch  36 | loss 0.0133 | val AUROC 0.9175 AP 0.5137 (RC-TTA) | best AP 0.5393 @ 35
+epoch  37 | loss 0.0133 | val AUROC 0.9224 AP 0.5389 (RC-TTA) | best AP 0.5393 @ 35
+epoch  38 | loss 0.0130 | val AUROC 0.9164 AP 0.5386 (RC-TTA) | best AP 0.5393 @ 35
+epoch  39 | loss 0.0129 | val AUROC 0.9251 AP 0.5448 (RC-TTA) | best AP 0.5448 @ 39
+epoch  40 | loss 0.0127 | val AUROC 0.9252 AP 0.5511 (RC-TTA) | best AP 0.5511 @ 40
+epoch  41 | loss 0.0127 | val AUROC 0.9214 AP 0.5336 (RC-TTA) | best AP 0.5511 @ 40
+epoch  42 | loss 0.0126 | val AUROC 0.9250 AP 0.5426 (RC-TTA) | best AP 0.5511 @ 40
+epoch  43 | loss 0.0125 | val AUROC 0.9270 AP 0.5502 (RC-TTA) | best AP 0.5511 @ 40
+epoch  44 | loss 0.0122 | val AUROC 0.9279 AP 0.5502 (RC-TTA) | best AP 0.5511 @ 40
+epoch  45 | loss 0.0121 | val AUROC 0.9275 AP 0.5571 (RC-TTA) | best AP 0.5571 @ 45
+epoch  46 | loss 0.0121 | val AUROC 0.9285 AP 0.5627 (RC-TTA) | best AP 0.5627 @ 46
+epoch  47 | loss 0.0120 | val AUROC 0.9284 AP 0.5628 (RC-TTA) | best AP 0.5628 @ 47
+epoch  48 | loss 0.0118 | val AUROC 0.9275 AP 0.5588 (RC-TTA) | best AP 0.5628 @ 47
+epoch  49 | loss 0.0117 | val AUROC 0.9246 AP 0.5546 (RC-TTA) | best AP 0.5628 @ 47
+epoch  50 | loss 0.0116 | val AUROC 0.9261 AP 0.5548 (RC-TTA) | best AP 0.5628 @ 47
+epoch  51 | loss 0.0114 | val AUROC 0.9261 AP 0.5518 (RC-TTA) | best AP 0.5628 @ 47
+epoch  52 | loss 0.0113 | val AUROC 0.9274 AP 0.5586 (RC-TTA) | best AP 0.5628 @ 47
+epoch  53 | loss 0.0112 | val AUROC 0.9291 AP 0.5630 (RC-TTA) | best AP 0.5630 @ 53
+epoch  54 | loss 0.0111 | val AUROC 0.9283 AP 0.5491 (RC-TTA) | best AP 0.5630 @ 53
+epoch  55 | loss 0.0110 | val AUROC 0.9352 AP 0.5806 (RC-TTA) | best AP 0.5806 @ 55
+epoch  56 | loss 0.0110 | val AUROC 0.9298 AP 0.5739 (RC-TTA) | best AP 0.5806 @ 55
+epoch  57 | loss 0.0106 | val AUROC 0.9342 AP 0.5876 (RC-TTA) | best AP 0.5876 @ 57
+epoch  58 | loss 0.0106 | val AUROC 0.9319 AP 0.5844 (RC-TTA) | best AP 0.5876 @ 57
+epoch  59 | loss 0.0104 | val AUROC 0.9322 AP 0.5831 (RC-TTA) | best AP 0.5876 @ 57
+epoch  60 | loss 0.0104 | val AUROC 0.9345 AP 0.5836 (RC-TTA) | best AP 0.5876 @ 57
+epoch  61 | loss 0.0102 | val AUROC 0.9319 AP 0.5692 (RC-TTA) | best AP 0.5876 @ 57
+epoch  62 | loss 0.0101 | val AUROC 0.9340 AP 0.5894 (RC-TTA) | best AP 0.5894 @ 62
+epoch  63 | loss 0.0099 | val AUROC 0.9309 AP 0.5733 (RC-TTA) | best AP 0.5894 @ 62
+epoch  64 | loss 0.0098 | val AUROC 0.9304 AP 0.5784 (RC-TTA) | best AP 0.5894 @ 62
+epoch  65 | loss 0.0098 | val AUROC 0.9298 AP 0.5824 (RC-TTA) | best AP 0.5894 @ 62
+epoch  66 | loss 0.0098 | val AUROC 0.9303 AP 0.5850 (RC-TTA) | best AP 0.5894 @ 62
+epoch  67 | loss 0.0096 | val AUROC 0.9340 AP 0.5835 (RC-TTA) | best AP 0.5894 @ 62
+epoch  68 | loss 0.0095 | val AUROC 0.9351 AP 0.5950 (RC-TTA) | best AP 0.5950 @ 68
+epoch  69 | loss 0.0095 | val AUROC 0.9336 AP 0.5893 (RC-TTA) | best AP 0.5950 @ 68
+epoch  70 | loss 0.0092 | val AUROC 0.9332 AP 0.5948 (RC-TTA) | best AP 0.5950 @ 68
+epoch  71 | loss 0.0093 | val AUROC 0.9319 AP 0.5916 (RC-TTA) | best AP 0.5950 @ 68
+epoch  72 | loss 0.0090 | val AUROC 0.9298 AP 0.5857 (RC-TTA) | best AP 0.5950 @ 68
+epoch  73 | loss 0.0089 | val AUROC 0.9364 AP 0.5974 (RC-TTA) | best AP 0.5974 @ 73
+epoch  74 | loss 0.0091 | val AUROC 0.9349 AP 0.5953 (RC-TTA) | best AP 0.5974 @ 73
+epoch  75 | loss 0.0089 | val AUROC 0.9347 AP 0.5986 (RC-TTA) | best AP 0.5986 @ 75
+epoch  76 | loss 0.0087 | val AUROC 0.9346 AP 0.5970 (RC-TTA) | best AP 0.5986 @ 75
+epoch  77 | loss 0.0086 | val AUROC 0.9335 AP 0.5957 (RC-TTA) | best AP 0.5986 @ 75
+epoch  78 | loss 0.0084 | val AUROC 0.9357 AP 0.6066 (RC-TTA) | best AP 0.6066 @ 78
+epoch  79 | loss 0.0084 | val AUROC 0.9305 AP 0.5894 (RC-TTA) | best AP 0.6066 @ 78
+epoch  80 | loss 0.0082 | val AUROC 0.9336 AP 0.5966 (RC-TTA) | best AP 0.6066 @ 78
+epoch  81 | loss 0.0082 | val AUROC 0.9342 AP 0.5961 (RC-TTA) | best AP 0.6066 @ 78
+epoch  82 | loss 0.0083 | val AUROC 0.9343 AP 0.6107 (RC-TTA) | best AP 0.6107 @ 82
+epoch  83 | loss 0.0081 | val AUROC 0.9330 AP 0.6021 (RC-TTA) | best AP 0.6107 @ 82
+epoch  84 | loss 0.0081 | val AUROC 0.9311 AP 0.5992 (RC-TTA) | best AP 0.6107 @ 82
+epoch  85 | loss 0.0080 | val AUROC 0.9312 AP 0.6017 (RC-TTA) | best AP 0.6107 @ 82
+epoch  86 | loss 0.0079 | val AUROC 0.9347 AP 0.6021 (RC-TTA) | best AP 0.6107 @ 82
+epoch  87 | loss 0.0079 | val AUROC 0.9337 AP 0.6052 (RC-TTA) | best AP 0.6107 @ 82
+epoch  88 | loss 0.0079 | val AUROC 0.9334 AP 0.6142 (RC-TTA) | best AP 0.6142 @ 88
+epoch  89 | loss 0.0078 | val AUROC 0.9299 AP 0.5991 (RC-TTA) | best AP 0.6142 @ 88
+epoch  90 | loss 0.0076 | val AUROC 0.9321 AP 0.5997 (RC-TTA) | best AP 0.6142 @ 88
+epoch  91 | loss 0.0074 | val AUROC 0.9278 AP 0.5981 (RC-TTA) | best AP 0.6142 @ 88
+epoch  92 | loss 0.0076 | val AUROC 0.9329 AP 0.6039 (RC-TTA) | best AP 0.6142 @ 88
+epoch  93 | loss 0.0075 | val AUROC 0.9324 AP 0.6031 (RC-TTA) | best AP 0.6142 @ 88
+epoch  94 | loss 0.0073 | val AUROC 0.9304 AP 0.5999 (RC-TTA) | best AP 0.6142 @ 88
+epoch  95 | loss 0.0074 | val AUROC 0.9343 AP 0.6039 (RC-TTA) | best AP 0.6142 @ 88
+epoch  96 | loss 0.0073 | val AUROC 0.9318 AP 0.5990 (RC-TTA) | best AP 0.6142 @ 88
+epoch  97 | loss 0.0072 | val AUROC 0.9325 AP 0.6061 (RC-TTA) | best AP 0.6142 @ 88
+epoch  98 | loss 0.0071 | val AUROC 0.9320 AP 0.6042 (RC-TTA) | best AP 0.6142 @ 88
+epoch  99 | loss 0.0072 | val AUROC 0.9323 AP 0.6020 (RC-TTA) | best AP 0.6142 @ 88
+epoch 100 | loss 0.0072 | val AUROC 0.9324 AP 0.6083 (RC-TTA) | best AP 0.6142 @ 88
+epoch 101 | loss 0.0071 | val AUROC 0.9316 AP 0.6054 (RC-TTA) | best AP 0.6142 @ 88
+epoch 102 | loss 0.0070 | val AUROC 0.9313 AP 0.6013 (RC-TTA) | best AP 0.6142 @ 88
+epoch 103 | loss 0.0070 | val AUROC 0.9333 AP 0.6046 (RC-TTA) | best AP 0.6142 @ 88
+{
+  "task": "fullset",
+  "init": "random",
+  "seed": 1,
+  "encoder": null,
+  "parameters": 7265313,
+  "best_epoch": 88,
+  "epochs_run": 103,
+  "minutes": 48.1943809111913,
+  "validation_ap_rc": 0.6141815268258185,
+  "test": {
+    "auroc": 0.9157788458069094,
+    "ap": 0.5545756793910496,
+    "threshold": 0.6297746300697327,
+    "precision": 0.6581632653061225,
+    "recall": 0.46823956442831216,
+    "f1": 0.5471898197242842,
+    "specificity": 0.9948170495861376,
+    "tp": 258,
+    "fp": 134,
+    "fn": 293,
+    "tn": 25720,
+    "auroc_ci95": [
+      0.9022599230783267,
+      0.9279327787325916
+    ],
+    "ap_ci95": [
+      0.5128697038339786,
+      0.5915577009056753
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.9315718784962662,
+    "ap": 0.602609802697719,
+    "threshold": 0.515818178653717,
+    "precision": 0.6442953020134228,
+    "recall": 0.5226860254083484,
+    "f1": 0.5771543086172345,
+    "specificity": 0.9938500812253424,
+    "tp": 288,
+    "fp": 159,
+    "fn": 263,
+    "tn": 25695,
+    "auroc_ci95": [
+      0.9193231255872806,
+      0.9417078928463151
+    ],
+    "ap_ci95": [
+      0.5629470451409294,
+      0.6365829414553736
+    ]
+  }
+}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0262 | val AUROC 0.7444 AP 0.0427 (RC-TTA) | best AP 0.0427 @ 1
+epoch   2 | loss 0.0239 | val AUROC 0.8010 AP 0.0769 (RC-TTA) | best AP 0.0769 @ 2
+epoch   3 | loss 0.0219 | val AUROC 0.8390 AP 0.1014 (RC-TTA) | best AP 0.1014 @ 3
+epoch   4 | loss 0.0214 | val AUROC 0.8497 AP 0.1435 (RC-TTA) | best AP 0.1435 @ 4
+epoch   5 | loss 0.0208 | val AUROC 0.8324 AP 0.1561 (RC-TTA) | best AP 0.1561 @ 5
+epoch   6 | loss 0.0202 | val AUROC 0.8548 AP 0.2174 (RC-TTA) | best AP 0.2174 @ 6
+epoch   7 | loss 0.0196 | val AUROC 0.8684 AP 0.2642 (RC-TTA) | best AP 0.2642 @ 7
+epoch   8 | loss 0.0192 | val AUROC 0.8756 AP 0.2834 (RC-TTA) | best AP 0.2834 @ 8
+epoch   9 | loss 0.0188 | val AUROC 0.8790 AP 0.2990 (RC-TTA) | best AP 0.2990 @ 9
+epoch  10 | loss 0.0183 | val AUROC 0.8785 AP 0.3223 (RC-TTA) | best AP 0.3223 @ 10
+epoch  11 | loss 0.0179 | val AUROC 0.8760 AP 0.3119 (RC-TTA) | best AP 0.3223 @ 10
+epoch  12 | loss 0.0178 | val AUROC 0.8924 AP 0.3727 (RC-TTA) | best AP 0.3727 @ 12
+epoch  13 | loss 0.0174 | val AUROC 0.8894 AP 0.3732 (RC-TTA) | best AP 0.3732 @ 13
+epoch  14 | loss 0.0172 | val AUROC 0.8899 AP 0.3817 (RC-TTA) | best AP 0.3817 @ 14
+epoch  15 | loss 0.0170 | val AUROC 0.8975 AP 0.4070 (RC-TTA) | best AP 0.4070 @ 15
+epoch  16 | loss 0.0166 | val AUROC 0.8985 AP 0.4031 (RC-TTA) | best AP 0.4070 @ 15
+epoch  17 | loss 0.0164 | val AUROC 0.9029 AP 0.4403 (RC-TTA) | best AP 0.4403 @ 17
+epoch  18 | loss 0.0163 | val AUROC 0.9035 AP 0.4448 (RC-TTA) | best AP 0.4448 @ 18
+epoch  19 | loss 0.0160 | val AUROC 0.8966 AP 0.3987 (RC-TTA) | best AP 0.4448 @ 18
+epoch  20 | loss 0.0159 | val AUROC 0.9078 AP 0.4426 (RC-TTA) | best AP 0.4448 @ 18
+epoch  21 | loss 0.0157 | val AUROC 0.9093 AP 0.4509 (RC-TTA) | best AP 0.4509 @ 21
+epoch  22 | loss 0.0155 | val AUROC 0.9115 AP 0.4627 (RC-TTA) | best AP 0.4627 @ 22
+epoch  23 | loss 0.0154 | val AUROC 0.9071 AP 0.4513 (RC-TTA) | best AP 0.4627 @ 22
+epoch  24 | loss 0.0151 | val AUROC 0.9129 AP 0.4862 (RC-TTA) | best AP 0.4862 @ 24
+epoch  25 | loss 0.0150 | val AUROC 0.9134 AP 0.4841 (RC-TTA) | best AP 0.4862 @ 24
+epoch  26 | loss 0.0149 | val AUROC 0.9121 AP 0.4840 (RC-TTA) | best AP 0.4862 @ 24
+epoch  27 | loss 0.0145 | val AUROC 0.9099 AP 0.4781 (RC-TTA) | best AP 0.4862 @ 24
+epoch  28 | loss 0.0145 | val AUROC 0.9038 AP 0.4474 (RC-TTA) | best AP 0.4862 @ 24
+epoch  29 | loss 0.0144 | val AUROC 0.9110 AP 0.4946 (RC-TTA) | best AP 0.4946 @ 29
+epoch  30 | loss 0.0142 | val AUROC 0.9123 AP 0.4605 (RC-TTA) | best AP 0.4946 @ 29
+epoch  31 | loss 0.0141 | val AUROC 0.9111 AP 0.5086 (RC-TTA) | best AP 0.5086 @ 31
+epoch  32 | loss 0.0140 | val AUROC 0.9143 AP 0.5026 (RC-TTA) | best AP 0.5086 @ 31
+epoch  33 | loss 0.0139 | val AUROC 0.9224 AP 0.5146 (RC-TTA) | best AP 0.5146 @ 33
+epoch  34 | loss 0.0137 | val AUROC 0.9209 AP 0.5168 (RC-TTA) | best AP 0.5168 @ 34
+epoch  35 | loss 0.0134 | val AUROC 0.9217 AP 0.5285 (RC-TTA) | best AP 0.5285 @ 35
+epoch  36 | loss 0.0134 | val AUROC 0.9212 AP 0.5168 (RC-TTA) | best AP 0.5285 @ 35
+epoch  37 | loss 0.0132 | val AUROC 0.9195 AP 0.5129 (RC-TTA) | best AP 0.5285 @ 35
+epoch  38 | loss 0.0131 | val AUROC 0.9241 AP 0.5292 (RC-TTA) | best AP 0.5292 @ 38
+epoch  39 | loss 0.0130 | val AUROC 0.9237 AP 0.5304 (RC-TTA) | best AP 0.5304 @ 39
+epoch  40 | loss 0.0129 | val AUROC 0.9136 AP 0.5006 (RC-TTA) | best AP 0.5304 @ 39
+epoch  41 | loss 0.0128 | val AUROC 0.9212 AP 0.5344 (RC-TTA) | best AP 0.5344 @ 41
+epoch  42 | loss 0.0127 | val AUROC 0.9219 AP 0.5260 (RC-TTA) | best AP 0.5344 @ 41
+epoch  43 | loss 0.0124 | val AUROC 0.9210 AP 0.5290 (RC-TTA) | best AP 0.5344 @ 41
+epoch  44 | loss 0.0122 | val AUROC 0.9207 AP 0.5269 (RC-TTA) | best AP 0.5344 @ 41
+epoch  45 | loss 0.0122 | val AUROC 0.9256 AP 0.5467 (RC-TTA) | best AP 0.5467 @ 45
+epoch  46 | loss 0.0121 | val AUROC 0.9252 AP 0.5475 (RC-TTA) | best AP 0.5475 @ 46
+epoch  47 | loss 0.0120 | val AUROC 0.9218 AP 0.5477 (RC-TTA) | best AP 0.5477 @ 47
+epoch  48 | loss 0.0119 | val AUROC 0.9241 AP 0.5463 (RC-TTA) | best AP 0.5477 @ 47
+epoch  49 | loss 0.0117 | val AUROC 0.9252 AP 0.5513 (RC-TTA) | best AP 0.5513 @ 49
+epoch  50 | loss 0.0116 | val AUROC 0.9252 AP 0.5577 (RC-TTA) | best AP 0.5577 @ 50
+epoch  51 | loss 0.0117 | val AUROC 0.9259 AP 0.5547 (RC-TTA) | best AP 0.5577 @ 50
+epoch  52 | loss 0.0114 | val AUROC 0.9241 AP 0.5478 (RC-TTA) | best AP 0.5577 @ 50
+epoch  53 | loss 0.0113 | val AUROC 0.9218 AP 0.5517 (RC-TTA) | best AP 0.5577 @ 50
+epoch  54 | loss 0.0111 | val AUROC 0.9272 AP 0.5604 (RC-TTA) | best AP 0.5604 @ 54
+epoch  55 | loss 0.0110 | val AUROC 0.9246 AP 0.5518 (RC-TTA) | best AP 0.5604 @ 54
+epoch  56 | loss 0.0111 | val AUROC 0.9260 AP 0.5578 (RC-TTA) | best AP 0.5604 @ 54
+epoch  57 | loss 0.0107 | val AUROC 0.9262 AP 0.5635 (RC-TTA) | best AP 0.5635 @ 57
+epoch  58 | loss 0.0108 | val AUROC 0.9233 AP 0.5544 (RC-TTA) | best AP 0.5635 @ 57
+epoch  59 | loss 0.0106 | val AUROC 0.9229 AP 0.5430 (RC-TTA) | best AP 0.5635 @ 57
+epoch  60 | loss 0.0105 | val AUROC 0.9254 AP 0.5669 (RC-TTA) | best AP 0.5669 @ 60
+epoch  61 | loss 0.0103 | val AUROC 0.9210 AP 0.5440 (RC-TTA) | best AP 0.5669 @ 60
+epoch  62 | loss 0.0102 | val AUROC 0.9205 AP 0.5639 (RC-TTA) | best AP 0.5669 @ 60
+epoch  63 | loss 0.0101 | val AUROC 0.9247 AP 0.5679 (RC-TTA) | best AP 0.5679 @ 63
+epoch  64 | loss 0.0100 | val AUROC 0.9257 AP 0.5659 (RC-TTA) | best AP 0.5679 @ 63
+epoch  65 | loss 0.0098 | val AUROC 0.9245 AP 0.5718 (RC-TTA) | best AP 0.5718 @ 65
+epoch  66 | loss 0.0097 | val AUROC 0.9247 AP 0.5690 (RC-TTA) | best AP 0.5718 @ 65
+epoch  67 | loss 0.0097 | val AUROC 0.9260 AP 0.5653 (RC-TTA) | best AP 0.5718 @ 65
+epoch  68 | loss 0.0097 | val AUROC 0.9282 AP 0.5709 (RC-TTA) | best AP 0.5718 @ 65
+epoch  69 | loss 0.0095 | val AUROC 0.9217 AP 0.5612 (RC-TTA) | best AP 0.5718 @ 65
+epoch  70 | loss 0.0095 | val AUROC 0.9259 AP 0.5667 (RC-TTA) | best AP 0.5718 @ 65
+epoch  71 | loss 0.0093 | val AUROC 0.9273 AP 0.5745 (RC-TTA) | best AP 0.5745 @ 71
+epoch  72 | loss 0.0092 | val AUROC 0.9244 AP 0.5684 (RC-TTA) | best AP 0.5745 @ 71
+epoch  73 | loss 0.0090 | val AUROC 0.9248 AP 0.5706 (RC-TTA) | best AP 0.5745 @ 71
+epoch  74 | loss 0.0092 | val AUROC 0.9224 AP 0.5680 (RC-TTA) | best AP 0.5745 @ 71
+epoch  75 | loss 0.0089 | val AUROC 0.9244 AP 0.5740 (RC-TTA) | best AP 0.5745 @ 71
+epoch  76 | loss 0.0089 | val AUROC 0.9265 AP 0.5795 (RC-TTA) | best AP 0.5795 @ 76
+epoch  77 | loss 0.0088 | val AUROC 0.9216 AP 0.5746 (RC-TTA) | best AP 0.5795 @ 76
+epoch  78 | loss 0.0086 | val AUROC 0.9240 AP 0.5768 (RC-TTA) | best AP 0.5795 @ 76
+epoch  79 | loss 0.0085 | val AUROC 0.9217 AP 0.5622 (RC-TTA) | best AP 0.5795 @ 76
+epoch  80 | loss 0.0086 | val AUROC 0.9212 AP 0.5742 (RC-TTA) | best AP 0.5795 @ 76
+epoch  81 | loss 0.0083 | val AUROC 0.9189 AP 0.5602 (RC-TTA) | best AP 0.5795 @ 76
+epoch  82 | loss 0.0084 | val AUROC 0.9228 AP 0.5713 (RC-TTA) | best AP 0.5795 @ 76
+epoch  83 | loss 0.0082 | val AUROC 0.9204 AP 0.5714 (RC-TTA) | best AP 0.5795 @ 76
+epoch  84 | loss 0.0081 | val AUROC 0.9216 AP 0.5713 (RC-TTA) | best AP 0.5795 @ 76
+epoch  85 | loss 0.0082 | val AUROC 0.9211 AP 0.5750 (RC-TTA) | best AP 0.5795 @ 76
+epoch  86 | loss 0.0079 | val AUROC 0.9229 AP 0.5795 (RC-TTA) | best AP 0.5795 @ 76
+epoch  87 | loss 0.0080 | val AUROC 0.9194 AP 0.5704 (RC-TTA) | best AP 0.5795 @ 76
+epoch  88 | loss 0.0079 | val AUROC 0.9179 AP 0.5745 (RC-TTA) | best AP 0.5795 @ 76
+epoch  89 | loss 0.0078 | val AUROC 0.9167 AP 0.5700 (RC-TTA) | best AP 0.5795 @ 76
+epoch  90 | loss 0.0078 | val AUROC 0.9238 AP 0.5834 (RC-TTA) | best AP 0.5834 @ 90
+epoch  91 | loss 0.0077 | val AUROC 0.9159 AP 0.5750 (RC-TTA) | best AP 0.5834 @ 90
+epoch  92 | loss 0.0077 | val AUROC 0.9184 AP 0.5798 (RC-TTA) | best AP 0.5834 @ 90
+epoch  93 | loss 0.0076 | val AUROC 0.9166 AP 0.5766 (RC-TTA) | best AP 0.5834 @ 90
+epoch  94 | loss 0.0076 | val AUROC 0.9190 AP 0.5751 (RC-TTA) | best AP 0.5834 @ 90
+epoch  95 | loss 0.0075 | val AUROC 0.9152 AP 0.5726 (RC-TTA) | best AP 0.5834 @ 90
+epoch  96 | loss 0.0075 | val AUROC 0.9108 AP 0.5677 (RC-TTA) | best AP 0.5834 @ 90
+epoch  97 | loss 0.0075 | val AUROC 0.9175 AP 0.5751 (RC-TTA) | best AP 0.5834 @ 90
+epoch  98 | loss 0.0075 | val AUROC 0.9160 AP 0.5719 (RC-TTA) | best AP 0.5834 @ 90
+epoch  99 | loss 0.0073 | val AUROC 0.9180 AP 0.5771 (RC-TTA) | best AP 0.5834 @ 90
+epoch 100 | loss 0.0073 | val AUROC 0.9153 AP 0.5771 (RC-TTA) | best AP 0.5834 @ 90
+epoch 101 | loss 0.0073 | val AUROC 0.9166 AP 0.5778 (RC-TTA) | best AP 0.5834 @ 90
+epoch 102 | loss 0.0071 | val AUROC 0.9158 AP 0.5791 (RC-TTA) | best AP 0.5834 @ 90
+epoch 103 | loss 0.0072 | val AUROC 0.9157 AP 0.5769 (RC-TTA) | best AP 0.5834 @ 90
+epoch 104 | loss 0.0071 | val AUROC 0.9158 AP 0.5807 (RC-TTA) | best AP 0.5834 @ 90
+epoch 105 | loss 0.0071 | val AUROC 0.9160 AP 0.5794 (RC-TTA) | best AP 0.5834 @ 90
+{
+  "task": "fullset",
+  "init": "random",
+  "seed": 2,
+  "encoder": null,
+  "parameters": 7265313,
+  "best_epoch": 90,
+  "epochs_run": 105,
+  "minutes": 49.12510228554408,
+  "validation_ap_rc": 0.5833649167222495,
+  "test": {
+    "auroc": 0.9227163085408964,
+    "ap": 0.5632994061077168,
+    "threshold": 0.6504672765731812,
+    "precision": 0.7702265372168284,
+    "recall": 0.4319419237749546,
+    "f1": 0.5534883720930233,
+    "specificity": 0.9972538098553415,
+    "tp": 238,
+    "fp": 71,
+    "fn": 313,
+    "tn": 25783,
+    "auroc_ci95": [
+      0.90992046877388,
+      0.9340222968463996
+    ],
+    "ap_ci95": [
+      0.5212700539322601,
+      0.6009627896429123
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.9376108503747906,
+    "ap": 0.6092412186799907,
+    "threshold": 0.5257656574249268,
+    "precision": 0.7628571428571429,
+    "recall": 0.484573502722323,
+    "f1": 0.5926748057713651,
+    "specificity": 0.9967896650421598,
+    "tp": 267,
+    "fp": 83,
+    "fn": 284,
+    "tn": 25771,
+    "auroc_ci95": [
+      0.9263745192923395,
+      0.9469738831247598
+    ],
+    "ap_ci95": [
+      0.5682012584730842,
+      0.6442676567106974
+    ]
+  }
+}
+anell: dropped 90 training windows identical to a test window
+anell: train 215,664 (3783 viral) | validation 23,962 (420) | test 27,644 (1348)
+epoch   1 | loss 0.0230 | val AUROC 0.7165 AP 0.0439 (RC-TTA) | best AP 0.0439 @ 1
+epoch   2 | loss 0.0214 | val AUROC 0.7525 AP 0.0568 (RC-TTA) | best AP 0.0568 @ 2
+epoch   3 | loss 0.0205 | val AUROC 0.7935 AP 0.0813 (RC-TTA) | best AP 0.0813 @ 3
+epoch   4 | loss 0.0195 | val AUROC 0.8301 AP 0.1155 (RC-TTA) | best AP 0.1155 @ 4
+epoch   5 | loss 0.0188 | val AUROC 0.8472 AP 0.1411 (RC-TTA) | best AP 0.1411 @ 5
+epoch   6 | loss 0.0182 | val AUROC 0.8524 AP 0.1732 (RC-TTA) | best AP 0.1732 @ 6
+epoch   7 | loss 0.0177 | val AUROC 0.8638 AP 0.2015 (RC-TTA) | best AP 0.2015 @ 7
+epoch   8 | loss 0.0172 | val AUROC 0.8732 AP 0.2109 (RC-TTA) | best AP 0.2109 @ 8
+epoch   9 | loss 0.0167 | val AUROC 0.8823 AP 0.2805 (RC-TTA) | best AP 0.2805 @ 9
+epoch  10 | loss 0.0162 | val AUROC 0.8865 AP 0.2868 (RC-TTA) | best AP 0.2868 @ 10
+epoch  11 | loss 0.0160 | val AUROC 0.8905 AP 0.2970 (RC-TTA) | best AP 0.2970 @ 11
+epoch  12 | loss 0.0155 | val AUROC 0.8903 AP 0.3226 (RC-TTA) | best AP 0.3226 @ 12
+epoch  13 | loss 0.0153 | val AUROC 0.8905 AP 0.3282 (RC-TTA) | best AP 0.3282 @ 13
+epoch  14 | loss 0.0148 | val AUROC 0.8952 AP 0.3257 (RC-TTA) | best AP 0.3282 @ 13
+epoch  15 | loss 0.0147 | val AUROC 0.8976 AP 0.3470 (RC-TTA) | best AP 0.3470 @ 15
+epoch  16 | loss 0.0146 | val AUROC 0.9017 AP 0.3586 (RC-TTA) | best AP 0.3586 @ 16
+epoch  17 | loss 0.0143 | val AUROC 0.9053 AP 0.3654 (RC-TTA) | best AP 0.3654 @ 17
+epoch  18 | loss 0.0140 | val AUROC 0.9040 AP 0.3707 (RC-TTA) | best AP 0.3707 @ 18
+epoch  19 | loss 0.0138 | val AUROC 0.9024 AP 0.3620 (RC-TTA) | best AP 0.3707 @ 18
+epoch  20 | loss 0.0135 | val AUROC 0.9076 AP 0.3837 (RC-TTA) | best AP 0.3837 @ 20
+epoch  21 | loss 0.0132 | val AUROC 0.9058 AP 0.3695 (RC-TTA) | best AP 0.3837 @ 20
+epoch  22 | loss 0.0132 | val AUROC 0.9055 AP 0.3857 (RC-TTA) | best AP 0.3857 @ 22
+epoch  23 | loss 0.0128 | val AUROC 0.9076 AP 0.3927 (RC-TTA) | best AP 0.3927 @ 23
+epoch  24 | loss 0.0127 | val AUROC 0.9060 AP 0.3964 (RC-TTA) | best AP 0.3964 @ 24
+epoch  25 | loss 0.0125 | val AUROC 0.9078 AP 0.3959 (RC-TTA) | best AP 0.3964 @ 24
+epoch  26 | loss 0.0121 | val AUROC 0.9074 AP 0.4121 (RC-TTA) | best AP 0.4121 @ 26
+epoch  27 | loss 0.0119 | val AUROC 0.9124 AP 0.4210 (RC-TTA) | best AP 0.4210 @ 27
+epoch  28 | loss 0.0118 | val AUROC 0.9087 AP 0.4204 (RC-TTA) | best AP 0.4210 @ 27
+epoch  29 | loss 0.0115 | val AUROC 0.9036 AP 0.4052 (RC-TTA) | best AP 0.4210 @ 27
+epoch  30 | loss 0.0114 | val AUROC 0.9047 AP 0.4109 (RC-TTA) | best AP 0.4210 @ 27
+epoch  31 | loss 0.0113 | val AUROC 0.9105 AP 0.4066 (RC-TTA) | best AP 0.4210 @ 27
+epoch  32 | loss 0.0108 | val AUROC 0.9076 AP 0.4204 (RC-TTA) | best AP 0.4210 @ 27
+epoch  33 | loss 0.0109 | val AUROC 0.9109 AP 0.4284 (RC-TTA) | best AP 0.4284 @ 33
+epoch  34 | loss 0.0104 | val AUROC 0.9125 AP 0.4404 (RC-TTA) | best AP 0.4404 @ 34
+epoch  35 | loss 0.0103 | val AUROC 0.9051 AP 0.4153 (RC-TTA) | best AP 0.4404 @ 34
+epoch  36 | loss 0.0101 | val AUROC 0.9097 AP 0.4326 (RC-TTA) | best AP 0.4404 @ 34
+epoch  37 | loss 0.0097 | val AUROC 0.9089 AP 0.4326 (RC-TTA) | best AP 0.4404 @ 34
+epoch  38 | loss 0.0096 | val AUROC 0.9036 AP 0.4182 (RC-TTA) | best AP 0.4404 @ 34
+epoch  39 | loss 0.0093 | val AUROC 0.9000 AP 0.4160 (RC-TTA) | best AP 0.4404 @ 34
+epoch  40 | loss 0.0091 | val AUROC 0.9044 AP 0.4290 (RC-TTA) | best AP 0.4404 @ 34
+epoch  41 | loss 0.0089 | val AUROC 0.9053 AP 0.4272 (RC-TTA) | best AP 0.4404 @ 34
+epoch  42 | loss 0.0089 | val AUROC 0.9101 AP 0.4283 (RC-TTA) | best AP 0.4404 @ 34
+epoch  43 | loss 0.0087 | val AUROC 0.9076 AP 0.4314 (RC-TTA) | best AP 0.4404 @ 34
+epoch  44 | loss 0.0084 | val AUROC 0.8994 AP 0.4160 (RC-TTA) | best AP 0.4404 @ 34
+epoch  45 | loss 0.0083 | val AUROC 0.9068 AP 0.4261 (RC-TTA) | best AP 0.4404 @ 34
+epoch  46 | loss 0.0097 | val AUROC 0.8937 AP 0.3568 (RC-TTA) | best AP 0.4404 @ 34
+epoch  47 | loss 0.0117 | val AUROC 0.8779 AP 0.2153 (RC-TTA) | best AP 0.4404 @ 34
+epoch  48 | loss 0.0123 | val AUROC 0.8928 AP 0.3676 (RC-TTA) | best AP 0.4404 @ 34
+epoch  49 | loss 0.0116 | val AUROC 0.9023 AP 0.3823 (RC-TTA) | best AP 0.4404 @ 34
+{
+  "task": "anell",
+  "init": "jepa",
+  "seed": 0,
+  "encoder": "/save/runs/exp03/pretrain/encoder.pt",
+  "parameters": 7265313,
+  "best_epoch": 34,
+  "epochs_run": 49,
+  "minutes": 23.4416921099027,
+  "validation_ap_rc": 0.44044987678829417,
+  "test": {
+    "auroc": 0.7656031927997984,
+    "ap": 0.19018411543330793,
+    "threshold": 0.5253688097000122,
+    "precision": 0.43564356435643564,
+    "recall": 0.09792284866468842,
+    "f1": 0.1599030890369473,
+    "specificity": 0.9934971098265896,
+    "tp": 132,
+    "fp": 171,
+    "fn": 1216,
+    "tn": 26125,
+    "auroc_ci95": [
+      0.7548849626686712,
+      0.7757880139441065
+    ],
+    "ap_ci95": [
+      0.17121701923815616,
+      0.21105282441803788
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.7899364454116974,
+    "ap": 0.19898383508724385,
+    "threshold": 0.4328157901763916,
+    "precision": 0.436426116838488,
+    "recall": 0.09421364985163205,
+    "f1": 0.1549725442342892,
+    "specificity": 0.9937633100091269,
+    "tp": 127,
+    "fp": 164,
+    "fn": 1221,
+    "tn": 26132,
+    "auroc_ci95": [
+      0.7791762937862678,
+      0.8007544243817105
+    ],
+    "ap_ci95": [
+      0.18060750095286826,
+      0.22118496936741874
+    ]
+  }
+}
+anell: dropped 90 training windows identical to a test window
+anell: train 215,664 (3783 viral) | validation 23,962 (420) | test 27,644 (1348)
+epoch   1 | loss 0.0229 | val AUROC 0.6966 AP 0.0487 (RC-TTA) | best AP 0.0487 @ 1
+epoch   2 | loss 0.0213 | val AUROC 0.7603 AP 0.0608 (RC-TTA) | best AP 0.0608 @ 2
+epoch   3 | loss 0.0205 | val AUROC 0.8023 AP 0.1069 (RC-TTA) | best AP 0.1069 @ 3
+epoch   4 | loss 0.0194 | val AUROC 0.8373 AP 0.1237 (RC-TTA) | best AP 0.1237 @ 4
+epoch   5 | loss 0.0188 | val AUROC 0.8395 AP 0.1377 (RC-TTA) | best AP 0.1377 @ 5
+epoch   6 | loss 0.0181 | val AUROC 0.8619 AP 0.1872 (RC-TTA) | best AP 0.1872 @ 6
+epoch   7 | loss 0.0175 | val AUROC 0.8731 AP 0.2120 (RC-TTA) | best AP 0.2120 @ 7
+epoch   8 | loss 0.0170 | val AUROC 0.8796 AP 0.2647 (RC-TTA) | best AP 0.2647 @ 8
+epoch   9 | loss 0.0164 | val AUROC 0.8841 AP 0.2754 (RC-TTA) | best AP 0.2754 @ 9
+epoch  10 | loss 0.0161 | val AUROC 0.8905 AP 0.3005 (RC-TTA) | best AP 0.3005 @ 10
+epoch  11 | loss 0.0158 | val AUROC 0.8930 AP 0.3190 (RC-TTA) | best AP 0.3190 @ 11
+epoch  12 | loss 0.0155 | val AUROC 0.8928 AP 0.3098 (RC-TTA) | best AP 0.3190 @ 11
+epoch  13 | loss 0.0153 | val AUROC 0.8915 AP 0.3028 (RC-TTA) | best AP 0.3190 @ 11
+epoch  14 | loss 0.0150 | val AUROC 0.8944 AP 0.3213 (RC-TTA) | best AP 0.3213 @ 14
+epoch  15 | loss 0.0147 | val AUROC 0.8973 AP 0.3384 (RC-TTA) | best AP 0.3384 @ 15
+epoch  16 | loss 0.0146 | val AUROC 0.9006 AP 0.3481 (RC-TTA) | best AP 0.3481 @ 16
+epoch  17 | loss 0.0140 | val AUROC 0.8971 AP 0.3384 (RC-TTA) | best AP 0.3481 @ 16
+epoch  18 | loss 0.0140 | val AUROC 0.8993 AP 0.3423 (RC-TTA) | best AP 0.3481 @ 16
+epoch  19 | loss 0.0138 | val AUROC 0.9008 AP 0.3533 (RC-TTA) | best AP 0.3533 @ 19
+epoch  20 | loss 0.0137 | val AUROC 0.9033 AP 0.3666 (RC-TTA) | best AP 0.3666 @ 20
+epoch  21 | loss 0.0134 | val AUROC 0.9032 AP 0.3807 (RC-TTA) | best AP 0.3807 @ 21
+epoch  22 | loss 0.0130 | val AUROC 0.9021 AP 0.3839 (RC-TTA) | best AP 0.3839 @ 22
+epoch  23 | loss 0.0130 | val AUROC 0.9063 AP 0.3727 (RC-TTA) | best AP 0.3839 @ 22
+epoch  24 | loss 0.0127 | val AUROC 0.9080 AP 0.3925 (RC-TTA) | best AP 0.3925 @ 24
+epoch  25 | loss 0.0126 | val AUROC 0.9016 AP 0.3878 (RC-TTA) | best AP 0.3925 @ 24
+epoch  26 | loss 0.0124 | val AUROC 0.9050 AP 0.3846 (RC-TTA) | best AP 0.3925 @ 24
+epoch  27 | loss 0.0121 | val AUROC 0.9054 AP 0.3811 (RC-TTA) | best AP 0.3925 @ 24
+epoch  28 | loss 0.0119 | val AUROC 0.9093 AP 0.4052 (RC-TTA) | best AP 0.4052 @ 28
+epoch  29 | loss 0.0117 | val AUROC 0.9049 AP 0.3902 (RC-TTA) | best AP 0.4052 @ 28
+epoch  30 | loss 0.0114 | val AUROC 0.9119 AP 0.4092 (RC-TTA) | best AP 0.4092 @ 30
+epoch  31 | loss 0.0112 | val AUROC 0.9060 AP 0.4028 (RC-TTA) | best AP 0.4092 @ 30
+epoch  32 | loss 0.0110 | val AUROC 0.9056 AP 0.4056 (RC-TTA) | best AP 0.4092 @ 30
+epoch  33 | loss 0.0108 | val AUROC 0.9045 AP 0.4069 (RC-TTA) | best AP 0.4092 @ 30
+epoch  34 | loss 0.0106 | val AUROC 0.8995 AP 0.3948 (RC-TTA) | best AP 0.4092 @ 30
+epoch  35 | loss 0.0104 | val AUROC 0.9050 AP 0.4020 (RC-TTA) | best AP 0.4092 @ 30
+epoch  36 | loss 0.0104 | val AUROC 0.9030 AP 0.4182 (RC-TTA) | best AP 0.4182 @ 36
+epoch  37 | loss 0.0101 | val AUROC 0.9029 AP 0.4147 (RC-TTA) | best AP 0.4182 @ 36
+epoch  38 | loss 0.0098 | val AUROC 0.9035 AP 0.4119 (RC-TTA) | best AP 0.4182 @ 36
+epoch  39 | loss 0.0096 | val AUROC 0.9092 AP 0.4222 (RC-TTA) | best AP 0.4222 @ 39
+epoch  40 | loss 0.0093 | val AUROC 0.8997 AP 0.4057 (RC-TTA) | best AP 0.4222 @ 39
+epoch  41 | loss 0.0092 | val AUROC 0.9009 AP 0.4221 (RC-TTA) | best AP 0.4222 @ 39
+epoch  42 | loss 0.0091 | val AUROC 0.9028 AP 0.4080 (RC-TTA) | best AP 0.4222 @ 39
+epoch  43 | loss 0.0088 | val AUROC 0.9052 AP 0.4229 (RC-TTA) | best AP 0.4229 @ 43
+epoch  44 | loss 0.0086 | val AUROC 0.8922 AP 0.3869 (RC-TTA) | best AP 0.4229 @ 43
+epoch  45 | loss 0.0085 | val AUROC 0.9084 AP 0.4265 (RC-TTA) | best AP 0.4265 @ 45
+epoch  46 | loss 0.0083 | val AUROC 0.9004 AP 0.4108 (RC-TTA) | best AP 0.4265 @ 45
+epoch  47 | loss 0.0079 | val AUROC 0.9037 AP 0.4233 (RC-TTA) | best AP 0.4265 @ 45
+epoch  48 | loss 0.0080 | val AUROC 0.8995 AP 0.4177 (RC-TTA) | best AP 0.4265 @ 45
+epoch  49 | loss 0.0077 | val AUROC 0.9013 AP 0.4275 (RC-TTA) | best AP 0.4275 @ 49
+epoch  50 | loss 0.0075 | val AUROC 0.8884 AP 0.4081 (RC-TTA) | best AP 0.4275 @ 49
+epoch  51 | loss 0.0074 | val AUROC 0.8939 AP 0.3942 (RC-TTA) | best AP 0.4275 @ 49
+epoch  52 | loss 0.0072 | val AUROC 0.9005 AP 0.4270 (RC-TTA) | best AP 0.4275 @ 49
+epoch  53 | loss 0.0069 | val AUROC 0.8933 AP 0.4187 (RC-TTA) | best AP 0.4275 @ 49
+epoch  54 | loss 0.0069 | val AUROC 0.9029 AP 0.4409 (RC-TTA) | best AP 0.4409 @ 54
+epoch  55 | loss 0.0066 | val AUROC 0.9017 AP 0.4213 (RC-TTA) | best AP 0.4409 @ 54
+epoch  56 | loss 0.0064 | val AUROC 0.8988 AP 0.4154 (RC-TTA) | best AP 0.4409 @ 54
+epoch  57 | loss 0.0065 | val AUROC 0.8943 AP 0.4168 (RC-TTA) | best AP 0.4409 @ 54
+epoch  58 | loss 0.0060 | val AUROC 0.8936 AP 0.4111 (RC-TTA) | best AP 0.4409 @ 54
+epoch  59 | loss 0.0061 | val AUROC 0.8892 AP 0.4131 (RC-TTA) | best AP 0.4409 @ 54
+epoch  60 | loss 0.0059 | val AUROC 0.8949 AP 0.4197 (RC-TTA) | best AP 0.4409 @ 54
+epoch  61 | loss 0.0057 | val AUROC 0.8983 AP 0.4253 (RC-TTA) | best AP 0.4409 @ 54
+epoch  62 | loss 0.0056 | val AUROC 0.8959 AP 0.4269 (RC-TTA) | best AP 0.4409 @ 54
+epoch  63 | loss 0.0054 | val AUROC 0.8952 AP 0.4206 (RC-TTA) | best AP 0.4409 @ 54
+epoch  64 | loss 0.0053 | val AUROC 0.8919 AP 0.4154 (RC-TTA) | best AP 0.4409 @ 54
+epoch  65 | loss 0.0053 | val AUROC 0.8968 AP 0.4080 (RC-TTA) | best AP 0.4409 @ 54
+epoch  66 | loss 0.0051 | val AUROC 0.9005 AP 0.4163 (RC-TTA) | best AP 0.4409 @ 54
+epoch  67 | loss 0.0049 | val AUROC 0.8958 AP 0.4132 (RC-TTA) | best AP 0.4409 @ 54
+epoch  68 | loss 0.0048 | val AUROC 0.8945 AP 0.4139 (RC-TTA) | best AP 0.4409 @ 54
+epoch  69 | loss 0.0049 | val AUROC 0.8917 AP 0.4164 (RC-TTA) | best AP 0.4409 @ 54
+{
+  "task": "anell",
+  "init": "jepa",
+  "seed": 1,
+  "encoder": "/save/runs/exp03/pretrain/encoder.pt",
+  "parameters": 7265313,
+  "best_epoch": 54,
+  "epochs_run": 69,
+  "minutes": 32.70648864110311,
+  "validation_ap_rc": 0.4408913826700585,
+  "test": {
+    "auroc": 0.7802738104158186,
+    "ap": 0.21116933320561718,
+    "threshold": 0.5450435876846313,
+    "precision": 0.5067264573991032,
+    "recall": 0.08382789317507418,
+    "f1": 0.14385741565881605,
+    "specificity": 0.9958168542744144,
+    "tp": 113,
+    "fp": 110,
+    "fn": 1235,
+    "tn": 26186,
+    "auroc_ci95": [
+      0.7686512203034491,
+      0.7917707855979595
+    ],
+    "ap_ci95": [
+      0.1908431922945749,
+      0.23284316558718032
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.8236827068733135,
+    "ap": 0.2577382068282373,
+    "threshold": 0.45310813188552856,
+    "precision": 0.6084905660377359,
+    "recall": 0.0956973293768546,
+    "f1": 0.16538461538461538,
+    "specificity": 0.9968436264070581,
+    "tp": 129,
+    "fp": 83,
+    "fn": 1219,
+    "tn": 26213,
+    "auroc_ci95": [
+      0.8134401869149254,
+      0.8339318163697368
+    ],
+    "ap_ci95": [
+      0.23427998986532256,
+      0.2830024279601868
+    ]
+  }
+}
+anell: dropped 90 training windows identical to a test window
+anell: train 215,664 (3783 viral) | validation 23,962 (420) | test 27,644 (1348)
+epoch   1 | loss 0.0228 | val AUROC 0.7000 AP 0.0463 (RC-TTA) | best AP 0.0463 @ 1
+epoch   2 | loss 0.0213 | val AUROC 0.7633 AP 0.0668 (RC-TTA) | best AP 0.0668 @ 2
+epoch   3 | loss 0.0203 | val AUROC 0.8037 AP 0.0918 (RC-TTA) | best AP 0.0918 @ 3
+epoch   4 | loss 0.0194 | val AUROC 0.8348 AP 0.1118 (RC-TTA) | best AP 0.1118 @ 4
+epoch   5 | loss 0.0187 | val AUROC 0.8407 AP 0.1366 (RC-TTA) | best AP 0.1366 @ 5
+epoch   6 | loss 0.0180 | val AUROC 0.8579 AP 0.1738 (RC-TTA) | best AP 0.1738 @ 6
+epoch   7 | loss 0.0176 | val AUROC 0.8678 AP 0.2072 (RC-TTA) | best AP 0.2072 @ 7
+epoch   8 | loss 0.0170 | val AUROC 0.8755 AP 0.2252 (RC-TTA) | best AP 0.2252 @ 8
+epoch   9 | loss 0.0166 | val AUROC 0.8829 AP 0.2618 (RC-TTA) | best AP 0.2618 @ 9
+epoch  10 | loss 0.0162 | val AUROC 0.8845 AP 0.2769 (RC-TTA) | best AP 0.2769 @ 10
+epoch  11 | loss 0.0160 | val AUROC 0.8926 AP 0.3064 (RC-TTA) | best AP 0.3064 @ 11
+epoch  12 | loss 0.0156 | val AUROC 0.8883 AP 0.2998 (RC-TTA) | best AP 0.3064 @ 11
+epoch  13 | loss 0.0153 | val AUROC 0.8942 AP 0.3120 (RC-TTA) | best AP 0.3120 @ 13
+epoch  14 | loss 0.0150 | val AUROC 0.8907 AP 0.3100 (RC-TTA) | best AP 0.3120 @ 13
+epoch  15 | loss 0.0147 | val AUROC 0.8979 AP 0.3186 (RC-TTA) | best AP 0.3186 @ 15
+epoch  16 | loss 0.0145 | val AUROC 0.9008 AP 0.3474 (RC-TTA) | best AP 0.3474 @ 16
+epoch  17 | loss 0.0143 | val AUROC 0.9039 AP 0.3641 (RC-TTA) | best AP 0.3641 @ 17
+epoch  18 | loss 0.0140 | val AUROC 0.9001 AP 0.3493 (RC-TTA) | best AP 0.3641 @ 17
+epoch  19 | loss 0.0138 | val AUROC 0.9008 AP 0.3577 (RC-TTA) | best AP 0.3641 @ 17
+epoch  20 | loss 0.0137 | val AUROC 0.9030 AP 0.3570 (RC-TTA) | best AP 0.3641 @ 17
+epoch  21 | loss 0.0133 | val AUROC 0.9048 AP 0.3719 (RC-TTA) | best AP 0.3719 @ 21
+epoch  22 | loss 0.0131 | val AUROC 0.9031 AP 0.3813 (RC-TTA) | best AP 0.3813 @ 22
+epoch  23 | loss 0.0129 | val AUROC 0.9038 AP 0.3977 (RC-TTA) | best AP 0.3977 @ 23
+epoch  24 | loss 0.0128 | val AUROC 0.9050 AP 0.3734 (RC-TTA) | best AP 0.3977 @ 23
+epoch  25 | loss 0.0124 | val AUROC 0.9022 AP 0.3972 (RC-TTA) | best AP 0.3977 @ 23
+epoch  26 | loss 0.0123 | val AUROC 0.9019 AP 0.3973 (RC-TTA) | best AP 0.3977 @ 23
+epoch  27 | loss 0.0121 | val AUROC 0.9072 AP 0.4086 (RC-TTA) | best AP 0.4086 @ 27
+epoch  28 | loss 0.0119 | val AUROC 0.9047 AP 0.4082 (RC-TTA) | best AP 0.4086 @ 27
+epoch  29 | loss 0.0116 | val AUROC 0.9023 AP 0.3985 (RC-TTA) | best AP 0.4086 @ 27
+epoch  30 | loss 0.0116 | val AUROC 0.9002 AP 0.4043 (RC-TTA) | best AP 0.4086 @ 27
+epoch  31 | loss 0.0113 | val AUROC 0.9010 AP 0.4085 (RC-TTA) | best AP 0.4086 @ 27
+epoch  32 | loss 0.0112 | val AUROC 0.9070 AP 0.4251 (RC-TTA) | best AP 0.4251 @ 32
+epoch  33 | loss 0.0108 | val AUROC 0.9113 AP 0.4197 (RC-TTA) | best AP 0.4251 @ 32
+epoch  34 | loss 0.0108 | val AUROC 0.9036 AP 0.4179 (RC-TTA) | best AP 0.4251 @ 32
+epoch  35 | loss 0.0106 | val AUROC 0.9024 AP 0.4251 (RC-TTA) | best AP 0.4251 @ 35
+epoch  36 | loss 0.0102 | val AUROC 0.9018 AP 0.4278 (RC-TTA) | best AP 0.4278 @ 36
+epoch  37 | loss 0.0100 | val AUROC 0.9040 AP 0.4333 (RC-TTA) | best AP 0.4333 @ 37
+epoch  38 | loss 0.0100 | val AUROC 0.9076 AP 0.4288 (RC-TTA) | best AP 0.4333 @ 37
+epoch  39 | loss 0.0095 | val AUROC 0.9044 AP 0.4344 (RC-TTA) | best AP 0.4344 @ 39
+epoch  40 | loss 0.0093 | val AUROC 0.9092 AP 0.4421 (RC-TTA) | best AP 0.4421 @ 40
+epoch  41 | loss 0.0093 | val AUROC 0.9030 AP 0.4373 (RC-TTA) | best AP 0.4421 @ 40
+epoch  42 | loss 0.0092 | val AUROC 0.9036 AP 0.4369 (RC-TTA) | best AP 0.4421 @ 40
+epoch  43 | loss 0.0090 | val AUROC 0.9057 AP 0.4414 (RC-TTA) | best AP 0.4421 @ 40
+epoch  44 | loss 0.0088 | val AUROC 0.9037 AP 0.4322 (RC-TTA) | best AP 0.4421 @ 40
+epoch  45 | loss 0.0086 | val AUROC 0.9071 AP 0.4378 (RC-TTA) | best AP 0.4421 @ 40
+epoch  46 | loss 0.0084 | val AUROC 0.9076 AP 0.4392 (RC-TTA) | best AP 0.4421 @ 40
+epoch  47 | loss 0.0083 | val AUROC 0.9114 AP 0.4349 (RC-TTA) | best AP 0.4421 @ 40
+epoch  48 | loss 0.0079 | val AUROC 0.9044 AP 0.4401 (RC-TTA) | best AP 0.4421 @ 40
+epoch  49 | loss 0.0077 | val AUROC 0.8960 AP 0.4325 (RC-TTA) | best AP 0.4421 @ 40
+epoch  50 | loss 0.0076 | val AUROC 0.8988 AP 0.4298 (RC-TTA) | best AP 0.4421 @ 40
+epoch  51 | loss 0.0074 | val AUROC 0.8996 AP 0.4403 (RC-TTA) | best AP 0.4421 @ 40
+epoch  52 | loss 0.0073 | val AUROC 0.8960 AP 0.4270 (RC-TTA) | best AP 0.4421 @ 40
+epoch  53 | loss 0.0070 | val AUROC 0.8953 AP 0.4409 (RC-TTA) | best AP 0.4421 @ 40
+epoch  54 | loss 0.0069 | val AUROC 0.9042 AP 0.4401 (RC-TTA) | best AP 0.4421 @ 40
+epoch  55 | loss 0.0068 | val AUROC 0.8965 AP 0.4302 (RC-TTA) | best AP 0.4421 @ 40
+{
+  "task": "anell",
+  "init": "jepa",
+  "seed": 2,
+  "encoder": "/save/runs/exp03/pretrain/encoder.pt",
+  "parameters": 7265313,
+  "best_epoch": 40,
+  "epochs_run": 55,
+  "minutes": 26.090098989009856,
+  "validation_ap_rc": 0.4421208295863925,
+  "test": {
+    "auroc": 0.8007675429192784,
+    "ap": 0.2467600958067581,
+    "threshold": 0.5270731449127197,
+    "precision": 0.5223367697594502,
+    "recall": 0.11275964391691394,
+    "f1": 0.18547895057962172,
+    "specificity": 0.99471402494676,
+    "tp": 152,
+    "fp": 139,
+    "fn": 1196,
+    "tn": 26157,
+    "auroc_ci95": [
+      0.789536624263104,
+      0.8123039882259802
+    ],
+    "ap_ci95": [
+      0.22443844679701833,
+      0.2711644499021073
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.8316238425539328,
+    "ap": 0.2928996125770747,
+    "threshold": 0.4440842866897583,
+    "precision": 0.5555555555555556,
+    "recall": 0.1446587537091988,
+    "f1": 0.22954679223072397,
+    "specificity": 0.9940675387891694,
+    "tp": 195,
+    "fp": 156,
+    "fn": 1153,
+    "tn": 26140,
+    "auroc_ci95": [
+      0.8215753054336896,
+      0.841471116194373
+    ],
+    "ap_ci95": [
+      0.2705826450201955,
+      0.31710788520536526
+    ]
+  }
+}
+anell: dropped 90 training windows identical to a test window
+anell: train 215,664 (3783 viral) | validation 23,962 (420) | test 27,644 (1348)
+epoch   1 | loss 0.0233 | val AUROC 0.6340 AP 0.0244 (RC-TTA) | best AP 0.0244 @ 1
+epoch   2 | loss 0.0219 | val AUROC 0.7859 AP 0.0517 (RC-TTA) | best AP 0.0517 @ 2
+epoch   3 | loss 0.0197 | val AUROC 0.8269 AP 0.0775 (RC-TTA) | best AP 0.0775 @ 3
+epoch   4 | loss 0.0190 | val AUROC 0.8428 AP 0.1029 (RC-TTA) | best AP 0.1029 @ 4
+epoch   5 | loss 0.0186 | val AUROC 0.8529 AP 0.1224 (RC-TTA) | best AP 0.1224 @ 5
+epoch   6 | loss 0.0182 | val AUROC 0.8610 AP 0.1455 (RC-TTA) | best AP 0.1455 @ 6
+epoch   7 | loss 0.0180 | val AUROC 0.8603 AP 0.1357 (RC-TTA) | best AP 0.1455 @ 6
+epoch   8 | loss 0.0177 | val AUROC 0.8637 AP 0.1692 (RC-TTA) | best AP 0.1692 @ 8
+epoch   9 | loss 0.0175 | val AUROC 0.8709 AP 0.1754 (RC-TTA) | best AP 0.1754 @ 9
+epoch  10 | loss 0.0171 | val AUROC 0.8658 AP 0.2050 (RC-TTA) | best AP 0.2050 @ 10
+epoch  11 | loss 0.0171 | val AUROC 0.8734 AP 0.2239 (RC-TTA) | best AP 0.2239 @ 11
+epoch  12 | loss 0.0167 | val AUROC 0.8798 AP 0.2346 (RC-TTA) | best AP 0.2346 @ 12
+epoch  13 | loss 0.0166 | val AUROC 0.8793 AP 0.2516 (RC-TTA) | best AP 0.2516 @ 13
+epoch  14 | loss 0.0164 | val AUROC 0.8765 AP 0.2305 (RC-TTA) | best AP 0.2516 @ 13
+epoch  15 | loss 0.0164 | val AUROC 0.8822 AP 0.2654 (RC-TTA) | best AP 0.2654 @ 15
+epoch  16 | loss 0.0162 | val AUROC 0.8791 AP 0.2499 (RC-TTA) | best AP 0.2654 @ 15
+epoch  17 | loss 0.0161 | val AUROC 0.8844 AP 0.2653 (RC-TTA) | best AP 0.2654 @ 15
+epoch  18 | loss 0.0159 | val AUROC 0.8836 AP 0.2904 (RC-TTA) | best AP 0.2904 @ 18
+epoch  19 | loss 0.0158 | val AUROC 0.8833 AP 0.2651 (RC-TTA) | best AP 0.2904 @ 18
+epoch  20 | loss 0.0156 | val AUROC 0.8839 AP 0.2946 (RC-TTA) | best AP 0.2946 @ 20
+epoch  21 | loss 0.0155 | val AUROC 0.8882 AP 0.3041 (RC-TTA) | best AP 0.3041 @ 21
+epoch  22 | loss 0.0153 | val AUROC 0.8860 AP 0.3178 (RC-TTA) | best AP 0.3178 @ 22
+epoch  23 | loss 0.0152 | val AUROC 0.8918 AP 0.3230 (RC-TTA) | best AP 0.3230 @ 23
+epoch  24 | loss 0.0152 | val AUROC 0.8868 AP 0.3146 (RC-TTA) | best AP 0.3230 @ 23
+epoch  25 | loss 0.0150 | val AUROC 0.8882 AP 0.3290 (RC-TTA) | best AP 0.3290 @ 25
+epoch  26 | loss 0.0148 | val AUROC 0.8907 AP 0.3292 (RC-TTA) | best AP 0.3292 @ 26
+epoch  27 | loss 0.0147 | val AUROC 0.8920 AP 0.3143 (RC-TTA) | best AP 0.3292 @ 26
+epoch  28 | loss 0.0147 | val AUROC 0.8957 AP 0.3586 (RC-TTA) | best AP 0.3586 @ 28
+epoch  29 | loss 0.0145 | val AUROC 0.8924 AP 0.3216 (RC-TTA) | best AP 0.3586 @ 28
+epoch  30 | loss 0.0144 | val AUROC 0.8937 AP 0.3500 (RC-TTA) | best AP 0.3586 @ 28
+epoch  31 | loss 0.0144 | val AUROC 0.8951 AP 0.3508 (RC-TTA) | best AP 0.3586 @ 28
+epoch  32 | loss 0.0141 | val AUROC 0.8989 AP 0.3477 (RC-TTA) | best AP 0.3586 @ 28
+epoch  33 | loss 0.0141 | val AUROC 0.8970 AP 0.3510 (RC-TTA) | best AP 0.3586 @ 28
+epoch  34 | loss 0.0138 | val AUROC 0.9021 AP 0.3519 (RC-TTA) | best AP 0.3586 @ 28
+epoch  35 | loss 0.0138 | val AUROC 0.9032 AP 0.3732 (RC-TTA) | best AP 0.3732 @ 35
+epoch  36 | loss 0.0137 | val AUROC 0.9001 AP 0.3725 (RC-TTA) | best AP 0.3732 @ 35
+epoch  37 | loss 0.0136 | val AUROC 0.9063 AP 0.3782 (RC-TTA) | best AP 0.3782 @ 37
+epoch  38 | loss 0.0135 | val AUROC 0.9055 AP 0.3762 (RC-TTA) | best AP 0.3782 @ 37
+epoch  39 | loss 0.0133 | val AUROC 0.9017 AP 0.3829 (RC-TTA) | best AP 0.3829 @ 39
+epoch  40 | loss 0.0133 | val AUROC 0.9030 AP 0.3860 (RC-TTA) | best AP 0.3860 @ 40
+epoch  41 | loss 0.0131 | val AUROC 0.9046 AP 0.4001 (RC-TTA) | best AP 0.4001 @ 41
+epoch  42 | loss 0.0131 | val AUROC 0.9049 AP 0.3837 (RC-TTA) | best AP 0.4001 @ 41
+epoch  43 | loss 0.0129 | val AUROC 0.9061 AP 0.4010 (RC-TTA) | best AP 0.4010 @ 43
+epoch  44 | loss 0.0128 | val AUROC 0.9064 AP 0.3965 (RC-TTA) | best AP 0.4010 @ 43
+epoch  45 | loss 0.0126 | val AUROC 0.9047 AP 0.4013 (RC-TTA) | best AP 0.4013 @ 45
+epoch  46 | loss 0.0127 | val AUROC 0.9080 AP 0.3993 (RC-TTA) | best AP 0.4013 @ 45
+epoch  47 | loss 0.0125 | val AUROC 0.9084 AP 0.4071 (RC-TTA) | best AP 0.4071 @ 47
+epoch  48 | loss 0.0124 | val AUROC 0.9087 AP 0.4215 (RC-TTA) | best AP 0.4215 @ 48
+epoch  49 | loss 0.0121 | val AUROC 0.9019 AP 0.3945 (RC-TTA) | best AP 0.4215 @ 48
+epoch  50 | loss 0.0123 | val AUROC 0.9123 AP 0.4178 (RC-TTA) | best AP 0.4215 @ 48
+epoch  51 | loss 0.0120 | val AUROC 0.9099 AP 0.4128 (RC-TTA) | best AP 0.4215 @ 48
+epoch  52 | loss 0.0119 | val AUROC 0.9103 AP 0.4164 (RC-TTA) | best AP 0.4215 @ 48
+epoch  53 | loss 0.0119 | val AUROC 0.9129 AP 0.4182 (RC-TTA) | best AP 0.4215 @ 48
+epoch  54 | loss 0.0117 | val AUROC 0.9111 AP 0.4245 (RC-TTA) | best AP 0.4245 @ 54
+epoch  55 | loss 0.0116 | val AUROC 0.9103 AP 0.4054 (RC-TTA) | best AP 0.4245 @ 54
+epoch  56 | loss 0.0116 | val AUROC 0.9095 AP 0.4171 (RC-TTA) | best AP 0.4245 @ 54
+epoch  57 | loss 0.0115 | val AUROC 0.9112 AP 0.4295 (RC-TTA) | best AP 0.4295 @ 57
+epoch  58 | loss 0.0113 | val AUROC 0.9119 AP 0.4279 (RC-TTA) | best AP 0.4295 @ 57
+epoch  59 | loss 0.0111 | val AUROC 0.9101 AP 0.4199 (RC-TTA) | best AP 0.4295 @ 57
+epoch  60 | loss 0.0111 | val AUROC 0.9113 AP 0.4265 (RC-TTA) | best AP 0.4295 @ 57
+epoch  61 | loss 0.0110 | val AUROC 0.9134 AP 0.4317 (RC-TTA) | best AP 0.4317 @ 61
+epoch  62 | loss 0.0109 | val AUROC 0.9107 AP 0.4353 (RC-TTA) | best AP 0.4353 @ 62
+epoch  63 | loss 0.0109 | val AUROC 0.9119 AP 0.4357 (RC-TTA) | best AP 0.4357 @ 63
+epoch  64 | loss 0.0107 | val AUROC 0.9093 AP 0.4268 (RC-TTA) | best AP 0.4357 @ 63
+epoch  65 | loss 0.0106 | val AUROC 0.9115 AP 0.4377 (RC-TTA) | best AP 0.4377 @ 65
+epoch  66 | loss 0.0105 | val AUROC 0.9109 AP 0.4386 (RC-TTA) | best AP 0.4386 @ 66
+epoch  67 | loss 0.0103 | val AUROC 0.9108 AP 0.4352 (RC-TTA) | best AP 0.4386 @ 66
+epoch  68 | loss 0.0104 | val AUROC 0.9135 AP 0.4413 (RC-TTA) | best AP 0.4413 @ 68
+epoch  69 | loss 0.0103 | val AUROC 0.9134 AP 0.4450 (RC-TTA) | best AP 0.4450 @ 69
+epoch  70 | loss 0.0101 | val AUROC 0.9134 AP 0.4417 (RC-TTA) | best AP 0.4450 @ 69
+epoch  71 | loss 0.0101 | val AUROC 0.9146 AP 0.4409 (RC-TTA) | best AP 0.4450 @ 69
+epoch  72 | loss 0.0100 | val AUROC 0.9134 AP 0.4390 (RC-TTA) | best AP 0.4450 @ 69
+epoch  73 | loss 0.0100 | val AUROC 0.9109 AP 0.4428 (RC-TTA) | best AP 0.4450 @ 69
+epoch  74 | loss 0.0098 | val AUROC 0.9080 AP 0.4312 (RC-TTA) | best AP 0.4450 @ 69
+epoch  75 | loss 0.0098 | val AUROC 0.9121 AP 0.4414 (RC-TTA) | best AP 0.4450 @ 69
+epoch  76 | loss 0.0096 | val AUROC 0.9138 AP 0.4452 (RC-TTA) | best AP 0.4452 @ 76
+epoch  77 | loss 0.0094 | val AUROC 0.9138 AP 0.4439 (RC-TTA) | best AP 0.4452 @ 76
+epoch  78 | loss 0.0096 | val AUROC 0.9133 AP 0.4536 (RC-TTA) | best AP 0.4536 @ 78
+epoch  79 | loss 0.0095 | val AUROC 0.9117 AP 0.4492 (RC-TTA) | best AP 0.4536 @ 78
+epoch  80 | loss 0.0095 | val AUROC 0.9128 AP 0.4394 (RC-TTA) | best AP 0.4536 @ 78
+epoch  81 | loss 0.0093 | val AUROC 0.9128 AP 0.4482 (RC-TTA) | best AP 0.4536 @ 78
+epoch  82 | loss 0.0091 | val AUROC 0.9141 AP 0.4448 (RC-TTA) | best AP 0.4536 @ 78
+epoch  83 | loss 0.0092 | val AUROC 0.9122 AP 0.4477 (RC-TTA) | best AP 0.4536 @ 78
+epoch  84 | loss 0.0089 | val AUROC 0.9124 AP 0.4570 (RC-TTA) | best AP 0.4570 @ 84
+epoch  85 | loss 0.0089 | val AUROC 0.9131 AP 0.4567 (RC-TTA) | best AP 0.4570 @ 84
+epoch  86 | loss 0.0090 | val AUROC 0.9112 AP 0.4502 (RC-TTA) | best AP 0.4570 @ 84
+epoch  87 | loss 0.0088 | val AUROC 0.9116 AP 0.4467 (RC-TTA) | best AP 0.4570 @ 84
+epoch  88 | loss 0.0087 | val AUROC 0.9119 AP 0.4643 (RC-TTA) | best AP 0.4643 @ 88
+epoch  89 | loss 0.0087 | val AUROC 0.9135 AP 0.4627 (RC-TTA) | best AP 0.4643 @ 88
+epoch  90 | loss 0.0086 | val AUROC 0.9135 AP 0.4607 (RC-TTA) | best AP 0.4643 @ 88
+epoch  91 | loss 0.0086 | val AUROC 0.9110 AP 0.4585 (RC-TTA) | best AP 0.4643 @ 88
+epoch  92 | loss 0.0088 | val AUROC 0.9149 AP 0.4623 (RC-TTA) | best AP 0.4643 @ 88
+epoch  93 | loss 0.0085 | val AUROC 0.9124 AP 0.4662 (RC-TTA) | best AP 0.4662 @ 93
+epoch  94 | loss 0.0084 | val AUROC 0.9100 AP 0.4647 (RC-TTA) | best AP 0.4662 @ 93
+epoch  95 | loss 0.0084 | val AUROC 0.9118 AP 0.4669 (RC-TTA) | best AP 0.4669 @ 95
+epoch  96 | loss 0.0084 | val AUROC 0.9109 AP 0.4650 (RC-TTA) | best AP 0.4669 @ 95
+epoch  97 | loss 0.0083 | val AUROC 0.9130 AP 0.4657 (RC-TTA) | best AP 0.4669 @ 95
+epoch  98 | loss 0.0083 | val AUROC 0.9118 AP 0.4637 (RC-TTA) | best AP 0.4669 @ 95
+epoch  99 | loss 0.0083 | val AUROC 0.9125 AP 0.4633 (RC-TTA) | best AP 0.4669 @ 95
+epoch 100 | loss 0.0082 | val AUROC 0.9124 AP 0.4649 (RC-TTA) | best AP 0.4669 @ 95
+epoch 101 | loss 0.0082 | val AUROC 0.9131 AP 0.4631 (RC-TTA) | best AP 0.4669 @ 95
+epoch 102 | loss 0.0082 | val AUROC 0.9131 AP 0.4675 (RC-TTA) | best AP 0.4675 @ 102
+epoch 103 | loss 0.0080 | val AUROC 0.9121 AP 0.4665 (RC-TTA) | best AP 0.4675 @ 102
+epoch 104 | loss 0.0080 | val AUROC 0.9112 AP 0.4644 (RC-TTA) | best AP 0.4675 @ 102
+epoch 105 | loss 0.0080 | val AUROC 0.9118 AP 0.4638 (RC-TTA) | best AP 0.4675 @ 102
+epoch 106 | loss 0.0080 | val AUROC 0.9117 AP 0.4647 (RC-TTA) | best AP 0.4675 @ 102
+epoch 107 | loss 0.0079 | val AUROC 0.9126 AP 0.4632 (RC-TTA) | best AP 0.4675 @ 102
+epoch 108 | loss 0.0080 | val AUROC 0.9127 AP 0.4646 (RC-TTA) | best AP 0.4675 @ 102
+epoch 109 | loss 0.0080 | val AUROC 0.9121 AP 0.4658 (RC-TTA) | best AP 0.4675 @ 102
+epoch 110 | loss 0.0079 | val AUROC 0.9129 AP 0.4658 (RC-TTA) | best AP 0.4675 @ 102
+epoch 111 | loss 0.0081 | val AUROC 0.9140 AP 0.4671 (RC-TTA) | best AP 0.4675 @ 102
+epoch 112 | loss 0.0081 | val AUROC 0.9122 AP 0.4661 (RC-TTA) | best AP 0.4675 @ 102
+epoch 113 | loss 0.0080 | val AUROC 0.9130 AP 0.4663 (RC-TTA) | best AP 0.4675 @ 102
+epoch 114 | loss 0.0079 | val AUROC 0.9129 AP 0.4662 (RC-TTA) | best AP 0.4675 @ 102
+epoch 115 | loss 0.0080 | val AUROC 0.9129 AP 0.4668 (RC-TTA) | best AP 0.4675 @ 102
+epoch 116 | loss 0.0080 | val AUROC 0.9123 AP 0.4667 (RC-TTA) | best AP 0.4675 @ 102
+epoch 117 | loss 0.0079 | val AUROC 0.9125 AP 0.4666 (RC-TTA) | best AP 0.4675 @ 102
+{
+  "task": "anell",
+  "init": "random",
+  "seed": 0,
+  "encoder": null,
+  "parameters": 7265313,
+  "best_epoch": 102,
+  "epochs_run": 117,
+  "minutes": 55.44477138916651,
+  "validation_ap_rc": 0.4675315944006047,
+  "test": {
+    "auroc": 0.7990082971177708,
+    "ap": 0.2509427448354176,
+    "threshold": 0.49188297986984253,
+    "precision": 0.4607329842931937,
+    "recall": 0.13056379821958458,
+    "f1": 0.20346820809248556,
+    "specificity": 0.9921661089139032,
+    "tp": 176,
+    "fp": 206,
+    "fn": 1172,
+    "tn": 26090,
+    "auroc_ci95": [
+      0.787115951420957,
+      0.8102940530469291
+    ],
+    "ap_ci95": [
+      0.2280063495795108,
+      0.2752691087540373
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.8211443120953961,
+    "ap": 0.2897630542985356,
+    "threshold": 0.44602859020233154,
+    "precision": 0.6005830903790087,
+    "recall": 0.15281899109792285,
+    "f1": 0.2436428149024246,
+    "specificity": 0.9947900821417706,
+    "tp": 206,
+    "fp": 137,
+    "fn": 1142,
+    "tn": 26159,
+    "auroc_ci95": [
+      0.8105333887100042,
+      0.8318692838463265
+    ],
+    "ap_ci95": [
+      0.2660361225633881,
+      0.31556467039505626
+    ]
+  }
+}
+anell: dropped 90 training windows identical to a test window
+anell: train 215,664 (3783 viral) | validation 23,962 (420) | test 27,644 (1348)
+epoch   1 | loss 0.0230 | val AUROC 0.6547 AP 0.0265 (RC-TTA) | best AP 0.0265 @ 1
+epoch   2 | loss 0.0217 | val AUROC 0.8043 AP 0.0642 (RC-TTA) | best AP 0.0642 @ 2
+epoch   3 | loss 0.0197 | val AUROC 0.8329 AP 0.0782 (RC-TTA) | best AP 0.0782 @ 3
+epoch   4 | loss 0.0190 | val AUROC 0.8415 AP 0.1010 (RC-TTA) | best AP 0.1010 @ 4
+epoch   5 | loss 0.0186 | val AUROC 0.8554 AP 0.1150 (RC-TTA) | best AP 0.1150 @ 5
+epoch   6 | loss 0.0184 | val AUROC 0.8553 AP 0.1349 (RC-TTA) | best AP 0.1349 @ 6
+epoch   7 | loss 0.0181 | val AUROC 0.8660 AP 0.1416 (RC-TTA) | best AP 0.1416 @ 7
+epoch   8 | loss 0.0178 | val AUROC 0.8685 AP 0.1627 (RC-TTA) | best AP 0.1627 @ 8
+epoch   9 | loss 0.0175 | val AUROC 0.8692 AP 0.1823 (RC-TTA) | best AP 0.1823 @ 9
+epoch  10 | loss 0.0173 | val AUROC 0.8740 AP 0.1905 (RC-TTA) | best AP 0.1905 @ 10
+epoch  11 | loss 0.0171 | val AUROC 0.8647 AP 0.1686 (RC-TTA) | best AP 0.1905 @ 10
+epoch  12 | loss 0.0168 | val AUROC 0.8737 AP 0.2084 (RC-TTA) | best AP 0.2084 @ 12
+epoch  13 | loss 0.0167 | val AUROC 0.8746 AP 0.2255 (RC-TTA) | best AP 0.2255 @ 13
+epoch  14 | loss 0.0166 | val AUROC 0.8852 AP 0.2614 (RC-TTA) | best AP 0.2614 @ 14
+epoch  15 | loss 0.0163 | val AUROC 0.8770 AP 0.2288 (RC-TTA) | best AP 0.2614 @ 14
+epoch  16 | loss 0.0163 | val AUROC 0.8857 AP 0.2611 (RC-TTA) | best AP 0.2614 @ 14
+epoch  17 | loss 0.0160 | val AUROC 0.8889 AP 0.2763 (RC-TTA) | best AP 0.2763 @ 17
+epoch  18 | loss 0.0159 | val AUROC 0.8886 AP 0.2857 (RC-TTA) | best AP 0.2857 @ 18
+epoch  19 | loss 0.0158 | val AUROC 0.8897 AP 0.2949 (RC-TTA) | best AP 0.2949 @ 19
+epoch  20 | loss 0.0156 | val AUROC 0.8914 AP 0.2882 (RC-TTA) | best AP 0.2949 @ 19
+epoch  21 | loss 0.0155 | val AUROC 0.8939 AP 0.3238 (RC-TTA) | best AP 0.3238 @ 21
+epoch  22 | loss 0.0154 | val AUROC 0.8951 AP 0.3227 (RC-TTA) | best AP 0.3238 @ 21
+epoch  23 | loss 0.0152 | val AUROC 0.8953 AP 0.3242 (RC-TTA) | best AP 0.3242 @ 23
+epoch  24 | loss 0.0152 | val AUROC 0.8952 AP 0.3346 (RC-TTA) | best AP 0.3346 @ 24
+epoch  25 | loss 0.0150 | val AUROC 0.8943 AP 0.3314 (RC-TTA) | best AP 0.3346 @ 24
+epoch  26 | loss 0.0148 | val AUROC 0.9005 AP 0.3452 (RC-TTA) | best AP 0.3452 @ 26
+epoch  27 | loss 0.0146 | val AUROC 0.8996 AP 0.3409 (RC-TTA) | best AP 0.3452 @ 26
+epoch  28 | loss 0.0147 | val AUROC 0.8995 AP 0.3454 (RC-TTA) | best AP 0.3454 @ 28
+epoch  29 | loss 0.0144 | val AUROC 0.9017 AP 0.3606 (RC-TTA) | best AP 0.3606 @ 29
+epoch  30 | loss 0.0144 | val AUROC 0.9008 AP 0.3680 (RC-TTA) | best AP 0.3680 @ 30
+epoch  31 | loss 0.0143 | val AUROC 0.9038 AP 0.3736 (RC-TTA) | best AP 0.3736 @ 31
+epoch  32 | loss 0.0142 | val AUROC 0.9060 AP 0.3734 (RC-TTA) | best AP 0.3736 @ 31
+epoch  33 | loss 0.0140 | val AUROC 0.9014 AP 0.3740 (RC-TTA) | best AP 0.3740 @ 33
+epoch  34 | loss 0.0139 | val AUROC 0.9051 AP 0.3843 (RC-TTA) | best AP 0.3843 @ 34
+epoch  35 | loss 0.0138 | val AUROC 0.9047 AP 0.3764 (RC-TTA) | best AP 0.3843 @ 34
+epoch  36 | loss 0.0137 | val AUROC 0.8983 AP 0.3546 (RC-TTA) | best AP 0.3843 @ 34
+epoch  37 | loss 0.0137 | val AUROC 0.9064 AP 0.3760 (RC-TTA) | best AP 0.3843 @ 34
+epoch  38 | loss 0.0135 | val AUROC 0.9069 AP 0.3809 (RC-TTA) | best AP 0.3843 @ 34
+epoch  39 | loss 0.0133 | val AUROC 0.9090 AP 0.3835 (RC-TTA) | best AP 0.3843 @ 34
+epoch  40 | loss 0.0131 | val AUROC 0.9091 AP 0.3875 (RC-TTA) | best AP 0.3875 @ 40
+epoch  41 | loss 0.0132 | val AUROC 0.9088 AP 0.3939 (RC-TTA) | best AP 0.3939 @ 41
+epoch  42 | loss 0.0130 | val AUROC 0.9112 AP 0.3985 (RC-TTA) | best AP 0.3985 @ 42
+epoch  43 | loss 0.0129 | val AUROC 0.9103 AP 0.4021 (RC-TTA) | best AP 0.4021 @ 43
+epoch  44 | loss 0.0127 | val AUROC 0.9121 AP 0.3932 (RC-TTA) | best AP 0.4021 @ 43
+epoch  45 | loss 0.0127 | val AUROC 0.9123 AP 0.4086 (RC-TTA) | best AP 0.4086 @ 45
+epoch  46 | loss 0.0125 | val AUROC 0.9089 AP 0.4176 (RC-TTA) | best AP 0.4176 @ 46
+epoch  47 | loss 0.0123 | val AUROC 0.9098 AP 0.4074 (RC-TTA) | best AP 0.4176 @ 46
+epoch  48 | loss 0.0122 | val AUROC 0.9076 AP 0.3955 (RC-TTA) | best AP 0.4176 @ 46
+epoch  49 | loss 0.0121 | val AUROC 0.9108 AP 0.4111 (RC-TTA) | best AP 0.4176 @ 46
+epoch  50 | loss 0.0119 | val AUROC 0.9139 AP 0.4117 (RC-TTA) | best AP 0.4176 @ 46
+epoch  51 | loss 0.0120 | val AUROC 0.9128 AP 0.4184 (RC-TTA) | best AP 0.4184 @ 51
+epoch  52 | loss 0.0118 | val AUROC 0.9103 AP 0.4109 (RC-TTA) | best AP 0.4184 @ 51
+epoch  53 | loss 0.0116 | val AUROC 0.9141 AP 0.4104 (RC-TTA) | best AP 0.4184 @ 51
+epoch  54 | loss 0.0116 | val AUROC 0.9097 AP 0.4033 (RC-TTA) | best AP 0.4184 @ 51
+epoch  55 | loss 0.0116 | val AUROC 0.9120 AP 0.4180 (RC-TTA) | best AP 0.4184 @ 51
+epoch  56 | loss 0.0114 | val AUROC 0.9154 AP 0.4193 (RC-TTA) | best AP 0.4193 @ 56
+epoch  57 | loss 0.0112 | val AUROC 0.9107 AP 0.4129 (RC-TTA) | best AP 0.4193 @ 56
+epoch  58 | loss 0.0111 | val AUROC 0.9142 AP 0.4256 (RC-TTA) | best AP 0.4256 @ 58
+epoch  59 | loss 0.0111 | val AUROC 0.9082 AP 0.4143 (RC-TTA) | best AP 0.4256 @ 58
+epoch  60 | loss 0.0109 | val AUROC 0.9112 AP 0.4039 (RC-TTA) | best AP 0.4256 @ 58
+epoch  61 | loss 0.0109 | val AUROC 0.9161 AP 0.4321 (RC-TTA) | best AP 0.4321 @ 61
+epoch  62 | loss 0.0107 | val AUROC 0.9096 AP 0.4097 (RC-TTA) | best AP 0.4321 @ 61
+epoch  63 | loss 0.0106 | val AUROC 0.9134 AP 0.4304 (RC-TTA) | best AP 0.4321 @ 61
+epoch  64 | loss 0.0106 | val AUROC 0.9154 AP 0.4337 (RC-TTA) | best AP 0.4337 @ 64
+epoch  65 | loss 0.0104 | val AUROC 0.9112 AP 0.4265 (RC-TTA) | best AP 0.4337 @ 64
+epoch  66 | loss 0.0103 | val AUROC 0.9159 AP 0.4381 (RC-TTA) | best AP 0.4381 @ 66
+epoch  67 | loss 0.0102 | val AUROC 0.9150 AP 0.4250 (RC-TTA) | best AP 0.4381 @ 66
+epoch  68 | loss 0.0103 | val AUROC 0.9153 AP 0.4311 (RC-TTA) | best AP 0.4381 @ 66
+epoch  69 | loss 0.0101 | val AUROC 0.9154 AP 0.4285 (RC-TTA) | best AP 0.4381 @ 66
+epoch  70 | loss 0.0099 | val AUROC 0.9113 AP 0.4382 (RC-TTA) | best AP 0.4382 @ 70
+epoch  71 | loss 0.0098 | val AUROC 0.9137 AP 0.4391 (RC-TTA) | best AP 0.4391 @ 71
+epoch  72 | loss 0.0098 | val AUROC 0.9076 AP 0.4224 (RC-TTA) | best AP 0.4391 @ 71
+epoch  73 | loss 0.0097 | val AUROC 0.9108 AP 0.4259 (RC-TTA) | best AP 0.4391 @ 71
+epoch  74 | loss 0.0095 | val AUROC 0.9135 AP 0.4335 (RC-TTA) | best AP 0.4391 @ 71
+epoch  75 | loss 0.0095 | val AUROC 0.9121 AP 0.4438 (RC-TTA) | best AP 0.4438 @ 75
+epoch  76 | loss 0.0093 | val AUROC 0.9156 AP 0.4518 (RC-TTA) | best AP 0.4518 @ 76
+epoch  77 | loss 0.0093 | val AUROC 0.9153 AP 0.4430 (RC-TTA) | best AP 0.4518 @ 76
+epoch  78 | loss 0.0091 | val AUROC 0.9134 AP 0.4463 (RC-TTA) | best AP 0.4518 @ 76
+epoch  79 | loss 0.0092 | val AUROC 0.9140 AP 0.4433 (RC-TTA) | best AP 0.4518 @ 76
+epoch  80 | loss 0.0090 | val AUROC 0.9098 AP 0.4404 (RC-TTA) | best AP 0.4518 @ 76
+epoch  81 | loss 0.0089 | val AUROC 0.9108 AP 0.4355 (RC-TTA) | best AP 0.4518 @ 76
+epoch  82 | loss 0.0090 | val AUROC 0.9107 AP 0.4445 (RC-TTA) | best AP 0.4518 @ 76
+epoch  83 | loss 0.0087 | val AUROC 0.9131 AP 0.4500 (RC-TTA) | best AP 0.4518 @ 76
+epoch  84 | loss 0.0087 | val AUROC 0.9087 AP 0.4433 (RC-TTA) | best AP 0.4518 @ 76
+epoch  85 | loss 0.0086 | val AUROC 0.9076 AP 0.4402 (RC-TTA) | best AP 0.4518 @ 76
+epoch  86 | loss 0.0085 | val AUROC 0.9094 AP 0.4439 (RC-TTA) | best AP 0.4518 @ 76
+epoch  87 | loss 0.0085 | val AUROC 0.9151 AP 0.4498 (RC-TTA) | best AP 0.4518 @ 76
+epoch  88 | loss 0.0084 | val AUROC 0.9140 AP 0.4471 (RC-TTA) | best AP 0.4518 @ 76
+epoch  89 | loss 0.0084 | val AUROC 0.9090 AP 0.4434 (RC-TTA) | best AP 0.4518 @ 76
+epoch  90 | loss 0.0084 | val AUROC 0.9074 AP 0.4513 (RC-TTA) | best AP 0.4518 @ 76
+epoch  91 | loss 0.0083 | val AUROC 0.9090 AP 0.4548 (RC-TTA) | best AP 0.4548 @ 91
+epoch  92 | loss 0.0082 | val AUROC 0.9087 AP 0.4531 (RC-TTA) | best AP 0.4548 @ 91
+epoch  93 | loss 0.0081 | val AUROC 0.9063 AP 0.4528 (RC-TTA) | best AP 0.4548 @ 91
+epoch  94 | loss 0.0081 | val AUROC 0.9101 AP 0.4546 (RC-TTA) | best AP 0.4548 @ 91
+epoch  95 | loss 0.0080 | val AUROC 0.9081 AP 0.4536 (RC-TTA) | best AP 0.4548 @ 91
+epoch  96 | loss 0.0080 | val AUROC 0.9087 AP 0.4528 (RC-TTA) | best AP 0.4548 @ 91
+epoch  97 | loss 0.0079 | val AUROC 0.9040 AP 0.4496 (RC-TTA) | best AP 0.4548 @ 91
+epoch  98 | loss 0.0077 | val AUROC 0.9054 AP 0.4505 (RC-TTA) | best AP 0.4548 @ 91
+epoch  99 | loss 0.0078 | val AUROC 0.9068 AP 0.4525 (RC-TTA) | best AP 0.4548 @ 91
+epoch 100 | loss 0.0079 | val AUROC 0.9066 AP 0.4537 (RC-TTA) | best AP 0.4548 @ 91
+epoch 101 | loss 0.0078 | val AUROC 0.9052 AP 0.4546 (RC-TTA) | best AP 0.4548 @ 91
+epoch 102 | loss 0.0078 | val AUROC 0.9056 AP 0.4537 (RC-TTA) | best AP 0.4548 @ 91
+epoch 103 | loss 0.0076 | val AUROC 0.9054 AP 0.4545 (RC-TTA) | best AP 0.4548 @ 91
+epoch 104 | loss 0.0076 | val AUROC 0.9055 AP 0.4524 (RC-TTA) | best AP 0.4548 @ 91
+epoch 105 | loss 0.0077 | val AUROC 0.9063 AP 0.4542 (RC-TTA) | best AP 0.4548 @ 91
+epoch 106 | loss 0.0076 | val AUROC 0.9053 AP 0.4529 (RC-TTA) | best AP 0.4548 @ 91
+{
+  "task": "anell",
+  "init": "random",
+  "seed": 1,
+  "encoder": null,
+  "parameters": 7265313,
+  "best_epoch": 91,
+  "epochs_run": 106,
+  "minutes": 50.263502637545265,
+  "validation_ap_rc": 0.45480093976417063,
+  "test": {
+    "auroc": 0.7773784602638395,
+    "ap": 0.2026856234723765,
+    "threshold": 0.5155589580535889,
+    "precision": 0.43440233236151604,
+    "recall": 0.11053412462908012,
+    "f1": 0.17622708456534594,
+    "specificity": 0.9926224520839672,
+    "tp": 149,
+    "fp": 194,
+    "fn": 1199,
+    "tn": 26102,
+    "auroc_ci95": [
+      0.7653078525820868,
+      0.7893333027095341
+    ],
+    "ap_ci95": [
+      0.18235931936590902,
+      0.22504704586660873
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.8103848990583352,
+    "ap": 0.24163845904020548,
+    "threshold": 0.45477771759033203,
+    "precision": 0.49244712990936557,
+    "recall": 0.12091988130563798,
+    "f1": 0.19416319237641452,
+    "specificity": 0.9936111956191056,
+    "tp": 163,
+    "fp": 168,
+    "fn": 1185,
+    "tn": 26128,
+    "auroc_ci95": [
+      0.7997647499922723,
+      0.820287918032496
+    ],
+    "ap_ci95": [
+      0.220320580560904,
+      0.2654868086131437
+    ]
+  }
+}
+anell: dropped 90 training windows identical to a test window
+anell: train 215,664 (3783 viral) | validation 23,962 (420) | test 27,644 (1348)
+epoch   1 | loss 0.0231 | val AUROC 0.7453 AP 0.0387 (RC-TTA) | best AP 0.0387 @ 1
+epoch   2 | loss 0.0209 | val AUROC 0.8056 AP 0.0571 (RC-TTA) | best AP 0.0571 @ 2
+epoch   3 | loss 0.0192 | val AUROC 0.8351 AP 0.0753 (RC-TTA) | best AP 0.0753 @ 3
+epoch   4 | loss 0.0188 | val AUROC 0.8369 AP 0.0893 (RC-TTA) | best AP 0.0893 @ 4
+epoch   5 | loss 0.0186 | val AUROC 0.8519 AP 0.1280 (RC-TTA) | best AP 0.1280 @ 5
+epoch   6 | loss 0.0182 | val AUROC 0.8507 AP 0.1312 (RC-TTA) | best AP 0.1312 @ 6
+epoch   7 | loss 0.0180 | val AUROC 0.8619 AP 0.1560 (RC-TTA) | best AP 0.1560 @ 7
+epoch   8 | loss 0.0177 | val AUROC 0.8650 AP 0.1544 (RC-TTA) | best AP 0.1560 @ 7
+epoch   9 | loss 0.0175 | val AUROC 0.8669 AP 0.1791 (RC-TTA) | best AP 0.1791 @ 9
+epoch  10 | loss 0.0173 | val AUROC 0.8736 AP 0.2087 (RC-TTA) | best AP 0.2087 @ 10
+epoch  11 | loss 0.0172 | val AUROC 0.8743 AP 0.2189 (RC-TTA) | best AP 0.2189 @ 11
+epoch  12 | loss 0.0169 | val AUROC 0.8711 AP 0.2190 (RC-TTA) | best AP 0.2190 @ 12
+epoch  13 | loss 0.0167 | val AUROC 0.8778 AP 0.2311 (RC-TTA) | best AP 0.2311 @ 13
+epoch  14 | loss 0.0164 | val AUROC 0.8829 AP 0.2507 (RC-TTA) | best AP 0.2507 @ 14
+epoch  15 | loss 0.0163 | val AUROC 0.8773 AP 0.2509 (RC-TTA) | best AP 0.2509 @ 15
+epoch  16 | loss 0.0162 | val AUROC 0.8849 AP 0.2630 (RC-TTA) | best AP 0.2630 @ 16
+epoch  17 | loss 0.0160 | val AUROC 0.8867 AP 0.2710 (RC-TTA) | best AP 0.2710 @ 17
+epoch  18 | loss 0.0158 | val AUROC 0.8844 AP 0.2879 (RC-TTA) | best AP 0.2879 @ 18
+epoch  19 | loss 0.0158 | val AUROC 0.8905 AP 0.2796 (RC-TTA) | best AP 0.2879 @ 18
+epoch  20 | loss 0.0156 | val AUROC 0.8881 AP 0.3046 (RC-TTA) | best AP 0.3046 @ 20
+epoch  21 | loss 0.0157 | val AUROC 0.8925 AP 0.3126 (RC-TTA) | best AP 0.3126 @ 21
+epoch  22 | loss 0.0153 | val AUROC 0.8935 AP 0.3152 (RC-TTA) | best AP 0.3152 @ 22
+epoch  23 | loss 0.0152 | val AUROC 0.8933 AP 0.3362 (RC-TTA) | best AP 0.3362 @ 23
+epoch  24 | loss 0.0152 | val AUROC 0.8958 AP 0.3257 (RC-TTA) | best AP 0.3362 @ 23
+epoch  25 | loss 0.0151 | val AUROC 0.8954 AP 0.3436 (RC-TTA) | best AP 0.3436 @ 25
+epoch  26 | loss 0.0149 | val AUROC 0.8991 AP 0.3475 (RC-TTA) | best AP 0.3475 @ 26
+epoch  27 | loss 0.0148 | val AUROC 0.8956 AP 0.3354 (RC-TTA) | best AP 0.3475 @ 26
+epoch  28 | loss 0.0147 | val AUROC 0.9018 AP 0.3510 (RC-TTA) | best AP 0.3510 @ 28
+epoch  29 | loss 0.0145 | val AUROC 0.9023 AP 0.3514 (RC-TTA) | best AP 0.3514 @ 29
+epoch  30 | loss 0.0144 | val AUROC 0.9009 AP 0.3426 (RC-TTA) | best AP 0.3514 @ 29
+epoch  31 | loss 0.0144 | val AUROC 0.9023 AP 0.3654 (RC-TTA) | best AP 0.3654 @ 31
+epoch  32 | loss 0.0143 | val AUROC 0.9046 AP 0.3698 (RC-TTA) | best AP 0.3698 @ 32
+epoch  33 | loss 0.0141 | val AUROC 0.9039 AP 0.3662 (RC-TTA) | best AP 0.3698 @ 32
+epoch  34 | loss 0.0140 | val AUROC 0.9054 AP 0.3800 (RC-TTA) | best AP 0.3800 @ 34
+epoch  35 | loss 0.0139 | val AUROC 0.9061 AP 0.3768 (RC-TTA) | best AP 0.3800 @ 34
+epoch  36 | loss 0.0137 | val AUROC 0.9086 AP 0.3759 (RC-TTA) | best AP 0.3800 @ 34
+epoch  37 | loss 0.0135 | val AUROC 0.9095 AP 0.3779 (RC-TTA) | best AP 0.3800 @ 34
+epoch  38 | loss 0.0137 | val AUROC 0.9069 AP 0.3846 (RC-TTA) | best AP 0.3846 @ 38
+epoch  39 | loss 0.0134 | val AUROC 0.9070 AP 0.3844 (RC-TTA) | best AP 0.3846 @ 38
+epoch  40 | loss 0.0132 | val AUROC 0.9084 AP 0.3793 (RC-TTA) | best AP 0.3846 @ 38
+epoch  41 | loss 0.0132 | val AUROC 0.9147 AP 0.3950 (RC-TTA) | best AP 0.3950 @ 41
+epoch  42 | loss 0.0131 | val AUROC 0.9116 AP 0.3965 (RC-TTA) | best AP 0.3965 @ 42
+epoch  43 | loss 0.0130 | val AUROC 0.9072 AP 0.3971 (RC-TTA) | best AP 0.3971 @ 43
+epoch  44 | loss 0.0130 | val AUROC 0.9084 AP 0.4018 (RC-TTA) | best AP 0.4018 @ 44
+epoch  45 | loss 0.0127 | val AUROC 0.9157 AP 0.4080 (RC-TTA) | best AP 0.4080 @ 45
+epoch  46 | loss 0.0127 | val AUROC 0.9125 AP 0.4096 (RC-TTA) | best AP 0.4096 @ 46
+epoch  47 | loss 0.0126 | val AUROC 0.9149 AP 0.4084 (RC-TTA) | best AP 0.4096 @ 46
+epoch  48 | loss 0.0125 | val AUROC 0.9162 AP 0.4123 (RC-TTA) | best AP 0.4123 @ 48
+epoch  49 | loss 0.0123 | val AUROC 0.9165 AP 0.3959 (RC-TTA) | best AP 0.4123 @ 48
+epoch  50 | loss 0.0121 | val AUROC 0.9114 AP 0.4179 (RC-TTA) | best AP 0.4179 @ 50
+epoch  51 | loss 0.0121 | val AUROC 0.9169 AP 0.3991 (RC-TTA) | best AP 0.4179 @ 50
+epoch  52 | loss 0.0119 | val AUROC 0.9172 AP 0.4169 (RC-TTA) | best AP 0.4179 @ 50
+epoch  53 | loss 0.0119 | val AUROC 0.9166 AP 0.4176 (RC-TTA) | best AP 0.4179 @ 50
+epoch  54 | loss 0.0117 | val AUROC 0.9168 AP 0.4149 (RC-TTA) | best AP 0.4179 @ 50
+epoch  55 | loss 0.0116 | val AUROC 0.9158 AP 0.4029 (RC-TTA) | best AP 0.4179 @ 50
+epoch  56 | loss 0.0116 | val AUROC 0.9133 AP 0.4129 (RC-TTA) | best AP 0.4179 @ 50
+epoch  57 | loss 0.0116 | val AUROC 0.9174 AP 0.4287 (RC-TTA) | best AP 0.4287 @ 57
+epoch  58 | loss 0.0114 | val AUROC 0.9132 AP 0.4156 (RC-TTA) | best AP 0.4287 @ 57
+epoch  59 | loss 0.0112 | val AUROC 0.9195 AP 0.4312 (RC-TTA) | best AP 0.4312 @ 59
+epoch  60 | loss 0.0110 | val AUROC 0.9160 AP 0.4253 (RC-TTA) | best AP 0.4312 @ 59
+epoch  61 | loss 0.0111 | val AUROC 0.9161 AP 0.4275 (RC-TTA) | best AP 0.4312 @ 59
+epoch  62 | loss 0.0109 | val AUROC 0.9205 AP 0.4320 (RC-TTA) | best AP 0.4320 @ 62
+epoch  63 | loss 0.0108 | val AUROC 0.9161 AP 0.4331 (RC-TTA) | best AP 0.4331 @ 63
+epoch  64 | loss 0.0107 | val AUROC 0.9160 AP 0.4363 (RC-TTA) | best AP 0.4363 @ 64
+epoch  65 | loss 0.0106 | val AUROC 0.9148 AP 0.4363 (RC-TTA) | best AP 0.4363 @ 65
+epoch  66 | loss 0.0105 | val AUROC 0.9141 AP 0.4360 (RC-TTA) | best AP 0.4363 @ 65
+epoch  67 | loss 0.0104 | val AUROC 0.9138 AP 0.4374 (RC-TTA) | best AP 0.4374 @ 67
+epoch  68 | loss 0.0102 | val AUROC 0.9188 AP 0.4410 (RC-TTA) | best AP 0.4410 @ 68
+epoch  69 | loss 0.0102 | val AUROC 0.9177 AP 0.4450 (RC-TTA) | best AP 0.4450 @ 69
+epoch  70 | loss 0.0102 | val AUROC 0.9155 AP 0.4511 (RC-TTA) | best AP 0.4511 @ 70
+epoch  71 | loss 0.0100 | val AUROC 0.9166 AP 0.4411 (RC-TTA) | best AP 0.4511 @ 70
+epoch  72 | loss 0.0099 | val AUROC 0.9161 AP 0.4447 (RC-TTA) | best AP 0.4511 @ 70
+epoch  73 | loss 0.0098 | val AUROC 0.9188 AP 0.4467 (RC-TTA) | best AP 0.4511 @ 70
+epoch  74 | loss 0.0097 | val AUROC 0.9198 AP 0.4467 (RC-TTA) | best AP 0.4511 @ 70
+epoch  75 | loss 0.0094 | val AUROC 0.9131 AP 0.4391 (RC-TTA) | best AP 0.4511 @ 70
+epoch  76 | loss 0.0095 | val AUROC 0.9168 AP 0.4417 (RC-TTA) | best AP 0.4511 @ 70
+epoch  77 | loss 0.0095 | val AUROC 0.9168 AP 0.4434 (RC-TTA) | best AP 0.4511 @ 70
+epoch  78 | loss 0.0094 | val AUROC 0.9173 AP 0.4543 (RC-TTA) | best AP 0.4543 @ 78
+epoch  79 | loss 0.0092 | val AUROC 0.9151 AP 0.4579 (RC-TTA) | best AP 0.4579 @ 79
+epoch  80 | loss 0.0092 | val AUROC 0.9141 AP 0.4410 (RC-TTA) | best AP 0.4579 @ 79
+epoch  81 | loss 0.0091 | val AUROC 0.9136 AP 0.4527 (RC-TTA) | best AP 0.4579 @ 79
+epoch  82 | loss 0.0091 | val AUROC 0.9139 AP 0.4510 (RC-TTA) | best AP 0.4579 @ 79
+epoch  83 | loss 0.0091 | val AUROC 0.9128 AP 0.4469 (RC-TTA) | best AP 0.4579 @ 79
+epoch  84 | loss 0.0088 | val AUROC 0.9151 AP 0.4543 (RC-TTA) | best AP 0.4579 @ 79
+epoch  85 | loss 0.0088 | val AUROC 0.9182 AP 0.4590 (RC-TTA) | best AP 0.4590 @ 85
+epoch  86 | loss 0.0088 | val AUROC 0.9155 AP 0.4517 (RC-TTA) | best AP 0.4590 @ 85
+epoch  87 | loss 0.0087 | val AUROC 0.9158 AP 0.4536 (RC-TTA) | best AP 0.4590 @ 85
+epoch  88 | loss 0.0086 | val AUROC 0.9148 AP 0.4534 (RC-TTA) | best AP 0.4590 @ 85
+epoch  89 | loss 0.0086 | val AUROC 0.9178 AP 0.4618 (RC-TTA) | best AP 0.4618 @ 89
+epoch  90 | loss 0.0085 | val AUROC 0.9160 AP 0.4591 (RC-TTA) | best AP 0.4618 @ 89
+epoch  91 | loss 0.0084 | val AUROC 0.9147 AP 0.4567 (RC-TTA) | best AP 0.4618 @ 89
+epoch  92 | loss 0.0085 | val AUROC 0.9127 AP 0.4501 (RC-TTA) | best AP 0.4618 @ 89
+epoch  93 | loss 0.0083 | val AUROC 0.9121 AP 0.4540 (RC-TTA) | best AP 0.4618 @ 89
+epoch  94 | loss 0.0084 | val AUROC 0.9120 AP 0.4558 (RC-TTA) | best AP 0.4618 @ 89
+epoch  95 | loss 0.0083 | val AUROC 0.9115 AP 0.4595 (RC-TTA) | best AP 0.4618 @ 89
+epoch  96 | loss 0.0082 | val AUROC 0.9081 AP 0.4544 (RC-TTA) | best AP 0.4618 @ 89
+epoch  97 | loss 0.0081 | val AUROC 0.9103 AP 0.4544 (RC-TTA) | best AP 0.4618 @ 89
+epoch  98 | loss 0.0081 | val AUROC 0.9120 AP 0.4577 (RC-TTA) | best AP 0.4618 @ 89
+epoch  99 | loss 0.0081 | val AUROC 0.9115 AP 0.4556 (RC-TTA) | best AP 0.4618 @ 89
+epoch 100 | loss 0.0081 | val AUROC 0.9117 AP 0.4520 (RC-TTA) | best AP 0.4618 @ 89
+epoch 101 | loss 0.0079 | val AUROC 0.9103 AP 0.4512 (RC-TTA) | best AP 0.4618 @ 89
+epoch 102 | loss 0.0080 | val AUROC 0.9105 AP 0.4557 (RC-TTA) | best AP 0.4618 @ 89
+epoch 103 | loss 0.0080 | val AUROC 0.9101 AP 0.4543 (RC-TTA) | best AP 0.4618 @ 89
+epoch 104 | loss 0.0077 | val AUROC 0.9094 AP 0.4549 (RC-TTA) | best AP 0.4618 @ 89
+{
+  "task": "anell",
+  "init": "random",
+  "seed": 2,
+  "encoder": null,
+  "parameters": 7265313,
+  "best_epoch": 89,
+  "epochs_run": 104,
+  "minutes": 49.43954695463181,
+  "validation_ap_rc": 0.46177361620854085,
+  "test": {
+    "auroc": 0.7880359888202695,
+    "ap": 0.2373222455281825,
+    "threshold": 0.5556763410568237,
+    "precision": 0.5111111111111111,
+    "recall": 0.11943620178041543,
+    "f1": 0.1936259771497294,
+    "specificity": 0.9941435959841801,
+    "tp": 161,
+    "fp": 154,
+    "fn": 1187,
+    "tn": 26142,
+    "auroc_ci95": [
+      0.7764920571176523,
+      0.7993500707873029
+    ],
+    "ap_ci95": [
+      0.21556424717107828,
+      0.2610910240818797
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.8177268445336769,
+    "ap": 0.28200657322628103,
+    "threshold": 0.5318771004676819,
+    "precision": 0.6223175965665236,
+    "recall": 0.10756676557863501,
+    "f1": 0.1834282099936749,
+    "specificity": 0.9966534834195315,
+    "tp": 145,
+    "fp": 88,
+    "fn": 1203,
+    "tn": 26208,
+    "auroc_ci95": [
+      0.8072544277488284,
+      0.8287448496447465
+    ],
+    "ap_ci95": [
+      0.25781006932073486,
+      0.3056112250143165
+    ]
+  }
+}
+# exp03 report
+
+## Pretraining
+
+60,000 steps, 2.9 h, last window: jepa 0.7014 (batch-mean baseline 0.8899), mlm 1.312 (acc 0.365), var 0.000, predictor var 0.000, cov 0.0480, std 0.533, token similarity 0.973, mask 0.36.
+
+Frozen linear probe (train fullset_train, score fullset_test, RC-averaged features):
+
+| encoder | AUROC | AP | RankMe |
+|---|---|---|---|
+| random init | 0.8391 | 0.1297 | 48.7 |
+| JEPA (EMA target) | 0.6236 | 0.0351 | 285.2 |
+
+## Fine-tuning (test set, mean ± std over seeds)
+
+| task | init | seeds | AUROC | AP | AUROC RC-TTA | AP RC-TTA | AP 95% CI (RC, seed 0) | F1 RC | precision RC | recall RC |
+|---|---|---|---|---|---|---|---|---|---|---|
+| fullset | exp01 | 1 | 0.9145 | 0.4639 | 0.9224 | 0.5080 | | | | |
+| anell | jepa | 3 | 0.7822 ± 0.0144 | 0.2160 ± 0.0234 | 0.8151 ± 0.0181 | 0.2499 ± 0.0387 | [0.181, 0.221] | 0.1833 ± 0.0330 | 0.5335 ± 0.0720 | 0.1115 ± 0.0234 |
+| anell | random | 3 | 0.7881 ± 0.0088 | 0.2303 ± 0.0203 | 0.8164 ± 0.0045 | 0.2711 ± 0.0211 | [0.266, 0.316] | 0.2071 ± 0.0262 | 0.5718 ± 0.0568 | 0.1271 ± 0.0190 |
+| fullset | jepa | 3 | 0.9195 ± 0.0008 | 0.5208 ± 0.0107 | 0.9390 ± 0.0018 | 0.5924 ± 0.0071 | [0.560, 0.637] | 0.5754 ± 0.0149 | 0.7356 ± 0.0815 | 0.4767 ± 0.0178 |
+| fullset | random | 3 | 0.9185 ± 0.0030 | 0.5571 ± 0.0044 | 0.9331 ± 0.0032 | 0.6067 ± 0.0029 | [0.568, 0.644] | 0.5931 ± 0.0132 | 0.7175 ± 0.0523 | 0.5076 ± 0.0165 |
+
+fullset = fullset_test (551 viral / 26,405). anell = test_data_anell (1,348 viral / 27,644), anelloviruses unseen in pretraining and fine-tuning. Threshold = best F1 on validation.
+
