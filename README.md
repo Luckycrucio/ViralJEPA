@@ -9,12 +9,28 @@ The pretraining corpus (corpus_v3) is built in a separate repository: [Luckycruc
 JEPA does not reconstruct the masked DNA. It predicts the **representation** that a slowly-updated copy of the encoder, seeing the full unmasked sequence, assigns to the hidden spans. The model has to learn what the missing region *is* from its context, rather than memorising base-level detail.
 
 ```
-            full sequence ──► target encoder (EMA, no grad) ──► mean over span tokens ──► z  (target)
-                                                                                           │
-  masked sequence ──► context encoder ──► tokens ──► predictor ──► ẑ ──────────────── 1 − cos(ẑ, z)
-                                            │
-                                            └──► MLM head ──► bases of the scattered MLM tokens (cross-entropy)
+  window A (full) ──► target encoder (EMA) ──► mean of last 3 blocks, LayerNorm'd ──► span token targets
+                                                                                          │ MSE
+  window A (masked) ──► context encoder ──► tokens ──► predictor ──► predicted span tokens ┘
+                              │               └──► MLM head ──► bases of the scattered MLM tokens
+                              └──► CLS ──► projector ──► predictor ──► 1 − cos(·, target projector(target CLS of B))
+                                    │         └──► VICReg variance + covariance
+                                    └──► k-mer head ──► KL to the 4-mer profile of B
+  window B = another window of the same record (genome / contig / chromosome), augmented independently
 ```
+
+## exp04: what changed and why
+
+exp03's probe fell from 0.80 to 0.58 AUROC. Its variance hinge sat on the mean of the encoder's tokens, which can only vary across the batch if the tokens of a sequence point the same way: they collapsed (token similarity 0.97), and the covariance penalty spread the per-sequence vectors into a near-isotropic, input-sensitive code (RankMe 285/288, jepa_constant 0.89). Context and target also saw the same window, so nothing rewarded invariance to anything meaningful. exp04:
+
+- puts a **CLS token inside the encoder** (as in Viraminer3); the classifier reads it directly;
+- gives the CLS its own objectives on a **second view**, another window of the same record: BYOL-style prediction of the EMA target's projected CLS, VICReg on the **projector output** (not on the representation), and the second window's **4-mer profile** (`--kmer-weight 0` turns it off). Only record membership is used, never the category;
+- leaves the tokens free to differ: token JEPA predicts **every masked span token** against **data2vec targets** (mean of the last `--target-blocks` blocks, each LayerNorm'd), with MSE; no variance term on pooled tokens;
+- probes both the CLS output and the mean-pooled tokens.
+
+Ablations: `--views window` (second view = the same window re-augmented), `--kmer-weight 0`, `--target-blocks 1`.
+
+The sections below still describe exp03 where they differ from this list.
 
 ## Architecture
 
@@ -206,6 +222,12 @@ python report.py --save-dir $RUN
 Or submit `sbatch recipe.slurm`, which runs the same steps. Every step skips work that is already done, so the job can be resubmitted.
 
 Pretraining takes about 3 h, and each of the 12 fine-tunes about 1 h. Rerun the random-init fine-tunes too: the stem now uses LayerNorm, so the exp02 random baselines are a different model.
+
+exp04: use `RUN=/save/runs/exp04` (the first run parses the corpus again, to add the record groups) and also watch:
+- `tsim` stays well below exp03's 0.97;
+- `global` falls below `global_constant`, and `kmer` below `kmer_constant`;
+- the CLS probe (`probe_auroc`) and the mean-pool probe (`mean_probe_auroc`) stay at or above step 0;
+- `distinct_views` in `history.csv` is the fraction of steps whose second view is a different window (about 0.95 expected on corpus_v3; only the ViraMiner rows are single-window).
 
 What to watch in `pretrain/probe_history.csv`:
 - probe AUROC stays at or above the step-0 value; in exp02 it had fallen to 0.71 by 5k;

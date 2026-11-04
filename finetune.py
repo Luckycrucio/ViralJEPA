@@ -1,5 +1,6 @@
-"""exp03 supervised fine-tuning with the exp01 recipe (CLS head, focal loss, AdamW, 120 epochs,
-patience 15). Two tasks:
+"""exp04 supervised fine-tuning with the exp01 recipe (focal loss, AdamW, 120 epochs, patience 15)
+and the Viraminer3 head: the MLP reads the encoder's own CLS output. As in Viraminer3, the
+encoder's Transformer is frozen for the first 5 epochs (`--freeze-epochs`). Two tasks:
   fullset  train fullset_train, select on fullset_validation, test fullset_test
   anell    train training_data_anell (exact test duplicates removed, 10% stratified validation),
            test test_data_anell: anelloviruses are absent from both fine-tuning and corpus_v3
@@ -121,8 +122,8 @@ def main():
         encoder.load_state_dict(torch.load(args.encoder, map_location="cpu")["target_encoder"])
     model = ViralJEPAClassifier(encoder).to(device)
 
-    # The encoder's Transformer gets the lower rate; the stem and the freshly initialised head
-    # (CLS attention + MLP) get the higher one.
+    # The encoder's Transformer gets the lower rate; the stem, CLS token, positions and the freshly
+    # initialised MLP get the higher one (as in Viraminer3).
     transformer = [p for n, p in model.named_parameters() if n.startswith("encoder.transformer.")]
     other = [p for n, p in model.named_parameters() if not n.startswith("encoder.transformer.")]
     optimizer = torch.optim.AdamW(
@@ -134,8 +135,14 @@ def main():
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, schedule)
     criterion = FocalLoss()
 
+    # As in Viraminer3, the encoder's Transformer is frozen for the first `freeze_epochs` epochs: only
+    # the stem, CLS token, positions and the new MLP train. For a pretrained encoder this is LP-FT
+    # (fit the head before the features move). Frozen parameters get no gradient, so AdamW skips
+    # them, weight decay included.
     best_ap, best_epoch, history, started = -1.0, 0, [], time.time()
     for epoch in range(1, args.epochs + 1):
+        frozen = epoch <= args.freeze_epochs
+        model.encoder.transformer.requires_grad_(not frozen)
         model.train()
         total, count = 0.0, 0
         order = torch.randperm(len(train_codes), generator=generator)
@@ -156,7 +163,7 @@ def main():
             "epoch": epoch, "train_loss": total / count,
             "val_auroc": roc_auc_score(validation[2], plain), "val_ap": average_precision_score(validation[2], plain),
             "val_auroc_rc": roc_auc_score(validation[2], averaged), "val_ap_rc": average_precision_score(validation[2], averaged),
-            "lr": optimizer.param_groups[0]["lr"], "minutes": (time.time() - started) / 60,
+            "lr": optimizer.param_groups[0]["lr"], "transformer_frozen": frozen, "minutes": (time.time() - started) / 60,
         }
         history.append(row)
         pd.DataFrame(history).to_csv(out_dir / "history.csv", index=False)
@@ -187,7 +194,7 @@ def main():
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="exp03 fine-tuning on ViraMiner")
+    parser = argparse.ArgumentParser(description="exp04 fine-tuning on ViraMiner")
     parser.add_argument("--task", choices=["fullset", "anell"], required=True)
     parser.add_argument("--init", choices=["jepa", "random"], required=True)
     parser.add_argument("--encoder", help="pretrain/encoder.pt (for --init jepa)")
@@ -197,6 +204,8 @@ def parse_args():
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--epochs", type=int, default=120)
     parser.add_argument("--warmup-epochs", type=int, default=5)
+    parser.add_argument("--freeze-epochs", type=int, default=5,
+                        help="epochs at the start with the encoder's Transformer frozen (Viraminer3: 5; 0 disables)")
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--transformer-lr", type=float, default=5e-5)
     parser.add_argument("--weight-decay", type=float, default=1e-4)

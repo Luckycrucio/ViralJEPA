@@ -1,4 +1,4 @@
-"""Collect exp03 results into report.md (mean ± std over seeds) and report.png."""
+"""Collect exp04 results into report.md (mean ± std over seeds) and report.png."""
 
 import argparse
 import json
@@ -23,7 +23,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--save-dir", required=True)
     root = Path(parser.parse_args().save_dir)
-    lines = ["# exp03 report", ""]
+    lines = ["# exp04 report", ""]
 
     pretrain = root / "pretrain"
     if (pretrain / "probe_test.json").exists():
@@ -32,19 +32,21 @@ def main():
         lines += [
             "## Pretraining",
             "",
-            f"{gate['steps']:,} steps, {gate['pretrain_hours']:.1f} h, last window: jepa {history['jepa']:.4f} "
-            f"(batch-mean baseline {history['jepa_constant']:.4f}), "
+            f"{gate['steps']:,} steps, {gate['pretrain_hours']:.1f} h, last window (batch-mean baselines in brackets): "
+            f"jepa {history['jepa']:.4f} ({history['jepa_constant']:.4f}), "
+            f"global {history['global']:.4f} ({history['global_constant']:.4f}), "
+            f"kmer {history['kmer']:.4f} ({history['kmer_constant']:.4f}), "
             f"mlm {history['mlm']:.3f} (acc {history['mlm_accuracy']:.3f}), var {history['variance']:.3f}, "
-            f"predictor var {history['predictor_variance']:.3f}, cov {history['covariance']:.4f}, "
-            f"std {history['representation_std']:.3f}, token similarity {history['token_similarity']:.3f}, "
-            f"mask {history['mask_ratio']:.2f}.",
+            f"cov {history['covariance']:.4f}, CLS std {history['cls_std']:.3f}, "
+            f"token similarity {history['token_similarity']:.3f}, mask {history['mask_ratio']:.2f}.",
             "",
             "Frozen linear probe (train fullset_train, score fullset_test, RC-averaged features):",
             "",
-            "| encoder | AUROC | AP | RankMe |",
-            "|---|---|---|---|",
-            *(f"| {name} | {p['probe_auroc']:.4f} | {p['probe_ap']:.4f} | {p['rankme']:.1f} |"
-              for name, p in (("random init", gate["random_init"]), ("JEPA (EMA target)", gate["jepa_target_encoder"]))),
+            "| encoder | features | AUROC | AP | RankMe |",
+            "|---|---|---|---|---|",
+            *(f"| {name} | {features} | {p[prefix + 'probe_auroc']:.4f} | {p[prefix + 'probe_ap']:.4f} | {p[prefix + 'rankme']:.1f} |"
+              for name, p in (("random init", gate["random_init"]), ("JEPA (EMA target)", gate["jepa_target_encoder"]))
+              for features, prefix in (("CLS", ""), ("mean-pool", "mean_"))),
             "",
         ]
 

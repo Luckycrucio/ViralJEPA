@@ -1,28 +1,33 @@
-"""exp03 JEPA pretraining of the exp01 CNN-Transformer on corpus_v3, following JEPA-DNA
-(arXiv 2602.17162): sequence-level JEPA (cosine) + token-level MLM + VICReg variance/covariance,
-scheduled span masking, EMA target encoder. A frozen linear probe on ViraMiner tracks progress.
+"""exp04 JEPA pretraining of the exp01 CNN-Transformer on corpus_v3, with a CLS token inside the
+encoder that gets its own sequence-level objectives. A frozen linear probe on ViraMiner tracks
+progress, on the CLS output (what the classifier reads) and on the mean-pooled tokens.
 
-Changes from exp02, whose encoder collapsed (probe AUROC 0.80 -> 0.56):
-  - the variance hinge acts on both the encoder's clean pooled output and the predictor's output
-    on it, the covariance penalty on the encoder's output. exp02 regularised the predictor output
-    only, where the predictor's LayerNorm could satisfy it however collapsed the encoder was;
-  - the hinge target on the encoder is gamma = 0.5, not 1: its tokens leave a LayerNorm with
-    squared norm d, so the pooled output's total variance is at most d, and std 1 in every
-    dimension is reachable only by making all tokens of a sequence identical. A local test with
-    gamma = 1 did exactly that within 500 steps (token cosine 0.998, RankMe 48 -> 3.7);
-  - the covariance penalty is divided by d as in VICReg; JEPA-DNA's d(d-1) is 287x weaker and in
-    the same test did not stop the features collapsing onto a few directions;
-  - the JEPA target is the mean over the masked span tokens only (as in I-JEPA), not over the
-    whole sequence, most of which the context encoder sees (exp02 jepa loss 0.025);
-  - the target tokens get a LayerNorm without affine parameters before pooling (JEPA-DNA);
-  - MLM weight 1.0 (JEPA-DNA adds the MLM loss unweighted; exp02 used 0.1);
-  - masked bases are set to N before the CNN stem, as before, and the masked tokens are also
-    replaced by a learnable mask token after it;
-  - MLM is scored on scattered single tokens with visible neighbours, not inside the long JEPA
-    spans, where it never beat base frequencies (loss ~1.38);
-  - JEPA spans no longer overlap and cover 10-20% -> 20-30% (exp02: nominal 20% -> 40%, actual
-    19% -> 36% because of overlaps); with the MLM tokens the total is ~28% -> 36%;
-  - the stem uses LayerNorm instead of BatchNorm."""
+Why exp03 failed: its variance hinge sat on the mean of the encoder's tokens, and context and
+target saw the same window. A mean of 150 LayerNorm'd tokens only varies across the batch if the
+tokens point the same way, so they collapsed onto one vector per sequence (token similarity
+0.97), and the covariance penalty spread those vectors into a near-isotropic, input-sensitive
+code (RankMe 285/288, targets of different sequences near-orthogonal: jepa_constant 0.89). The
+probe fell from 0.80 to 0.58 AUROC, below a random encoder's composition-like features.
+
+Changes from exp03:
+  - a CLS token is prepended before the Transformer (Viraminer3), and the classifier reads it
+    directly instead of adding its own CLS attention layer;
+  - two views per step: window A, and window B cut from the same record (genome, contig or
+    chromosome; `--views window` uses A again), each with its own RC/shift augmentation. Same-
+    genome positives are what DNABERT-S uses; they reward what windows of one organism share
+    (composition, codon usage), which is the signal viral detection rests on. No category or
+    label is ever shown to the model, only which windows share a record;
+  - CLS objective, BYOL-style: the masked A's CLS -> projector -> predictor must match the EMA
+    target's projected CLS of the clean B (cosine);
+  - the VICReg variance/covariance terms act on the CLS projector output (as in VICReg, on the
+    expander, not on the representation) and no longer on pooled tokens, so tokens are free to
+    differ from each other;
+  - CLS composition target: the masked A's CLS predicts the 4-mer profile (both strands) of B
+    (KL). Label-free, and aimed at what a random encoder already gets right;
+  - token JEPA predicts every masked span token (I-JEPA) instead of the span mean, against
+    data2vec targets: the mean of the target's last `--target-blocks` block outputs, each
+    LayerNorm'd without affine parameters; MSE loss;
+  - masking (spans + scattered MLM tokens) and the MLM objective are unchanged."""
 
 import argparse
 import json
@@ -44,8 +49,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import average_precision_score, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 
-from model import (JEPAPredictor, ViralJEPAEncoder, augment, autocast, load_corpus, masked_mean, one_hot,
-                   parameter_count, read_csv, reverse_complement)
+from model import (JEPAPredictor, ViralJEPAEncoder, augment, autocast, load_corpus, mlp, one_hot, parameter_count,
+                   read_csv, reverse_complement)
 
 
 def span_mask(batch_size, token_count, progress, device):
@@ -69,6 +74,26 @@ def scattered_mask(span, rate):
     """MLM tokens: single tokens outside the JEPA spans, each with probability `rate`. Their
     neighbours stay visible, so the masked bases are predictable from local context."""
     return (torch.rand(span.shape, device=span.device) < rate) & ~span
+
+
+def partner(index, group_start, group_size):
+    """Another window of the same record when it has one, else the window itself. The corpus is
+    sorted by group, so a group is the range [start, start + size)."""
+    start, size = group_start[index], group_size[index]
+    other = start + (torch.rand(len(index), device=index.device) * (size - 1)).long()
+    other = other + (other >= index).long()  # skip the window itself
+    return torch.where(size > 1, other, index)
+
+
+def kmer_profile(codes, k=4):
+    """Frequencies of the 4^k k-mers over both strands of each window; k-mers with N are skipped."""
+    codes = codes.long()
+    weights = 4 ** torch.arange(k - 1, -1, -1, device=codes.device)
+    counts = torch.zeros(len(codes), 4 ** k, device=codes.device)
+    for strand in (codes, reverse_complement(codes)):
+        kmers = strand.unfold(1, k, 1)
+        counts.scatter_add_(1, (kmers.clamp(max=3) * weights).sum(-1), (kmers < 4).all(-1).float())
+    return counts / counts.sum(1, keepdim=True).clamp(min=1)
 
 
 def variance_hinge(z, gamma):
@@ -99,16 +124,17 @@ def lr_at(step, args):
 
 @torch.no_grad()
 def embed(encoder, codes, device, batch_size=1024):
-    """Mean-pooled clean token features, averaged over both strands."""
+    """CLS and mean-pooled token features of clean windows, each averaged over both strands."""
     encoder.eval()
-    features = []
+    cls_features, mean_features = [], []
     for start in range(0, len(codes), batch_size):
         batch = codes[start : start + batch_size].to(device)
         with autocast(device):
-            forward = encoder(one_hot(batch)).mean(1)
-            reverse = encoder(one_hot(reverse_complement(batch))).mean(1)
-        features.append(((forward + reverse) / 2).float().cpu())
-    return torch.cat(features).numpy()
+            forward = encoder(one_hot(batch))
+            reverse = encoder(one_hot(reverse_complement(batch)))
+        cls_features.append(((forward[0] + reverse[0]) / 2).float().cpu())
+        mean_features.append(((forward[1].mean(1) + reverse[1].mean(1)) / 2).float().cpu())
+    return torch.cat(cls_features).numpy(), torch.cat(mean_features).numpy()
 
 
 def rankme(features):
@@ -117,36 +143,49 @@ def rankme(features):
     return float(np.exp(-(p * np.log(p)).sum()))
 
 
-def linear_probe(encoder, train, evaluation, device):
-    """Logistic regression on frozen features; returns AUROC/AP on the evaluation split."""
-    train_x, evaluation_x = embed(encoder, train[0], device), embed(encoder, evaluation[0], device)
+def fit_probe(train_x, train_y, evaluation_x, evaluation_y, prefix):
     scaler = StandardScaler().fit(train_x)
-    probe = LogisticRegression(max_iter=2000, C=1.0).fit(scaler.transform(train_x), train[1])
+    probe = LogisticRegression(max_iter=2000, C=1.0).fit(scaler.transform(train_x), train_y)
     scores = probe.decision_function(scaler.transform(evaluation_x))
     return {
-        "probe_auroc": float(roc_auc_score(evaluation[1], scores)),
-        "probe_ap": float(average_precision_score(evaluation[1], scores)),
-        "rankme": rankme(evaluation_x),
-        "feature_std": float(evaluation_x.std(0).mean()),
+        f"{prefix}probe_auroc": float(roc_auc_score(evaluation_y, scores)),
+        f"{prefix}probe_ap": float(average_precision_score(evaluation_y, scores)),
+        f"{prefix}rankme": rankme(evaluation_x),
+        f"{prefix}feature_std": float(evaluation_x.std(0).mean()),
     }
+
+
+def linear_probe(encoder, train, evaluation, device):
+    """Logistic regression on frozen features; AUROC/AP on the evaluation split, for the CLS output
+    (unprefixed keys) and the mean-pooled tokens (`mean_` keys)."""
+    train_cls, train_mean = embed(encoder, train[0], device)
+    evaluation_cls, evaluation_mean = embed(encoder, evaluation[0], device)
+    return {**fit_probe(train_cls, train[1], evaluation_cls, evaluation[1], ""),
+            **fit_probe(train_mean, train[1], evaluation_mean, evaluation[1], "mean_")}
 
 
 def save_plots(out_dir):
     history = pd.read_csv(out_dir / "history.csv")
     probes = pd.read_csv(out_dir / "probe_history.csv")
     fig, axes = plt.subplots(1, 4, figsize=(20, 4.5))
-    for column in ("jepa", "jepa_constant", "mlm", "variance", "predictor_variance", "covariance"):
+    for column in ("jepa", "jepa_constant", "global", "global_constant", "kmer", "kmer_constant", "mlm",
+                   "variance", "covariance"):
         axes[0].plot(history["step"], history[column], label=column)
     axes[0].set(title="Loss terms (unweighted)", xlabel="step", yscale="log")
-    axes[0].legend()
-    axes[1].plot(history["step"], history["mlm_accuracy"])
-    axes[1].set(title="MLM accuracy on masked bases", xlabel="step")
-    axes[2].plot(probes["step"], probes["probe_ap"], marker="o", label="val AP")
-    axes[2].axhline(probes["probe_ap"].iloc[0], color="gray", ls="--", label="random init")
+    axes[0].legend(fontsize=7)
+    axes[1].plot(history["step"], history["token_similarity"], label="token similarity")
+    axes[1].plot(history["step"], history["mlm_accuracy"], label="MLM accuracy")
+    axes[1].set(title="Token similarity / MLM accuracy", xlabel="step")
+    axes[1].legend()
+    axes[2].plot(probes["step"], probes["probe_ap"], marker="o", label="CLS val AP")
+    axes[2].plot(probes["step"], probes["mean_probe_ap"], marker="o", label="mean-pool val AP")
+    axes[2].axhline(probes["probe_ap"].iloc[0], color="gray", ls="--", label="random init (CLS)")
     axes[2].set(title="Frozen linear probe (fullset_validation)", xlabel="step")
     axes[2].legend()
-    axes[3].plot(probes["step"], probes["rankme"], marker="o")
-    axes[3].set(title="RankMe of pooled features (max 288)", xlabel="step")
+    axes[3].plot(probes["step"], probes["rankme"], marker="o", label="CLS")
+    axes[3].plot(probes["step"], probes["mean_rankme"], marker="o", label="mean-pool")
+    axes[3].set(title="RankMe of features (max 288)", xlabel="step")
+    axes[3].legend()
     for axis in axes:
         axis.grid(alpha=0.3)
     fig.tight_layout()
@@ -169,11 +208,18 @@ def main():
     torch.backends.cudnn.allow_tf32 = True
 
     started = time.time()
-    corpus = torch.from_numpy(load_corpus(args.corpus_dir, Path(args.save_dir) / "corpus_codes.npy"))
+    corpus, groups = load_corpus(args.corpus_dir, Path(args.save_dir) / "corpus_codes.npy")
     if args.max_windows:
-        corpus = corpus[: args.max_windows]
-    corpus = corpus.to(device)
-    print(f"Corpus: {len(corpus):,} windows loaded in {time.time() - started:.0f} s")
+        corpus, groups = corpus[: args.max_windows], groups[: args.max_windows]
+    # Sort by group, so that each group is a contiguous range of rows.
+    order = np.argsort(groups, kind="stable")
+    corpus, groups = corpus[order], groups[order]
+    _, first, inverse, size = np.unique(groups, return_index=True, return_inverse=True, return_counts=True)
+    group_start = torch.from_numpy(first[inverse]).to(device)
+    group_size = torch.from_numpy(size[inverse]).to(device)
+    corpus = torch.from_numpy(corpus).to(device)
+    print(f"Corpus: {len(corpus):,} windows in {len(size):,} records ({int((size == 1).sum()):,} single-window), "
+          f"loaded in {time.time() - started:.0f} s")
 
     data = Path(args.data_path)
     _, train_codes, train_labels = read_csv(data / "fullset_train.csv")
@@ -183,25 +229,32 @@ def main():
     probe_train = (torch.from_numpy(train_codes[subset]), train_labels[subset])
     probe_val = (torch.from_numpy(val_codes), val_labels)
 
-    encoder = ViralJEPAEncoder().to(device)
-    target_encoder = deepcopy(encoder).requires_grad_(False).eval()
-    predictor = JEPAPredictor(encoder.transformer_dim, encoder.token_count).to(device)
-    mlm_head = nn.Linear(encoder.transformer_dim, 2 * 4).to(device)  # 2 bases per token (stem stride 2)
-    online = nn.ModuleList([encoder, predictor, mlm_head])
-    decay = [p for n, p in online.named_parameters() if p.ndim >= 2 and "pos" not in n and "mask_token" not in n]
-    no_decay = [p for n, p in online.named_parameters() if not (p.ndim >= 2 and "pos" not in n and "mask_token" not in n)]
+    dim = 288
+    encoder = ViralJEPAEncoder(transformer_dim=dim).to(device)
+    projector = mlp(dim, args.projector_dim, args.projector_dim).to(device)
+    target = deepcopy(nn.ModuleList([encoder, projector])).requires_grad_(False).eval()
+    target_encoder, target_projector = target
+    predictor = JEPAPredictor(dim, encoder.token_count).to(device)
+    global_predictor = mlp(args.projector_dim, args.projector_dim, args.projector_dim).to(device)
+    kmer_head = nn.Linear(dim, 4 ** 4).to(device)
+    mlm_head = nn.Linear(dim, 2 * 4).to(device)  # 2 bases per token (stem stride 2)
+    online = nn.ModuleList([encoder, predictor, mlm_head, projector, global_predictor, kmer_head])
+    no_decay_names = ("pos", "mask_token", "cls_token")
+    decay = [p for n, p in online.named_parameters() if p.ndim >= 2 and not any(s in n for s in no_decay_names)]
+    no_decay = [p for n, p in online.named_parameters() if not (p.ndim >= 2 and not any(s in n for s in no_decay_names))]
     optimizer = torch.optim.AdamW(
         [{"params": decay, "weight_decay": args.weight_decay}, {"params": no_decay, "weight_decay": 0.0}],
         lr=args.lr, betas=(0.9, 0.95),
     )
-    print(f"Encoder {parameter_count(encoder):,} | predictor {parameter_count(predictor):,} parameters")
+    print(f"Encoder {parameter_count(encoder):,} | predictor {parameter_count(predictor):,} | "
+          f"projector + global predictor {parameter_count(projector) + parameter_count(global_predictor):,} parameters")
 
     checkpoint_path = out_dir / "checkpoint.pt"
     step, history, probes = 0, [], []
     if checkpoint_path.exists():
         state = torch.load(checkpoint_path, map_location=device)
         online.load_state_dict(state["online"])
-        target_encoder.load_state_dict(state["target"])
+        target.load_state_dict(state["target"])
         optimizer.load_state_dict(state["optimizer"])
         step = state["step"]
         # The CSVs are written more often than the checkpoint: drop rows logged after it.
@@ -221,74 +274,78 @@ def main():
     while step < args.steps:
         if cursor + args.batch_size > len(corpus):
             order, cursor = torch.randperm(len(corpus), device=device), 0
-        codes = augment(corpus[order[cursor : cursor + args.batch_size]])
+        index = order[cursor : cursor + args.batch_size]
         cursor += args.batch_size
+        other = partner(index, group_start, group_size) if args.views == "record" else index
+        view_a, view_b = augment(corpus[index]), augment(corpus[other])
         progress = step / args.steps
         for group in optimizer.param_groups:
             group["lr"] = lr_at(step, args)
         momentum = args.ema_start + (args.ema_end - args.ema_start) * progress
 
-        span = span_mask(len(codes), token_count, progress, device)
+        span = span_mask(len(view_a), token_count, progress, device)
         mlm_tokens = scattered_mask(span, args.mlm_rate)
         token_mask = span | mlm_tokens
-        # Hidden bases become N before the stem (no visible token's convolution sees them) and hidden
-        # tokens become the mask token after it.
         with autocast(device):
-            context = encoder(one_hot(codes.masked_fill(token_mask.repeat_interleave(2, dim=1), 4)), token_mask)
-            pool = span if args.target_pool == "span" else None
-            predicted = predictor(context, token_mask, pool)
+            # Hidden bases become N before the stem (no visible token's convolution sees them) and hidden
+            # tokens become the mask token after it.
+            context_cls, context = encoder(one_hot(view_a.masked_fill(token_mask.repeat_interleave(2, dim=1), 4)),
+                                           token_mask)
             with torch.no_grad():
-                # Per-token LayerNorm without affine parameters before pooling (JEPA-DNA, as in I-JEPA).
-                target = target_encoder(one_hot(codes)).float()
-                target = F.layer_norm(target, target.shape[-1:])
-                target = target.mean(1) if pool is None else masked_mean(target, pool)
-                # The loss of predicting the batch-mean target for every sequence: jepa only carries
-                # sequence-specific information when it is clearly below this.
-                jepa_constant = 1 - F.cosine_similarity(target.mean(0, keepdim=True), target, dim=-1).mean()
-            jepa = 1 - F.cosine_similarity(predicted.float(), target, dim=-1).mean()
+                _, target_tokens, blocks = target_encoder(one_hot(view_a), return_blocks=args.target_blocks)
+                tokens_target = torch.stack([F.layer_norm(b.float(), b.shape[-1:]) for b in blocks]).mean(0)
+                target_z = target_projector(target_encoder(one_hot(view_b))[0]).float()
+                composition = kmer_profile(view_b)
 
-            logits = mlm_head(context).float().view(len(codes), -1, 4)
-            bases = codes.long().masked_fill(~mlm_tokens.repeat_interleave(2, dim=1) | (codes == 4), -100)
+            # Token JEPA: every masked span token, against the data2vec target. jepa_constant is the loss
+            # of predicting the batch-mean target at each position.
+            predicted = predictor(context_cls, context, token_mask).float()
+            jepa = (predicted - tokens_target).pow(2).mean(-1)[span].mean()
+            jepa_constant = (tokens_target - tokens_target.mean(0, keepdim=True)).pow(2).mean(-1)[span].mean()
+
+            # CLS: BYOL-style prediction of the other view's target CLS, VICReg on the projector output,
+            # and the other view's 4-mer profile.
+            z = projector(context_cls).float()
+            global_loss = 1 - F.cosine_similarity(global_predictor(z).float(), target_z, dim=-1).mean()
+            global_constant = 1 - F.cosine_similarity(target_z.mean(0, keepdim=True), target_z, dim=-1).mean()
+            variance, covariance = variance_hinge(z, args.var_gamma), covariance_penalty(z)
+            kmer = F.kl_div(F.log_softmax(kmer_head(context_cls).float(), -1), composition, reduction="batchmean")
+            kmer_constant = F.kl_div(composition.mean(0, keepdim=True).clamp(min=1e-8).log().expand_as(composition),
+                                     composition, reduction="batchmean")
+
+            logits = mlm_head(context).float().view(len(view_a), -1, 4)
+            bases = view_a.long().masked_fill(~mlm_tokens.repeat_interleave(2, dim=1) | (view_a == 4), -100)
             mlm = F.cross_entropy(logits.reshape(-1, 4), bases.reshape(-1), ignore_index=-100)
 
-            # JEPA-DNA's VICReg branch: a clean pass with dropout off. The variance hinge acts on both
-            # the encoder's pooled output (the features that are probed and fine-tuned) and the
-            # predictor's output on it; the covariance penalty on the encoder's output only.
-            encoder.eval()
-            clean_tokens = encoder(one_hot(codes))
-            encoder.train()
-            clean = clean_tokens.mean(1)
-            variance = variance_hinge(clean, args.var_gamma)
-            predictor_variance = variance_hinge(predictor(clean_tokens), 1.0)
-            covariance = covariance_penalty(clean)
-            loss = (args.jepa_weight * jepa + args.mlm_weight * mlm
-                    + args.var_weight * (variance + predictor_variance) + args.cov_weight * covariance)
+            loss = (args.jepa_weight * jepa + args.global_weight * global_loss + args.kmer_weight * kmer
+                    + args.mlm_weight * mlm + args.var_weight * variance + args.cov_weight * covariance)
 
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(online.parameters(), args.clip)
         optimizer.step()
-        update_ema(encoder, target_encoder, momentum)
+        update_ema(nn.ModuleList([encoder, projector]), target, momentum)
         step += 1
 
         with torch.no_grad():
             accuracy = (logits.argmax(-1) == bases)[bases >= 0].float().mean()
-            # Cosine between each clean token and its sequence's mean: near 1 means the tokens of a
-            # sequence have collapsed onto one vector.
-            token_similarity = F.cosine_similarity(clean_tokens.float(), clean.float()[:, None], dim=-1).mean()
-        running.append(torch.stack([loss.detach(), jepa.detach(), jepa_constant, mlm.detach(), accuracy, variance.detach(),
-                                    predictor_variance.detach(), covariance.detach(),
-                                    clean.float().std(0).mean().detach(), token_similarity,
-                                    token_mask.float().mean()]))
+            # Cosine between each target token and its sequence's mean: near 1 means the tokens of a
+            # sequence have collapsed onto one vector (exp03: 0.97).
+            target_tokens = target_tokens.float()
+            token_similarity = F.cosine_similarity(target_tokens, target_tokens.mean(1, keepdim=True), dim=-1).mean()
+        running.append(torch.stack([loss.detach(), jepa.detach(), jepa_constant, global_loss.detach(), global_constant,
+                                    kmer.detach(), kmer_constant, mlm.detach(), accuracy, variance.detach(),
+                                    covariance.detach(), context_cls.float().std(0).mean().detach(),
+                                    token_similarity, token_mask.float().mean(), (other != index).float().mean()]))
 
         if step % args.log_every == 0 or step == args.steps:
             values = torch.stack(running).mean(0).tolist()
             elapsed = time.time() - window_started
             history.append({
                 "step": step, "epoch": step * args.batch_size / len(corpus), "lr": optimizer.param_groups[0]["lr"],
-                "ema_momentum": momentum, **dict(zip(("loss", "jepa", "jepa_constant", "mlm", "mlm_accuracy", "variance",
-                                                      "predictor_variance", "covariance", "representation_std",
-                                                      "token_similarity", "mask_ratio"), values)),
+                "ema_momentum": momentum, **dict(zip(("loss", "jepa", "jepa_constant", "global", "global_constant", "kmer",
+                                                      "kmer_constant", "mlm", "mlm_accuracy", "variance", "covariance",
+                                                      "cls_std", "token_similarity", "mask_ratio", "distinct_views"), values)),
                 "sequences_per_second": len(running) * args.batch_size / elapsed,
                 "hours": (history[-1]["hours"] if history else 0.0) + elapsed / 3600,
             })
@@ -296,16 +353,17 @@ def main():
             pd.DataFrame(history).to_csv(out_dir / "history.csv", index=False)
             row = history[-1]
             print(f"step {step:6d} | loss {row['loss']:.4f} jepa {row['jepa']:.4f} (const {row['jepa_constant']:.4f}) "
-                  f"mlm {row['mlm']:.3f} "
-                  f"acc {row['mlm_accuracy']:.3f} var {row['variance']:.3f} pvar {row['predictor_variance']:.3f} "
-                  f"cov {row['covariance']:.4f} std {row['representation_std']:.3f} tsim {row['token_similarity']:.3f} "
-                  f"mask {row['mask_ratio']:.2f} | {row['sequences_per_second']:.0f} seq/s", flush=True)
+                  f"global {row['global']:.4f} (const {row['global_constant']:.4f}) "
+                  f"kmer {row['kmer']:.4f} (const {row['kmer_constant']:.4f}) mlm {row['mlm']:.3f} "
+                  f"acc {row['mlm_accuracy']:.3f} var {row['variance']:.3f} cov {row['covariance']:.4f} "
+                  f"cls std {row['cls_std']:.3f} tsim {row['token_similarity']:.3f} mask {row['mask_ratio']:.2f} | "
+                  f"{row['sequences_per_second']:.0f} seq/s", flush=True)
 
         if step % args.eval_every == 0 or step == args.steps:
             probes.append({"step": step, **linear_probe(target_encoder, probe_train, probe_val, device)})
             pd.DataFrame(probes).to_csv(out_dir / "probe_history.csv", index=False)
             print("Probe:", probes[-1], flush=True)
-            torch.save({"online": online.state_dict(), "target": target_encoder.state_dict(),
+            torch.save({"online": online.state_dict(), "target": target.state_dict(),
                         "optimizer": optimizer.state_dict(), "step": step, "args": vars(args)}, checkpoint_path)
 
     # Final gate: probe on the full fullset_train, scored on fullset_test, JEPA vs random init.
@@ -313,7 +371,7 @@ def main():
     test = (torch.from_numpy(test_codes), test_labels)
     torch.manual_seed(args.seed)
     gate = {
-        "random_init": linear_probe(ViralJEPAEncoder().to(device), full_train, test, device),
+        "random_init": linear_probe(ViralJEPAEncoder(transformer_dim=dim).to(device), full_train, test, device),
         "jepa_target_encoder": linear_probe(target_encoder, full_train, test, device),
         "steps": step,
         "pretrain_hours": history[-1]["hours"] if history else None,
@@ -326,7 +384,7 @@ def main():
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="exp03 JEPA-DNA style pretraining on corpus_v3")
+    parser = argparse.ArgumentParser(description="exp04 JEPA pretraining with a CLS token on corpus_v3")
     parser.add_argument("--corpus-dir", required=True, help="folder with pretrain_corpus_*.csv")
     parser.add_argument("--data-path", required=True, help="ViraMiner dataset folder (probe only)")
     parser.add_argument("--save-dir", required=True)
@@ -339,15 +397,18 @@ def parse_args():
     parser.add_argument("--clip", type=float, default=1.0)
     parser.add_argument("--ema-start", type=float, default=0.996)
     parser.add_argument("--ema-end", type=float, default=1.0)
+    parser.add_argument("--views", choices=["record", "window"], default="record",
+                        help="second view: another window of the same record, or the same window re-augmented")
+    parser.add_argument("--target-blocks", type=int, default=3, help="token targets: mean of the last K blocks")
+    parser.add_argument("--projector-dim", type=int, default=1024)
     parser.add_argument("--jepa-weight", type=float, default=1.0)
+    parser.add_argument("--global-weight", type=float, default=1.0)
+    parser.add_argument("--kmer-weight", type=float, default=1.0, help="0 turns off the CLS 4-mer target")
     parser.add_argument("--mlm-weight", type=float, default=1.0)
     parser.add_argument("--mlm-rate", type=float, default=0.15, help="MLM masking rate of tokens outside the JEPA spans")
-    parser.add_argument("--var-weight", type=float, default=25.0)
-    parser.add_argument("--var-gamma", type=float, default=0.5,
-                        help="variance hinge target for the encoder's pooled output (at most 1, see above)")
-    parser.add_argument("--target-pool", choices=["span", "all"], default="span",
-                        help="JEPA target: mean over the masked span tokens, or over the whole sequence")
-    parser.add_argument("--cov-weight", type=float, default=0.5)
+    parser.add_argument("--var-weight", type=float, default=1.0)
+    parser.add_argument("--var-gamma", type=float, default=1.0, help="variance hinge target on the CLS projector output")
+    parser.add_argument("--cov-weight", type=float, default=0.04)
     parser.add_argument("--log-every", type=int, default=200)
     parser.add_argument("--eval-every", type=int, default=5_000)
     parser.add_argument("--probe-train-size", type=int, default=50_000)
