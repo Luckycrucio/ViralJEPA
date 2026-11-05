@@ -167,7 +167,7 @@ JEPA-DNA continues training already-pretrained models on long sequences: 512 BPE
 | `pretrain.py` | JEPA pretraining and probes → `pretrain/` (`history.csv`, `probe_history.csv`, `probe_test.json`, `pretrain_curves.png`, `encoder.pt`) |
 | `finetune.py` | `--task fullset\|anell --init jepa\|random --seed N` → `finetune/<task>_<init>_s<seed>/result.json` |
 | `report.py` | `report.md` and `report.png`: all metrics, mean ± std over seeds |
-| `recipe.slurm` | runs pretraining → 12 fine-tunes → report on one GPU into `/save/runs/exp03` (24 h, 4 CPUs, 32 GB); it can be resubmitted and resumes |
+| `recipe.slurm` | runs pretraining → 12 fine-tunes → report on one GPU into `/save/runs/exp04` (24 h, 4 CPUs, 32 GB); it can be resubmitted and resumes |
 
 ```bash
 python pretrain.py --corpus-dir CORPUS --data-path DATA --save-dir RUN

@@ -2,7 +2,8 @@
 %  ViralJEPA -- Deep Learning course project report, University of Padova
 %  Compile with pdfLaTeX + BibTeX (Overleaf: default settings are fine).
 %  Needs: references.bib, figures/exp02_pretrain_curves.png,
-%         figures/exp03_pretrain_curves.png
+%         figures/exp03_pretrain_curves.png, figures/exp04_pretrain_curves.png,
+%         figures/exp04_finetune_curves.png
 % =====================================================================
 \documentclass[10pt,twocolumn,a4paper]{article}
 
@@ -29,9 +30,6 @@
 \setlength{\dblfloatsep}{10pt plus 2pt minus 2pt}
 \setlength{\dbltextfloatsep}{12pt plus 2pt minus 2pt}
 \bibliographystyle{unsrtnat}
-
-% Placeholder for the numbers that the pending run will produce.
-\newcommand{\tbd}{\textcolor{gray}{$\cdot$}}
 
 \begin{document}
 
@@ -98,8 +96,13 @@ exploits~\cite{ji2021dnabert,zhou2024dnabert2,dallatorre2025nt,nguyen2023hyenadn
 The report presents a CNN--Transformer baseline (Section~\ref{sec:vm3}), the
 case for a joint-embedding predictive objective (Section~\ref{sec:why}), a
 leakage-controlled corpus (Section~\ref{sec:corpus}), the pretraining method and
-the failed runs that shaped it (Section~\ref{sec:method}), and the evaluation
-protocol (Section~\ref{sec:eval}). All code is
+the failed runs that shaped it (Section~\ref{sec:method}), the evaluation
+protocol (Section~\ref{sec:eval}), the results of the final run
+(Section~\ref{sec:results}) and the directions that would most improve the
+pretraining (Section~\ref{sec:improve}). The pretrained encoder is the first of four
+attempts to beat a randomly initialised one on a frozen probe; fine-tuned, it
+matches the supervised level in distribution while converging two to three times faster,
+and on the held-out anellovirus family it nearly doubles average precision. All code is
 public~\cite{grigolin2026viraminer3,grigolin2026corpus,grigolin2026viraljepa}.
 
 % =====================================================================
@@ -398,9 +401,9 @@ In \emph{exp02} (Figure~\ref{fig:collapse}, top) the VICReg terms were applied t
 the predictor's output only. The predictor ends in a LayerNorm, which rescales
 whatever it receives, so the penalties were satisfied however degenerate the
 encoder beneath had become, and the encoder underwent dimensional
-collapse~\cite{jing2022dimensional}: RankMe fell from 33 to 21 and probe AUROC
-from 0.80 to 0.56. Fine-tuning from it cost five points of AUROC against random
-initialisation (0.875 versus 0.924).
+collapse~\cite{jing2022dimensional}: RankMe fell from 33 to 21 and the
+validation probe AUROC from 0.80 to 0.56. Fine-tuning from it cost five points
+of AUROC against random initialisation (0.875 versus 0.924).
 
 \emph{exp03} (Figure~\ref{fig:collapse}, bottom) moved the variance hinge onto
 the encoder's own mean-pooled output, pooled the JEPA target over the masked
@@ -413,7 +416,8 @@ all point the same way. The model duly made them do so: the cosine between a
 token and its sequence mean rose to 0.97. The covariance penalty then spread
 those per-sequence vectors into a near-isotropic, input-sensitive code, RankMe at
 285 of 288, with the targets of different sequences nearly orthogonal. The JEPA
-loss \emph{rose} over training, from 0.19 to 0.70, and the probe fell to 0.62.
+loss fell to 0.19 and then \emph{rose} over the rest of training to 0.70, and the
+validation probe fell to 0.58, 0.62 on the test split.
 Fine-tuning recovered the supervised level (0.920 against 0.919) but gained
 nothing: the pretrained weights were simply overwritten.
 
@@ -569,25 +573,6 @@ the statistic that exposed both collapse modes in Figure~\ref{fig:collapse}. The
 probe also runs every 5{,}000 pretraining steps, so a run destroying information
 can be stopped early (Table~\ref{tab:probe}).
 
-\begin{table}[t]
-\centering
-\caption{Frozen linear probe: fitted on \texttt{fullset\_train}, scored on
-\texttt{fullset\_test}, reverse-complement averaged features. Results pending.}
-\label{tab:probe}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{llccc}
-\toprule
-Encoder & Read-out & AUROC & AP & RankMe \\
-\midrule
-Random init. & CLS       & \tbd & \tbd & \tbd \\
-Random init. & mean-pool & \tbd & \tbd & \tbd \\
-ViralJEPA    & CLS       & \tbd & \tbd & \tbd \\
-ViralJEPA    & mean-pool & \tbd & \tbd & \tbd \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 \paragraph{Fine-tuning tasks.}
 Two tasks are run. \texttt{fullset} trains on \texttt{fullset\_train}, selects on
 \texttt{fullset\_validation} and reports on \texttt{fullset\_test} (551 viral of
@@ -612,82 +597,474 @@ metric is reported plain and with reverse-complement test-time averaging, worth
 one to two points in the earlier runs, and bootstrap 95\% confidence intervals
 accompany test AUROC and AP (Table~\ref{tab:finetune}).
 
+% =====================================================================
+\section{Results}\label{sec:results}
+% =====================================================================
+
+The final run, \emph{exp04}, pretrained for 60{,}000 steps in 2.1\,h on a single
+GPU and was then fine-tuned twelve times (two tasks, two initialisations,
+three seeds), all in one job with the configuration of Section~\ref{sec:method}.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/exp04_pretrain_curves.png}
+\caption{Pretraining diagnostics for exp04, in the format of
+Figure~\ref{fig:collapse}. Each loss is drawn beside its batch-mean baseline
+(\emph{\_constant}). The token similarity, the cosine between a token and its
+sequence mean, spikes to 0.99 around step 2{,}000 and then falls steadily to
+0.56. The frozen probe on \texttt{fullset\_validation} rises steadily above
+the random-initialisation level (dashed), and RankMe of both read-outs grows from
+about 50 to 160 of 288, with neither the collapse of exp02 nor the isotropy of
+exp03.}
+\label{fig:exp04pre}
+\end{figure*}
+
+\subsection{Pretraining dynamics}
+
+Figure~\ref{fig:exp04pre} shows a run that neither collapsed nor drifted into an
+isotropic code. Every loss is read against the value it would take if the model
+predicted the batch mean for each sequence, the diagnostic added after exp02's
+JEPA loss of 0.025 proved to mean nothing. At the end of training each latent
+term sits clearly below that baseline: 0.717 against 0.846 for the token JEPA
+term, 0.546 against 0.627 for the cross-view CLS term and 0.335 against 0.413
+for the 4-mer KL, reductions of 13--19\%. The variance hinge on the projector is
+satisfied (0.007) and the covariance term settles at 2.1. The MLM head is the
+weakest signal: its accuracy on masked bases reaches 0.33 against 0.25 for a
+uniform guess, confirming that base-level reconstruction of 300\,bp windows from
+scratch carries little.
+
+\paragraph{The teacher must become informative before it can teach.}
+The batch-mean baseline of the cross-view term is itself a measurement: it is how
+far apart the EMA teacher places two unrelated sequences. At step 200 it stands
+at 0.031, so the teacher's projections were nearly identical for every window in
+the batch, and the CLS loss at that point, 0.283, was \emph{above} it. Matching a
+near-constant target was the only thing on offer. The loss drops below the
+baseline by step 400, but both quantities are still near zero, so the term is
+carrying almost nothing: the margin between them is 0.006 there. It is the
+baseline that then climbs, to 0.23 at step 2{,}000 and 0.63 at the end, as the
+teacher's representation spreads out, and the margin widens with it, reaching a
+maximum of 0.099 at step 3{,}600 and ending at 0.082.
+The 4-mer term behaves in the opposite way, dropping below its own flat baseline
+of 0.414 within 400 steps; that baseline is flat precisely because the target is
+computed from the DNA and cannot move. This is the practical argument for the
+composition target of Section~\ref{sec:cls}: it is the one sequence-level signal
+that carries information while the teacher is still uninformative.
+
+\paragraph{A transient collapse, caught by its baseline.}
+The run replayed exp03's failure in miniature and recovered from it. During
+warm-up the tokens collapsed onto their sequence mean, the cosine peaking at 0.99
+at step 2{,}000, and the JEPA loss reached its minimum of 0.064 at step 1{,}800.
+In isolation that would look like excellent prediction, but it is 54\% of the
+batch-mean baseline of 0.117 at the same step: the trivial solution of emitting
+one vector per sequence. Because each span token has
+its own target, that solution cannot persist. The tokens separated, the
+similarity fell to 0.56, and the JEPA loss \emph{rose} together with its baseline
+as the targets grew richer. The loss value alone would have read this as
+degradation; against its baseline it is the opposite.
+
+\paragraph{What a positive pair actually was.}
+The corpus resolves into 341{,}501 records, and 95.2\% of the windows in a batch
+received a genuinely different second window drawn from their own record. The
+remaining 4.8\% fall back to a re-augmented copy of themselves; almost all are
+the 180{,}000 ViraMiner windows, which enter the corpus one window per record and
+so have no sibling to be paired with. How demanding the pairing is varies
+enormously between categories, which Section~\ref{sec:improve} takes up as the
+clearest thing to fix.
+
+\begin{table}[t]
+\centering
+\caption{Frozen linear probe of exp04: fitted on \texttt{fullset\_train}, scored
+on \texttt{fullset\_test}, reverse-complement averaged features of the EMA target
+encoder. RankMe is out of 288.}
+\label{tab:probe}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccc}
+\toprule
+Encoder & Read-out & AUROC & AP & RankMe \\
+\midrule
+Random init. & CLS       & 0.840 & 0.135 & 57.3 \\
+Random init. & mean-pool & 0.843 & 0.125 & 47.8 \\
+ViralJEPA    & CLS       & \textbf{0.912} & \textbf{0.375} & 158.8 \\
+ViralJEPA    & mean-pool & 0.885 & 0.290 & \textbf{160.6} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The CLS objective: where the information ended up}\label{sec:res:cls}
+
+Table~\ref{tab:probe} gives the answer exp02 and exp03 could not. A logistic
+regression on the frozen CLS reaches 0.912 test AUROC against 0.840 for a random
+encoder, and average precision almost triples, 0.375 against 0.135. That a
+\emph{linear} read-out of frozen features nearly matches the fully trained
+ViraMiner network (0.923) and the fine-tuned exp01 encoder (0.915) says the
+viral/non-viral distinction is largely linearly available in the representation,
+although no label was ever seen during pretraining.
+
+The more specific claim of Section~\ref{sec:cls} is not that the encoder learned
+something, but that the sequence-level objective put it in the CLS token, where
+the classifier reads it. The probe separates the two read-outs cleanly. At
+initialisation the two are within a point of each other, 0.840 AUROC and 0.135 AP
+for the CLS against 0.843 and 0.125 for the mean of the tokens: the architecture
+by itself does not privilege the CLS, which at that point is one more random
+projection of $k$-mer composition. After pretraining the CLS leads by 2.7 points
+of AUROC and 8.4 of AP (0.912 and 0.375 against 0.885 and 0.290). On the
+validation split the separation appears early and then holds: the AP gap grows
+from 0.009 at initialisation to 0.043 by 5{,}000 steps, peaks at 0.095 at
+25{,}000 and settles at 0.057 at the end.
+
+Effective rank shows this is not a matter of one read-out simply carrying more
+information than the other. RankMe ends at 158.8 for the CLS and 160.6 for the
+mean-pooled tokens, nearly identical, and far from both exp02's collapse to 21
+and exp03's near-isotropic 285. Both read-outs are equally rich; what differs is
+whether the distinction the classifier needs is linearly accessible in them. That
+is the division of labour borrowed from DINO and iBOT, and it is the one thing
+that changed between exp03, which put the sequence-level pressure on the pooled
+tokens and ended with a test probe at 0.62, and this run.
+
+The probe was still improving at the end of pretraining, but slowly: CLS
+validation AP reads 0.315, 0.317, 0.320 and 0.320 at 45{,}000, 50{,}000,
+55{,}000 and 60{,}000 steps. Longer pretraining under this recipe would add
+little.
+
 \begin{table*}[t]
 \centering
-\caption{Fine-tuning results, mean $\pm$ standard deviation over three seeds.
-RC-TTA denotes reverse-complement test-time averaging; precision, recall and F1
-refer to the viral class at the best-F1 validation threshold. Results pending;
-the ViraMiner3 row is the supervised reference from Table~\ref{tab:vm3}.}
+\caption{Fine-tuning results of exp04, mean $\pm$ standard deviation over three
+seeds. RC denotes reverse-complement test-time averaging; precision, recall and
+F1 refer to the viral class at the best-F1 validation threshold. The ViraMiner3
+row is the single-seed supervised reference of Table~\ref{tab:vm3} (BatchNorm
+stem, selected on AUROC, no RC averaging); the ViraMiner anellovirus figure is
+that of its frequency branch~\cite{tampuu2019viraminer}.}
 \label{tab:finetune}
-\footnotesize
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{llcccccccc}
 \toprule
-Task & Init. & Seeds & AUROC & AP & AUROC RC & AP RC & F1 RC & Prec. RC & Rec. RC \\
+Task & Init. & Seeds & AUROC & AP & AUROC RC & AP RC & F1 RC & Prec.\ RC & Rec.\ RC \\
 \midrule
+\texttt{fullset} & ViraMiner~\cite{tampuu2019viraminer} & 1 & 0.923 & --- & --- & --- & --- & --- & --- \\
 \texttt{fullset} & ViraMiner3 & 1 & 0.932 & 0.563 & --- & --- & 0.549 & 0.672 & 0.465 \\
-\texttt{fullset} & random     & 3 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd \\
-\texttt{fullset} & ViralJEPA  & 3 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd \\
+\texttt{fullset} & random     & 3 & $0.918\pm0.005$ & $0.573\pm0.005$ & $0.931\pm0.003$ & $0.617\pm0.005$ & $0.594\pm0.006$ & $\mathbf{0.775\pm0.047}$ & $0.484\pm0.023$ \\
+\texttt{fullset} & ViralJEPA  & 3 & $\mathbf{0.932\pm0.005}$ & $\mathbf{0.598\pm0.007}$ & $\mathbf{0.942\pm0.005}$ & $\mathbf{0.625\pm0.011}$ & $\mathbf{0.601\pm0.010}$ & $0.740\pm0.024$ & $\mathbf{0.507\pm0.018}$ \\
 \midrule
-\texttt{anell}   & random     & 3 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd \\
-\texttt{anell}   & ViralJEPA  & 3 & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd & \tbd \\
+\texttt{anell}   & ViraMiner~\cite{tampuu2019viraminer} & 1 & 0.755 & --- & --- & --- & --- & --- & --- \\
+\texttt{anell}   & random     & 3 & $0.791\pm0.003$ & $0.231\pm0.009$ & $0.822\pm0.007$ & $0.268\pm0.006$ & $0.182\pm0.007$ & $0.587\pm0.033$ & $0.108\pm0.006$ \\
+\texttt{anell}   & ViralJEPA  & 3 & $\mathbf{0.875\pm0.024}$ & $\mathbf{0.455\pm0.023}$ & $\mathbf{0.895\pm0.019}$ & $\mathbf{0.491\pm0.030}$ & $\mathbf{0.380\pm0.048}$ & $\mathbf{0.755\pm0.030}$ & $\mathbf{0.257\pm0.047}$ \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-\paragraph{Ablations.}
-Three switches isolate the design's contributions, each a separate pretraining
-run followed by the same two fine-tunes. Replacing the same-genome second view
-with a re-augmented copy of the same window tests whether paired windows, rather
-than ordinary augmentation, are what the CLS objective needs. Setting the 4-mer
-weight to zero tests how much comes from the explicit composition target rather
-than from self-distillation. Using only the final Transformer block as the token
-target tests the data2vec-style multi-layer target.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.90\textwidth]{figures/exp04_finetune_curves.png}
+\caption{Validation average precision (RC-averaged) during fine-tuning, three
+seeds per initialisation. ViralJEPA (solid) starts high while the Transformer is
+still frozen and peaks in 32--75 epochs; the random encoder (dashed) needs
+94--113 and three of its six runs reach the 120-epoch cap. Note that the \texttt{anell}
+validation split contains no anelloviruses, so the right panel shows an
+in-distribution gap of only about three points, much smaller than the
+anellovirus test gap of Table~\ref{tab:finetune}.}
+\label{fig:exp04ft}
+\end{figure*}
+
+\subsection{What the corpus-based self-supervision buys}\label{sec:res:ft}
+
+Nothing in pretraining saw a label or a category. The only supervision was which
+windows of the corpus come from the same record, applied across four million
+windows of viral, bacterial and human sequence. Fine-tuning asks what that is
+worth once labels are available, and the two tasks answer differently.
+
+\paragraph{Convergence.}
+Pretraining changes how fine-tuning starts far more than where it ends in
+distribution (Figure~\ref{fig:exp04ft}). After the five epochs with the
+Transformer frozen, when only the stem and head have trained, the pretrained
+encoder already reaches a validation AP of 0.413--0.419 on \texttt{fullset}
+against 0.066--0.072 for the random one, so most of a usable classifier is
+present before any pretrained weight has moved. Its best \texttt{fullset}
+checkpoints arrive at epochs 33--58 rather than 101--111, and a fine-tune takes
+20--31 minutes instead of about 50; on \texttt{anell} the figures are 32--75
+against 94--113 epochs.
+
+\paragraph{In distribution.}
+On \texttt{fullset} ViralJEPA improves on the random initialisation in every
+seed-averaged metric (Table~\ref{tab:finetune}): $+1.4$ points of AUROC and
+$+2.5$ of AP plainly, $+1.1$ and $+0.9$ with RC averaging. The gain is real but
+small, and it does not survive a stricter comparison. Averaging the three seeds'
+RC predictions into an ensemble gives 0.951 AUROC and 0.647 AP for ViralJEPA
+against 0.944 and 0.650 for the random encoder, and a paired bootstrap over test
+contigs (1{,}000 resamples) puts the differences at $+0.008$ $[-0.001, 0.016]$
+AUROC and $-0.003$ $[-0.022, 0.018]$ AP, both intervals containing zero. Those
+ensembles also recover the same share of viral contigs at 90\% precision, 43\%
+against 44\%.
+Against the supervised reference, fine-tuned ViralJEPA equals ViraMiner3's AUROC
+(0.932) with higher AP (0.598 against 0.563) and F1 (0.577 without RC averaging,
+against 0.549), and with RC averaging reaches 0.942, 1.9 points above ViraMiner
+(0.923). Part of the seed-level gain closes a deficit of the
+pretraining-compatible recipe: with its LayerNorm stem and AP-based selection,
+the random control lands at 0.918, below the 0.932 of the BatchNorm ViraMiner3
+run.
+
+\paragraph{On an unseen family.}
+The anellovirus task is where the corpus pays, and the effect is large.
+Seed-averaged AUROC rises from 0.791 to 0.875 and AP nearly doubles, from 0.231
+to 0.455, a factor of 1.97; with RC averaging, from 0.822 to 0.895 and from 0.268
+to 0.491, a factor of 1.83. The three-seed ensembles reach 0.923 and 0.532 against 0.845 and 0.296, and the
+paired bootstrap gives $+0.078$ $[0.069, 0.086]$ AUROC and $+0.234$
+$[0.214, 0.257]$ AP, far from zero. At the best-F1 validation threshold the
+classifier finds 26\% of the anellovirus contigs at 75\% precision, against 11\%
+at 59\%, and at 90\% precision the ensemble still recovers 13\% of them where the
+random ensemble recovers almost none (0.1\%). Every seed of ViralJEPA, including the weakest at
+0.845 AUROC, is far above ViraMiner's 0.755 on the same test set.
+
+The decisive observation is \emph{where} the gain appears. The \texttt{anell}
+validation split is drawn from the anellovirus-free training data, and there the
+two initialisations differ by only 3.3 points of AP (0.506 against 0.473), the
+same small in-distribution margin as on \texttt{fullset}. On the anellovirus test
+set the margin grows to 22 points. Pretraining therefore does not mainly make the
+classifier better at the viruses it was trained on; it makes it generalise to a
+family that no stage of the pipeline contained. Anelloviruses were kept out of
+the corpus three times over, by taxonomic annotation, by a regular expression
+over record descriptions and by a $k=15$ screen against the test positives
+(Section~\ref{sec:corpus}), and out of the fine-tuning split as well. A
+supervised encoder learns the specific viral families it is shown; the pretrained
+one, having been asked four million times what two windows of one genome have in
+common, carries a more general notion of viral sequence into fine-tuning.
+
+\paragraph{Caveats.}
+The anellovirus result is also the noisiest: the standard deviation over seeds is
+seven times that of the random encoder, 0.024 against 0.003 AUROC, because model
+selection on an anellovirus-free validation set cannot see which checkpoint
+transfers best. There is a single pretraining seed, so the comparison rests on
+one draw of the pretraining randomness. The contribution of the individual
+components is not separable from this run alone, and three random-initialisation
+fine-tunes stopped at the epoch cap, although their validation curves had
+flattened well before.
+
+\subsection{Has pretraining learned useful representations?}
+
+Yes, and the two halves of the method can be credited separately. The CLS
+objective decided \emph{where} the information sits: a read-out that was within a
+point of mean pooling at initialisation ends 8.4 points of AP ahead of it, at
+equal effective rank, and it is the read-out the classifier uses.
+The corpus-based self-supervision decided \emph{what} was learned: pairing
+windows by genome across four million windows of viral, bacterial and human
+sequence produced a representation whose advantage shows up almost entirely out
+of distribution, 22 points of AP on a family held out of every stage against 3
+points in distribution. What the combination does not do is lift the
+in-distribution ceiling. Once the random encoder is trained to convergence on
+211{,}000 labelled windows, the two are statistically indistinguishable on
+\texttt{fullset}.
 
 % =====================================================================
-\section{Conclusions}
+\section{How the pretraining could be improved}\label{sec:improve}
 % =====================================================================
 
-This project set out to test whether self-supervised pretraining can push viral
-sequence detection beyond supervised training on the ViraMiner data. Three
-results hold independently of the pending run.
+The run's own diagnostics say where the slack is, and almost none of it is in the
+compute budget: pretraining took 2.1 hours, and the frozen probe had nearly
+stopped improving by the end of it. The binding constraints are what a positive
+pair means, what the corpus contains, and how the objective is scheduled.
 
-First, architecture gives a modest but real improvement. Replacing the two pooled
-convolutional branches with convolutional motif tokens followed by a Transformer
-raises test AUROC from 0.923 to 0.932, and a controlled trial showed that neither
-a larger motif encoder nor a different aggregation adds more. The remaining gap
-is not a capacity problem.
+\begin{table}[t]
+\centering
+\caption{Record granularity in \texttt{corpus\_v3}. A record is what the
+same-genome view of Section~\ref{sec:cls} samples from: a chromosome for human, a
+genome for viruses, a UHGG contig for bacteria, a single window for the ViraMiner
+rows. Pairing is informative only in the middle of this range.}
+\label{tab:records}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrr}
+\toprule
+Category & Records & Windows/record & Single-window \\
+\midrule
+Human                & 25      & 40{,}000 & 0 \\
+Viruses, eukaryotic  & 14{,}100  & 51.1   & 31 \\
+Viruses, prokaryotic & 63{,}701  & 20.4   & 1{,}237 \\
+Bacteria, gut        & 83{,}675  & 9.6    & 11{,}132 \\
+ViraMiner            & 180{,}000 & 1.0    & 180{,}000 \\
+\midrule
+Total                & 341{,}501 & 11.7   & 192{,}400 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Second, much of the real work lies in the corpus. Assembling four million windows
-is easy; making them a sound basis for evaluation is not. Capping genomes by
-length and species stops a handful of over-sequenced organisms from defining what
-the model takes a virus to be, and the $k$-mer screens are what keep the
-anellovirus benchmark meaningful.
+\paragraph{Make a positive pair mean the same thing in every category.}
+Table~\ref{tab:records} shows how uneven the pairing constraint is. For a
+eukaryotic virus the two windows come from the same genome, capped at 50\,kb, so
+the pair is a genuinely local relation between two parts of one organism. For a
+human window the partner is another window of the same chromosome, drawn from up
+to 248\,Mb away, and the constraint degenerates into ``both of these are
+human'', which the encoder can satisfy with the coarsest feature it has. A
+quarter of the corpus is human, so a quarter of the pairs teach close to nothing.
+The cheapest correction is to make the record scale uniform: split human
+chromosomes, and bacterial genomes, into pseudo-records of about 50\,kb, the same
+bound already used as the genome weight cap, so that \emph{same record} means
+\emph{same neighbourhood} everywhere. A second, more ambitious version is a
+two-level target in which a near pair, the same 50\,kb, and a far pair, the same
+organism, are given different weights, so that the model is told which
+invariances are local and which are organism-wide instead of having to infer it
+from a single undifferentiated relation.
 
-Third, and most instructive, the two failed runs were not failures of the JEPA
-idea but of where its constraints were applied. exp02 regularised the predictor
-and let the encoder collapse to rank 21; exp03 regularised the pooled
-representation and produced the mirror image, a near-isotropic code of rank 285
-built from tokens collapsed onto one vector per sequence. Both satisfied their
-objectives completely while destroying the composition signal a random encoder
-supplies for free. The lesson generalises: an anti-collapse term applied to the
-representation that will later be classified constrains the wrong object, and a
-loss value means nothing until compared against what predicting the batch mean
-would score.
+\paragraph{Give the ViraMiner windows a real partner.}
+The 180{,}000 windows closest to the target domain, the ones carrying its
+sequencing artefacts and error profile, are exactly the ones that never receive a
+second view, and fall back to a re-augmented copy of themselves. This is the
+degenerate view the design set out to avoid, applied to the most valuable 4.5\%
+of the corpus. It is also avoidable. ViraMiner identifiers decompose into a
+contig and a piece index once the experiment names are known: the contig
+\texttt{seq0} of experiment \texttt{2014\_E1\_30CxC} appears as 75 separate
+300\,bp rows. Across \texttt{fullset\_train}, 211{,}239 rows come from 148{,}338
+contigs, and 92{,}280 of them, 44\%, belong to a contig with at least one
+sibling. Grouping those rows by contig would give the domain-matched part of the
+corpus the same organism-level pair that the reference genomes get, from data
+already in hand. Two cautions apply: the decomposition must use the list of 19
+experiment names, since a name ending in a digit is otherwise mistaken for a
+piece index, and the pieces of one contig share a BLAST label, so such a pair is
+class-correlated. The second costs nothing here, because the labels are never
+used and the rows come from the training split alone.
 
-The present design follows from that diagnosis: the sequence-level objective is
-carried by a CLS token, regularised through a projector rather than directly and
-supervised by a second window of the same genome, so the invariance learned is
-organism identity rather than an arbitrary code, while the token-level objective
-predicts each hidden position separately against a multi-layer target, which
-structurally prevents tokens from collapsing together. Whether this finally beats
-a randomly initialised encoder is the open question, and the anellovirus task is
-where the answer matters most: an in-distribution gain could come from
-optimisation alone, but a gain on an unseen viral family would mean the encoder
-has learned something about viral sequence as such. If no gain appears there
-either, the honest conclusion will be that at this model and corpus scale the
-composition signal a random convolutional stem already provides is close to what
-300\,bp of DNA can offer, and that progress must come from longer contigs or
-substantially larger pretraining rather than from a better objective.
+\paragraph{Warm up the self-distillation term.}
+For the first few thousand steps the EMA teacher placed every window in nearly
+the same place, its batch-mean baseline standing at 0.031, and the cross-view
+loss had almost nothing to chase: its margin over the baseline was 0.006 at step
+400 and still only 0.051 at step 2{,}000, which is where the token collapse
+happened. Ramping the weight of $\mathcal{L}_{\text{global}}$ in from zero across
+the 3{,}000-step warm-up, 5\% of the schedule, while the 4-mer term, which is
+informative from step 400, shapes the CLS, or starting the EMA momentum below
+0.996 so the teacher tracks the student early, would remove the one episode in
+the run that came close to repeating exp03.
+
+\paragraph{Spend the token budget better.}
+The MLM head is the one component that never earned its place: 0.33 accuracy
+against 0.25 for a uniform guess, after 60{,}000 steps. Its purpose was to keep
+the tokens accurate at base level, but predicting two specific bases from local
+context in a 300\,bp window is close to the incompressible limit discussed in
+Section~\ref{sec:why}. Replacing the target with something the model can
+plausibly know, the composition of the masked token's neighbourhood rather than
+its exact bases, or dropping the head and giving the span objective a harder
+schedule, would free capacity that is currently buying 8 points of accuracy over
+chance.
+
+\paragraph{Select checkpoints for transfer, not for the training families.}
+The anellovirus results vary seven times more across seeds than the random
+control's, because selection runs on a validation split that contains no
+anelloviruses and therefore cannot see which checkpoint transfers. The fix does
+not require new labels: hold a second family out of the corpus, a small ssDNA
+family such as the Circoviridae or Genomoviridae with a profile close to the
+Anelloviridae, and use it as a transfer monitor during pretraining and for
+checkpoint selection. The anellovirus test set then stays untouched as the final
+benchmark, which is the property that makes it worth having.
+
+\paragraph{Widen the corpus past the gut.}
+Every bacterial genome in the corpus comes from UHGG, a gut catalogue, while
+ViraMiner draws on skin, serum, cervical and laryngeal samples, so the negatives
+seen in pretraining are narrower than those met at test time; skin and oral MAG
+catalogues would close that gap directly. On the viral side, RefSeq contributes
+plant and insect viruses that cannot occur in a human sample, diluting a budget
+that the eukaryotic category is already short of. And the per-species cap is
+taxonomic rather than sequence-based, so ten records under ten names can be
+near-identical strains; dereplicating at a fixed average nucleotide identity
+would turn the same budget into more distinct sequence. Of all the changes listed
+here, this is the one that most directly addresses what the anellovirus result
+measures, since transfer to an unseen family is a question about the diversity of
+what was seen.
+
+\paragraph{Lengthen the window before enlarging the model.}
+In distribution both initialisations converge to about 0.95 AUROC, which suggests
+the remaining ceiling is set by the 300\,bp window rather than by the encoder. A
+longer contig would also give the pair objective more to work with, since the
+organism-level signal it depends on is a statistic that 300 bases estimate
+poorly. A wider encoder is worth revisiting only afterwards: the 19\,M-parameter
+variant of Table~\ref{tab:vm3} overfitted a 2\%-positive training set, but that
+trial was supervised-only, and pretraining is precisely the regulariser it
+lacked.
+
+\paragraph{What to measure first.}
+Three single-switch pretraining runs would turn the result from a claim about a
+design into a claim about its parts: a re-augmented copy in place of the
+same-genome second view, the 4-mer weight set to zero, and the token target taken
+from the final block instead of the last three. Each costs about two hours of
+pretraining plus the twelve fine-tunes. Until they are run, the gains reported in
+Section~\ref{sec:results} belong to the combination as a whole.
+
+% =====================================================================
+\section{Conclusions}\label{sec:conclusions}
+% =====================================================================
+
+This project asked whether self-supervised pretraining can push viral sequence
+detection in human metagenomes beyond what supervised training on the ViraMiner
+data achieves. Answering it took a baseline, a corpus, four pretraining runs and
+an evaluation designed so that the answer could come out negative. Five
+conclusions follow, and they concern the whole pipeline, not only the final run.
+
+\paragraph{Architecture gives a modest but real improvement.}
+Replacing ViraMiner's two pooled convolutional branches with convolutional motif
+tokens followed by a Transformer raises test AUROC from 0.923 to 0.932 on the
+same split. A controlled trial over five variants showed that neither a larger
+motif encoder nor a different token aggregation adds more, and that a
+three-times-larger model is actively worse on a 2\%-positive training set. The
+architecture was therefore not the bottleneck, which is what made the
+pretraining question worth asking.
+
+\paragraph{Most of the real work is in the corpus, not the objective.}
+Assembling four million windows is easy; making them a sound basis for a claim
+about generalisation is not. Capping genomes by length and by species keeps a
+handful of over-sequenced organisms from defining what the model takes a virus to
+be, and the $k$-mer screens are what keep the anellovirus benchmark meaningful,
+and therefore what make its result credible. Two earlier corpus versions failed
+on exactly these points: one had a holdout whose windows came from the same
+genomes it was meant to validate, and both had a eukaryotic category dominated by
+near-duplicate windows of a few over-sequenced families. A
+pretraining result is only ever as trustworthy as the leakage control behind it.
+
+\paragraph{The two failed runs were failures of placement, not of the idea.}
+exp02 regularised the predictor and let the encoder collapse to effective rank
+21; exp03 regularised the pooled representation and produced the mirror image, a
+near-isotropic code of rank 285 built from tokens that had collapsed onto one
+vector per sequence. Both satisfied their objectives while destroying the
+composition signal that a random encoder supplies for free. Two rules came out of
+this and both held in the final run: an anti-collapse term must not act on the
+representation that will later be classified, and a loss value means nothing
+until it is compared with what predicting the batch mean would score. exp04's own
+transient collapse at step 2{,}000, with a JEPA loss of 0.064 that looked
+excellent and was in fact half of a trivial baseline, is the case in point.
+
+\paragraph{The redesigned objective works, and the two halves can be told apart.}
+Carrying the sequence-level objective on a CLS token, regularised through a
+projector and supervised by a second window of the same genome, while the
+token-level objective predicts per-position multi-layer targets, gives the first
+encoder of the four runs that beats random initialisation on a frozen probe:
+0.912 AUROC against 0.840, average precision 0.375 against 0.135. The CLS
+objective determined where that information sits, opening an 8.4-point AP gap
+over mean pooling from a near tie at initialisation, at equal effective rank.
+The corpus-based pairing determined what was learned, and its benefit is almost
+entirely out of distribution.
+
+\paragraph{Pretraining is an accelerator in distribution and a generaliser out of it.}
+Fine-tuned, the pretrained encoder reaches 0.932 AUROC on \texttt{fullset}, 0.942
+with reverse-complement averaging, matching the best supervised model in two to
+three times fewer epochs; but three-seed ensembles of the two initialisations are
+statistically indistinguishable, so with enough labels the random encoder ends in
+the same place. On the held-out anellovirus family the picture is different:
+AUROC rises from 0.791 to 0.875 and average precision nearly doubles, against 0.755 for
+ViraMiner, and the paired bootstrap interval is far from zero. The gain appears
+only on the held-out family and not on in-distribution validation data, which is
+the signature one would want: the encoder has learned something about viral
+sequence as such rather than about the families it was trained on.
+
+That distinction is what matters for the problem the project started from. Viral
+dark matter is by definition the sequence that resembles nothing in the
+databases, so a classifier is useful there in proportion to how well it transfers
+to families it has never seen, and that is the axis on which pretraining helped
+most while adding no labelling cost. The result rests on a single pretraining
+seed and a single held-out family, and the contribution of the individual
+components has not been isolated, so the honest summary is that the design as a
+whole transfers, not that any one part of it does.
+Section~\ref{sec:improve} sets out what would most change this, in order: a
+positive pair that means the same thing in every part of the corpus, a second
+view for the domain-matched windows that currently lack one, a corpus that
+reaches past the gut, and checkpoint selection that can see transfer rather than
+in-distribution fit.
 
 {\scriptsize
 \bibliographystyle{unsrtnat}
