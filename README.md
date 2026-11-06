@@ -1,151 +1,126 @@
-# JEPA pretraining for viral sequence classification
+# JEPA pretraining with Self-Genome Supervision for viral sequence classification
 
-A CNN-Transformer encoder is pretrained without labels on 300 bp DNA windows, using a Joint-Embedding Predictive Architecture (JEPA) adapted from JEPA-DNA ([arXiv 2602.17162](https://arxiv.org/abs/2602.17162)). It is then fine-tuned for viral vs non-viral classification on ViraMiner.
+A CNN-Transformer encoder is pretrained without labels on 300 bp DNA windows, using a Joint-Embedding Predictive Architecture (JEPA) using a self-genome supervision on the CLS token. It is then fine-tuned for viral vs non-viral classification on ViraMiner.
 
 The pretraining corpus (corpus_v3) is built in a separate repository: [Luckycrucio/CorpusViralJEPA](https://github.com/Luckycrucio/CorpusViralJEPA).
 
+The code in this repository is the **exp04** version. exp02 and exp03 are kept only as results (`exp02/`, `exp03/`); see [Experiments](#experiments) for what each one changed.
+
 ## Idea
 
-JEPA does not reconstruct the masked DNA. It predicts the **representation** that a slowly-updated copy of the encoder, seeing the full unmasked sequence, assigns to the hidden spans. The model has to learn what the missing region *is* from its context, rather than memorising base-level detail.
+JEPA does not reconstruct the masked DNA. It predicts the **representation** that a slowly updated (EMA) copy of the encoder assigns to the hidden regions, while that copy sees the full, unmasked sequence. To do this, the model has to infer what the missing region *is* from its context, instead of memorising base-level detail.
 
-```
-  window A (full) ──► target encoder (EMA) ──► mean of last 3 blocks, LayerNorm'd ──► span token targets
-                                                                                          │ MSE
-  window A (masked) ──► context encoder ──► tokens ──► predictor ──► predicted span tokens ┘
-                              │               └──► MLM head ──► bases of the scattered MLM tokens
-                              └──► CLS ──► projector ──► predictor ──► 1 − cos(·, target projector(target CLS of B))
-                                    │         └──► VICReg variance + covariance
-                                    └──► k-mer head ──► KL to the 4-mer profile of B
-  window B = another window of the same record (genome / contig / chromosome), augmented independently
-```
+exp04 trains two levels of representation at the same time:
 
-## exp04: what changed and why
-
-exp03's probe fell from 0.80 to 0.58 AUROC. Its variance hinge sat on the mean of the encoder's tokens, which can only vary across the batch if the tokens of a sequence point the same way: they collapsed (token similarity 0.97), and the covariance penalty spread the per-sequence vectors into a near-isotropic, input-sensitive code (RankMe 285/288, jepa_constant 0.89). Context and target also saw the same window, so nothing rewarded invariance to anything meaningful. exp04:
-
-- puts a **CLS token inside the encoder** (as in Viraminer3); the classifier reads it directly;
-- gives the CLS its own objectives on a **second view**, another window of the same record: BYOL-style prediction of the EMA target's projected CLS, VICReg on the **projector output** (not on the representation), and the second window's **4-mer profile** (`--kmer-weight 0` turns it off). Only record membership is used, never the category;
-- leaves the tokens free to differ: token JEPA predicts **every masked span token** against **data2vec targets** (mean of the last `--target-blocks` blocks, each LayerNorm'd), with MSE; no variance term on pooled tokens;
-- probes both the CLS output and the mean-pooled tokens.
-
-Ablations: `--views window` (second view = the same window re-augmented), `--kmer-weight 0`, `--target-blocks 1`.
-
-The sections below still describe exp03 where they differ from this list.
+- **Tokens** (one per 2 bp): each hidden token must be predicted from the visible ones (token JEPA), and a few scattered single tokens must also be decoded back to their bases (MLM).
+- **The CLS token** (the sequence summary the classifier reads): from a masked window A, it must predict the EMA encoder's CLS embedding of **another window B of the same genome, contig or chromosome**, and B's 4-mer profile. No category or label is ever used, only which windows come from the same record.
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-    A["Input DNA, 300 bp<br/>hidden bases set to N"] --> B["One-hot [batch, 300, 4]"]
+    subgraph Views["Two views per step"]
+        A["Window A, 300 bp<br/>RC + ±5 bp shift"]
+        B["Window B, 300 bp<br/>another window of the same record<br/>own RC + shift"]
+    end
 
-    B --> C1["Conv1D k=5, 72 filters, stride 2"]
-    B --> C2["Conv1D k=7, 72 filters, stride 2"]
-    B --> C3["Conv1D k=11, 72 filters, stride 2"]
-    B --> C4["Conv1D k=15, 72 filters, stride 2"]
+    A --> MK["Span mask + scattered MLM tokens<br/>hidden bases set to N"]
+    MK --> OH["One-hot [batch, 300, 4]"]
+    OH --> STEM["CNN stem: Conv1D k = 5 / 7 / 11 / 15<br/>72 filters each, stride 2, GELU<br/>concat → LayerNorm → 150 tokens × 288"]
+    STEM --> MT["Hidden tokens → learnable mask token<br/>prepend CLS, + learned positions (151)"]
+    MT --> ENC["Context encoder<br/>6-layer pre-norm Transformer, 8 heads<br/>→ final LayerNorm"]
+    ENC --> CCLS["CLS"]
+    ENC --> CTOK["150 tokens"]
 
-    C1 --> D["Concatenate → LayerNorm<br/>150 tokens × 288"]
-    C2 --> D
-    C3 --> D
-    C4 --> D
+    CCLS --> PRED["Predictor<br/>Linear 288→144, hidden → mask token<br/>sinusoidal positions, 4 layers, 3 heads<br/>→ Linear 144→288 per token"]
+    CTOK --> PRED
+    CTOK --> MLMH["MLM head<br/>Linear 288→8 (2 bases per token)"]
+    CCLS --> PROJ["Projector<br/>288→1024→1024"]
+    CCLS --> KH["4-mer head<br/>Linear 288→256"]
+    PROJ --> GP["Global predictor<br/>1024→1024→1024"]
 
-    D --> E["Hidden tokens → learnable mask token<br/>+ learned positions"]
-    E --> F["Context encoder<br/>6-layer pre-norm Transformer, 8 heads"]
+    A --> TEA["Target encoder (EMA), full window A"]
+    TEA --> TT["Mean of the last 3 blocks' tokens<br/>each LayerNorm'd, no affine"]
+    B --> TEB["Target encoder (EMA), clean window B"]
+    TEB --> TPROJ["Target projector (EMA)<br/>on B's CLS"]
+    B --> KP["4-mer profile of B<br/>both strands"]
 
-    F --> G["Predictor<br/>4-layer Transformer, dim 144, 3 heads<br/>→ mean over span tokens → Linear 144→288"]
-    F --> M["MLM head<br/>Linear 288→8"]
-
-    T["Full sequence"] --> TE["Target encoder<br/>EMA copy, no grad"] --> TP["LayerNorm per token, no affine<br/>→ mean over span tokens → z"]
-
-    G --> L["1 − cos(ẑ, z)"]
-    TP --> L
-    M --> CE["Cross-entropy on<br/>scattered MLM tokens"]
-    T --> CL["Clean pass, dropout off<br/>context encoder"]
-    CL --> H["Mean-pool → h"] --> V["Variance hinge on h (γ 0.5)<br/>Covariance on h"]
-    CL --> PV["Predictor, no mask → v"] --> V2["Variance hinge on v (γ 1)"]
+    PRED --> LJ["L_jepa: MSE on every<br/>JEPA span token"]
+    TT --> LJ
+    MLMH --> LM["L_mlm: cross-entropy on the<br/>bases of the scattered MLM tokens"]
+    GP --> LG["L_global: 1 − cos"]
+    TPROJ --> LG
+    PROJ --> LV["L_var (γ = 1) + 0.04 · L_cov<br/>on the projector output"]
+    KH --> LK["L_kmer: KL"]
+    KP --> LK
 ```
 
+The EMA copy covers both the encoder and the projector. The predictor, global predictor, MLM head and 4-mer head have no EMA copy and are discarded after pretraining. Fine-tuning starts from the EMA target encoder.
 
 ## Components
 
-| Part | Definition |
-|---|---|
-| Input | 300 bp one-hot (A, C, G, T); N is all-zero |
-| Encoder | multi-kernel CNN stem (kernels 5/7/11/15, 72 filters each, stride 2, LayerNorm) → 150 tokens × 288 dims → masked tokens replaced by a learnable mask token → 6-layer pre-norm Transformer (8 heads), learned positions, final LayerNorm. 6.05M params |
-| Target encoder | copy of the encoder, updated only by EMA: `θ_t ← m·θ_t + (1−m)·θ`, with `m` rising linearly 0.996 → 1.0 |
-| Predictor | Linear 288→144 → masked tokens replaced by a learnable mask token → fixed sinusoidal positions → 4 pre-norm Transformer layers (144 dims, 3 heads) → mean over the JEPA span positions → Linear 144→288. 1.09M params |
-| MLM head | Linear 288→8: predicts the 2 bases under each MLM token |
-| Sequence representation | mean of the encoder's output tokens |
+| Part | Definition | Params |
+|---|---|---|
+| Input | 300 bp one-hot (A, C, G, T); N is all-zero | |
+| Encoder | multi-kernel CNN stem (kernels 5/7/11/15, 72 filters each, stride 2, GELU, LayerNorm, dropout 0.25) → 150 tokens × 288 → hidden tokens replaced by a learnable mask token → CLS token prepended → learned positions → 6-layer pre-norm Transformer (8 heads, FFN 1152, dropout 0.1) → final LayerNorm. Outputs the CLS and the 150 tokens | 6.05M |
+| Target encoder + target projector | copies of the encoder and projector, updated only by EMA: `θ_t ← m·θ_t + (1−m)·θ`, with `m` rising linearly from 0.996 to 1.0 | |
+| Token predictor | Linear 288→144 on [CLS, tokens] → hidden tokens replaced by a learnable mask token → fixed sinusoidal positions → 4 pre-norm Transformer layers (144 dims, 3 heads) → LayerNorm → Linear 144→288 for **every token** | 1.09M |
+| Projector | MLP 288→1024→1024 (Linear–LayerNorm–GELU–Linear) on the CLS | 3.45M (with the global predictor) |
+| Global predictor | MLP 1024→1024→1024, same form | |
+| 4-mer head | Linear 288→256 on the CLS | |
+| MLM head | Linear 288→8 on each token: the 2 bases it covers | |
+| Classifier | the encoder's CLS output → MLP 288→512→128→1 (GELU, dropout 0.25, LayerNorm after the first layer) | 6.27M in total |
+
+The projector and global predictor use LayerNorm instead of BYOL's BatchNorm, and so does the stem: BatchNorm keeps running statistics, and these would drift between the masked online batches and the clean EMA passes.
 
 ## Masking
 
-Two kinds of tokens are hidden from the context encoder. Each token covers 2 bp.
+Two kinds of tokens are hidden from the context encoder. Each token covers 2 bp. Masking is applied to window A only.
 
 - **JEPA spans:** contiguous spans that never overlap, so the coverage is exact. The schedule grows linearly over training:
   - start: 1–2 spans covering 10–20% of the tokens;
   - end: 1–4 spans covering 20–30%.
-- **MLM tokens:** single tokens outside the spans, each hidden with probability 0.15 (`--mlm-rate`), about 11–13% of all tokens. Their neighbours stay visible, so their bases can be predicted from local context. The MLM loss is scored only on these tokens.
-- In total about 28% of tokens are hidden at the start and 36% at the end. This matches the ratio exp02 actually reached: its schedule aimed for 20% → 40%, but overlapping spans gave 19% → 36%.
-- The bases of hidden tokens are set to N **before** the CNN stem, so no visible token's convolution sees them. The hidden tokens are then replaced by a learnable mask token **after** the stem.
-- The target encoder always sees the full sequence.
-
-**exp02 → exp03.** In exp02, MLM was scored inside the long JEPA spans (30–150 bp). The bases in the middle of a span have no nearby context, so the loss never beat base frequencies (about 1.38). exp02's encoder also had no mask token: hidden tokens entered the Transformer as the stem's output on N bases.
+- **MLM tokens:** single tokens outside the spans, each hidden with probability 0.15 (`--mlm-rate`), about 11–13% of all tokens. Their neighbours stay visible, so their bases can be predicted from local context.
+- In total about 28% of the tokens are hidden at the start and 36% at the end.
+- The bases of hidden tokens are set to N **before** the CNN stem, so that no visible token's convolution sees them. The hidden tokens are then replaced by the mask token **after** the stem. The CLS token is never masked.
+- The token predictor sees both kinds of hidden token as mask tokens, but the JEPA loss is scored only on the span tokens, and the MLM loss only on the scattered tokens.
+- The target encoder always sees full, unmasked windows.
 
 ## Loss
 
 ```
-L = 1.0 · L_jepa + 1.0 · L_mlm + 25 · (L_var(h; γ=0.5) + L_var(v; γ=1)) + 0.5 · L_cov(h)
+L = L_jepa + L_global + L_kmer + L_mlm + L_var(z; γ=1) + 0.04 · L_cov(z)
 ```
-
-The weights are JEPA-DNA's, taken from its released code (`jepa_losses.py`, `jepa_pretrainer.py`). Three things differ from it: the variance target on `h`, the covariance normalisation, and the target pooling (see below).
 
 | Term | What it does |
 |---|---|
-| `L_jepa = 1 − cos(ẑ, z)` | Span-level prediction. The target encoder sees the full sequence; its tokens get a LayerNorm without affine parameters, and `z` is their mean over the JEPA span positions (`--target-pool span`; `all` pools the whole sequence, as JEPA-DNA does). `ẑ` is the predictor's mean over the same positions, from the masked context. |
-| `L_mlm` | Cross-entropy on the bases of the scattered MLM tokens. Keeps the tokens informative at the base level. |
-| `L_var = mean_d max(0, γ − std_d)` | VICReg variance hinge: every dimension must vary across the batch. Prevents collapse to a constant. γ = 0.5 for `h` (`--var-gamma`), 1 for `v`. |
-| `L_cov = Σ_{i≠j} cov_ij² / d` | VICReg covariance: decorrelates dimensions. Prevents collapse to a few directions. |
+| `L_jepa` | Token JEPA (I-JEPA style). The predictor outputs one vector per token. The loss is the MSE against a data2vec target: the mean of the target encoder's last 3 Transformer block outputs on the full window A (`--target-blocks`), each LayerNorm'd without affine parameters. Scored on every JEPA span token. |
+| `L_global` | BYOL-style CLS objective. With `z = projector(CLS of masked A)`, the loss is `1 − cos(global_predictor(z), target_projector(target CLS of clean B))`. It rewards what windows of the same organism share (composition, codon usage), which is the signal viral detection rests on. DNABERT-S uses the same kind of same-genome positives. |
+| `L_kmer` | KL divergence between `softmax(kmer_head(CLS of masked A))` and B's 4-mer frequencies over both strands (k-mers containing N are skipped). This is a label-free composition target, and it covers what a random encoder already captures. `--kmer-weight 0` turns it off. |
+| `L_mlm` | Cross-entropy on the bases of the scattered MLM tokens (N bases are ignored). Keeps the tokens informative at base level. |
+| `L_var = mean_d max(0, γ − std_d)` | VICReg variance hinge on `z`, the **projector output**: every dimension must vary across the batch. This prevents collapse to a constant. |
+| `L_cov = Σ_{i≠j} cov_ij² / d` | VICReg covariance on `z`: decorrelates the dimensions. This prevents collapse onto a few directions. |
 
-The VICReg terms use a separate clean (unmasked) pass with dropout off:
-- `h` is the encoder's mean-pooled output. This is the representation that is probed and fine-tuned.
-- `v` is the predictor's output on those clean tokens. The JEPA-DNA paper notes that without a variance term here, "the predictor drives the context encoder toward a low-rank solution".
-
-**exp02 → exp03.** What changed here, and why:
-- exp02 applied variance and covariance to `v` only. The predictor's final LayerNorm rescales any input to unit scale, so the penalty was satisfied while the encoder collapsed: the probe fell from 0.80 to 0.56 AUROC and RankMe to about 20. exp02's covariance on `v` was also 86% of its final loss.
-- The variance target on `h` is γ = 0.5, not 1. The encoder's tokens leave a LayerNorm with squared norm `d`, so the pooled `h` has total variance at most `d`. Std 1 in every dimension is reachable only if all tokens of a sequence are identical. In a local test with γ = 1, the encoder did exactly that within 500 steps: token cosine 0.998, RankMe 48 → 3.7, probe AUROC 0.79 → 0.70.
-- The covariance is divided by `d`, as in VICReg. JEPA-DNA's `d(d−1)` is 287× weaker, and in the same test it did not stop the features collapsing onto a few directions. With γ = 0.5 and ÷ `d`, RankMe was 194 at step 500 and token similarity was falling (0.86 → 0.80).
-- The JEPA target is pooled over the masked spans only (as in I-JEPA). Pooled over the whole sequence, most of the target comes from tokens the context encoder sees, and the loss fell to 0.025 in exp02.
-- exp02 used an MLM weight of 0.1, and its target had no LayerNorm.
+As in VICReg, the variance and covariance terms act on the expander (the projector) and not on the representation itself. The encoder's tokens are therefore free to differ from each other; exp03's terms on the pooled tokens made them collapse (see [exp03](#exp03-variance-on-the-encoder)).
 
 ## Training
 
 | | Pretraining | Fine-tuning |
 |---|---|---|
-| Data | corpus_v3: 4M unlabeled windows from viruses, phages, human and gut bacteria. Anelloviruses excluded; windows overlapping ViraMiner val/test removed | ViraMiner (about 2% viral) |
+| Data | corpus_v3: 4M unlabelled windows from viruses, phages, human and gut bacteria, in 341,501 records (192,400 of them single-window). Anelloviruses are excluded, and windows overlapping the ViraMiner validation/test sets are removed | ViraMiner (about 2% viral) |
+| Views | A, plus B = another window of the same record (`--views record`). A single-window record uses itself, so about 95% of steps have a distinct B. `--views window` uses A again with a new augmentation | one view |
 | Steps / epochs | 60k steps × batch 512 (about 7.7 passes) | up to 120 epochs, early stop after 15 epochs without improvement, batch 128 |
-| Optimiser | AdamW, lr 5e-4 → 1e-6, betas (0.9, 0.95), wd 0.05 (not on biases, norms, positions, mask token), 3k warmup, cosine decay | AdamW, lr 1e-4 for the stem and the new head (CLS attention + MLP), 5e-5 for the encoder's Transformer, wd 1e-4, 5 warmup epochs, cosine. In exp02 the CLS attention layer was in the 5e-5 group |
-| Augmentation | reverse complement (p = 0.5), random ±5 bp shift | same |
-| Precision | bf16 | bf16 |
+| Optimiser | AdamW, lr 5e-4 → 1e-6, betas (0.9, 0.95), wd 0.05 (not on biases, norms, positions, mask and CLS tokens), 3k warmup steps, cosine decay, gradient clip 1.0 | AdamW: lr 1e-4 for the stem, CLS token, positions and the MLP head, 5e-5 for the encoder's Transformer; wd 1e-4; 5 warmup epochs, cosine decay, gradient clip 1.0. The Transformer is **frozen for the first 5 epochs** (`--freeze-epochs`), so the head fits before the features move |
+| Augmentation | reverse complement (p = 0.5), random ±5 bp shift with N padding, drawn independently for A and B | same |
+| Precision | bf16 (Ampere or newer) | bf16 |
 
-The classifier starts from the **EMA target encoder**. It adds a learned CLS token, one attention layer and an MLP (288→512→128→1). It is trained with focal loss (α = 0.75, γ = 2), and model selection uses validation AP.
-
-**Differences from JEPA-DNA, and why.** The loss weights, the target LayerNorm, the predictor design and the EMA schedule follow the JEPA-DNA code. The variance target on `h`, the covariance normalisation and the target pooling differ (see Loss). The rest differs because of the setting.
-
-JEPA-DNA continues training already-pretrained models on long sequences: 512 BPE tokens (~2.5 kb) for DNABERT-2, 8,192 tokens for NTv3. Here a small encoder is trained from scratch on 300 bp windows (150 tokens).
-
-| | JEPA-DNA | here | why |
-|---|---|---|---|
-| Optimiser | SGD, momentum 0.9, lr ~5e-6, wd 0.01 on all parameters, no gradient clipping | AdamW 5e-4, wd 0.05 (not on biases, norms, positions, mask token), clip 1.0 | Their tiny lr only nudges an already-trained model; from scratch it would barely move |
-| Frozen-encoder phase | 1k steps training only the predictor | none | Freezing a random encoder teaches the predictor nothing useful |
-| Mask ratio | 10–30% → 30–50% of tokens, spans may overlap | spans 10–20% → 20–30%, no overlaps, plus ~12% scattered MLM tokens; ~28% → 36% hidden in total | On 150 tokens a 50% span is up to 150 bp, a large share of a 300 bp window |
-| MLM positions | inside the JEPA spans | scattered single tokens | Their tokens are multi-base BPE words on a pretrained model. A from-scratch single-nucleotide model cannot predict the middle of a 30–150 bp span: in exp02 the loss stayed at the base-frequency level (about 1.38) |
-| Predictor | DNABERT-2 / HyenaDNA: 4-layer Transformer at half width. NTv3 (mean-pooled): a 3-layer MLP on the pooled embedding | 4-layer Transformer at half width, 3 heads, mean over the span positions | Attention over 150 tokens is cheap, and it lets the predictor know which positions are masked. The NTv3 MLP was likely chosen because of the 8k-token length |
-| Augmentation | none | reverse complement, ±5 bp shift | Same as exp01 fine-tuning |
+The classifier starts from the **EMA target encoder** and reads its CLS output directly. It is trained with focal loss (α = 0.75, γ = 2, label smoothing 0.05). Model selection uses validation AP with reverse-complement averaging.
 
 ## Monitoring
 
-- **Every 200 steps:** each loss term (`variance` for `h`, `predictor_variance` for `v`), `jepa_constant` (`const` in the log: the JEPA loss of predicting the batch-mean target for every sequence; `jepa` carries sequence-specific information only when clearly below it. With a random-init encoder it is about 0.02, the level exp02's final loss of 0.025 sat at), MLM accuracy, mask ratio (all hidden tokens: spans + MLM), representation std (of the encoder's pooled output `h`), token similarity (`tsim`: cosine of each clean token to its sequence's mean; near 1 means the tokens have collapsed onto one vector) and throughput.
-- **Every 5k steps:** a frozen linear probe (logistic regression on mean-pooled features, both strands averaged), trained on 50k ViraMiner train windows and scored by **AP** on validation; plus RankMe (effective rank of the features, max 288).
-- **End of pretraining:** the same probe on the full train set, scored on test, against a randomly initialised encoder. Pretraining has learned something useful only if the JEPA probe AP is clearly above the random one.
+- **Every 200 steps** (`history.csv` and the log): every loss term next to its **batch-mean baseline**, which is the loss of predicting the batch mean for every sequence (`jepa_constant`, `global_constant`, `kmer_constant`). A term carries sequence-specific information only when it is clearly below its baseline. Also logged: MLM accuracy, `cls_std` (std of the context CLS across the batch), `token_similarity` (`tsim`: cosine of each target token to its sequence's mean; near 1 means the tokens have collapsed onto one vector), `mask_ratio`, `distinct_views` (fraction of steps whose B is a different window) and throughput.
+- **Every 5k steps** (`probe_history.csv`): a frozen linear probe (logistic regression, features averaged over both strands) on the target encoder. It is trained on 50k `fullset_train` windows and scored by AUROC and **AP** on `fullset_validation`, both on the **CLS** output and on the **mean-pooled tokens** (`mean_` columns). RankMe (effective rank of the features, max 288) is logged for both.
+- **End of pretraining** (`probe_test.json`): the same probes, trained on the full `fullset_train` and scored on `fullset_test`, against a randomly initialised encoder. Pretraining has learned something useful only if the JEPA probe AP is clearly above the random one.
 
 ## Evaluation
 
@@ -154,41 +129,111 @@ JEPA-DNA continues training already-pretrained models on long sequences: 512 BPE
 | `fullset` | `fullset_train` | `fullset_validation` | `fullset_test` (551 viral / 26,405) |
 | `anell` (unseen family) | `training_data_anell`, minus exact test duplicates | 10% stratified split of it | `test_data_anell` (1,348 viral / 27,644) |
 
-- Anelloviruses are absent from both pretraining and fine-tuning in the `anell` task.
+- In the `anell` task, anelloviruses are absent from both pretraining and fine-tuning.
 - That task needs its own fine-tune, because its test positives also appear in `fullset_train`.
-- Each task is run with JEPA and random initialisation, 3 seeds each.
+- Each task is run with JEPA and random initialisation, 3 seeds each (12 fine-tunes).
 - Reported metrics: AUROC, **AP**, precision, recall, F1 and specificity, at the best-F1 threshold chosen on validation. Each is given plain and with reverse-complement test-time averaging (RC-TTA), with bootstrap 95% CIs for AUROC and AP.
+
+## Experiments
+
+All three runs use the same corpus, the same CNN-Transformer encoder, 60k pretraining steps and the same 12 fine-tunes. They differ in the pretraining objective. The table shows the frozen linear probe on `fullset_test` (trained on the full `fullset_train`) and the fine-tuned test AP with RC-TTA (mean ± std over 3 seeds).
+
+| | probe AUROC | probe AP | RankMe | fullset AP, JEPA | fullset AP, random | anell AP, JEPA | anell AP, random |
+|---|---|---|---|---|---|---|---|
+| exp02 | 0.609 (random 0.833) | 0.031 (random 0.111) | 20.6 | 0.200 ± 0.032 | 0.609 ± 0.001 | 0.098 ± 0.002 | 0.255 ± 0.020 |
+| exp03 | 0.624 (random 0.839) | 0.035 (random 0.130) | 285.2 | 0.592 ± 0.007 | 0.607 ± 0.003 | 0.250 ± 0.039 | 0.271 ± 0.021 |
+| **exp04** (CLS) | **0.912** (random 0.840) | **0.375** (random 0.135) | 158.8 | **0.625 ± 0.011** | 0.617 ± 0.005 | **0.491 ± 0.030** | 0.268 ± 0.006 |
+
+For reference, exp01 (a single seed, fine-tuned on `fullset` only) reached an AP of 0.508 with RC-TTA. Full tables are in each `expNN/report.md`.
+
+### exp02: pooled target, variance on the predictor
+
+The token predictor regressed a target pooled over the **whole** sequence, MLM (weight 0.1) was scored inside the long JEPA spans, and VICReg acted only on the predictor's output. Three things went wrong:
+
+- The predictor's final LayerNorm rescales any input to unit scale, so the variance penalty was satisfied while the encoder collapsed (RankMe ~20).
+- Most of the pooled target came from tokens the context could already see, so the JEPA loss fell to 0.025, which is the level of a constant prediction.
+- The bases in the middle of a 30–150 bp span have no nearby context, so MLM never beat the base frequencies (~1.38).
+
+The probe fell below the random encoder (AP 0.031 vs 0.111), and the JEPA initialisation hurt fine-tuning badly.
+
+### exp03: variance on the encoder
+
+exp03 fixed each of these:
+
+- the target is pooled over the masked spans only;
+- MLM is scored on scattered single tokens (weight 1);
+- a learnable mask token is used, and the stem uses LayerNorm;
+- the VICReg terms moved onto the encoder's mean-pooled output `h` (variance γ = 0.5, covariance ÷ d).
+
+But the mean of 150 LayerNorm'd tokens can only vary across the batch if a sequence's tokens all point the same way, so the tokens collapsed onto one vector per sequence (`tsim` 0.97). The covariance penalty then spread those vectors into a near-isotropic, input-sensitive code: RankMe 285/288, and targets of different sequences were nearly orthogonal (`jepa_constant` 0.89). Context and target also saw the same window, so nothing rewarded invariance to anything meaningful. The test probe ended at 0.62 AUROC, against 0.84 for a random encoder, and fine-tuning from JEPA was no better than from random.
+
+### exp04: CLS with same-record views
+
+exp04 separates the two levels of representation (see [Architecture](#architecture) and [Loss](#loss)):
+
+- **A CLS token inside the encoder** (as in Viraminer3) that the classifier reads directly. In exp03, the classifier added its own CLS attention layer on top.
+- **Sequence-level objectives on the CLS, against a second view**, another window of the same record: BYOL-style prediction of the EMA target's projected CLS, B's 4-mer profile, and VICReg on the projector output instead of on the representation.
+- **Free tokens.** Token JEPA predicts every masked span token against data2vec targets (mean of the last 3 blocks), with MSE. No variance term acts on the pooled tokens.
+- **Probes on both** the CLS output and the mean-pooled tokens.
+- **Fine-tuning freezes the Transformer for the first 5 epochs** (LP-FT).
+
+**Pretraining** took 2.1 h on one GPU. At the last step, every loss term was below its batch-mean baseline:
+
+| | jepa | global | kmer | mlm |
+|---|---|---|---|---|
+| loss | 0.717 | 0.546 | 0.335 | 1.349 (accuracy 0.33) |
+| batch-mean baseline | 0.846 | 0.627 | 0.413 | ~1.38 (base frequencies) |
+
+Token similarity fell from 0.86 to 0.56 over training, so the tokens no longer collapse. The validation probe AP on the CLS rose steadily, from 0.109 at step 0 to 0.320 at step 60k, with RankMe going from 57 to 158; it never dropped below its step-0 value.
+
+**Frozen probe on `fullset_test`:**
+
+| encoder | features | AUROC | AP | RankMe |
+|---|---|---|---|---|
+| random init | CLS | 0.840 | 0.135 | 57.3 |
+| random init | mean-pool | 0.843 | 0.125 | 47.8 |
+| JEPA (EMA target) | CLS | **0.912** | **0.375** | 158.8 |
+| JEPA (EMA target) | mean-pool | 0.885 | 0.290 | 160.6 |
+
+This is the first run whose frozen features clearly beat a random encoder: the CLS probe's AP is 2.8× the random one. The CLS is the better of the two feature sets, which fits the objectives it was given.
+
+**Fine-tuning (test, RC-TTA, mean ± std over 3 seeds):**
+
+| task | init | AUROC | AP | F1 | precision | recall | best epoch |
+|---|---|---|---|---|---|---|---|
+| fullset | JEPA | **0.942 ± 0.005** | **0.625 ± 0.011** | 0.601 ± 0.010 | 0.740 ± 0.024 | 0.507 ± 0.018 | 33–58 |
+| fullset | random | 0.931 ± 0.003 | 0.617 ± 0.005 | 0.594 ± 0.006 | 0.775 ± 0.047 | 0.484 ± 0.023 | 101–111 |
+| anell | JEPA | **0.895 ± 0.019** | **0.491 ± 0.030** | 0.380 ± 0.048 | 0.755 ± 0.030 | 0.257 ± 0.047 | 32–75 |
+| anell | random | 0.822 ± 0.007 | 0.268 ± 0.006 | 0.182 ± 0.007 | 0.587 ± 0.033 | 0.108 ± 0.006 | 94–113 |
+
+- **Unseen family (`anell`):** JEPA pretraining nearly doubles AP (0.49 vs 0.27) and raises AUROC by 7 points. It also more than doubles recall at a higher precision. This is the setting pretraining is meant to help with: the model has never seen an anellovirus, and same-record composition features transfer to the new family.
+- **`fullset`:** JEPA is slightly ahead (AUROC +0.011, AP +0.009), but the AP difference is within the seed spread and the bootstrap CIs overlap. Both clearly beat exp01 (0.508).
+- JEPA fine-tunes reach their best validation AP after 32–75 epochs, against 94–113 for random initialisation.
+
+Ablations not yet run: `--views window` (B = A re-augmented, which tests whether same-record views matter), `--kmer-weight 0`, `--target-blocks 1`.
 
 ## Files
 
 | File | Role |
 |---|---|
-| `model.py` | encoder, predictor, classifier, GPU data pipeline |
-| `pretrain.py` | JEPA pretraining and probes → `pretrain/` (`history.csv`, `probe_history.csv`, `probe_test.json`, `pretrain_curves.png`, `encoder.pt`) |
-| `finetune.py` | `--task fullset\|anell --init jepa\|random --seed N` → `finetune/<task>_<init>_s<seed>/result.json` |
+| `model.py` | encoder (with CLS), token predictor, projector MLPs, classifier, data loading and GPU augmentation |
+| `pretrain.py` | JEPA pretraining and probes → `pretrain/` (`config.json`, `history.csv`, `probe_history.csv`, `probe_test.json`, `pretrain_curves.png`, `checkpoint.pt`, `encoder.pt`) |
+| `finetune.py` | `--task fullset\|anell --init jepa\|random --seed N` → `finetune/<task>_<init>_s<seed>/` (`result.json`, `history.csv`, `best_model.pt`, `test_predictions.csv`) |
 | `report.py` | `report.md` and `report.png`: all metrics, mean ± std over seeds |
-| `recipe.slurm` | runs pretraining → 12 fine-tunes → report on one GPU into `/save/runs/exp04` (24 h, 4 CPUs, 32 GB); it can be resubmitted and resumes |
+| `exp02/`, `exp03/`, `exp04/` | configs, probe results, fine-tune results, cluster logs and `report.md` of each run (checkpoints are not tracked) |
 
-```bash
-python pretrain.py --corpus-dir CORPUS --data-path DATA --save-dir RUN
-python finetune.py --task fullset --init jepa --encoder RUN/pretrain/encoder.pt --data-path DATA --save-dir RUN
-python report.py --save-dir RUN
-```
+`recipe.slurm` (gitignored) runs pretraining, the 12 fine-tunes and the report on one GPU (24 h, 4 CPUs, 32 GB). Every step skips work that is already done, so the job can be resubmitted and resumes.
 
-## Results
+## Running
 
-Pending.
-
-## Running exp03
-
-Paths are the ones the exp02 job used on the cluster (`/save/corpus_v3`, `/data`, `/save/runs/...`); change them if yours differ.
+Paths are the ones used on the cluster (`/save/corpus_v3`, `/data`, `/save/runs/...`); change them if yours differ.
 
 ### 1. Smoke test (about 10–15 min)
 
 Use a separate save dir: `pretrain.py` resumes from any checkpoint it finds, and skips entirely if `encoder.pt` exists.
 
 ```bash
-SMOKE=/save/runs/exp03_smoke
+SMOKE=/save/runs/exp04_smoke
 python pretrain.py --corpus-dir /save/corpus_v3 --data-path /data --save-dir $SMOKE \
     --max-windows 20000 --steps 400 --warmup-steps 50 --log-every 50 --eval-every 200 --probe-train-size 5000
 python finetune.py --task fullset --init jepa --encoder $SMOKE/pretrain/encoder.pt \
@@ -196,19 +241,14 @@ python finetune.py --task fullset --init jepa --encoder $SMOKE/pretrain/encoder.
 python report.py --save-dir $SMOKE
 ```
 
-The first run in a new save dir parses the corpus CSVs into `corpus_codes.npy`, which takes longer than the 16 s cached load. The final probe on the full train set also adds a few minutes.
+The first run in a new save dir parses the corpus CSVs into `corpus_codes.npy` and `corpus_codes_groups.npy` (the record of each window), which takes longer than the ~15 s cached load. The final probe on the full train set also adds a few minutes.
 
-Check:
-- no errors, and `encoder.pt`, `result.json` and `report.md` are written;
-- `representation_std` (`std` in the log) stays at or above about 0.5, and `tsim` stays well below 1 (0.80 at step 500 in the local test);
-- the step-200 probe AUROC is not clearly below the step-0 one.
-
-Delete `$SMOKE` afterwards.
+Check that there are no errors, and that `encoder.pt`, `result.json` and `report.md` are written. Delete `$SMOKE` afterwards.
 
 ### 2. Full run
 
 ```bash
-RUN=/save/runs/exp03
+RUN=/save/runs/exp04
 python pretrain.py --corpus-dir /save/corpus_v3 --data-path /data --save-dir $RUN
 for task in fullset anell; do
   for seed in 0 1 2; do
@@ -219,20 +259,12 @@ done
 python report.py --save-dir $RUN
 ```
 
-Or submit `sbatch recipe.slurm`, which runs the same steps. Every step skips work that is already done, so the job can be resubmitted.
+Or submit `sbatch recipe.slurm`, which runs the same steps. Pretraining takes about 2 h and each fine-tune up to about 1 h. For an ablation, add its flag to `pretrain.py` and use a new `RUN`.
 
-Pretraining takes about 3 h, and each of the 12 fine-tunes about 1 h. Rerun the random-init fine-tunes too: the stem now uses LayerNorm, so the exp02 random baselines are a different model.
+What to watch:
+- `jepa`, `global` and `kmer` fall clearly below their `*_constant` baselines, and `mlm` below ~1.38;
+- `tsim` stays well below 1 (exp03: 0.97; exp04 ended at 0.56);
+- `distinct_views` is about 0.95 on corpus_v3 with `--views record`;
+- in `probe_history.csv`, the CLS probe (`probe_ap`) and the mean-pool probe (`mean_probe_ap`) stay at or above their step-0 values, and RankMe does not fall toward ~20 (exp02) or jump toward 288 (exp03).
 
-exp04: use `RUN=/save/runs/exp04` (the first run parses the corpus again, to add the record groups) and also watch:
-- `tsim` stays well below exp03's 0.97;
-- `global` falls below `global_constant`, and `kmer` below `kmer_constant`;
-- the CLS probe (`probe_auroc`) and the mean-pool probe (`mean_probe_auroc`) stay at or above step 0;
-- `distinct_views` in `history.csv` is the fraction of steps whose second view is a different window (about 0.95 expected on corpus_v3; only the ViraMiner rows are single-window).
-
-What to watch in `pretrain/probe_history.csv`:
-- probe AUROC stays at or above the step-0 value; in exp02 it had fallen to 0.71 by 5k;
-- RankMe stays well above 20 (194 at step 500 in the local test), and `tsim` in `history.csv` does not climb toward 1;
-- `jepa` falls clearly below `jepa_constant` (both about 0.28 at step 500 in the local test, so the predictor had not yet learned anything sequence-specific); a sudden drop of both toward 0.02 means the targets have lost their per-sequence content again;
-- MLM loss falls clearly below about 1.38, which is what predicting base frequencies alone scores (exp02 never got under 1.358); `mask_ratio` runs from about 0.28 to 0.36.
-
-If the probe is still falling by 10k steps, stop the job; the fine-tunes would not be worth running.
+If the probe is still falling at 10k steps, stop the job: the fine-tunes would not be worth running.
