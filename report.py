@@ -1,4 +1,4 @@
-"""Collect exp04 results into report.md (mean ± std over seeds) and report.png."""
+"""Collect the results of an exp04-style run (exp04, exp05) into report.md (mean ± std over seeds) and report.png."""
 
 import argparse
 import json
@@ -23,7 +23,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--save-dir", required=True)
     root = Path(parser.parse_args().save_dir)
-    lines = ["# exp04 report", ""]
+    lines = [f"# {root.name} report", ""]
 
     pretrain = root / "pretrain"
     if (pretrain / "probe_test.json").exists():

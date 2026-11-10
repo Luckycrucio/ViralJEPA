@@ -1,0 +1,547 @@
+Corpus: 4,000,000 windows in 341,428 records (192,297 single-window), loaded in 22 s
+Encoder 6,050,880 | predictor 1,086,624 | projector + global predictor 3,448,832 parameters
+Random init probe: {'step': 0, 'probe_auroc': 0.8080464265441458, 'probe_ap': 0.10926754170509691, 'rankme': 57.044151306152344, 'feature_std': 0.1691524237394333, 'mean_probe_auroc': 0.8039404886561197, 'mean_probe_ap': 0.09996992807317737, 'mean_rankme': 47.63853454589844, 'mean_feature_std': 0.1346314549446106}
+step    200 | loss 3.7240 jepa 0.7833 (const 0.3505) global 0.2829 (const 0.0313) kmer 0.4774 (const 0.4113) mlm 1.393 acc 0.301 var 0.766 cov 0.5382 cls std 0.467 tsim 0.859 mask 0.28 | 3875 seq/s
+step    400 | loss 2.6935 jepa 0.3954 (const 0.3697) global 0.0331 (const 0.0395) kmer 0.3758 (const 0.4115) mlm 1.357 acc 0.319 var 0.461 cov 1.7646 cls std 0.400 tsim 0.853 mask 0.28 | 4221 seq/s
+step    600 | loss 2.4265 jepa 0.2947 (const 0.3205) global 0.0346 (const 0.0458) kmer 0.3644 (const 0.4116) mlm 1.356 acc 0.320 var 0.243 cov 3.3378 cls std 0.306 tsim 0.886 mask 0.28 | 4219 seq/s
+step    800 | loss 2.2491 jepa 0.2081 (const 0.2392) global 0.0435 (const 0.0576) kmer 0.3590 (const 0.4115) mlm 1.356 acc 0.321 var 0.100 cov 4.5728 cls std 0.276 tsim 0.930 mask 0.28 | 4217 seq/s
+step   1000 | loss 2.1453 jepa 0.1423 (const 0.1761) global 0.0589 (const 0.0765) kmer 0.3532 (const 0.4109) mlm 1.356 acc 0.321 var 0.044 cov 4.7812 cls std 0.275 tsim 0.959 mask 0.28 | 4216 seq/s
+step   1200 | loss 2.0978 jepa 0.0996 (const 0.1357) global 0.0795 (const 0.1028) kmer 0.3508 (const 0.4120) mlm 1.356 acc 0.321 var 0.030 cov 4.5411 cls std 0.271 tsim 0.975 mask 0.28 | 4216 seq/s
+step   1400 | loss 2.0874 jepa 0.0763 (const 0.1149) global 0.1055 (const 0.1362) kmer 0.3497 (const 0.4117) mlm 1.356 acc 0.320 var 0.026 cov 4.3358 cls std 0.267 tsim 0.983 mask 0.28 | 4216 seq/s
+step   1600 | loss 2.0945 jepa 0.0656 (const 0.1100) global 0.1316 (const 0.1691) kmer 0.3486 (const 0.4110) mlm 1.355 acc 0.321 var 0.025 cov 4.2124 cls std 0.270 tsim 0.987 mask 0.28 | 4220 seq/s
+step   1800 | loss 2.1113 jepa 0.0613 (const 0.1136) global 0.1573 (const 0.2005) kmer 0.3486 (const 0.4117) mlm 1.355 acc 0.321 var 0.024 cov 4.1297 cls std 0.277 tsim 0.990 mask 0.28 | 4217 seq/s
+step   2000 | loss 2.1363 jepa 0.0631 (const 0.1272) global 0.1850 (const 0.2342) kmer 0.3479 (const 0.4122) mlm 1.355 acc 0.322 var 0.023 cov 4.0564 cls std 0.292 tsim 0.991 mask 0.28 | 4219 seq/s
+step   2200 | loss 2.1675 jepa 0.0711 (const 0.1536) global 0.2138 (const 0.2692) kmer 0.3466 (const 0.4111) mlm 1.355 acc 0.322 var 0.022 cov 3.9750 cls std 0.310 tsim 0.990 mask 0.28 | 4218 seq/s
+step   2400 | loss 2.2029 jepa 0.0883 (const 0.1963) global 0.2388 (const 0.3021) kmer 0.3453 (const 0.4111) mlm 1.354 acc 0.322 var 0.022 cov 3.8649 cls std 0.336 tsim 0.989 mask 0.28 | 4217 seq/s
+step   2600 | loss 2.2526 jepa 0.1117 (const 0.2531) global 0.2725 (const 0.3437) kmer 0.3452 (const 0.4116) mlm 1.354 acc 0.323 var 0.021 cov 3.7168 cls std 0.368 tsim 0.986 mask 0.28 | 4221 seq/s
+step   2800 | loss 2.3141 jepa 0.1404 (const 0.3183) global 0.3146 (const 0.3914) kmer 0.3442 (const 0.4109) mlm 1.354 acc 0.323 var 0.019 cov 3.5491 cls std 0.410 tsim 0.982 mask 0.28 | 4217 seq/s
+step   3000 | loss 2.3811 jepa 0.1756 (const 0.3997) global 0.3559 (const 0.4370) kmer 0.3433 (const 0.4103) mlm 1.354 acc 0.323 var 0.017 cov 3.3770 cls std 0.460 tsim 0.974 mask 0.28 | 4215 seq/s
+step   3200 | loss 2.4387 jepa 0.2066 (const 0.4729) global 0.3909 (const 0.4773) kmer 0.3435 (const 0.4123) mlm 1.354 acc 0.323 var 0.016 cov 3.2010 cls std 0.519 tsim 0.963 mask 0.28 | 4220 seq/s
+step   3400 | loss 2.4860 jepa 0.2359 (const 0.5318) global 0.4189 (const 0.5077) kmer 0.3417 (const 0.4105) mlm 1.353 acc 0.324 var 0.015 cov 3.0432 cls std 0.578 tsim 0.951 mask 0.28 | 4215 seq/s
+step   3600 | loss 2.5299 jepa 0.2607 (const 0.5733) global 0.4440 (const 0.5350) kmer 0.3417 (const 0.4119) mlm 1.353 acc 0.324 var 0.014 cov 2.9215 cls std 0.639 tsim 0.938 mask 0.28 | 4215 seq/s
+step   3800 | loss 2.5723 jepa 0.2867 (const 0.6051) global 0.4660 (const 0.5586) kmer 0.3408 (const 0.4112) mlm 1.354 acc 0.324 var 0.013 cov 2.8197 cls std 0.690 tsim 0.924 mask 0.28 | 4220 seq/s
+step   4000 | loss 2.6039 jepa 0.3115 (const 0.6287) global 0.4782 (const 0.5720) kmer 0.3395 (const 0.4106) mlm 1.353 acc 0.324 var 0.012 cov 2.7365 cls std 0.731 tsim 0.909 mask 0.28 | 4220 seq/s
+step   4200 | loss 2.6280 jepa 0.3317 (const 0.6427) global 0.4854 (const 0.5796) kmer 0.3398 (const 0.4112) mlm 1.353 acc 0.324 var 0.011 cov 2.6712 cls std 0.755 tsim 0.894 mask 0.28 | 4218 seq/s
+step   4400 | loss 2.6521 jepa 0.3588 (const 0.6669) global 0.4854 (const 0.5782) kmer 0.3393 (const 0.4112) mlm 1.353 acc 0.325 var 0.011 cov 2.6169 cls std 0.768 tsim 0.877 mask 0.28 | 4214 seq/s
+step   4600 | loss 2.6777 jepa 0.3866 (const 0.6875) global 0.4859 (const 0.5750) kmer 0.3389 (const 0.4114) mlm 1.353 acc 0.325 var 0.010 cov 2.5727 cls std 0.764 tsim 0.858 mask 0.28 | 4215 seq/s
+step   4800 | loss 2.7035 jepa 0.4152 (const 0.7074) global 0.4842 (const 0.5683) kmer 0.3393 (const 0.4106) mlm 1.353 acc 0.324 var 0.010 cov 2.5307 cls std 0.760 tsim 0.839 mask 0.28 | 4218 seq/s
+step   5000 | loss 2.7283 jepa 0.4433 (const 0.7310) global 0.4835 (const 0.5655) kmer 0.3384 (const 0.4109) mlm 1.353 acc 0.324 var 0.010 cov 2.4974 cls std 0.751 tsim 0.822 mask 0.28 | 4219 seq/s
+Probe: {'step': 5000, 'probe_auroc': 0.8475105598115222, 'probe_ap': 0.21038993586338697, 'rankme': 71.25105285644531, 'feature_std': 0.5181369781494141, 'mean_probe_auroc': 0.833682443735173, 'mean_probe_ap': 0.14465975590244942, 'mean_rankme': 36.65708923339844, 'mean_feature_std': 0.44634130597114563}
+step   5200 | loss 2.7500 jepa 0.4697 (const 0.7491) global 0.4808 (const 0.5592) kmer 0.3381 (const 0.4113) mlm 1.353 acc 0.325 var 0.010 cov 2.4680 cls std 0.737 tsim 0.808 mask 0.28 | 2480 seq/s
+step   5400 | loss 2.7590 jepa 0.4918 (const 0.7672) global 0.4697 (const 0.5448) kmer 0.3371 (const 0.4095) mlm 1.353 acc 0.325 var 0.010 cov 2.4440 cls std 0.721 tsim 0.797 mask 0.29 | 4216 seq/s
+step   5600 | loss 2.7749 jepa 0.5081 (const 0.7783) global 0.4703 (const 0.5436) kmer 0.3373 (const 0.4101) mlm 1.353 acc 0.324 var 0.009 cov 2.4179 cls std 0.705 tsim 0.789 mask 0.29 | 4215 seq/s
+step   5800 | loss 2.7918 jepa 0.5226 (const 0.7864) global 0.4728 (const 0.5443) kmer 0.3381 (const 0.4108) mlm 1.353 acc 0.324 var 0.009 cov 2.4007 cls std 0.694 tsim 0.782 mask 0.29 | 4217 seq/s
+step   6000 | loss 2.8061 jepa 0.5376 (const 0.7963) global 0.4730 (const 0.5434) kmer 0.3382 (const 0.4119) mlm 1.353 acc 0.325 var 0.009 cov 2.3834 cls std 0.678 tsim 0.773 mask 0.29 | 4220 seq/s
+step   6200 | loss 2.8165 jepa 0.5525 (const 0.8069) global 0.4694 (const 0.5388) kmer 0.3380 (const 0.4121) mlm 1.353 acc 0.325 var 0.009 cov 2.3659 cls std 0.663 tsim 0.763 mask 0.29 | 4218 seq/s
+step   6400 | loss 2.8247 jepa 0.5628 (const 0.8148) global 0.4697 (const 0.5377) kmer 0.3368 (const 0.4104) mlm 1.353 acc 0.325 var 0.009 cov 2.3503 cls std 0.647 tsim 0.757 mask 0.29 | 4218 seq/s
+step   6600 | loss 2.8307 jepa 0.5705 (const 0.8225) global 0.4669 (const 0.5336) kmer 0.3383 (const 0.4124) mlm 1.353 acc 0.325 var 0.009 cov 2.3384 cls std 0.633 tsim 0.754 mask 0.29 | 4216 seq/s
+step   6800 | loss 2.8354 jepa 0.5794 (const 0.8329) global 0.4634 (const 0.5287) kmer 0.3377 (const 0.4118) mlm 1.353 acc 0.325 var 0.009 cov 2.3248 cls std 0.620 tsim 0.750 mask 0.29 | 4215 seq/s
+step   7000 | loss 2.8374 jepa 0.5887 (const 0.8419) global 0.4582 (const 0.5231) kmer 0.3362 (const 0.4109) mlm 1.353 acc 0.325 var 0.009 cov 2.3137 cls std 0.610 tsim 0.747 mask 0.29 | 4219 seq/s
+step   7200 | loss 2.8564 jepa 0.5968 (const 0.8477) global 0.4680 (const 0.5320) kmer 0.3376 (const 0.4115) mlm 1.353 acc 0.324 var 0.009 cov 2.3036 cls std 0.595 tsim 0.744 mask 0.29 | 4214 seq/s
+step   7400 | loss 2.8738 jepa 0.6035 (const 0.8518) global 0.4790 (const 0.5423) kmer 0.3375 (const 0.4119) mlm 1.353 acc 0.324 var 0.008 cov 2.2968 cls std 0.586 tsim 0.742 mask 0.29 | 4215 seq/s
+step   7600 | loss 2.8820 jepa 0.6105 (const 0.8543) global 0.4824 (const 0.5441) kmer 0.3363 (const 0.4110) mlm 1.353 acc 0.325 var 0.009 cov 2.2858 cls std 0.576 tsim 0.739 mask 0.29 | 4219 seq/s
+step   7800 | loss 2.8894 jepa 0.6147 (const 0.8569) global 0.4853 (const 0.5462) kmer 0.3370 (const 0.4118) mlm 1.353 acc 0.325 var 0.008 cov 2.2789 cls std 0.565 tsim 0.737 mask 0.29 | 4217 seq/s
+step   8000 | loss 2.8985 jepa 0.6201 (const 0.8586) global 0.4900 (const 0.5509) kmer 0.3364 (const 0.4113) mlm 1.353 acc 0.325 var 0.008 cov 2.2714 cls std 0.557 tsim 0.736 mask 0.29 | 4219 seq/s
+step   8200 | loss 2.8986 jepa 0.6230 (const 0.8615) global 0.4883 (const 0.5488) kmer 0.3359 (const 0.4107) mlm 1.353 acc 0.325 var 0.008 cov 2.2640 cls std 0.551 tsim 0.736 mask 0.29 | 4220 seq/s
+step   8400 | loss 2.9030 jepa 0.6235 (const 0.8636) global 0.4917 (const 0.5526) kmer 0.3364 (const 0.4111) mlm 1.353 acc 0.325 var 0.008 cov 2.2597 cls std 0.542 tsim 0.740 mask 0.29 | 4216 seq/s
+step   8600 | loss 2.9067 jepa 0.6255 (const 0.8654) global 0.4940 (const 0.5557) kmer 0.3362 (const 0.4111) mlm 1.353 acc 0.325 var 0.008 cov 2.2543 cls std 0.534 tsim 0.742 mask 0.29 | 4220 seq/s
+step   8800 | loss 2.9092 jepa 0.6266 (const 0.8671) global 0.4948 (const 0.5555) kmer 0.3370 (const 0.4120) mlm 1.353 acc 0.325 var 0.008 cov 2.2475 cls std 0.525 tsim 0.744 mask 0.29 | 4219 seq/s
+step   9000 | loss 2.9113 jepa 0.6290 (const 0.8692) global 0.4956 (const 0.5554) kmer 0.3361 (const 0.4114) mlm 1.353 acc 0.325 var 0.008 cov 2.2434 cls std 0.518 tsim 0.747 mask 0.29 | 4219 seq/s
+step   9200 | loss 2.9156 jepa 0.6305 (const 0.8707) global 0.4982 (const 0.5578) kmer 0.3363 (const 0.4118) mlm 1.353 acc 0.325 var 0.008 cov 2.2395 cls std 0.513 tsim 0.750 mask 0.29 | 4219 seq/s
+step   9400 | loss 2.9209 jepa 0.6345 (const 0.8729) global 0.4997 (const 0.5583) kmer 0.3367 (const 0.4116) mlm 1.352 acc 0.325 var 0.008 cov 2.2351 cls std 0.504 tsim 0.749 mask 0.29 | 4217 seq/s
+step   9600 | loss 2.9302 jepa 0.6381 (const 0.8745) global 0.5061 (const 0.5645) kmer 0.3360 (const 0.4115) mlm 1.353 acc 0.325 var 0.008 cov 2.2312 cls std 0.497 tsim 0.748 mask 0.29 | 4220 seq/s
+step   9800 | loss 2.9386 jepa 0.6435 (const 0.8761) global 0.5088 (const 0.5660) kmer 0.3366 (const 0.4113) mlm 1.352 acc 0.325 var 0.008 cov 2.2255 cls std 0.489 tsim 0.746 mask 0.29 | 4215 seq/s
+step  10000 | loss 2.9359 jepa 0.6469 (const 0.8782) global 0.5030 (const 0.5612) kmer 0.3362 (const 0.4116) mlm 1.353 acc 0.325 var 0.008 cov 2.2235 cls std 0.482 tsim 0.745 mask 0.29 | 4215 seq/s
+Probe: {'step': 10000, 'probe_auroc': 0.8576635704924332, 'probe_ap': 0.2202426563606714, 'rankme': 103.06258392333984, 'feature_std': 0.3620462119579315, 'mean_probe_auroc': 0.8348516704241455, 'mean_probe_ap': 0.14899506902683712, 'mean_rankme': 85.15221405029297, 'mean_feature_std': 0.45960861444473267}
+step  10200 | loss 2.9341 jepa 0.6482 (const 0.8793) global 0.5003 (const 0.5567) kmer 0.3359 (const 0.4114) mlm 1.353 acc 0.325 var 0.008 cov 2.2203 cls std 0.476 tsim 0.746 mask 0.29 | 2843 seq/s
+step  10400 | loss 2.9329 jepa 0.6500 (const 0.8799) global 0.4979 (const 0.5538) kmer 0.3357 (const 0.4112) mlm 1.353 acc 0.325 var 0.008 cov 2.2173 cls std 0.470 tsim 0.747 mask 0.29 | 4212 seq/s
+step  10600 | loss 2.9320 jepa 0.6544 (const 0.8826) global 0.4938 (const 0.5504) kmer 0.3348 (const 0.4102) mlm 1.352 acc 0.325 var 0.008 cov 2.2147 cls std 0.466 tsim 0.745 mask 0.29 | 4215 seq/s
+step  10800 | loss 2.9322 jepa 0.6549 (const 0.8835) global 0.4927 (const 0.5490) kmer 0.3358 (const 0.4116) mlm 1.352 acc 0.325 var 0.008 cov 2.2116 cls std 0.458 tsim 0.744 mask 0.29 | 4213 seq/s
+step  11000 | loss 2.9353 jepa 0.6586 (const 0.8846) global 0.4918 (const 0.5481) kmer 0.3360 (const 0.4113) mlm 1.352 acc 0.325 var 0.008 cov 2.2097 cls std 0.453 tsim 0.743 mask 0.29 | 4213 seq/s
+step  11200 | loss 2.9319 jepa 0.6592 (const 0.8855) global 0.4884 (const 0.5445) kmer 0.3355 (const 0.4109) mlm 1.352 acc 0.325 var 0.008 cov 2.2074 cls std 0.447 tsim 0.743 mask 0.29 | 4214 seq/s
+step  11400 | loss 2.9386 jepa 0.6604 (const 0.8861) global 0.4935 (const 0.5492) kmer 0.3361 (const 0.4113) mlm 1.352 acc 0.325 var 0.008 cov 2.2054 cls std 0.443 tsim 0.743 mask 0.29 | 4215 seq/s
+step  11600 | loss 2.9438 jepa 0.6621 (const 0.8867) global 0.4975 (const 0.5534) kmer 0.3355 (const 0.4113) mlm 1.353 acc 0.325 var 0.008 cov 2.2038 cls std 0.439 tsim 0.741 mask 0.29 | 4214 seq/s
+step  11800 | loss 2.9441 jepa 0.6635 (const 0.8867) global 0.4961 (const 0.5521) kmer 0.3361 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.2001 cls std 0.435 tsim 0.740 mask 0.29 | 4214 seq/s
+step  12000 | loss 2.9461 jepa 0.6658 (const 0.8861) global 0.4966 (const 0.5524) kmer 0.3353 (const 0.4111) mlm 1.352 acc 0.326 var 0.008 cov 2.1997 cls std 0.432 tsim 0.738 mask 0.29 | 4213 seq/s
+step  12200 | loss 2.9504 jepa 0.6683 (const 0.8867) global 0.4979 (const 0.5552) kmer 0.3357 (const 0.4110) mlm 1.353 acc 0.325 var 0.008 cov 2.1983 cls std 0.426 tsim 0.736 mask 0.29 | 4217 seq/s
+step  12400 | loss 2.9547 jepa 0.6707 (const 0.8877) global 0.5001 (const 0.5584) kmer 0.3356 (const 0.4115) mlm 1.352 acc 0.326 var 0.008 cov 2.1971 cls std 0.422 tsim 0.732 mask 0.29 | 4209 seq/s
+step  12600 | loss 2.9620 jepa 0.6731 (const 0.8885) global 0.5047 (const 0.5631) kmer 0.3361 (const 0.4123) mlm 1.352 acc 0.326 var 0.008 cov 2.1956 cls std 0.419 tsim 0.729 mask 0.30 | 4216 seq/s
+step  12800 | loss 2.9582 jepa 0.6754 (const 0.8885) global 0.4994 (const 0.5588) kmer 0.3352 (const 0.4109) mlm 1.352 acc 0.326 var 0.008 cov 2.1953 cls std 0.416 tsim 0.726 mask 0.30 | 4215 seq/s
+step  13000 | loss 2.9521 jepa 0.6771 (const 0.8878) global 0.4923 (const 0.5527) kmer 0.3349 (const 0.4111) mlm 1.352 acc 0.325 var 0.008 cov 2.1929 cls std 0.413 tsim 0.723 mask 0.30 | 4202 seq/s
+step  13200 | loss 2.9551 jepa 0.6779 (const 0.8867) global 0.4935 (const 0.5543) kmer 0.3355 (const 0.4118) mlm 1.353 acc 0.325 var 0.008 cov 2.1926 cls std 0.409 tsim 0.721 mask 0.30 | 4213 seq/s
+step  13400 | loss 2.9598 jepa 0.6788 (const 0.8862) global 0.4977 (const 0.5582) kmer 0.3354 (const 0.4113) mlm 1.352 acc 0.325 var 0.008 cov 2.1901 cls std 0.404 tsim 0.718 mask 0.30 | 4213 seq/s
+step  13600 | loss 2.9625 jepa 0.6805 (const 0.8852) global 0.4989 (const 0.5589) kmer 0.3352 (const 0.4107) mlm 1.352 acc 0.325 var 0.008 cov 2.1896 cls std 0.401 tsim 0.714 mask 0.30 | 4212 seq/s
+step  13800 | loss 2.9641 jepa 0.6817 (const 0.8832) global 0.4989 (const 0.5593) kmer 0.3358 (const 0.4118) mlm 1.352 acc 0.326 var 0.008 cov 2.1894 cls std 0.397 tsim 0.708 mask 0.30 | 4215 seq/s
+step  14000 | loss 2.9587 jepa 0.6799 (const 0.8784) global 0.4959 (const 0.5566) kmer 0.3351 (const 0.4108) mlm 1.352 acc 0.326 var 0.008 cov 2.1872 cls std 0.394 tsim 0.704 mask 0.30 | 4212 seq/s
+step  14200 | loss 2.9510 jepa 0.6738 (const 0.8709) global 0.4936 (const 0.5550) kmer 0.3357 (const 0.4115) mlm 1.353 acc 0.325 var 0.008 cov 2.1870 cls std 0.389 tsim 0.702 mask 0.30 | 4211 seq/s
+step  14400 | loss 2.9452 jepa 0.6677 (const 0.8638) global 0.4944 (const 0.5561) kmer 0.3356 (const 0.4123) mlm 1.352 acc 0.326 var 0.008 cov 2.1873 cls std 0.386 tsim 0.701 mask 0.30 | 4212 seq/s
+step  14600 | loss 2.9402 jepa 0.6665 (const 0.8586) global 0.4915 (const 0.5529) kmer 0.3348 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.1859 cls std 0.384 tsim 0.696 mask 0.30 | 4211 seq/s
+step  14800 | loss 2.9391 jepa 0.6640 (const 0.8532) global 0.4922 (const 0.5542) kmer 0.3354 (const 0.4121) mlm 1.352 acc 0.326 var 0.008 cov 2.1862 cls std 0.383 tsim 0.693 mask 0.30 | 4215 seq/s
+step  15000 | loss 2.9396 jepa 0.6634 (const 0.8494) global 0.4942 (const 0.5557) kmer 0.3349 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.1846 cls std 0.377 tsim 0.688 mask 0.30 | 4212 seq/s
+Probe: {'step': 15000, 'probe_auroc': 0.8649366918000099, 'probe_ap': 0.22903052143961322, 'rankme': 114.17924499511719, 'feature_std': 0.33081477880477905, 'mean_probe_auroc': 0.8447200652850204, 'mean_probe_ap': 0.18172799859792504, 'mean_rankme': 107.65521240234375, 'mean_feature_std': 0.39845067262649536}
+step  15200 | loss 2.9351 jepa 0.6590 (const 0.8452) global 0.4938 (const 0.5556) kmer 0.3346 (const 0.4111) mlm 1.352 acc 0.325 var 0.008 cov 2.1837 cls std 0.375 tsim 0.686 mask 0.30 | 2937 seq/s
+step  15400 | loss 2.9353 jepa 0.6568 (const 0.8424) global 0.4958 (const 0.5571) kmer 0.3351 (const 0.4116) mlm 1.352 acc 0.325 var 0.008 cov 2.1824 cls std 0.372 tsim 0.685 mask 0.30 | 4211 seq/s
+step  15600 | loss 2.9342 jepa 0.6554 (const 0.8407) global 0.4967 (const 0.5592) kmer 0.3349 (const 0.4115) mlm 1.352 acc 0.326 var 0.008 cov 2.1800 cls std 0.370 tsim 0.683 mask 0.30 | 4215 seq/s
+step  15800 | loss 2.9375 jepa 0.6560 (const 0.8401) global 0.4993 (const 0.5623) kmer 0.3350 (const 0.4115) mlm 1.352 acc 0.326 var 0.008 cov 2.1814 cls std 0.368 tsim 0.680 mask 0.30 | 4212 seq/s
+step  16000 | loss 2.9379 jepa 0.6562 (const 0.8392) global 0.4998 (const 0.5633) kmer 0.3347 (const 0.4115) mlm 1.352 acc 0.326 var 0.008 cov 2.1805 cls std 0.365 tsim 0.678 mask 0.30 | 4214 seq/s
+step  16200 | loss 2.9416 jepa 0.6572 (const 0.8388) global 0.5026 (const 0.5659) kmer 0.3345 (const 0.4106) mlm 1.352 acc 0.326 var 0.008 cov 2.1791 cls std 0.361 tsim 0.675 mask 0.30 | 4214 seq/s
+step  16400 | loss 2.9391 jepa 0.6568 (const 0.8372) global 0.5009 (const 0.5649) kmer 0.3344 (const 0.4115) mlm 1.352 acc 0.326 var 0.008 cov 2.1803 cls std 0.362 tsim 0.673 mask 0.30 | 4217 seq/s
+step  16600 | loss 2.9370 jepa 0.6572 (const 0.8365) global 0.4982 (const 0.5618) kmer 0.3344 (const 0.4114) mlm 1.352 acc 0.326 var 0.008 cov 2.1786 cls std 0.360 tsim 0.670 mask 0.30 | 4213 seq/s
+step  16800 | loss 2.9348 jepa 0.6565 (const 0.8355) global 0.4971 (const 0.5603) kmer 0.3342 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.1770 cls std 0.357 tsim 0.669 mask 0.30 | 4216 seq/s
+step  17000 | loss 2.9358 jepa 0.6559 (const 0.8339) global 0.4979 (const 0.5605) kmer 0.3350 (const 0.4126) mlm 1.352 acc 0.326 var 0.008 cov 2.1758 cls std 0.357 tsim 0.668 mask 0.30 | 4214 seq/s
+step  17200 | loss 2.9331 jepa 0.6547 (const 0.8315) global 0.4960 (const 0.5581) kmer 0.3356 (const 0.4124) mlm 1.352 acc 0.326 var 0.008 cov 2.1770 cls std 0.354 tsim 0.667 mask 0.30 | 4214 seq/s
+step  17400 | loss 2.9315 jepa 0.6542 (const 0.8305) global 0.4961 (const 0.5572) kmer 0.3342 (const 0.4111) mlm 1.352 acc 0.326 var 0.008 cov 2.1752 cls std 0.353 tsim 0.666 mask 0.30 | 4212 seq/s
+step  17600 | loss 2.9310 jepa 0.6533 (const 0.8294) global 0.4963 (const 0.5571) kmer 0.3342 (const 0.4112) mlm 1.352 acc 0.326 var 0.008 cov 2.1737 cls std 0.350 tsim 0.665 mask 0.30 | 4214 seq/s
+step  17800 | loss 2.9314 jepa 0.6532 (const 0.8286) global 0.4966 (const 0.5573) kmer 0.3348 (const 0.4121) mlm 1.352 acc 0.326 var 0.008 cov 2.1747 cls std 0.348 tsim 0.665 mask 0.30 | 4210 seq/s
+step  18000 | loss 2.9303 jepa 0.6529 (const 0.8271) global 0.4968 (const 0.5573) kmer 0.3342 (const 0.4113) mlm 1.352 acc 0.326 var 0.008 cov 2.1735 cls std 0.345 tsim 0.664 mask 0.30 | 4214 seq/s
+step  18200 | loss 2.9276 jepa 0.6526 (const 0.8259) global 0.4944 (const 0.5544) kmer 0.3338 (const 0.4109) mlm 1.352 acc 0.326 var 0.008 cov 2.1729 cls std 0.341 tsim 0.662 mask 0.30 | 4211 seq/s
+step  18400 | loss 2.9311 jepa 0.6521 (const 0.8248) global 0.4980 (const 0.5579) kmer 0.3344 (const 0.4113) mlm 1.352 acc 0.326 var 0.008 cov 2.1723 cls std 0.342 tsim 0.662 mask 0.30 | 4215 seq/s
+step  18600 | loss 2.9338 jepa 0.6508 (const 0.8231) global 0.5018 (const 0.5615) kmer 0.3344 (const 0.4112) mlm 1.352 acc 0.326 var 0.008 cov 2.1721 cls std 0.341 tsim 0.661 mask 0.30 | 4215 seq/s
+step  18800 | loss 2.9331 jepa 0.6503 (const 0.8227) global 0.5023 (const 0.5624) kmer 0.3342 (const 0.4111) mlm 1.352 acc 0.327 var 0.008 cov 2.1720 cls std 0.338 tsim 0.660 mask 0.30 | 4215 seq/s
+step  19000 | loss 2.9345 jepa 0.6510 (const 0.8222) global 0.5029 (const 0.5635) kmer 0.3342 (const 0.4113) mlm 1.352 acc 0.326 var 0.008 cov 2.1698 cls std 0.335 tsim 0.658 mask 0.30 | 4210 seq/s
+step  19200 | loss 2.9370 jepa 0.6509 (const 0.8205) global 0.5059 (const 0.5671) kmer 0.3339 (const 0.4107) mlm 1.352 acc 0.326 var 0.008 cov 2.1697 cls std 0.335 tsim 0.656 mask 0.30 | 4211 seq/s
+step  19400 | loss 2.9396 jepa 0.6510 (const 0.8202) global 0.5082 (const 0.5701) kmer 0.3340 (const 0.4104) mlm 1.352 acc 0.326 var 0.008 cov 2.1699 cls std 0.333 tsim 0.655 mask 0.30 | 4213 seq/s
+step  19600 | loss 2.9430 jepa 0.6512 (const 0.8200) global 0.5105 (const 0.5732) kmer 0.3346 (const 0.4119) mlm 1.352 acc 0.326 var 0.008 cov 2.1703 cls std 0.333 tsim 0.654 mask 0.30 | 4212 seq/s
+step  19800 | loss 2.9442 jepa 0.6509 (const 0.8184) global 0.5133 (const 0.5761) kmer 0.3335 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.1685 cls std 0.332 tsim 0.652 mask 0.31 | 4218 seq/s
+step  20000 | loss 2.9482 jepa 0.6514 (const 0.8188) global 0.5159 (const 0.5780) kmer 0.3346 (const 0.4116) mlm 1.352 acc 0.326 var 0.008 cov 2.1693 cls std 0.331 tsim 0.650 mask 0.31 | 4217 seq/s
+Probe: {'step': 20000, 'probe_auroc': 0.874689850550636, 'probe_ap': 0.2588261713741234, 'rankme': 117.85779571533203, 'feature_std': 0.3500899076461792, 'mean_probe_auroc': 0.8544783633345335, 'mean_probe_ap': 0.20472146801300406, 'mean_rankme': 122.20562744140625, 'mean_feature_std': 0.3527669310569763}
+step  20200 | loss 2.9481 jepa 0.6511 (const 0.8180) global 0.5167 (const 0.5790) kmer 0.3340 (const 0.4106) mlm 1.352 acc 0.326 var 0.008 cov 2.1672 cls std 0.328 tsim 0.649 mask 0.31 | 2854 seq/s
+step  20400 | loss 2.9494 jepa 0.6496 (const 0.8167) global 0.5184 (const 0.5809) kmer 0.3350 (const 0.4129) mlm 1.352 acc 0.326 var 0.008 cov 2.1690 cls std 0.328 tsim 0.650 mask 0.31 | 4211 seq/s
+step  20600 | loss 2.9478 jepa 0.6493 (const 0.8165) global 0.5184 (const 0.5809) kmer 0.3339 (const 0.4116) mlm 1.352 acc 0.327 var 0.008 cov 2.1673 cls std 0.326 tsim 0.649 mask 0.31 | 4211 seq/s
+step  20800 | loss 2.9477 jepa 0.6495 (const 0.8162) global 0.5181 (const 0.5811) kmer 0.3337 (const 0.4107) mlm 1.352 acc 0.327 var 0.008 cov 2.1659 cls std 0.325 tsim 0.648 mask 0.31 | 4215 seq/s
+step  21000 | loss 2.9490 jepa 0.6500 (const 0.8155) global 0.5184 (const 0.5806) kmer 0.3343 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.1667 cls std 0.323 tsim 0.647 mask 0.31 | 4212 seq/s
+step  21200 | loss 2.9457 jepa 0.6501 (const 0.8153) global 0.5159 (const 0.5789) kmer 0.3336 (const 0.4114) mlm 1.352 acc 0.327 var 0.008 cov 2.1655 cls std 0.321 tsim 0.646 mask 0.31 | 4213 seq/s
+step  21400 | loss 2.9452 jepa 0.6509 (const 0.8148) global 0.5145 (const 0.5766) kmer 0.3337 (const 0.4106) mlm 1.352 acc 0.326 var 0.008 cov 2.1643 cls std 0.320 tsim 0.643 mask 0.31 | 4215 seq/s
+step  21600 | loss 2.9461 jepa 0.6522 (const 0.8148) global 0.5141 (const 0.5765) kmer 0.3337 (const 0.4113) mlm 1.352 acc 0.327 var 0.008 cov 2.1634 cls std 0.320 tsim 0.640 mask 0.31 | 4215 seq/s
+step  21800 | loss 2.9491 jepa 0.6534 (const 0.8147) global 0.5158 (const 0.5782) kmer 0.3337 (const 0.4111) mlm 1.352 acc 0.326 var 0.008 cov 2.1637 cls std 0.318 tsim 0.638 mask 0.31 | 4214 seq/s
+step  22000 | loss 2.9501 jepa 0.6542 (const 0.8139) global 0.5156 (const 0.5784) kmer 0.3341 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.1645 cls std 0.316 tsim 0.636 mask 0.31 | 4217 seq/s
+step  22200 | loss 2.9504 jepa 0.6545 (const 0.8134) global 0.5164 (const 0.5799) kmer 0.3337 (const 0.4111) mlm 1.352 acc 0.327 var 0.008 cov 2.1640 cls std 0.317 tsim 0.635 mask 0.31 | 4214 seq/s
+step  22400 | loss 2.9517 jepa 0.6545 (const 0.8130) global 0.5178 (const 0.5808) kmer 0.3333 (const 0.4112) mlm 1.352 acc 0.327 var 0.008 cov 2.1625 cls std 0.314 tsim 0.633 mask 0.31 | 4212 seq/s
+step  22600 | loss 2.9538 jepa 0.6554 (const 0.8127) global 0.5183 (const 0.5811) kmer 0.3341 (const 0.4120) mlm 1.352 acc 0.326 var 0.008 cov 2.1629 cls std 0.315 tsim 0.631 mask 0.31 | 4212 seq/s
+step  22800 | loss 2.9538 jepa 0.6552 (const 0.8116) global 0.5187 (const 0.5803) kmer 0.3339 (const 0.4110) mlm 1.352 acc 0.327 var 0.008 cov 2.1629 cls std 0.313 tsim 0.630 mask 0.31 | 4214 seq/s
+step  23000 | loss 2.9527 jepa 0.6553 (const 0.8115) global 0.5176 (const 0.5801) kmer 0.3336 (const 0.4111) mlm 1.352 acc 0.326 var 0.008 cov 2.1616 cls std 0.313 tsim 0.629 mask 0.31 | 4216 seq/s
+step  23200 | loss 2.9523 jepa 0.6555 (const 0.8119) global 0.5178 (const 0.5806) kmer 0.3330 (const 0.4114) mlm 1.352 acc 0.326 var 0.008 cov 2.1614 cls std 0.314 tsim 0.628 mask 0.31 | 4215 seq/s
+step  23400 | loss 2.9529 jepa 0.6558 (const 0.8120) global 0.5182 (const 0.5808) kmer 0.3330 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.1600 cls std 0.313 tsim 0.628 mask 0.31 | 4216 seq/s
+step  23600 | loss 2.9563 jepa 0.6566 (const 0.8123) global 0.5200 (const 0.5838) kmer 0.3342 (const 0.4127) mlm 1.351 acc 0.327 var 0.008 cov 2.1596 cls std 0.313 tsim 0.626 mask 0.31 | 4214 seq/s
+step  23800 | loss 2.9587 jepa 0.6575 (const 0.8125) global 0.5221 (const 0.5858) kmer 0.3334 (const 0.4113) mlm 1.351 acc 0.327 var 0.008 cov 2.1595 cls std 0.311 tsim 0.624 mask 0.31 | 4217 seq/s
+step  24000 | loss 2.9626 jepa 0.6579 (const 0.8123) global 0.5252 (const 0.5881) kmer 0.3336 (const 0.4112) mlm 1.352 acc 0.326 var 0.008 cov 2.1599 cls std 0.310 tsim 0.623 mask 0.31 | 4212 seq/s
+step  24200 | loss 2.9654 jepa 0.6579 (const 0.8118) global 0.5280 (const 0.5899) kmer 0.3338 (const 0.4116) mlm 1.352 acc 0.327 var 0.008 cov 2.1585 cls std 0.309 tsim 0.622 mask 0.31 | 4213 seq/s
+step  24400 | loss 2.9655 jepa 0.6579 (const 0.8110) global 0.5278 (const 0.5896) kmer 0.3339 (const 0.4121) mlm 1.352 acc 0.326 var 0.008 cov 2.1595 cls std 0.308 tsim 0.620 mask 0.31 | 4214 seq/s
+step  24600 | loss 2.9656 jepa 0.6581 (const 0.8105) global 0.5281 (const 0.5901) kmer 0.3336 (const 0.4113) mlm 1.352 acc 0.327 var 0.008 cov 2.1586 cls std 0.309 tsim 0.619 mask 0.31 | 4211 seq/s
+step  24800 | loss 2.9685 jepa 0.6585 (const 0.8100) global 0.5309 (const 0.5926) kmer 0.3333 (const 0.4108) mlm 1.352 acc 0.327 var 0.008 cov 2.1575 cls std 0.308 tsim 0.618 mask 0.31 | 4213 seq/s
+step  25000 | loss 2.9694 jepa 0.6581 (const 0.8097) global 0.5315 (const 0.5932) kmer 0.3341 (const 0.4121) mlm 1.352 acc 0.326 var 0.008 cov 2.1584 cls std 0.307 tsim 0.618 mask 0.31 | 4213 seq/s
+Probe: {'step': 25000, 'probe_auroc': 0.8782098359810856, 'probe_ap': 0.27465647835590234, 'rankme': 122.48390197753906, 'feature_std': 0.3545914888381958, 'mean_probe_auroc': 0.8584563978263228, 'mean_probe_ap': 0.22927573414365734, 'mean_rankme': 130.96958923339844, 'mean_feature_std': 0.3265216648578644}
+step  25200 | loss 2.9712 jepa 0.6586 (const 0.8099) global 0.5335 (const 0.5958) kmer 0.3334 (const 0.4114) mlm 1.352 acc 0.326 var 0.008 cov 2.1579 cls std 0.307 tsim 0.617 mask 0.31 | 2852 seq/s
+step  25400 | loss 2.9693 jepa 0.6592 (const 0.8103) global 0.5320 (const 0.5948) kmer 0.3328 (const 0.4111) mlm 1.351 acc 0.327 var 0.008 cov 2.1570 cls std 0.307 tsim 0.616 mask 0.31 | 4210 seq/s
+step  25600 | loss 2.9713 jepa 0.6605 (const 0.8109) global 0.5321 (const 0.5940) kmer 0.3335 (const 0.4112) mlm 1.351 acc 0.327 var 0.008 cov 2.1557 cls std 0.305 tsim 0.614 mask 0.31 | 4209 seq/s
+step  25800 | loss 2.9718 jepa 0.6627 (const 0.8125) global 0.5294 (const 0.5926) kmer 0.3342 (const 0.4116) mlm 1.352 acc 0.326 var 0.008 cov 2.1565 cls std 0.306 tsim 0.611 mask 0.31 | 4212 seq/s
+step  26000 | loss 2.9710 jepa 0.6637 (const 0.8131) global 0.5286 (const 0.5928) kmer 0.3334 (const 0.4116) mlm 1.351 acc 0.327 var 0.008 cov 2.1556 cls std 0.305 tsim 0.609 mask 0.31 | 4217 seq/s
+step  26200 | loss 2.9727 jepa 0.6647 (const 0.8130) global 0.5283 (const 0.5921) kmer 0.3340 (const 0.4110) mlm 1.352 acc 0.326 var 0.008 cov 2.1548 cls std 0.304 tsim 0.607 mask 0.31 | 4215 seq/s
+step  26400 | loss 2.9711 jepa 0.6642 (const 0.8130) global 0.5276 (const 0.5924) kmer 0.3338 (const 0.4114) mlm 1.352 acc 0.326 var 0.008 cov 2.1547 cls std 0.303 tsim 0.606 mask 0.31 | 4216 seq/s
+step  26600 | loss 2.9695 jepa 0.6645 (const 0.8131) global 0.5266 (const 0.5914) kmer 0.3332 (const 0.4111) mlm 1.351 acc 0.327 var 0.008 cov 2.1536 cls std 0.302 tsim 0.605 mask 0.32 | 4215 seq/s
+step  26800 | loss 2.9710 jepa 0.6640 (const 0.8121) global 0.5286 (const 0.5937) kmer 0.3328 (const 0.4104) mlm 1.352 acc 0.327 var 0.008 cov 2.1537 cls std 0.302 tsim 0.604 mask 0.32 | 4212 seq/s
+step  27000 | loss 2.9740 jepa 0.6639 (const 0.8113) global 0.5311 (const 0.5961) kmer 0.3335 (const 0.4117) mlm 1.352 acc 0.327 var 0.008 cov 2.1538 cls std 0.301 tsim 0.603 mask 0.32 | 4209 seq/s
+step  27200 | loss 2.9752 jepa 0.6639 (const 0.8109) global 0.5326 (const 0.5965) kmer 0.3333 (const 0.4111) mlm 1.352 acc 0.326 var 0.008 cov 2.1535 cls std 0.301 tsim 0.602 mask 0.32 | 4210 seq/s
+step  27400 | loss 2.9733 jepa 0.6638 (const 0.8108) global 0.5307 (const 0.5940) kmer 0.3335 (const 0.4111) mlm 1.352 acc 0.327 var 0.008 cov 2.1542 cls std 0.302 tsim 0.603 mask 0.32 | 4212 seq/s
+step  27600 | loss 2.9739 jepa 0.6652 (const 0.8118) global 0.5298 (const 0.5923) kmer 0.3334 (const 0.4114) mlm 1.352 acc 0.326 var 0.008 cov 2.1523 cls std 0.301 tsim 0.602 mask 0.32 | 4211 seq/s
+step  27800 | loss 2.9754 jepa 0.6665 (const 0.8128) global 0.5300 (const 0.5920) kmer 0.3336 (const 0.4115) mlm 1.352 acc 0.327 var 0.008 cov 2.1518 cls std 0.301 tsim 0.601 mask 0.32 | 4212 seq/s
+step  28000 | loss 2.9758 jepa 0.6671 (const 0.8136) global 0.5303 (const 0.5931) kmer 0.3331 (const 0.4110) mlm 1.352 acc 0.327 var 0.008 cov 2.1507 cls std 0.301 tsim 0.600 mask 0.32 | 4211 seq/s
+step  28200 | loss 2.9781 jepa 0.6684 (const 0.8143) global 0.5313 (const 0.5943) kmer 0.3331 (const 0.4113) mlm 1.352 acc 0.327 var 0.008 cov 2.1506 cls std 0.302 tsim 0.599 mask 0.32 | 4212 seq/s
+step  28400 | loss 2.9811 jepa 0.6694 (const 0.8147) global 0.5338 (const 0.5954) kmer 0.3329 (const 0.4109) mlm 1.351 acc 0.327 var 0.008 cov 2.1497 cls std 0.301 tsim 0.597 mask 0.32 | 4211 seq/s
+step  28600 | loss 2.9837 jepa 0.6696 (const 0.8151) global 0.5357 (const 0.5980) kmer 0.3334 (const 0.4121) mlm 1.351 acc 0.327 var 0.008 cov 2.1501 cls std 0.300 tsim 0.596 mask 0.32 | 4215 seq/s
+step  28800 | loss 2.9853 jepa 0.6703 (const 0.8149) global 0.5364 (const 0.5985) kmer 0.3335 (const 0.4110) mlm 1.352 acc 0.327 var 0.008 cov 2.1512 cls std 0.299 tsim 0.594 mask 0.32 | 4209 seq/s
+step  29000 | loss 2.9840 jepa 0.6703 (const 0.8151) global 0.5360 (const 0.5997) kmer 0.3330 (const 0.4108) mlm 1.351 acc 0.327 var 0.008 cov 2.1498 cls std 0.300 tsim 0.594 mask 0.32 | 4205 seq/s
+step  29200 | loss 2.9861 jepa 0.6708 (const 0.8156) global 0.5379 (const 0.6022) kmer 0.3324 (const 0.4115) mlm 1.352 acc 0.327 var 0.008 cov 2.1490 cls std 0.302 tsim 0.593 mask 0.32 | 4171 seq/s
+step  29400 | loss 2.9885 jepa 0.6712 (const 0.8156) global 0.5396 (const 0.6037) kmer 0.3324 (const 0.4111) mlm 1.352 acc 0.327 var 0.008 cov 2.1481 cls std 0.301 tsim 0.592 mask 0.32 | 4166 seq/s
+step  29600 | loss 2.9915 jepa 0.6720 (const 0.8162) global 0.5417 (const 0.6059) kmer 0.3330 (const 0.4111) mlm 1.351 acc 0.327 var 0.008 cov 2.1494 cls std 0.299 tsim 0.591 mask 0.32 | 4176 seq/s
+step  29800 | loss 2.9947 jepa 0.6734 (const 0.8171) global 0.5430 (const 0.6078) kmer 0.3334 (const 0.4119) mlm 1.351 acc 0.327 var 0.008 cov 2.1488 cls std 0.300 tsim 0.590 mask 0.32 | 4170 seq/s
+step  30000 | loss 2.9958 jepa 0.6740 (const 0.8175) global 0.5435 (const 0.6087) kmer 0.3331 (const 0.4118) mlm 1.352 acc 0.326 var 0.008 cov 2.1484 cls std 0.299 tsim 0.589 mask 0.32 | 4170 seq/s
+Probe: {'step': 30000, 'probe_auroc': 0.8793902822662194, 'probe_ap': 0.2781053669903965, 'rankme': 127.00505065917969, 'feature_std': 0.3617105185985565, 'mean_probe_auroc': 0.860721779060238, 'mean_probe_ap': 0.2531991947888184, 'mean_rankme': 137.68759155273438, 'mean_feature_std': 0.31214675307273865}
+step  30200 | loss 2.9973 jepa 0.6751 (const 0.8179) global 0.5441 (const 0.6096) kmer 0.3332 (const 0.4114) mlm 1.351 acc 0.327 var 0.008 cov 2.1473 cls std 0.299 tsim 0.588 mask 0.32 | 2851 seq/s
+step  30400 | loss 2.9993 jepa 0.6756 (const 0.8183) global 0.5447 (const 0.6105) kmer 0.3338 (const 0.4114) mlm 1.352 acc 0.327 var 0.008 cov 2.1466 cls std 0.298 tsim 0.587 mask 0.32 | 4215 seq/s
+step  30600 | loss 2.9982 jepa 0.6763 (const 0.8189) global 0.5442 (const 0.6105) kmer 0.3331 (const 0.4116) mlm 1.351 acc 0.327 var 0.008 cov 2.1455 cls std 0.299 tsim 0.586 mask 0.32 | 4215 seq/s
+step  30800 | loss 2.9991 jepa 0.6776 (const 0.8194) global 0.5435 (const 0.6112) kmer 0.3328 (const 0.4117) mlm 1.352 acc 0.326 var 0.008 cov 2.1458 cls std 0.301 tsim 0.584 mask 0.32 | 4211 seq/s
+step  31000 | loss 3.0021 jepa 0.6786 (const 0.8205) global 0.5447 (const 0.6120) kmer 0.3339 (const 0.4123) mlm 1.352 acc 0.327 var 0.008 cov 2.1451 cls std 0.299 tsim 0.583 mask 0.32 | 4207 seq/s
+step  31200 | loss 3.0012 jepa 0.6796 (const 0.8211) global 0.5443 (const 0.6121) kmer 0.3328 (const 0.4120) mlm 1.351 acc 0.327 var 0.008 cov 2.1462 cls std 0.300 tsim 0.582 mask 0.32 | 4172 seq/s
+step  31400 | loss 3.0033 jepa 0.6812 (const 0.8216) global 0.5437 (const 0.6117) kmer 0.3335 (const 0.4120) mlm 1.352 acc 0.327 var 0.008 cov 2.1452 cls std 0.299 tsim 0.580 mask 0.32 | 4160 seq/s
+step  31600 | loss 3.0021 jepa 0.6811 (const 0.8210) global 0.5437 (const 0.6115) kmer 0.3326 (const 0.4113) mlm 1.351 acc 0.326 var 0.008 cov 2.1456 cls std 0.299 tsim 0.579 mask 0.32 | 4165 seq/s
+step  31800 | loss 3.0038 jepa 0.6810 (const 0.8211) global 0.5449 (const 0.6118) kmer 0.3335 (const 0.4117) mlm 1.351 acc 0.327 var 0.008 cov 2.1439 cls std 0.298 tsim 0.578 mask 0.32 | 4173 seq/s
+step  32000 | loss 3.0034 jepa 0.6817 (const 0.8211) global 0.5446 (const 0.6117) kmer 0.3323 (const 0.4107) mlm 1.351 acc 0.327 var 0.008 cov 2.1435 cls std 0.297 tsim 0.576 mask 0.32 | 4167 seq/s
+step  32200 | loss 3.0046 jepa 0.6817 (const 0.8208) global 0.5453 (const 0.6125) kmer 0.3332 (const 0.4120) mlm 1.351 acc 0.327 var 0.008 cov 2.1436 cls std 0.298 tsim 0.575 mask 0.32 | 4178 seq/s
+step  32400 | loss 3.0051 jepa 0.6821 (const 0.8205) global 0.5452 (const 0.6116) kmer 0.3333 (const 0.4112) mlm 1.351 acc 0.327 var 0.008 cov 2.1419 cls std 0.296 tsim 0.574 mask 0.32 | 4185 seq/s
+step  32600 | loss 3.0048 jepa 0.6823 (const 0.8205) global 0.5445 (const 0.6117) kmer 0.3329 (const 0.4118) mlm 1.352 acc 0.327 var 0.008 cov 2.1432 cls std 0.298 tsim 0.573 mask 0.32 | 4177 seq/s
+step  32800 | loss 3.0070 jepa 0.6834 (const 0.8205) global 0.5457 (const 0.6123) kmer 0.3332 (const 0.4111) mlm 1.352 acc 0.327 var 0.008 cov 2.1414 cls std 0.298 tsim 0.572 mask 0.32 | 4180 seq/s
+step  33000 | loss 3.0085 jepa 0.6830 (const 0.8205) global 0.5481 (const 0.6154) kmer 0.3327 (const 0.4112) mlm 1.351 acc 0.327 var 0.008 cov 2.1417 cls std 0.298 tsim 0.572 mask 0.32 | 4185 seq/s
+step  33200 | loss 3.0112 jepa 0.6830 (const 0.8206) global 0.5502 (const 0.6175) kmer 0.3334 (const 0.4115) mlm 1.351 acc 0.327 var 0.008 cov 2.1412 cls std 0.298 tsim 0.572 mask 0.32 | 4179 seq/s
+step  33400 | loss 3.0126 jepa 0.6841 (const 0.8210) global 0.5515 (const 0.6186) kmer 0.3324 (const 0.4115) mlm 1.351 acc 0.326 var 0.008 cov 2.1419 cls std 0.297 tsim 0.571 mask 0.32 | 4177 seq/s
+step  33600 | loss 3.0141 jepa 0.6854 (const 0.8214) global 0.5512 (const 0.6187) kmer 0.3327 (const 0.4109) mlm 1.352 acc 0.327 var 0.008 cov 2.1410 cls std 0.297 tsim 0.569 mask 0.32 | 4177 seq/s
+step  33800 | loss 3.0142 jepa 0.6862 (const 0.8217) global 0.5510 (const 0.6185) kmer 0.3325 (const 0.4111) mlm 1.351 acc 0.327 var 0.008 cov 2.1400 cls std 0.298 tsim 0.567 mask 0.33 | 4178 seq/s
+step  34000 | loss 3.0137 jepa 0.6863 (const 0.8220) global 0.5505 (const 0.6183) kmer 0.3326 (const 0.4111) mlm 1.351 acc 0.327 var 0.008 cov 2.1399 cls std 0.296 tsim 0.566 mask 0.33 | 4177 seq/s
+step  34200 | loss 3.0148 jepa 0.6864 (const 0.8224) global 0.5510 (const 0.6191) kmer 0.3331 (const 0.4119) mlm 1.351 acc 0.327 var 0.008 cov 2.1389 cls std 0.297 tsim 0.565 mask 0.33 | 4175 seq/s
+step  34400 | loss 3.0141 jepa 0.6869 (const 0.8224) global 0.5502 (const 0.6187) kmer 0.3327 (const 0.4110) mlm 1.351 acc 0.327 var 0.008 cov 2.1381 cls std 0.297 tsim 0.565 mask 0.33 | 4175 seq/s
+step  34600 | loss 3.0144 jepa 0.6864 (const 0.8225) global 0.5513 (const 0.6197) kmer 0.3326 (const 0.4117) mlm 1.351 acc 0.327 var 0.008 cov 2.1379 cls std 0.298 tsim 0.565 mask 0.33 | 4178 seq/s
+step  34800 | loss 3.0159 jepa 0.6870 (const 0.8224) global 0.5520 (const 0.6208) kmer 0.3331 (const 0.4114) mlm 1.351 acc 0.328 var 0.007 cov 2.1383 cls std 0.298 tsim 0.564 mask 0.33 | 4177 seq/s
+step  35000 | loss 3.0191 jepa 0.6878 (const 0.8229) global 0.5534 (const 0.6223) kmer 0.3333 (const 0.4116) mlm 1.352 acc 0.327 var 0.007 cov 2.1377 cls std 0.297 tsim 0.562 mask 0.33 | 4185 seq/s
+Probe: {'step': 35000, 'probe_auroc': 0.8805603775690884, 'probe_ap': 0.2984373681939634, 'rankme': 134.32655334472656, 'feature_std': 0.36041373014450073, 'mean_probe_auroc': 0.8607181598356698, 'mean_probe_ap': 0.25604528049201325, 'mean_rankme': 142.08226013183594, 'mean_feature_std': 0.29724571108818054}
+step  35200 | loss 3.0183 jepa 0.6885 (const 0.8233) global 0.5532 (const 0.6224) kmer 0.3323 (const 0.4114) mlm 1.351 acc 0.327 var 0.008 cov 2.1370 cls std 0.298 tsim 0.562 mask 0.33 | 2987 seq/s
+step  35400 | loss 3.0197 jepa 0.6888 (const 0.8233) global 0.5534 (const 0.6232) kmer 0.3331 (const 0.4121) mlm 1.351 acc 0.327 var 0.008 cov 2.1373 cls std 0.298 tsim 0.561 mask 0.33 | 4178 seq/s
+step  35600 | loss 3.0178 jepa 0.6890 (const 0.8230) global 0.5524 (const 0.6227) kmer 0.3320 (const 0.4109) mlm 1.351 acc 0.327 var 0.007 cov 2.1374 cls std 0.299 tsim 0.560 mask 0.33 | 4185 seq/s
+step  35800 | loss 3.0176 jepa 0.6889 (const 0.8226) global 0.5521 (const 0.6228) kmer 0.3324 (const 0.4112) mlm 1.351 acc 0.327 var 0.007 cov 2.1366 cls std 0.298 tsim 0.560 mask 0.33 | 4178 seq/s
+step  36000 | loss 3.0186 jepa 0.6891 (const 0.8228) global 0.5529 (const 0.6229) kmer 0.3323 (const 0.4106) mlm 1.351 acc 0.327 var 0.007 cov 2.1356 cls std 0.298 tsim 0.560 mask 0.33 | 4177 seq/s
+step  36200 | loss 3.0176 jepa 0.6891 (const 0.8230) global 0.5520 (const 0.6231) kmer 0.3325 (const 0.4124) mlm 1.351 acc 0.327 var 0.007 cov 2.1380 cls std 0.299 tsim 0.559 mask 0.33 | 4182 seq/s
+step  36400 | loss 3.0195 jepa 0.6898 (const 0.8227) global 0.5525 (const 0.6232) kmer 0.3329 (const 0.4115) mlm 1.351 acc 0.327 var 0.007 cov 2.1351 cls std 0.298 tsim 0.558 mask 0.33 | 4176 seq/s
+step  36600 | loss 3.0187 jepa 0.6894 (const 0.8223) global 0.5528 (const 0.6231) kmer 0.3326 (const 0.4112) mlm 1.351 acc 0.327 var 0.007 cov 2.1343 cls std 0.297 tsim 0.558 mask 0.33 | 4174 seq/s
+step  36800 | loss 3.0184 jepa 0.6895 (const 0.8221) global 0.5519 (const 0.6236) kmer 0.3330 (const 0.4117) mlm 1.351 acc 0.327 var 0.007 cov 2.1346 cls std 0.298 tsim 0.557 mask 0.33 | 4186 seq/s
+step  37000 | loss 3.0188 jepa 0.6898 (const 0.8221) global 0.5519 (const 0.6234) kmer 0.3327 (const 0.4114) mlm 1.352 acc 0.327 var 0.007 cov 2.1349 cls std 0.298 tsim 0.557 mask 0.33 | 4180 seq/s
+step  37200 | loss 3.0188 jepa 0.6897 (const 0.8219) global 0.5525 (const 0.6245) kmer 0.3330 (const 0.4118) mlm 1.351 acc 0.327 var 0.007 cov 2.1338 cls std 0.298 tsim 0.556 mask 0.33 | 4177 seq/s
+step  37400 | loss 3.0197 jepa 0.6898 (const 0.8222) global 0.5533 (const 0.6254) kmer 0.3324 (const 0.4118) mlm 1.351 acc 0.327 var 0.007 cov 2.1343 cls std 0.300 tsim 0.555 mask 0.33 | 4179 seq/s
+step  37600 | loss 3.0217 jepa 0.6902 (const 0.8221) global 0.5549 (const 0.6263) kmer 0.3326 (const 0.4110) mlm 1.351 acc 0.327 var 0.008 cov 2.1326 cls std 0.298 tsim 0.555 mask 0.33 | 4181 seq/s
+step  37800 | loss 3.0219 jepa 0.6904 (const 0.8222) global 0.5551 (const 0.6275) kmer 0.3324 (const 0.4108) mlm 1.351 acc 0.327 var 0.007 cov 2.1338 cls std 0.298 tsim 0.554 mask 0.33 | 4179 seq/s
+step  38000 | loss 3.0218 jepa 0.6904 (const 0.8224) global 0.5555 (const 0.6281) kmer 0.3318 (const 0.4110) mlm 1.351 acc 0.327 var 0.007 cov 2.1332 cls std 0.299 tsim 0.554 mask 0.33 | 4182 seq/s
+step  38200 | loss 3.0220 jepa 0.6905 (const 0.8222) global 0.5546 (const 0.6281) kmer 0.3328 (const 0.4121) mlm 1.351 acc 0.327 var 0.007 cov 2.1329 cls std 0.299 tsim 0.553 mask 0.33 | 4181 seq/s
+step  38400 | loss 3.0210 jepa 0.6905 (const 0.8216) global 0.5546 (const 0.6282) kmer 0.3321 (const 0.4112) mlm 1.351 acc 0.327 var 0.007 cov 2.1311 cls std 0.299 tsim 0.553 mask 0.33 | 4182 seq/s
+step  38600 | loss 3.0216 jepa 0.6900 (const 0.8210) global 0.5557 (const 0.6292) kmer 0.3322 (const 0.4116) mlm 1.351 acc 0.327 var 0.007 cov 2.1309 cls std 0.299 tsim 0.553 mask 0.33 | 4172 seq/s
+step  38800 | loss 3.0238 jepa 0.6900 (const 0.8210) global 0.5573 (const 0.6299) kmer 0.3324 (const 0.4111) mlm 1.352 acc 0.327 var 0.007 cov 2.1309 cls std 0.298 tsim 0.552 mask 0.33 | 4181 seq/s
+step  39000 | loss 3.0227 jepa 0.6904 (const 0.8217) global 0.5571 (const 0.6308) kmer 0.3316 (const 0.4113) mlm 1.351 acc 0.327 var 0.007 cov 2.1290 cls std 0.298 tsim 0.552 mask 0.33 | 4177 seq/s
+step  39200 | loss 3.0251 jepa 0.6909 (const 0.8221) global 0.5586 (const 0.6314) kmer 0.3322 (const 0.4113) mlm 1.351 acc 0.328 var 0.007 cov 2.1295 cls std 0.298 tsim 0.551 mask 0.33 | 4178 seq/s
+step  39400 | loss 3.0276 jepa 0.6923 (const 0.8223) global 0.5591 (const 0.6317) kmer 0.3323 (const 0.4114) mlm 1.351 acc 0.328 var 0.007 cov 2.1299 cls std 0.298 tsim 0.549 mask 0.33 | 4184 seq/s
+step  39600 | loss 3.0287 jepa 0.6923 (const 0.8223) global 0.5607 (const 0.6334) kmer 0.3320 (const 0.4111) mlm 1.351 acc 0.327 var 0.007 cov 2.1282 cls std 0.299 tsim 0.549 mask 0.33 | 4183 seq/s
+step  39800 | loss 3.0291 jepa 0.6922 (const 0.8223) global 0.5611 (const 0.6334) kmer 0.3325 (const 0.4118) mlm 1.351 acc 0.328 var 0.007 cov 2.1284 cls std 0.300 tsim 0.549 mask 0.33 | 4179 seq/s
+step  40000 | loss 3.0305 jepa 0.6927 (const 0.8221) global 0.5617 (const 0.6336) kmer 0.3323 (const 0.4114) mlm 1.351 acc 0.327 var 0.007 cov 2.1268 cls std 0.300 tsim 0.548 mask 0.33 | 4186 seq/s
+Probe: {'step': 40000, 'probe_auroc': 0.8817288080286563, 'probe_ap': 0.30567177781871174, 'rankme': 140.84861755371094, 'feature_std': 0.35948193073272705, 'mean_probe_auroc': 0.8617363562834154, 'mean_probe_ap': 0.2613454788130929, 'mean_rankme': 145.08242797851562, 'mean_feature_std': 0.28442034125328064}
+step  40200 | loss 3.0300 jepa 0.6928 (const 0.8223) global 0.5611 (const 0.6332) kmer 0.3326 (const 0.4118) mlm 1.351 acc 0.328 var 0.007 cov 2.1274 cls std 0.299 tsim 0.548 mask 0.33 | 2914 seq/s
+step  40400 | loss 3.0308 jepa 0.6933 (const 0.8224) global 0.5621 (const 0.6335) kmer 0.3318 (const 0.4105) mlm 1.351 acc 0.327 var 0.007 cov 2.1272 cls std 0.299 tsim 0.547 mask 0.33 | 4181 seq/s
+step  40600 | loss 3.0333 jepa 0.6937 (const 0.8228) global 0.5626 (const 0.6338) kmer 0.3333 (const 0.4124) mlm 1.351 acc 0.328 var 0.007 cov 2.1255 cls std 0.299 tsim 0.546 mask 0.33 | 4181 seq/s
+step  40800 | loss 3.0312 jepa 0.6938 (const 0.8229) global 0.5621 (const 0.6337) kmer 0.3318 (const 0.4117) mlm 1.351 acc 0.328 var 0.007 cov 2.1269 cls std 0.299 tsim 0.546 mask 0.34 | 4178 seq/s
+step  41000 | loss 3.0323 jepa 0.6940 (const 0.8229) global 0.5624 (const 0.6342) kmer 0.3323 (const 0.4110) mlm 1.351 acc 0.327 var 0.007 cov 2.1265 cls std 0.298 tsim 0.546 mask 0.34 | 4181 seq/s
+step  41200 | loss 3.0330 jepa 0.6942 (const 0.8229) global 0.5628 (const 0.6342) kmer 0.3328 (const 0.4117) mlm 1.351 acc 0.328 var 0.007 cov 2.1266 cls std 0.298 tsim 0.546 mask 0.34 | 4180 seq/s
+step  41400 | loss 3.0323 jepa 0.6940 (const 0.8231) global 0.5627 (const 0.6346) kmer 0.3320 (const 0.4110) mlm 1.351 acc 0.327 var 0.007 cov 2.1253 cls std 0.298 tsim 0.546 mask 0.34 | 4178 seq/s
+step  41600 | loss 3.0312 jepa 0.6942 (const 0.8230) global 0.5621 (const 0.6343) kmer 0.3320 (const 0.4117) mlm 1.350 acc 0.328 var 0.007 cov 2.1238 cls std 0.299 tsim 0.546 mask 0.34 | 4177 seq/s
+step  41800 | loss 3.0337 jepa 0.6939 (const 0.8226) global 0.5633 (const 0.6352) kmer 0.3333 (const 0.4125) mlm 1.351 acc 0.328 var 0.007 cov 2.1247 cls std 0.298 tsim 0.546 mask 0.34 | 4181 seq/s
+step  42000 | loss 3.0321 jepa 0.6936 (const 0.8223) global 0.5627 (const 0.6348) kmer 0.3324 (const 0.4117) mlm 1.351 acc 0.328 var 0.007 cov 2.1251 cls std 0.298 tsim 0.546 mask 0.34 | 4182 seq/s
+step  42200 | loss 3.0310 jepa 0.6945 (const 0.8224) global 0.5614 (const 0.6338) kmer 0.3317 (const 0.4103) mlm 1.351 acc 0.328 var 0.007 cov 2.1229 cls std 0.298 tsim 0.545 mask 0.34 | 4177 seq/s
+step  42400 | loss 3.0308 jepa 0.6944 (const 0.8225) global 0.5613 (const 0.6338) kmer 0.3319 (const 0.4110) mlm 1.351 acc 0.328 var 0.007 cov 2.1236 cls std 0.299 tsim 0.545 mask 0.34 | 4183 seq/s
+step  42600 | loss 3.0299 jepa 0.6943 (const 0.8224) global 0.5607 (const 0.6342) kmer 0.3317 (const 0.4112) mlm 1.351 acc 0.327 var 0.007 cov 2.1232 cls std 0.300 tsim 0.544 mask 0.34 | 4182 seq/s
+step  42800 | loss 3.0299 jepa 0.6944 (const 0.8223) global 0.5601 (const 0.6336) kmer 0.3320 (const 0.4112) mlm 1.351 acc 0.328 var 0.007 cov 2.1222 cls std 0.299 tsim 0.544 mask 0.34 | 4180 seq/s
+step  43000 | loss 3.0297 jepa 0.6942 (const 0.8220) global 0.5610 (const 0.6345) kmer 0.3313 (const 0.4102) mlm 1.351 acc 0.327 var 0.007 cov 2.1229 cls std 0.300 tsim 0.544 mask 0.34 | 4180 seq/s
+step  43200 | loss 3.0291 jepa 0.6943 (const 0.8218) global 0.5595 (const 0.6333) kmer 0.3320 (const 0.4108) mlm 1.351 acc 0.327 var 0.007 cov 2.1220 cls std 0.299 tsim 0.544 mask 0.34 | 4181 seq/s
+step  43400 | loss 3.0289 jepa 0.6941 (const 0.8214) global 0.5596 (const 0.6339) kmer 0.3322 (const 0.4113) mlm 1.351 acc 0.328 var 0.007 cov 2.1206 cls std 0.299 tsim 0.544 mask 0.34 | 4180 seq/s
+step  43600 | loss 3.0273 jepa 0.6935 (const 0.8210) global 0.5592 (const 0.6343) kmer 0.3316 (const 0.4112) mlm 1.351 acc 0.328 var 0.007 cov 2.1227 cls std 0.300 tsim 0.544 mask 0.34 | 4184 seq/s
+step  43800 | loss 3.0260 jepa 0.6932 (const 0.8207) global 0.5587 (const 0.6334) kmer 0.3312 (const 0.4106) mlm 1.351 acc 0.328 var 0.007 cov 2.1205 cls std 0.299 tsim 0.544 mask 0.34 | 4184 seq/s
+step  44000 | loss 3.0289 jepa 0.6938 (const 0.8205) global 0.5593 (const 0.6342) kmer 0.3326 (const 0.4112) mlm 1.351 acc 0.327 var 0.007 cov 2.1208 cls std 0.299 tsim 0.543 mask 0.34 | 4182 seq/s
+step  44200 | loss 3.0266 jepa 0.6934 (const 0.8205) global 0.5587 (const 0.6346) kmer 0.3315 (const 0.4114) mlm 1.351 acc 0.328 var 0.007 cov 2.1210 cls std 0.300 tsim 0.543 mask 0.34 | 4181 seq/s
+step  44400 | loss 3.0268 jepa 0.6936 (const 0.8203) global 0.5588 (const 0.6342) kmer 0.3317 (const 0.4107) mlm 1.351 acc 0.328 var 0.007 cov 2.1188 cls std 0.300 tsim 0.543 mask 0.34 | 4182 seq/s
+step  44600 | loss 3.0278 jepa 0.6938 (const 0.8202) global 0.5592 (const 0.6345) kmer 0.3321 (const 0.4114) mlm 1.351 acc 0.328 var 0.007 cov 2.1198 cls std 0.299 tsim 0.543 mask 0.34 | 4182 seq/s
+step  44800 | loss 3.0299 jepa 0.6939 (const 0.8201) global 0.5606 (const 0.6356) kmer 0.3322 (const 0.4112) mlm 1.351 acc 0.328 var 0.007 cov 2.1195 cls std 0.300 tsim 0.542 mask 0.34 | 4181 seq/s
+step  45000 | loss 3.0289 jepa 0.6934 (const 0.8199) global 0.5602 (const 0.6362) kmer 0.3324 (const 0.4120) mlm 1.351 acc 0.328 var 0.007 cov 2.1193 cls std 0.300 tsim 0.542 mask 0.34 | 4181 seq/s
+Probe: {'step': 45000, 'probe_auroc': 0.8871715427031582, 'probe_ap': 0.31760378710017134, 'rankme': 144.07701110839844, 'feature_std': 0.3620593547821045, 'mean_probe_auroc': 0.8637327929396748, 'mean_probe_ap': 0.2635596919570645, 'mean_rankme': 147.25869750976562, 'mean_feature_std': 0.2766536474227905}
+step  45200 | loss 3.0255 jepa 0.6897 (const 0.8194) global 0.5612 (const 0.6366) kmer 0.3320 (const 0.4112) mlm 1.351 acc 0.328 var 0.007 cov 2.1186 cls std 0.300 tsim 0.542 mask 0.34 | 2952 seq/s
+step  45400 | loss 3.0261 jepa 0.6894 (const 0.8191) global 0.5616 (const 0.6373) kmer 0.3321 (const 0.4114) mlm 1.351 acc 0.328 var 0.007 cov 2.1186 cls std 0.301 tsim 0.541 mask 0.34 | 4179 seq/s
+step  45600 | loss 3.0252 jepa 0.6891 (const 0.8187) global 0.5615 (const 0.6376) kmer 0.3320 (const 0.4117) mlm 1.351 acc 0.328 var 0.007 cov 2.1175 cls std 0.301 tsim 0.542 mask 0.34 | 4181 seq/s
+step  45800 | loss 3.0261 jepa 0.6890 (const 0.8183) global 0.5619 (const 0.6379) kmer 0.3327 (const 0.4124) mlm 1.351 acc 0.328 var 0.007 cov 2.1168 cls std 0.301 tsim 0.542 mask 0.34 | 4176 seq/s
+step  46000 | loss 3.0256 jepa 0.6887 (const 0.8175) global 0.5621 (const 0.6379) kmer 0.3322 (const 0.4117) mlm 1.351 acc 0.328 var 0.007 cov 2.1178 cls std 0.301 tsim 0.541 mask 0.34 | 4182 seq/s
+step  46200 | loss 3.0246 jepa 0.6881 (const 0.8168) global 0.5623 (const 0.6384) kmer 0.3315 (const 0.4109) mlm 1.351 acc 0.328 var 0.007 cov 2.1172 cls std 0.301 tsim 0.541 mask 0.34 | 4185 seq/s
+step  46400 | loss 3.0244 jepa 0.6881 (const 0.8164) global 0.5621 (const 0.6379) kmer 0.3316 (const 0.4103) mlm 1.351 acc 0.328 var 0.007 cov 2.1165 cls std 0.300 tsim 0.541 mask 0.34 | 4181 seq/s
+step  46600 | loss 3.0262 jepa 0.6876 (const 0.8158) global 0.5630 (const 0.6388) kmer 0.3325 (const 0.4115) mlm 1.351 acc 0.327 var 0.007 cov 2.1159 cls std 0.300 tsim 0.541 mask 0.34 | 4175 seq/s
+step  46800 | loss 3.0252 jepa 0.6874 (const 0.8152) global 0.5631 (const 0.6389) kmer 0.3320 (const 0.4112) mlm 1.351 acc 0.327 var 0.007 cov 2.1147 cls std 0.300 tsim 0.540 mask 0.34 | 4184 seq/s
+step  47000 | loss 3.0242 jepa 0.6869 (const 0.8149) global 0.5628 (const 0.6388) kmer 0.3320 (const 0.4116) mlm 1.351 acc 0.328 var 0.007 cov 2.1149 cls std 0.301 tsim 0.540 mask 0.34 | 4182 seq/s
+step  47200 | loss 3.0238 jepa 0.6871 (const 0.8145) global 0.5622 (const 0.6383) kmer 0.3318 (const 0.4105) mlm 1.351 acc 0.328 var 0.007 cov 2.1171 cls std 0.300 tsim 0.540 mask 0.34 | 4178 seq/s
+step  47400 | loss 3.0237 jepa 0.6870 (const 0.8143) global 0.5619 (const 0.6383) kmer 0.3321 (const 0.4118) mlm 1.351 acc 0.328 var 0.007 cov 2.1152 cls std 0.302 tsim 0.540 mask 0.34 | 4180 seq/s
+step  47600 | loss 3.0239 jepa 0.6866 (const 0.8139) global 0.5625 (const 0.6389) kmer 0.3327 (const 0.4124) mlm 1.350 acc 0.328 var 0.007 cov 2.1148 cls std 0.301 tsim 0.540 mask 0.34 | 4176 seq/s
+step  47800 | loss 3.0235 jepa 0.6870 (const 0.8135) global 0.5624 (const 0.6380) kmer 0.3316 (const 0.4103) mlm 1.351 acc 0.328 var 0.007 cov 2.1139 cls std 0.300 tsim 0.539 mask 0.35 | 4176 seq/s
+step  48000 | loss 3.0233 jepa 0.6865 (const 0.8131) global 0.5625 (const 0.6386) kmer 0.3320 (const 0.4110) mlm 1.350 acc 0.328 var 0.007 cov 2.1141 cls std 0.301 tsim 0.539 mask 0.35 | 4183 seq/s
+step  48200 | loss 3.0234 jepa 0.6866 (const 0.8127) global 0.5622 (const 0.6383) kmer 0.3320 (const 0.4104) mlm 1.351 acc 0.327 var 0.007 cov 2.1145 cls std 0.300 tsim 0.539 mask 0.35 | 4178 seq/s
+step  48400 | loss 3.0220 jepa 0.6861 (const 0.8124) global 0.5611 (const 0.6380) kmer 0.3325 (const 0.4123) mlm 1.350 acc 0.328 var 0.007 cov 2.1136 cls std 0.301 tsim 0.539 mask 0.35 | 4181 seq/s
+step  48600 | loss 3.0217 jepa 0.6860 (const 0.8119) global 0.5614 (const 0.6377) kmer 0.3321 (const 0.4115) mlm 1.350 acc 0.328 var 0.007 cov 2.1132 cls std 0.301 tsim 0.539 mask 0.35 | 4184 seq/s
+step  48800 | loss 3.0210 jepa 0.6860 (const 0.8116) global 0.5608 (const 0.6369) kmer 0.3321 (const 0.4114) mlm 1.350 acc 0.328 var 0.007 cov 2.1127 cls std 0.301 tsim 0.539 mask 0.35 | 4179 seq/s
+step  49000 | loss 3.0207 jepa 0.6863 (const 0.8113) global 0.5603 (const 0.6367) kmer 0.3320 (const 0.4112) mlm 1.350 acc 0.329 var 0.007 cov 2.1127 cls std 0.299 tsim 0.538 mask 0.35 | 4179 seq/s
+step  49200 | loss 3.0196 jepa 0.6858 (const 0.8111) global 0.5599 (const 0.6365) kmer 0.3318 (const 0.4111) mlm 1.350 acc 0.328 var 0.007 cov 2.1129 cls std 0.301 tsim 0.538 mask 0.35 | 4177 seq/s
+step  49400 | loss 3.0209 jepa 0.6860 (const 0.8106) global 0.5601 (const 0.6364) kmer 0.3327 (const 0.4125) mlm 1.350 acc 0.328 var 0.007 cov 2.1114 cls std 0.301 tsim 0.538 mask 0.35 | 4199 seq/s
+step  49600 | loss 3.0198 jepa 0.6860 (const 0.8103) global 0.5592 (const 0.6358) kmer 0.3322 (const 0.4103) mlm 1.351 acc 0.328 var 0.007 cov 2.1105 cls std 0.300 tsim 0.538 mask 0.35 | 4211 seq/s
+step  49800 | loss 3.0193 jepa 0.6858 (const 0.8101) global 0.5595 (const 0.6365) kmer 0.3319 (const 0.4112) mlm 1.350 acc 0.329 var 0.007 cov 2.1116 cls std 0.300 tsim 0.537 mask 0.35 | 4147 seq/s
+step  50000 | loss 3.0190 jepa 0.6857 (const 0.8100) global 0.5589 (const 0.6358) kmer 0.3324 (const 0.4116) mlm 1.350 acc 0.328 var 0.007 cov 2.1114 cls std 0.301 tsim 0.537 mask 0.35 | 4148 seq/s
+Probe: {'step': 50000, 'probe_auroc': 0.8915988315405866, 'probe_ap': 0.32504051487235586, 'rankme': 148.3726806640625, 'feature_std': 0.3661279082298279, 'mean_probe_auroc': 0.8640470502089234, 'mean_probe_ap': 0.26014679665640256, 'mean_rankme': 148.51644897460938, 'mean_feature_std': 0.2659887373447418}
+step  50200 | loss 3.0189 jepa 0.6856 (const 0.8099) global 0.5596 (const 0.6364) kmer 0.3318 (const 0.4111) mlm 1.350 acc 0.328 var 0.007 cov 2.1103 cls std 0.300 tsim 0.537 mask 0.35 | 2883 seq/s
+step  50400 | loss 3.0171 jepa 0.6853 (const 0.8095) global 0.5586 (const 0.6360) kmer 0.3315 (const 0.4114) mlm 1.350 acc 0.328 var 0.007 cov 2.1114 cls std 0.301 tsim 0.537 mask 0.35 | 4140 seq/s
+step  50600 | loss 3.0196 jepa 0.6856 (const 0.8092) global 0.5593 (const 0.6359) kmer 0.3325 (const 0.4112) mlm 1.351 acc 0.328 var 0.007 cov 2.1101 cls std 0.300 tsim 0.537 mask 0.35 | 4142 seq/s
+step  50800 | loss 3.0187 jepa 0.6858 (const 0.8091) global 0.5584 (const 0.6353) kmer 0.3325 (const 0.4116) mlm 1.350 acc 0.328 var 0.007 cov 2.1110 cls std 0.301 tsim 0.537 mask 0.35 | 4146 seq/s
+step  51000 | loss 3.0177 jepa 0.6852 (const 0.8089) global 0.5588 (const 0.6361) kmer 0.3321 (const 0.4118) mlm 1.350 acc 0.328 var 0.007 cov 2.1092 cls std 0.301 tsim 0.537 mask 0.35 | 4142 seq/s
+step  51200 | loss 3.0178 jepa 0.6854 (const 0.8087) global 0.5588 (const 0.6359) kmer 0.3320 (const 0.4113) mlm 1.350 acc 0.329 var 0.007 cov 2.1087 cls std 0.300 tsim 0.536 mask 0.35 | 4142 seq/s
+step  51400 | loss 3.0187 jepa 0.6853 (const 0.8084) global 0.5593 (const 0.6364) kmer 0.3323 (const 0.4117) mlm 1.350 acc 0.329 var 0.007 cov 2.1094 cls std 0.301 tsim 0.536 mask 0.35 | 4145 seq/s
+step  51600 | loss 3.0165 jepa 0.6851 (const 0.8082) global 0.5580 (const 0.6355) kmer 0.3315 (const 0.4109) mlm 1.350 acc 0.329 var 0.007 cov 2.1102 cls std 0.300 tsim 0.536 mask 0.35 | 4142 seq/s
+step  51800 | loss 3.0173 jepa 0.6851 (const 0.8080) global 0.5583 (const 0.6363) kmer 0.3320 (const 0.4114) mlm 1.350 acc 0.328 var 0.007 cov 2.1085 cls std 0.301 tsim 0.537 mask 0.35 | 4141 seq/s
+step  52000 | loss 3.0169 jepa 0.6848 (const 0.8077) global 0.5586 (const 0.6359) kmer 0.3316 (const 0.4106) mlm 1.350 acc 0.328 var 0.007 cov 2.1090 cls std 0.301 tsim 0.536 mask 0.35 | 4143 seq/s
+step  52200 | loss 3.0163 jepa 0.6847 (const 0.8075) global 0.5577 (const 0.6356) kmer 0.3322 (const 0.4116) mlm 1.350 acc 0.329 var 0.007 cov 2.1092 cls std 0.301 tsim 0.537 mask 0.35 | 4142 seq/s
+step  52400 | loss 3.0161 jepa 0.6847 (const 0.8073) global 0.5578 (const 0.6352) kmer 0.3318 (const 0.4110) mlm 1.350 acc 0.329 var 0.007 cov 2.1087 cls std 0.301 tsim 0.536 mask 0.35 | 4145 seq/s
+step  52600 | loss 3.0162 jepa 0.6845 (const 0.8072) global 0.5580 (const 0.6352) kmer 0.3321 (const 0.4114) mlm 1.350 acc 0.329 var 0.007 cov 2.1089 cls std 0.301 tsim 0.537 mask 0.35 | 4144 seq/s
+step  52800 | loss 3.0151 jepa 0.6843 (const 0.8070) global 0.5571 (const 0.6344) kmer 0.3324 (const 0.4116) mlm 1.350 acc 0.329 var 0.007 cov 2.1080 cls std 0.302 tsim 0.537 mask 0.35 | 4145 seq/s
+step  53000 | loss 3.0139 jepa 0.6842 (const 0.8068) global 0.5569 (const 0.6347) kmer 0.3312 (const 0.4109) mlm 1.350 acc 0.329 var 0.007 cov 2.1077 cls std 0.302 tsim 0.537 mask 0.35 | 4144 seq/s
+step  53200 | loss 3.0147 jepa 0.6841 (const 0.8065) global 0.5568 (const 0.6348) kmer 0.3322 (const 0.4118) mlm 1.350 acc 0.329 var 0.007 cov 2.1078 cls std 0.302 tsim 0.537 mask 0.35 | 4146 seq/s
+step  53400 | loss 3.0135 jepa 0.6843 (const 0.8064) global 0.5564 (const 0.6340) kmer 0.3313 (const 0.4103) mlm 1.350 acc 0.329 var 0.007 cov 2.1077 cls std 0.302 tsim 0.537 mask 0.35 | 4143 seq/s
+step  53600 | loss 3.0153 jepa 0.6842 (const 0.8061) global 0.5573 (const 0.6347) kmer 0.3320 (const 0.4115) mlm 1.350 acc 0.329 var 0.007 cov 2.1073 cls std 0.302 tsim 0.536 mask 0.35 | 4141 seq/s
+step  53800 | loss 3.0146 jepa 0.6841 (const 0.8058) global 0.5566 (const 0.6340) kmer 0.3322 (const 0.4115) mlm 1.350 acc 0.329 var 0.007 cov 2.1075 cls std 0.301 tsim 0.536 mask 0.35 | 4144 seq/s
+step  54000 | loss 3.0121 jepa 0.6838 (const 0.8056) global 0.5560 (const 0.6341) kmer 0.3309 (const 0.4110) mlm 1.350 acc 0.329 var 0.007 cov 2.1071 cls std 0.302 tsim 0.536 mask 0.35 | 4145 seq/s
+step  54200 | loss 3.0128 jepa 0.6838 (const 0.8054) global 0.5557 (const 0.6335) kmer 0.3319 (const 0.4112) mlm 1.350 acc 0.329 var 0.007 cov 2.1067 cls std 0.302 tsim 0.536 mask 0.35 | 4140 seq/s
+step  54400 | loss 3.0118 jepa 0.6839 (const 0.8052) global 0.5551 (const 0.6332) kmer 0.3313 (const 0.4106) mlm 1.350 acc 0.329 var 0.007 cov 2.1080 cls std 0.302 tsim 0.536 mask 0.35 | 4144 seq/s
+step  54600 | loss 3.0128 jepa 0.6838 (const 0.8052) global 0.5553 (const 0.6332) kmer 0.3323 (const 0.4119) mlm 1.350 acc 0.328 var 0.007 cov 2.1060 cls std 0.302 tsim 0.536 mask 0.35 | 4143 seq/s
+step  54800 | loss 3.0112 jepa 0.6839 (const 0.8052) global 0.5549 (const 0.6330) kmer 0.3311 (const 0.4108) mlm 1.350 acc 0.329 var 0.007 cov 2.1075 cls std 0.302 tsim 0.536 mask 0.35 | 4143 seq/s
+step  55000 | loss 3.0137 jepa 0.6837 (const 0.8050) global 0.5559 (const 0.6335) kmer 0.3325 (const 0.4117) mlm 1.350 acc 0.329 var 0.007 cov 2.1048 cls std 0.302 tsim 0.536 mask 0.36 | 4144 seq/s
+Probe: {'step': 55000, 'probe_auroc': 0.8916771153679948, 'probe_ap': 0.3311301384369755, 'rankme': 150.56504821777344, 'feature_std': 0.3702050745487213, 'mean_probe_auroc': 0.864929960042313, 'mean_probe_ap': 0.2616022970556586, 'mean_rankme': 149.351318359375, 'mean_feature_std': 0.2614138424396515}
+step  55200 | loss 3.0131 jepa 0.6836 (const 0.8048) global 0.5557 (const 0.6337) kmer 0.3323 (const 0.4116) mlm 1.350 acc 0.329 var 0.007 cov 2.1070 cls std 0.302 tsim 0.536 mask 0.36 | 2947 seq/s
+step  55400 | loss 3.0123 jepa 0.6837 (const 0.8046) global 0.5555 (const 0.6336) kmer 0.3314 (const 0.4110) mlm 1.350 acc 0.328 var 0.007 cov 2.1063 cls std 0.302 tsim 0.536 mask 0.36 | 4141 seq/s
+step  55600 | loss 3.0133 jepa 0.6839 (const 0.8043) global 0.5556 (const 0.6329) kmer 0.3325 (const 0.4115) mlm 1.350 acc 0.329 var 0.007 cov 2.1054 cls std 0.302 tsim 0.536 mask 0.36 | 4145 seq/s
+step  55800 | loss 3.0106 jepa 0.6834 (const 0.8043) global 0.5544 (const 0.6329) kmer 0.3314 (const 0.4108) mlm 1.350 acc 0.329 var 0.007 cov 2.1054 cls std 0.302 tsim 0.536 mask 0.36 | 4146 seq/s
+step  56000 | loss 3.0113 jepa 0.6835 (const 0.8042) global 0.5548 (const 0.6326) kmer 0.3317 (const 0.4108) mlm 1.350 acc 0.329 var 0.007 cov 2.1051 cls std 0.302 tsim 0.536 mask 0.36 | 4146 seq/s
+step  56200 | loss 3.0113 jepa 0.6835 (const 0.8040) global 0.5547 (const 0.6326) kmer 0.3320 (const 0.4113) mlm 1.350 acc 0.329 var 0.007 cov 2.1061 cls std 0.302 tsim 0.536 mask 0.36 | 4141 seq/s
+step  56400 | loss 3.0129 jepa 0.6835 (const 0.8039) global 0.5557 (const 0.6330) kmer 0.3326 (const 0.4117) mlm 1.350 acc 0.329 var 0.007 cov 2.1061 cls std 0.302 tsim 0.536 mask 0.36 | 4144 seq/s
+step  56600 | loss 3.0112 jepa 0.6833 (const 0.8037) global 0.5546 (const 0.6327) kmer 0.3319 (const 0.4106) mlm 1.350 acc 0.329 var 0.007 cov 2.1057 cls std 0.302 tsim 0.536 mask 0.36 | 4143 seq/s
+step  56800 | loss 3.0102 jepa 0.6829 (const 0.8037) global 0.5552 (const 0.6328) kmer 0.3309 (const 0.4104) mlm 1.350 acc 0.330 var 0.007 cov 2.1054 cls std 0.302 tsim 0.536 mask 0.36 | 4144 seq/s
+step  57000 | loss 3.0102 jepa 0.6832 (const 0.8035) global 0.5546 (const 0.6326) kmer 0.3313 (const 0.4109) mlm 1.350 acc 0.329 var 0.007 cov 2.1054 cls std 0.302 tsim 0.536 mask 0.36 | 4144 seq/s
+step  57200 | loss 3.0116 jepa 0.6833 (const 0.8035) global 0.5547 (const 0.6320) kmer 0.3322 (const 0.4112) mlm 1.350 acc 0.329 var 0.007 cov 2.1054 cls std 0.301 tsim 0.536 mask 0.36 | 4146 seq/s
+step  57400 | loss 3.0127 jepa 0.6831 (const 0.8034) global 0.5551 (const 0.6325) kmer 0.3330 (const 0.4119) mlm 1.350 acc 0.329 var 0.007 cov 2.1048 cls std 0.301 tsim 0.536 mask 0.36 | 4146 seq/s
+step  57600 | loss 3.0112 jepa 0.6834 (const 0.8033) global 0.5548 (const 0.6321) kmer 0.3317 (const 0.4104) mlm 1.350 acc 0.329 var 0.007 cov 2.1056 cls std 0.301 tsim 0.536 mask 0.36 | 4143 seq/s
+step  57800 | loss 3.0106 jepa 0.6830 (const 0.8032) global 0.5543 (const 0.6325) kmer 0.3322 (const 0.4118) mlm 1.350 acc 0.329 var 0.007 cov 2.1051 cls std 0.302 tsim 0.536 mask 0.36 | 4146 seq/s
+step  58000 | loss 3.0107 jepa 0.6832 (const 0.8031) global 0.5542 (const 0.6320) kmer 0.3322 (const 0.4114) mlm 1.350 acc 0.329 var 0.007 cov 2.1035 cls std 0.301 tsim 0.536 mask 0.36 | 4147 seq/s
+step  58200 | loss 3.0098 jepa 0.6831 (const 0.8032) global 0.5539 (const 0.6323) kmer 0.3314 (const 0.4113) mlm 1.350 acc 0.329 var 0.007 cov 2.1062 cls std 0.302 tsim 0.537 mask 0.36 | 4146 seq/s
+step  58400 | loss 3.0110 jepa 0.6831 (const 0.8030) global 0.5549 (const 0.6328) kmer 0.3319 (const 0.4114) mlm 1.350 acc 0.329 var 0.007 cov 2.1058 cls std 0.302 tsim 0.536 mask 0.36 | 4145 seq/s
+step  58600 | loss 3.0103 jepa 0.6831 (const 0.8031) global 0.5547 (const 0.6326) kmer 0.3314 (const 0.4108) mlm 1.350 acc 0.329 var 0.007 cov 2.1034 cls std 0.302 tsim 0.537 mask 0.36 | 4141 seq/s
+step  58800 | loss 3.0104 jepa 0.6832 (const 0.8030) global 0.5544 (const 0.6324) kmer 0.3316 (const 0.4110) mlm 1.350 acc 0.329 var 0.007 cov 2.1059 cls std 0.302 tsim 0.537 mask 0.36 | 4142 seq/s
+step  59000 | loss 3.0125 jepa 0.6831 (const 0.8030) global 0.5556 (const 0.6328) kmer 0.3321 (const 0.4117) mlm 1.350 acc 0.329 var 0.007 cov 2.1047 cls std 0.302 tsim 0.536 mask 0.36 | 4142 seq/s
+step  59200 | loss 3.0132 jepa 0.6834 (const 0.8029) global 0.5555 (const 0.6325) kmer 0.3328 (const 0.4112) mlm 1.350 acc 0.329 var 0.007 cov 2.1062 cls std 0.301 tsim 0.536 mask 0.36 | 4145 seq/s
+step  59400 | loss 3.0099 jepa 0.6832 (const 0.8028) global 0.5540 (const 0.6324) kmer 0.3315 (const 0.4109) mlm 1.350 acc 0.329 var 0.007 cov 2.1049 cls std 0.301 tsim 0.536 mask 0.36 | 4142 seq/s
+step  59600 | loss 3.0098 jepa 0.6834 (const 0.8028) global 0.5537 (const 0.6321) kmer 0.3314 (const 0.4113) mlm 1.350 acc 0.329 var 0.007 cov 2.1050 cls std 0.302 tsim 0.536 mask 0.36 | 4145 seq/s
+step  59800 | loss 3.0116 jepa 0.6834 (const 0.8028) global 0.5551 (const 0.6326) kmer 0.3318 (const 0.4115) mlm 1.350 acc 0.329 var 0.007 cov 2.1045 cls std 0.302 tsim 0.536 mask 0.36 | 4142 seq/s
+step  60000 | loss 3.0110 jepa 0.6834 (const 0.8028) global 0.5542 (const 0.6319) kmer 0.3325 (const 0.4110) mlm 1.350 acc 0.329 var 0.007 cov 2.1050 cls std 0.301 tsim 0.536 mask 0.36 | 4146 seq/s
+Probe: {'step': 60000, 'probe_auroc': 0.8914278231797436, 'probe_ap': 0.33122489567139907, 'rankme': 151.15203857421875, 'feature_std': 0.3713153600692749, 'mean_probe_auroc': 0.8652218143114851, 'mean_probe_ap': 0.26101748436961486, 'mean_rankme': 149.58560180664062, 'mean_feature_std': 0.2599618434906006}
+Test probe: {'random_init': {'probe_auroc': 0.8403889381908207, 'probe_ap': 0.13488006077656117, 'rankme': 57.25840759277344, 'feature_std': 0.1676967889070511, 'mean_probe_auroc': 0.8430777771085631, 'mean_probe_ap': 0.12490141517162347, 'mean_rankme': 47.84928894042969, 'mean_feature_std': 0.1334882527589798}, 'jepa_target_encoder': {'probe_auroc': 0.9192527717770752, 'probe_ap': 0.38654151154450406, 'rankme': 151.697265625, 'feature_std': 0.36914733052253723, 'mean_probe_auroc': 0.9000194376434922, 'mean_probe_ap': 0.3076046997128527, 'mean_rankme': 149.5808868408203, 'mean_feature_std': 0.2592569589614868}, 'steps': 60000, 'pretrain_hours': 2.0717880416578716}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0228 | val AUROC 0.8850 AP 0.2821 (RC-TTA) | best AP 0.2821 @ 1
+epoch   2 | loss 0.0179 | val AUROC 0.9012 AP 0.3224 (RC-TTA) | best AP 0.3224 @ 2
+epoch   3 | loss 0.0171 | val AUROC 0.9055 AP 0.3427 (RC-TTA) | best AP 0.3427 @ 3
+epoch   4 | loss 0.0166 | val AUROC 0.9146 AP 0.3886 (RC-TTA) | best AP 0.3886 @ 4
+epoch   5 | loss 0.0163 | val AUROC 0.9151 AP 0.3933 (RC-TTA) | best AP 0.3933 @ 5
+epoch   6 | loss 0.0160 | val AUROC 0.9258 AP 0.4270 (RC-TTA) | best AP 0.4270 @ 6
+epoch   7 | loss 0.0149 | val AUROC 0.9317 AP 0.4841 (RC-TTA) | best AP 0.4841 @ 7
+epoch   8 | loss 0.0141 | val AUROC 0.9321 AP 0.4961 (RC-TTA) | best AP 0.4961 @ 8
+epoch   9 | loss 0.0137 | val AUROC 0.9354 AP 0.5274 (RC-TTA) | best AP 0.5274 @ 9
+epoch  10 | loss 0.0131 | val AUROC 0.9376 AP 0.5450 (RC-TTA) | best AP 0.5450 @ 10
+epoch  11 | loss 0.0127 | val AUROC 0.9387 AP 0.5466 (RC-TTA) | best AP 0.5466 @ 11
+epoch  12 | loss 0.0124 | val AUROC 0.9355 AP 0.5440 (RC-TTA) | best AP 0.5466 @ 11
+epoch  13 | loss 0.0120 | val AUROC 0.9441 AP 0.5776 (RC-TTA) | best AP 0.5776 @ 13
+epoch  14 | loss 0.0116 | val AUROC 0.9378 AP 0.5727 (RC-TTA) | best AP 0.5776 @ 13
+epoch  15 | loss 0.0113 | val AUROC 0.9432 AP 0.5798 (RC-TTA) | best AP 0.5798 @ 15
+epoch  16 | loss 0.0109 | val AUROC 0.9435 AP 0.5590 (RC-TTA) | best AP 0.5798 @ 15
+epoch  17 | loss 0.0106 | val AUROC 0.9384 AP 0.5824 (RC-TTA) | best AP 0.5824 @ 17
+epoch  18 | loss 0.0104 | val AUROC 0.9424 AP 0.5805 (RC-TTA) | best AP 0.5824 @ 17
+epoch  19 | loss 0.0099 | val AUROC 0.9395 AP 0.5765 (RC-TTA) | best AP 0.5824 @ 17
+epoch  20 | loss 0.0100 | val AUROC 0.9377 AP 0.5797 (RC-TTA) | best AP 0.5824 @ 17
+epoch  21 | loss 0.0096 | val AUROC 0.9420 AP 0.5972 (RC-TTA) | best AP 0.5972 @ 21
+epoch  22 | loss 0.0094 | val AUROC 0.9482 AP 0.6185 (RC-TTA) | best AP 0.6185 @ 22
+epoch  23 | loss 0.0090 | val AUROC 0.9401 AP 0.6030 (RC-TTA) | best AP 0.6185 @ 22
+epoch  24 | loss 0.0089 | val AUROC 0.9399 AP 0.5905 (RC-TTA) | best AP 0.6185 @ 22
+epoch  25 | loss 0.0087 | val AUROC 0.9384 AP 0.5970 (RC-TTA) | best AP 0.6185 @ 22
+epoch  26 | loss 0.0084 | val AUROC 0.9409 AP 0.5938 (RC-TTA) | best AP 0.6185 @ 22
+epoch  27 | loss 0.0082 | val AUROC 0.9437 AP 0.6048 (RC-TTA) | best AP 0.6185 @ 22
+epoch  28 | loss 0.0080 | val AUROC 0.9431 AP 0.6073 (RC-TTA) | best AP 0.6185 @ 22
+epoch  29 | loss 0.0078 | val AUROC 0.9339 AP 0.6029 (RC-TTA) | best AP 0.6185 @ 22
+epoch  30 | loss 0.0076 | val AUROC 0.9450 AP 0.6117 (RC-TTA) | best AP 0.6185 @ 22
+epoch  31 | loss 0.0074 | val AUROC 0.9377 AP 0.5904 (RC-TTA) | best AP 0.6185 @ 22
+epoch  32 | loss 0.0072 | val AUROC 0.9332 AP 0.6032 (RC-TTA) | best AP 0.6185 @ 22
+epoch  33 | loss 0.0070 | val AUROC 0.9364 AP 0.6044 (RC-TTA) | best AP 0.6185 @ 22
+epoch  34 | loss 0.0069 | val AUROC 0.9412 AP 0.6184 (RC-TTA) | best AP 0.6185 @ 22
+epoch  35 | loss 0.0068 | val AUROC 0.9429 AP 0.6171 (RC-TTA) | best AP 0.6185 @ 22
+epoch  36 | loss 0.0066 | val AUROC 0.9366 AP 0.6145 (RC-TTA) | best AP 0.6185 @ 22
+epoch  37 | loss 0.0064 | val AUROC 0.9310 AP 0.6084 (RC-TTA) | best AP 0.6185 @ 22
+{
+  "task": "fullset",
+  "init": "jepa",
+  "seed": 0,
+  "encoder": "/save/runs/exp05/pretrain/encoder.pt",
+  "parameters": 6265665,
+  "best_epoch": 22,
+  "epochs_run": 37,
+  "minutes": 16.03014903863271,
+  "validation_ap_rc": 0.6184981625742006,
+  "test": {
+    "auroc": 0.9447128907727983,
+    "ap": 0.6027000779080314,
+    "threshold": 0.517327070236206,
+    "precision": 0.6987341772151898,
+    "recall": 0.5009074410163339,
+    "f1": 0.5835095137420718,
+    "specificity": 0.9953972306026146,
+    "tp": 276,
+    "fp": 119,
+    "fn": 275,
+    "tn": 25735,
+    "auroc_ci95": [
+      0.9349594157487059,
+      0.9538241282528465
+    ],
+    "ap_ci95": [
+      0.5626722332258013,
+      0.6388499819430019
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.9503843795755504,
+    "ap": 0.6235612682272405,
+    "threshold": 0.4732457995414734,
+    "precision": 0.6682242990654206,
+    "recall": 0.5190562613430127,
+    "f1": 0.5842696629213483,
+    "specificity": 0.994507619710683,
+    "tp": 286,
+    "fp": 142,
+    "fn": 265,
+    "tn": 25712,
+    "auroc_ci95": [
+      0.9405695901346938,
+      0.9589737917271397
+    ],
+    "ap_ci95": [
+      0.585028178518644,
+      0.6575574589729766
+    ]
+  }
+}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0226 | val AUROC 0.8869 AP 0.2798 (RC-TTA) | best AP 0.2798 @ 1
+epoch   2 | loss 0.0179 | val AUROC 0.8994 AP 0.3239 (RC-TTA) | best AP 0.3239 @ 2
+epoch   3 | loss 0.0171 | val AUROC 0.9082 AP 0.3425 (RC-TTA) | best AP 0.3425 @ 3
+epoch   4 | loss 0.0166 | val AUROC 0.9061 AP 0.3653 (RC-TTA) | best AP 0.3653 @ 4
+epoch   5 | loss 0.0163 | val AUROC 0.9191 AP 0.4013 (RC-TTA) | best AP 0.4013 @ 5
+epoch   6 | loss 0.0160 | val AUROC 0.9216 AP 0.4484 (RC-TTA) | best AP 0.4484 @ 6
+epoch   7 | loss 0.0149 | val AUROC 0.9361 AP 0.4968 (RC-TTA) | best AP 0.4968 @ 7
+epoch   8 | loss 0.0141 | val AUROC 0.9368 AP 0.5207 (RC-TTA) | best AP 0.5207 @ 8
+epoch   9 | loss 0.0137 | val AUROC 0.9328 AP 0.5168 (RC-TTA) | best AP 0.5207 @ 8
+epoch  10 | loss 0.0132 | val AUROC 0.9312 AP 0.5162 (RC-TTA) | best AP 0.5207 @ 8
+epoch  11 | loss 0.0127 | val AUROC 0.9422 AP 0.5485 (RC-TTA) | best AP 0.5485 @ 11
+epoch  12 | loss 0.0123 | val AUROC 0.9424 AP 0.5671 (RC-TTA) | best AP 0.5671 @ 12
+epoch  13 | loss 0.0120 | val AUROC 0.9411 AP 0.5645 (RC-TTA) | best AP 0.5671 @ 12
+epoch  14 | loss 0.0115 | val AUROC 0.9448 AP 0.5688 (RC-TTA) | best AP 0.5688 @ 14
+epoch  15 | loss 0.0113 | val AUROC 0.9450 AP 0.5637 (RC-TTA) | best AP 0.5688 @ 14
+epoch  16 | loss 0.0111 | val AUROC 0.9425 AP 0.5725 (RC-TTA) | best AP 0.5725 @ 16
+epoch  17 | loss 0.0106 | val AUROC 0.9426 AP 0.5775 (RC-TTA) | best AP 0.5775 @ 17
+epoch  18 | loss 0.0103 | val AUROC 0.9380 AP 0.5901 (RC-TTA) | best AP 0.5901 @ 18
+epoch  19 | loss 0.0101 | val AUROC 0.9353 AP 0.5835 (RC-TTA) | best AP 0.5901 @ 18
+epoch  20 | loss 0.0099 | val AUROC 0.9407 AP 0.5885 (RC-TTA) | best AP 0.5901 @ 18
+epoch  21 | loss 0.0096 | val AUROC 0.9437 AP 0.5966 (RC-TTA) | best AP 0.5966 @ 21
+epoch  22 | loss 0.0094 | val AUROC 0.9457 AP 0.5969 (RC-TTA) | best AP 0.5969 @ 22
+epoch  23 | loss 0.0091 | val AUROC 0.9358 AP 0.5871 (RC-TTA) | best AP 0.5969 @ 22
+epoch  24 | loss 0.0088 | val AUROC 0.9482 AP 0.6084 (RC-TTA) | best AP 0.6084 @ 24
+epoch  25 | loss 0.0085 | val AUROC 0.9324 AP 0.5910 (RC-TTA) | best AP 0.6084 @ 24
+epoch  26 | loss 0.0084 | val AUROC 0.9405 AP 0.5906 (RC-TTA) | best AP 0.6084 @ 24
+epoch  27 | loss 0.0081 | val AUROC 0.9416 AP 0.6091 (RC-TTA) | best AP 0.6091 @ 27
+epoch  28 | loss 0.0081 | val AUROC 0.9359 AP 0.5959 (RC-TTA) | best AP 0.6091 @ 27
+epoch  29 | loss 0.0078 | val AUROC 0.9379 AP 0.6066 (RC-TTA) | best AP 0.6091 @ 27
+epoch  30 | loss 0.0076 | val AUROC 0.9423 AP 0.6047 (RC-TTA) | best AP 0.6091 @ 27
+epoch  31 | loss 0.0073 | val AUROC 0.9424 AP 0.5990 (RC-TTA) | best AP 0.6091 @ 27
+epoch  32 | loss 0.0072 | val AUROC 0.9331 AP 0.5978 (RC-TTA) | best AP 0.6091 @ 27
+epoch  33 | loss 0.0069 | val AUROC 0.9364 AP 0.6036 (RC-TTA) | best AP 0.6091 @ 27
+epoch  34 | loss 0.0067 | val AUROC 0.9372 AP 0.5969 (RC-TTA) | best AP 0.6091 @ 27
+epoch  35 | loss 0.0066 | val AUROC 0.9403 AP 0.6083 (RC-TTA) | best AP 0.6091 @ 27
+epoch  36 | loss 0.0065 | val AUROC 0.9237 AP 0.5771 (RC-TTA) | best AP 0.6091 @ 27
+epoch  37 | loss 0.0064 | val AUROC 0.9390 AP 0.6167 (RC-TTA) | best AP 0.6167 @ 37
+epoch  38 | loss 0.0062 | val AUROC 0.9330 AP 0.6015 (RC-TTA) | best AP 0.6167 @ 37
+epoch  39 | loss 0.0059 | val AUROC 0.9340 AP 0.6041 (RC-TTA) | best AP 0.6167 @ 37
+epoch  40 | loss 0.0058 | val AUROC 0.9306 AP 0.5929 (RC-TTA) | best AP 0.6167 @ 37
+epoch  41 | loss 0.0056 | val AUROC 0.9333 AP 0.5985 (RC-TTA) | best AP 0.6167 @ 37
+epoch  42 | loss 0.0055 | val AUROC 0.9383 AP 0.6022 (RC-TTA) | best AP 0.6167 @ 37
+epoch  43 | loss 0.0054 | val AUROC 0.9349 AP 0.6039 (RC-TTA) | best AP 0.6167 @ 37
+epoch  44 | loss 0.0053 | val AUROC 0.9372 AP 0.6134 (RC-TTA) | best AP 0.6167 @ 37
+epoch  45 | loss 0.0053 | val AUROC 0.9255 AP 0.5989 (RC-TTA) | best AP 0.6167 @ 37
+epoch  46 | loss 0.0051 | val AUROC 0.9290 AP 0.6068 (RC-TTA) | best AP 0.6167 @ 37
+epoch  47 | loss 0.0049 | val AUROC 0.9328 AP 0.5984 (RC-TTA) | best AP 0.6167 @ 37
+epoch  48 | loss 0.0048 | val AUROC 0.9343 AP 0.5985 (RC-TTA) | best AP 0.6167 @ 37
+epoch  49 | loss 0.0047 | val AUROC 0.9311 AP 0.6081 (RC-TTA) | best AP 0.6167 @ 37
+epoch  50 | loss 0.0046 | val AUROC 0.9328 AP 0.6012 (RC-TTA) | best AP 0.6167 @ 37
+epoch  51 | loss 0.0046 | val AUROC 0.9342 AP 0.6100 (RC-TTA) | best AP 0.6167 @ 37
+epoch  52 | loss 0.0044 | val AUROC 0.9313 AP 0.6026 (RC-TTA) | best AP 0.6167 @ 37
+{
+  "task": "fullset",
+  "init": "jepa",
+  "seed": 1,
+  "encoder": "/save/runs/exp05/pretrain/encoder.pt",
+  "parameters": 6265665,
+  "best_epoch": 37,
+  "epochs_run": 52,
+  "minutes": 22.37357100645701,
+  "validation_ap_rc": 0.6166752154345684,
+  "test": {
+    "auroc": 0.9373701787940294,
+    "ap": 0.6073668670642816,
+    "threshold": 0.5563995838165283,
+    "precision": 0.695,
+    "recall": 0.5045372050816697,
+    "f1": 0.5846477392218717,
+    "specificity": 0.9952811943993193,
+    "tp": 278,
+    "fp": 122,
+    "fn": 273,
+    "tn": 25732,
+    "auroc_ci95": [
+      0.9258946955555213,
+      0.9477995610240381
+    ],
+    "ap_ci95": [
+      0.5653874654168837,
+      0.6433955201624547
+    ]
+  },
+  "test_rc": {
+    "auroc": 0.9437687014488871,
+    "ap": 0.6360319694320459,
+    "threshold": 0.5722260475158691,
+    "precision": 0.7891566265060241,
+    "recall": 0.47549909255898365,
+    "f1": 0.5934314835787089,
+    "specificity": 0.9972924885897734,
+    "tp": 262,
+    "fp": 70,
+    "fn": 289,
+    "tn": 25784,
+    "auroc_ci95": [
+      0.933151979598107,
+      0.9535865712832156
+    ],
+    "ap_ci95": [
+      0.595603660416332,
+      0.6717107232679645
+    ]
+  }
+}
+fullset: train 211,239 (4466 viral) | validation 26,405 (534) | test 26,405 (551)
+epoch   1 | loss 0.0220 | val AUROC 0.8872 AP 0.2829 (RC-TTA) | best AP 0.2829 @ 1
+epoch   2 | loss 0.0180 | val AUROC 0.9012 AP 0.3276 (RC-TTA) | best AP 0.3276 @ 2
+epoch   3 | loss 0.0172 | val AUROC 0.9092 AP 0.3593 (RC-TTA) | best AP 0.3593 @ 3
+epoch   4 | loss 0.0167 | val AUROC 0.9122 AP 0.3749 (RC-TTA) | best AP 0.3749 @ 4
+epoch   5 | loss 0.0164 | val AUROC 0.9162 AP 0.3882 (RC-TTA) | best AP 0.3882 @ 5
+epoch   6 | loss 0.0161 | val AUROC 0.9264 AP 0.4516 (RC-TTA) | best AP 0.4516 @ 6
+epoch   7 | loss 0.0149 | val AUROC 0.9286 AP 0.4715 (RC-TTA) | best AP 0.4715 @ 7
+epoch   8 | loss 0.0142 | val AUROC 0.9353 AP 0.5185 (RC-TTA) | best AP 0.5185 @ 8
+epoch   9 | loss 0.0135 | val AUROC 0.9379 AP 0.5359 (RC-TTA) | best AP 0.5359 @ 9
+epoch  10 | loss 0.0132 | val AUROC 0.9376 AP 0.5385 (RC-TTA) | best AP 0.5385 @ 10
+epoch  11 | loss 0.0127 | val AUROC 0.9374 AP 0.5527 (RC-TTA) | best AP 0.5527 @ 11
+epoch  12 | loss 0.0123 | val AUROC 0.9428 AP 0.5327 (RC-TTA) | best AP 0.5527 @ 11
+epoch  13 | loss 0.0119 | val AUROC 0.9331 AP 0.5356 (RC-TTA) | best AP 0.5527 @ 11
+epoch  14 | loss 0.0116 | val AUROC 0.9320 AP 0.5380 (RC-TTA) | best AP 0.5527 @ 11
+epoch  15 | loss 0.0113 | val AUROC 0.9439 AP 0.5838 (RC-TTA) | best AP 0.5838 @ 15
+epoch  16 | loss 0.0110 | val AUROC 0.9481 AP 0.5921 (RC-TTA) | best AP 0.5921 @ 16
+epoch  17 | loss 0.0106 | val AUROC 0.9486 AP 0.6001 (RC-TTA) | best AP 0.6001 @ 17
+epoch  18 | loss 0.0103 | val AUROC 0.9414 AP 0.5851 (RC-TTA) | best AP 0.6001 @ 17
+epoch  19 | loss 0.0101 | val AUROC 0.9348 AP 0.5648 (RC-TTA) | best AP 0.6001 @ 17
+epoch  20 | loss 0.0099 | val AUROC 0.9453 AP 0.5967 (RC-TTA) | best AP 0.6001 @ 17
+epoch  21 | loss 0.0096 | val AUROC 0.9284 AP 0.5612 (RC-TTA) | best AP 0.6001 @ 17
+epoch  22 | loss 0.0093 | val AUROC 0.9382 AP 0.5850 (RC-TTA) | best AP 0.6001 @ 17
+epoch  23 | loss 0.0091 | val AUROC 0.9460 AP 0.5900 (RC-TTA) | best AP 0.6001 @ 17
+epoch  24 | loss 0.0089 | val AUROC 0.9437 AP 0.5984 (RC-TTA) | best AP 0.6001 @ 17
+epoch  25 | loss 0.0087 | val AUROC 0.9465 AP 0.5958 (RC-TTA) | best AP 0.6001 @ 17
+epoch  26 | loss 0.0084 | val AUROC 0.9455 AP 0.6116 (RC-TTA) | best AP 0.6116 @ 26
+epoch  27 | loss 0.0083 | val AUROC 0.9397 AP 0.5875 (RC-TTA) | best AP 0.6116 @ 26
+epoch  28 | loss 0.0080 | val AUROC 0.9425 AP 0.6096 (RC-TTA) | best AP 0.6116 @ 26
+epoch  29 | loss 0.0079 | val AUROC 0.9343 AP 0.5975 (RC-TTA) | best AP 0.6116 @ 26
+epoch  30 | loss 0.0077 | val AUROC 0.9350 AP 0.5970 (RC-TTA) | best AP 0.6116 @ 26
+epoch  31 | loss 0.0074 | val AUROC 0.9362 AP 0.5908 (RC-TTA) | best AP 0.6116 @ 26
+epoch  32 | loss 0.0073 | val AUROC 0.9448 AP 0.6137 (RC-TTA) | best AP 0.6137 @ 32
+epoch  33 | loss 0.0071 | val AUROC 0.9419 AP 0.5983 (RC-TTA) | best AP 0.6137 @ 32
