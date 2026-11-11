@@ -4,7 +4,7 @@ A CNN-Transformer encoder is pretrained without labels on 300 bp DNA windows, us
 
 The pretraining corpus (corpus_v3) is built in a separate repository: [Luckycrucio/CorpusViralJEPA](https://github.com/Luckycrucio/CorpusViralJEPA).
 
-The code in this repository is the **exp04** version. exp02 and exp03 are kept only as results (`exp02/`, `exp03/`); see [Experiments](#experiments) for what each one changed.
+The code in this repository is the **exp05**-**exp04** version. exp02 and exp03 are kept only as results (`exp02/`, `exp03/`); see [Experiments](#experiments) for what each one changed.
 
 ## Idea
 
@@ -211,6 +211,24 @@ This is the first run whose frozen features clearly beat a random encoder: the C
 - JEPA fine-tunes reach their best validation AP after 32–75 epochs, against 94–113 for random initialisation.
 
 Ablations not yet run: `--views window` (B = A re-augmented, which tests whether same-record views matter), `--kmer-weight 0`, `--target-blocks 1`.
+
+### exp05: exp04 on the BLASTn-decontaminated corpus
+
+exp05 reruns exp04 with the same code, config and seeds, on `corpus_v4`. That is `corpus_v3` plus a BLASTn screen, which drops a window if its alignments to one `fullset_test` contig have identity > 70% and E ≤ 1e-3 (word size 7) and cover ≥ 80% of that contig. The screen removed 167,080 windows. 161,897 of them are human repeats, and only 880 were linked to viral test contigs (see [corpus/README.md](../corpus/README.md#corpus_v4-what-blastn-changed)). The random-init fine-tunes don't depend on the corpus and come out identical to exp04's.
+
+| JEPA, RC (fine-tunes: mean of 3 seeds) | val exp04 | val exp05 | test exp04 | test exp05 |
+|---|---|---|---|---|
+| probe CLS AUROC | 0.889 | 0.891 | 0.912 | 0.919 |
+| probe CLS AP | 0.320 | 0.331 | 0.375 | 0.387 |
+| fullset AUROC | 0.936 | 0.936 | 0.942 | 0.939 |
+| fullset AP | 0.627 | 0.621 | 0.625 | 0.626 |
+| anell AUROC | 0.917 | 0.907 | 0.895 | 0.885 |
+| anell AP | 0.506 | 0.506 | 0.491 | 0.508 |
+
+- **Pretraining improved slightly, in the CLS.** The validation probe is ahead of exp04 at 11 of 12 checkpoints in AP (+0.011 on average).
+- **Fine-tuning didn't measurably change.** Validation AUROC and AP are within about one seed standard deviation of exp04's. The higher anell test AP (+0.017) isn't confirmed on validation, and the paired bootstrap between the two ensembles includes zero (+0.014 [−0.003, 0.030]).
+- **The unseen-family gain holds.** The anell ensemble reaches AP 0.545, against 0.296 for random init.
+- **Verdict:** decontamination costs nothing and changes no conclusion, so `corpus_v4` should be the default from now on. Full analysis in the addendum section of `ViralJEPA_report/ViralJEPA_report.tex`.
 
 ## Files
 

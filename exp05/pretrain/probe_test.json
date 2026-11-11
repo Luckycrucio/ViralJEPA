@@ -1,0 +1,24 @@
+{
+  "random_init": {
+    "probe_auroc": 0.8403889381908207,
+    "probe_ap": 0.13488006077656117,
+    "rankme": 57.25840759277344,
+    "feature_std": 0.1676967889070511,
+    "mean_probe_auroc": 0.8430777771085631,
+    "mean_probe_ap": 0.12490141517162347,
+    "mean_rankme": 47.84928894042969,
+    "mean_feature_std": 0.1334882527589798
+  },
+  "jepa_target_encoder": {
+    "probe_auroc": 0.9192527717770752,
+    "probe_ap": 0.38654151154450406,
+    "rankme": 151.697265625,
+    "feature_std": 0.36914733052253723,
+    "mean_probe_auroc": 0.9000194376434922,
+    "mean_probe_ap": 0.3076046997128527,
+    "mean_rankme": 149.5808868408203,
+    "mean_feature_std": 0.2592569589614868
+  },
+  "steps": 60000,
+  "pretrain_hours": 2.0717880416578716
+}

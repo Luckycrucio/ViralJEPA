@@ -830,6 +830,245 @@ pretraining helped most, at no labelling cost. The natural next steps
 the corpus, real second views for the domain-matched windows, and a gentler start
 to the self-distillation term.
 
+% =====================================================================
+\section{Addendum: exp05, pretraining on a BLASTn-decontaminated corpus}\label{sec:exp05}
+% =====================================================================
+
+Everything above refers to exp04 and \texttt{corpus\_v3}. The $k$-mer screens of
+Section~\ref{sec:corpus} remove near-exact copies of the evaluation contigs, but
+not their diverged relatives. A window that is 80\% identical to a test contig
+shares almost none of its 31-mers, so it passes the screen. This addendum rebuilds
+the corpus with an alignment-based screen, \texttt{corpus\_v4}. It then reruns
+exp04 on it as \emph{exp05}, with the same code, configuration and seeds, and asks
+whether the decontamination changed pretraining or fine-tuning.
+
+\subsection{The BLASTn screen and \texttt{corpus\_v4}}\label{sec:exp05:blast}
+
+\paragraph{Search.} The 26{,}405 \texttt{fullset\_test} contigs form a BLASTn
+database, and every corpus window that passed the $k$-mer screens is a query:
+5{,}054{,}207 windows, the 1.3-fold draw of all five categories. The search runs
+\texttt{-task blastn} with word size 7 and $E \le 10^{-3}$, on both strands, with
+DUST low-complexity masking and at most 500 target contigs per window.
+
+\paragraph{Rule.} A window is discarded when, for at least one test contig, its
+alignments (HSPs) with identity above 70\% and $E \le 10^{-3}$ cover at least 80\%
+of that contig, 240 of its 300\,bp. Coverage is the union of the HSP intervals on
+the test contig, counted per strand, so two partial alignments that together span
+the contig also count. $E$ scales with database size, so in this direction (the
+corpus queried against a small test database) an alignment gets an $E$-value
+about a hundred times smaller than in the reverse search. This does not matter
+here: an alignment covering 240\,bp at more than 70\% identity is far below
+$10^{-3}$ either way, so identity and coverage decide.
+
+\paragraph{Cost.} The screen took 113 minutes on 32 CPU cores, about 23 windows
+per second per BLASTn process, and lengthened the corpus build from 30 minutes to
+2\,h\,14\,min. Every discarded window is logged together with the test contig that
+removed it, the coverage, the identity and the $E$-value.
+
+\begin{table*}[t]
+\centering
+\caption{BLASTn screen of \texttt{corpus\_v4}, per category. Screened: windows
+left after the $k$-mer screens. Removed: windows discarded by the rule. Flagged in
+\texttt{corpus\_v3}: windows of the previous corpus that fail the same rule.
+Viral: removals caused by a viral test contig. Shared: fraction of
+\texttt{corpus\_v4} windows also present in \texttt{corpus\_v3}.}
+\label{tab:blast}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Category & Screened & Removed & Flagged in \texttt{corpus\_v3} & Viral & Shared \\
+\midrule
+Viruses, prokaryotic & 1{,}689{,}455 &     145 &     122 (0.01\%) &  73 & 77\% \\
+Human                & 1{,}206{,}487 & 161{,}897 & 134{,}065 (13.4\%) &   0 & 83\% \\
+Bacteria, gut        & 1{,}039{,}510 &     393 &     303 (0.04\%) &   0 & 77\% \\
+Viruses, eukaryotic  &   933{,}609 &     414 &     327 (0.05\%) & 383 & 77\% \\
+ViraMiner, unlabeled &   185{,}146 &   4{,}231 &   4{,}108 (2.3\%)  & 424 & 97\% \\
+\midrule
+Total                & 5{,}054{,}207 & 167{,}080 & 138{,}925 (3.5\%) & 880 & 79\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{What it removed.} The screen removed 167{,}080 windows
+(Table~\ref{tab:blast}), 97\% of them human. These are not copies of test contigs.
+They belong to repeat families shared with the non-viral contigs: median identity
+is 78\% over 94\% of the contig, the removals trace back to 1{,}020 non-viral test
+contigs, and a single contig accounts for 14{,}087 of them. Only 571 human
+removals reach 95\% identity. The viral categories lose little, but these are the
+removals that matter for the task. A viral test contig caused 383 of the 414
+eukaryotic-virus removals, at 70--83\% identity and never above 95\%, so these are
+relatives from the same families rather than copies. Of the 4{,}231 ViraMiner
+removals, 381 reach 95\% identity: these are pieces of the same contigs as the
+test set. In total, 2{,}127 test contigs removed at least one window, and 160 of
+them are viral.
+
+Every category is drawn at 1.3 times its target, so \texttt{corpus\_v4} keeps the
+composition of Table~\ref{tab:mix}, its sources and its $k$-mer screen counts. It
+has 341{,}428 records against 341{,}501. It is not, however, \texttt{corpus\_v3}
+minus the flagged windows: after screening, each category is trimmed to its
+target by a new random draw, so a fifth of the windows differ between the two
+corpora. The cost of the screen is that the human category of \texttt{corpus\_v4}
+has fewer repeats than the genome it was drawn from.
+
+\subsection{Results of exp05}\label{sec:exp05:results}
+
+exp05 pretrained for 60{,}000 steps in 2.1\,h, like exp04, and every loss term
+ended below its batch-mean baseline: JEPA 0.683 (0.803), global 0.554 (0.632) and
+4-mer 0.333 (0.411), with MLM accuracy 0.329 and token similarity 0.536.
+Tables~\ref{tab:probe5} and~\ref{tab:finetune5} and Figure~\ref{fig:exp05ft}
+repeat Tables~\ref{tab:probe} and~\ref{tab:finetune} and
+Figure~\ref{fig:exp04ft} for exp05. The random-initialised fine-tunes do not
+depend on the corpus and reproduce those of exp04 exactly, so every difference
+between the two experiments comes from the pretrained encoder.
+
+\begin{table}[t]
+\centering
+\caption{Frozen linear probe of exp05, as in Table~\ref{tab:probe}: fitted on
+\texttt{fullset\_train}, scored on \texttt{fullset\_test}, reverse-complement
+averaged features of the EMA target encoder. RankMe is out of 288.}
+\label{tab:probe5}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccc}
+\toprule
+Encoder & Read-out & AUROC & AP & RankMe \\
+\midrule
+Random init. & CLS       & 0.840 & 0.135 & 57.3 \\
+Random init. & mean-pool & 0.843 & 0.125 & 47.8 \\
+ViralJEPA    & CLS       & \textbf{0.919} & \textbf{0.387} & \textbf{151.7} \\
+ViralJEPA    & mean-pool & 0.900 & 0.308 & 149.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table*}[t]
+\centering
+\caption{Fine-tuning results of exp05, mean $\pm$ standard deviation over three
+seeds, in the format of Table~\ref{tab:finetune}. The ViraMiner, ViraMiner3 and
+random rows are those of Table~\ref{tab:finetune}; the random-initialised
+fine-tunes are identical in the two experiments.}
+\label{tab:finetune5}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llcccccccc}
+\toprule
+Task & Init. & Seeds & AUROC & AP & AUROC RC & AP RC & F1 RC & Prec.\ RC & Rec.\ RC \\
+\midrule
+\texttt{fullset} & ViraMiner~\cite{tampuu2019viraminer} & 1 & 0.923 & --- & --- & --- & --- & --- & --- \\
+\texttt{fullset} & ViraMiner3 & 1 & \textbf{0.932} & 0.563 & --- & --- & 0.549 & 0.672 & 0.465 \\
+\texttt{fullset} & random     & 3 & $0.918\pm0.005$ & $0.573\pm0.005$ & $0.931\pm0.003$ & $0.617\pm0.005$ & $\mathbf{0.594\pm0.006}$ & $\mathbf{0.775\pm0.047}$ & $0.484\pm0.023$ \\
+\texttt{fullset} & ViralJEPA  & 3 & $0.930\pm0.016$ & $\mathbf{0.602\pm0.004}$ & $\mathbf{0.939\pm0.011}$ & $\mathbf{0.626\pm0.008}$ & $0.583\pm0.010$ & $0.704\pm0.060$ & $\mathbf{0.500\pm0.018}$ \\
+\midrule
+\texttt{anell}   & ViraMiner~\cite{tampuu2019viraminer} & 1 & 0.755 & --- & --- & --- & --- & --- & --- \\
+\texttt{anell}   & random     & 3 & $0.791\pm0.003$ & $0.231\pm0.009$ & $0.822\pm0.007$ & $0.268\pm0.006$ & $0.182\pm0.007$ & $0.587\pm0.033$ & $0.108\pm0.006$ \\
+\texttt{anell}   & ViralJEPA  & 3 & $\mathbf{0.870\pm0.019}$ & $\mathbf{0.470\pm0.029}$ & $\mathbf{0.885\pm0.016}$ & $\mathbf{0.508\pm0.032}$ & $\mathbf{0.378\pm0.044}$ & $\mathbf{0.779\pm0.012}$ & $\mathbf{0.250\pm0.038}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.90\textwidth]{figures/exp05_finetune_curves.png}
+\caption{Validation average precision (RC-averaged) during fine-tuning of exp05,
+three seeds per initialisation, as in Figure~\ref{fig:exp04ft}. The random
+encoder (dashed) gives the same curves as in exp04; ViralJEPA (solid) peaks in
+22--78 epochs on \texttt{fullset} and 37--60 on \texttt{anell}.}
+\label{fig:exp05ft}
+\end{figure*}
+
+\paragraph{Frozen probe.} The CLS read-out reaches 0.919 test AUROC and 0.387 AP,
+against 0.840 and 0.135 for a random encoder (Table~\ref{tab:probe5}). It again
+leads mean pooling (0.900 and 0.308) at nearly equal effective rank, 152 and 150
+of 288.
+
+\paragraph{Fine-tuning.} Pretraining again changes how fine-tuning starts more
+than where it ends (Figure~\ref{fig:exp05ft}). With the Transformer still frozen,
+ViralJEPA reaches a validation AP of 0.39--0.40 on \texttt{fullset}, against about
+0.07 for the random encoder, and it reaches its best checkpoint after 22--78
+epochs on \texttt{fullset} and 37--60 on \texttt{anell}, against 101--111 and
+94--113. On \texttt{fullset} the three-seed ensembles are again indistinguishable
+in AP: the paired bootstrap over test contigs (2{,}000 resamples) gives $-0.002$
+$[-0.022, 0.019]$. On the anellovirus family the ensembles reach 0.912 AUROC and
+0.545 AP, against 0.845 and 0.296. The paired difference is $+0.067$
+$[0.056, 0.078]$ AUROC and $+0.249$ $[0.225, 0.271]$ AP, and at 90\% precision the
+ViralJEPA ensemble still recovers 12.6\% of the anellovirus contigs, against
+0.1\% for the random one.
+
+\subsection{Did decontamination improve pretraining and fine-tuning?}\label{sec:exp05:compare}
+
+The comparison with exp04 rests on validation data only:
+\texttt{fullset\_validation} for the probe during pretraining and for
+\texttt{fullset}, and the anellovirus-free validation split for \texttt{anell}
+(Table~\ref{tab:val45}). Test AUROC is reported in Tables~\ref{tab:probe5}
+and~\ref{tab:finetune5} but is not used to compare the two experiments.
+
+\begin{table}[t]
+\centering
+\caption{Validation metrics of exp04 and exp05. Probe: CLS and mean-pool
+read-outs scored on \texttt{fullset\_validation} at step 60{,}000. Fine-tuning:
+ViralJEPA, RC-averaged, at the selected checkpoint, mean $\pm$ standard deviation
+over three seeds. The random-initialised fine-tunes are identical in the two
+experiments: $0.929\pm0.005$ AUROC and $0.606\pm0.008$ AP on \texttt{fullset},
+$0.912\pm0.004$ and $0.473\pm0.004$ on \texttt{anell}.}
+\label{tab:val45}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcc}
+\toprule
+ & Metric & exp04 & exp05 \\
+\midrule
+Probe, CLS       & AUROC  & 0.889 & 0.891 \\
+                 & AP     & 0.320 & 0.331 \\
+                 & RankMe & 158.4 & 151.2 \\
+Probe, mean-pool & AUROC  & 0.873 & 0.865 \\
+                 & AP     & 0.264 & 0.261 \\
+\midrule
+\texttt{fullset} & AUROC RC & $0.936\pm0.006$ & $0.936\pm0.011$ \\
+                 & AP RC    & $0.627\pm0.003$ & $0.621\pm0.005$ \\
+\texttt{anell}   & AUROC RC & $0.917\pm0.012$ & $0.907\pm0.013$ \\
+                 & AP RC    & $0.506\pm0.006$ & $0.506\pm0.004$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Pretraining: slightly, in the CLS.} The validation probe on the CLS is
+ahead of exp04 at 11 of the 12 checkpoints in AP and at 9 of 12 in AUROC, by 0.011
+AP and 0.003 AUROC on average. It ends at 0.331 AP and 0.891 AUROC, against 0.320
+and 0.889. Mean pooling moves the other way, to 0.865 AUROC against 0.873, so the
+gain sits in the read-out the classifier uses rather than in the representation as
+a whole. The effective rank is slightly lower, 151 against 158, still far from
+collapse. Relative to their batch-mean baselines, the pretraining losses are
+within 1\% of exp04's. The improvement is consistent but small. It fits the main
+change to the data, 13\% of the human windows trading repeat copies for unique
+sequence. With one pretraining run per corpus and a fifth of the windows redrawn,
+however, it cannot be separated from what a second pretraining seed would do.
+
+\paragraph{Fine-tuning: no measurable change.} On \texttt{fullset}, validation
+AUROC with RC averaging is 0.936 in both experiments, and validation AP is 0.621
+against 0.627. On \texttt{anell}, validation AUROC is 0.907 against 0.917, and AP
+is 0.506 in both. Every one of these differences is within about one standard
+deviation over seeds. The start of fine-tuning is mixed too: during the frozen
+epochs the best validation AP is 0.39--0.40 against 0.41--0.42 on
+\texttt{fullset}, but 0.30 against 0.28--0.29 on \texttt{anell}. On the test sets,
+AP rose on the anellovirus family, from 0.491 to 0.508 over seeds, and was
+unchanged on \texttt{fullset} (0.626 against 0.625). The paired bootstrap between
+the two ViralJEPA ensembles gives $+0.014$ $[-0.003, 0.030]$ AP on \texttt{anell}
+and $+0.002$ $[-0.014, 0.016]$ on \texttt{fullset}, and both intervals include
+zero. Validation AP, which is unchanged, does not confirm the rise, and the
+out-of-family effect has no validation counterpart, since the \texttt{anell}
+validation split contains no anellovirus. Under this protocol, therefore, the
+slightly lower AUROC and slightly higher AP of exp05 are within seed variation
+rather than an effect of the decontamination.
+
+\paragraph{Conclusion.} The decontamination cost nothing and changes none of the
+conclusions of Section~\ref{sec:conclusions}. The frozen CLS representation
+improved slightly on validation. The fine-tuned classifiers are equivalent within
+seed variation. The advantage in test AP on the unseen family stays as large as in
+exp04. The exp04 results therefore do not rest on corpus windows that align to the
+test contigs, and \texttt{corpus\_v4} is the better default for future runs.
+
+\clearpage
+
 {\scriptsize
 \bibliographystyle{unsrtnat}
 \bibliography{references}
